@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="indicator_bg_color">#0F0</color>
+    <color name="indicator_color">#F00</color>
+
+    <color name="adbar_indicator_ckecked_color">#0F0</color>
+    <color name="adbar_indicator_color">#F00</color>
+</resources>

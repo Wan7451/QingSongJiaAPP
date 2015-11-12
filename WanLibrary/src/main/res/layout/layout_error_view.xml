@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pageerrLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/error_layout_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cxinjiazai"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/error_layout_animProgress"
+            android:layout_width="@dimen/space30"
+            android:layout_height="@dimen/space30" />
+
+        <com.wan7451.formview.WanTextView
+            android:id="@+id/error_layout_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/view_margin"
+            android:layout_marginRight="@dimen/view_margin"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space10"
+            android:gravity="center"
+            android:lines="2"
+            android:text="数据加载中..."
+            android:textColor="@color/text_color" />
+
+        <com.wan7451.formview.WanButton
+            android:id="@+id/error_layout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space30"
+            android:paddingLeft="@dimen/view_margin"
+            android:paddingRight="@dimen/view_margin"
+            android:text="..."
+            android:visibility="gone" />
+    </LinearLayout>
+</RelativeLayout>

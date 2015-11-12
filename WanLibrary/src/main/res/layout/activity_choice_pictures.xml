@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FEFCF9"
+    android:orientation="vertical"
+    tools:context="com.yongbaojiankang.dangmala.activities.ChoiceIconActivity">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/main_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#FEF6EB"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/choice_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.wan7451.formview.WanTextView
+                android:id="@+id/choice_path"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="@dimen/view_margin" />
+
+            <com.wan7451.formview.WanTextView
+                android:id="@+id/choice_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/view_margin" />
+
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+</LinearLayout>

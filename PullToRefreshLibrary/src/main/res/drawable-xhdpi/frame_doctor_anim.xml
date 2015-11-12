@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/bow_doctor_zheng1"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng2"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng3"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng4"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng5"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng6"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng7"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng8"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng9"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng10"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng11"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng12"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng13"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng14"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng15"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng16"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng17"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng18"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng19"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng20"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng21"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng22"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng23"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng24"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng25"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng26"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng27"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng28"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng29"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng30"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng31"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng32"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng33"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng34"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng35"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng36"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng37"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng38"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng39"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng40"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng41"
+        android:duration="60" />
+    <item
+        android:drawable="@drawable/bow_doctor_zheng42"
+        android:duration="60" />
+</animation-list>
