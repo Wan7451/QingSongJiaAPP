@@ -8,11 +8,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <dimen name="space2">2dp</dimen>
-    <dimen name="space10">10dp</dimen>
-    <dimen name="space30">30dp</dimen>
-    <dimen name="textSize12">12sp</dimen>
-    <dimen name="view_margin">16dp</dimen>
+
 
 
     <dimen name="titleTextSize">16sp</dimen>

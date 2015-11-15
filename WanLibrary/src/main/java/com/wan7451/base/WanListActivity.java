@@ -6,6 +6,11 @@ package com.wan7451.base;
 public class WanListActivity extends WanActivity {
 
     @Override
+    public void initView() {
+
+    }
+
+    @Override
     protected int getMainViewLayoutId() {
         return 0;
     }

@@ -1,8 +1,12 @@
 package com.wan7451.base;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -60,8 +64,7 @@ public abstract class WanActivity extends AppCompatActivity implements INetLoadA
     /**
      * 初始化UI组件
      */
-    protected void initView() {
-    }
+    public abstract void initView();
 
     protected abstract int getMainViewLayoutId();
 
@@ -328,30 +331,18 @@ public abstract class WanActivity extends AppCompatActivity implements INetLoadA
             }
         }
     }
+
+    //-----------------收发广播--------------------
+    public void registerLocalReceiver(BroadcastReceiver receiver, IntentFilter filter) {
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
+    }
+
+    public void unregisterLocalReceiver(BroadcastReceiver receiver) {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
+    }
+
+    public void sendBrocadcast(Intent intent) {
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+    }
+
 }
-//        LinearLayout rootView = new LinearLayout(this);
-//        rootView.setLayoutParams(new LinearLayout.LayoutParams(
-//                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-//        rootView.setOrientation(LinearLayout.VERTICAL);
-//        rootView.setId(android.R.id.text1);
-//        //是否显示标题
-//        if (isShowTitleView()) {
-//            View titleView = getLayoutInflater().inflate(R.layout.layout_title_view, null);
-//            rootView.addView(titleView);
-//        }
-//
-//        FrameLayout mainView = new FrameLayout(this);
-//        mainView.setLayoutParams(new LinearLayout.LayoutParams(
-//                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-//        //主要内容视图
-//        View contentView = getLayoutInflater().inflate(getMainView(), null);
-//        contentView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-//                FrameLayout.LayoutParams.MATCH_PARENT));
-//        mainView.addView(contentView);
-//        //错误视图
-//        errorView = new ViewStub(this);
-//        errorView.setLayoutResource(R.layout.layout_error_layout);
-//        errorView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-//                FrameLayout.LayoutParams.MATCH_PARENT));
-//        mainView.addView(errorView);
-//        rootView.addView(mainView);

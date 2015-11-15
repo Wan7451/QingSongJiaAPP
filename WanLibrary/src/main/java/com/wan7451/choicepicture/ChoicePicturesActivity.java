@@ -143,8 +143,7 @@ public class ChoicePicturesActivity extends WanActivity implements ListImageDirP
     }
 
     @Override
-    protected void initView() {
-        super.initView();
+    public void initView() {
         setContentTitle("选择照片");
 
         setBackFinish();

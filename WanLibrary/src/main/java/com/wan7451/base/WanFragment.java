@@ -27,7 +27,7 @@ public abstract class WanFragment extends Fragment implements INetLoadAction {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_root_layout, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_root_layout, container, false);
 
         toolbar = (Toolbar) rootView.findViewById(R.id.fragment_base_toolbar);
         if (isShowTitleView()) {
@@ -67,8 +67,7 @@ public abstract class WanFragment extends Fragment implements INetLoadAction {
     /**
      * 初始化UI组件
      */
-    protected void initView(View view) {
-    }
+    protected abstract void initView(View view);
 
     protected abstract int getMainViewLayoutId();
 

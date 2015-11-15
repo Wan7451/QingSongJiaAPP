@@ -64,3 +64,8 @@
 
    R.id.布局名称_组件简称_业务   R.id.main_tv_name
                               R.id.main_et_phone
+
+6.图片资源命名
+   icon_模块名_中文名首字母缩写     icon_exam_bmxz.png   驾校模块的报名须知图标icon_exam_bmxz.png
+     icon_模块名_中文名首字母缩写_normal    正常效果
+      icon_模块名_中文名首字母缩写_pressed   按下效果icon_exam_ct_pressed.png

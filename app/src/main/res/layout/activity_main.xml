@@ -1,34 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activity.MainActivity">
+    android:id="@+id/main_mainView">
 
-    <android.support.design.widget.AppBarLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/main_drawerLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        >
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </android.support.design.widget.AppBarLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/toolbar_bg">
 
-    <include layout="@layout/content_main" />
+                <ImageView
+                    android:id="@+id/main_img_drawerIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:layout_marginLeft="@dimen/view_margin"
+                    android:src="@drawable/icon_exam_grsz"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+                <TextView
+                    android:id="@+id/main_tv_title"
+                    style="@style/title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
 
-</android.support.design.widget.CoordinatorLayout>
+            </RelativeLayout>
+
+
+            <FrameLayout
+                android:id="@+id/main_realtabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <android.support.v4.app.FragmentTabHost
+                android:id="@+id/main_tabHost"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+            <RadioGroup
+                android:id="@+id/main_navigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/space5"
+                android:background="@color/navigationbar_bg">
+
+                <RadioButton
+                    android:id="@+id/main_tab1"
+                    android:text="驾考"
+                    android:drawableTop="@drawable/icon_exam_jk"
+                    style="@style/navigation_text"/>
+                <RadioButton
+                    android:id="@+id/main_tab2"
+                    android:text="驾校"
+                    android:drawableTop="@drawable/icon_exam_jx"
+                    style="@style/navigation_text"/>
+                <RadioButton
+                    android:id="@+id/main_tab3"
+                    android:text="交流"
+                    android:drawableTop="@drawable/icon_exam_jl"
+                    style="@style/navigation_text"/>
+                <RadioButton
+                    android:id="@+id/main_tab4"
+                    android:text="工具"
+                    android:drawableTop="@drawable/icon_exam_tools"
+                    style="@style/navigation_text"/>
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <fragment
+            android:id="@+id/main_menu_left"
+            android:name="com.qingsongjia.qingsongjia.fragment.MenuFragment"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:tag="LEFT" />
+
+
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>
