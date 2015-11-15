@@ -1,13 +1,52 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qingsongjia.qingsongjia.driverexam.SubjectThreeFragment">
+    android:orientation="vertical"
+    tools:context="com.qingsongjia.qingsongjia.driverexam.SubjectOneFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.wan7451.adbar.ADBarView
+        android:id="@+id/sunbjectThree_AdView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="@dimen/space90" />
 
-</FrameLayout>
+    <View style="@style/divider10" />
+
+    <View style="@style/divider1" />
+
+
+    <TextView
+        android:id="@+id/sunbjectThree_ksjq"
+        style="@style/clickTextView"
+        android:text="自学考试技巧" />
+
+    <View style="@style/divider1" />
+
+    <GridView
+        android:id="@+id/sunbjectThree_views"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space85"
+        android:layout_marginTop="@dimen/view_margin"
+        android:layout_marginBottom="@dimen/view_margin"
+        android:numColumns="4" />
+
+
+    <View style="@style/divider1" />
+
+    <View style="@style/divider10" />
+    <View style="@style/divider1" />
+
+    <GridView
+        android:id="@+id/sunbjectThreee_others"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space85"
+        android:layout_marginTop="@dimen/view_margin"
+        android:layout_marginBottom="@dimen/view_margin"
+        android:numColumns="2" />
+
+    <View style="@style/divider1" />
+
+    <View style="@style/dividerFill"/>
+
+</LinearLayout>

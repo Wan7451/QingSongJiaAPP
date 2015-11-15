@@ -66,6 +66,12 @@
                               R.id.main_et_phone
 
 6.图片资源命名
+   
    icon_模块名_中文名首字母缩写     icon_exam_bmxz.png   驾校模块的报名须知图标icon_exam_bmxz.png
-     icon_模块名_中文名首字母缩写_normal    正常效果
-      icon_模块名_中文名首字母缩写_pressed   按下效果icon_exam_ct_pressed.png
+   icon_模块名_中文名首字母缩写_normal    正常效果
+   icon_模块名_中文名首字母缩写_pressed   按下效果icon_exam_ct_pressed.png
+
+7. 样式命名
+   
+   组件缩写_样式名称     tv_oneLineClick  一行可点击的TextView
+   

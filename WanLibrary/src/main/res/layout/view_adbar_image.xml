@@ -10,4 +10,4 @@
     fresco:failureImageScaleType="centerInside"
     fresco:placeholderImage="@drawable/default_adview_image"
     fresco:placeholderImageScaleType="fitCenter"
-    fresco:roundedCornerRadius="2dp" />
+     />

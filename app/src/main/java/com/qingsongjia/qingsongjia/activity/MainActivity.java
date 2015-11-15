@@ -70,6 +70,8 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         mainTabHost.setCurrentTab(0);
         mainNavigation.setOnCheckedChangeListener(this);
         mainImgDrawerIcon.setOnClickListener(this);
+
+        ((RadioButton)(mainNavigation.getChildAt(0))).setChecked(true);
     }
 
 

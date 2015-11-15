@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +8,7 @@
     <com.wan7451.adbar.ADBarView
         android:id="@+id/sunbjectOne_AdView"
         android:layout_width="match_parent"
-        android:layout_height="90dp" />
+        android:layout_height="@dimen/space90" />
 
     <View style="@style/divider10" />
 
@@ -18,79 +17,18 @@
     <com.wan7451.advancedview.RadialMenuWidget
         android:id="@+id/sunbjectOne_radiaMenu"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="@dimen/space290" />
 
-    <android.support.v7.widget.GridLayout
+    <GridView
+        android:id="@+id/sunbjectOne_views"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space25"
-        android:layout_marginLeft="@dimen/view_margin"
-        android:layout_marginRight="@dimen/view_margin"
-        android:layout_marginTop="@dimen/view_margin"
-        app:columnCount="4"
-        app:rowCount="2">
+        android:layout_height="@dimen/space85"
+        android:layout_marginBottom="@dimen/view_margin"
+        android:numColumns="4" />
 
-        <ImageView
-            android:src="@drawable/icon_exam_bmxz"
-            app:layout_column="0"
-            app:layout_columnWeight="1"
-            app:layout_row="0" />
-
-        <ImageView
-            android:src="@drawable/icon_exam_jtfg"
-            app:layout_column="1"
-            app:layout_columnWeight="1"
-            app:layout_row="0" />
-
-        <ImageView
-            android:src="@drawable/icon_exam_jtbz"
-            app:layout_column="2"
-            app:layout_columnWeight="1"
-            app:layout_row="0" />
-
-        <ImageView
-            android:src="@drawable/icon_exam_xssl"
-            app:layout_column="3"
-            app:layout_columnWeight="1"
-            app:layout_row="0" />
-
-        <TextView
-            style="@style/imageText"
-            android:gravity="center"
-            android:text="报名须知"
-            app:layout_column="0"
-            app:layout_columnWeight="1"
-            app:layout_row="1" />
-
-        <TextView
-            style="@style/imageText"
-            android:gravity="center"
-            android:text="交通法规"
-            app:layout_column="1"
-            app:layout_columnWeight="1"
-            app:layout_row="1" />
-
-        <TextView
-            style="@style/imageText"
-            android:gravity="center"
-            android:text="交通标志"
-            app:layout_column="2"
-            app:layout_columnWeight="1"
-            app:layout_row="1" />
-
-        <TextView
-            style="@style/imageText"
-            android:gravity="center"
-            android:text="新手上路"
-            app:layout_column="3"
-            app:layout_columnWeight="1"
-            app:layout_row="1" />
-
-    </android.support.v7.widget.GridLayout>
 
     <View style="@style/divider1" />
 
-    <View style="@style/divider10" />
+    <View style="@style/dividerFill" />
 
 </LinearLayout>

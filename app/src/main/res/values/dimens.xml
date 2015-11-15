@@ -9,6 +9,11 @@
     <dimen name="space10">10dp</dimen>
     <dimen name="space25">25dp</dimen>
     <dimen name="space30">30dp</dimen>
+    <dimen name="space85">85dp</dimen>
+    <dimen name="space90">90dp</dimen>
+    <dimen name="space170">170dp</dimen>
+    <dimen name="space280">280dp</dimen>
+    <dimen name="space290">290dp</dimen>
     <dimen name="textSize12">12sp</dimen>
     <dimen name="view_margin">16dp</dimen>
 </resources>

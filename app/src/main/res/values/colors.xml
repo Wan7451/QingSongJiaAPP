@@ -9,5 +9,6 @@
     <color name="divider10">#ECECEC</color>
     <color name="divider1">#D6D6D6</color>
 
+<color name="default_bg">#ECECEC</color>
 
 </resources>
