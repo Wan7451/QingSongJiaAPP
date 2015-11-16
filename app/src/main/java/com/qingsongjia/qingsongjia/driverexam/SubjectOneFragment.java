@@ -1,11 +1,8 @@
 package com.qingsongjia.qingsongjia.driverexam;
 
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -13,8 +10,8 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.ExamImageTextAdapter;
 import com.qingsongjia.qingsongjia.bean.ExamImageText;
 import com.wan7451.adbar.ADBarView;
-import com.wan7451.advancedview.RadialMenuItem;
-import com.wan7451.advancedview.RadialMenuWidget;
+import com.wan7451.radiamenu.RadialMenuItem;
+import com.wan7451.radiamenu.RadialMenuWidget;
 import com.wan7451.base.WanFragment;
 
 import java.util.ArrayList;

@@ -1332,8 +1332,8 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
             switch (this) {
                 case ROTATE:
                 default:
-                    return new FrameLoadingLayout(context, mode, scrollDirection, attrs);
-//                    return new RotateLoadingLayout(context, mode, scrollDirection, attrs);
+//                    return new FrameLoadingLayout(context, mode, scrollDirection, attrs);
+                    return new RotateLoadingLayout(context, mode, scrollDirection, attrs);
                 case FLIP:
                     return new FlipLoadingLayout(context, mode, scrollDirection, attrs);
             }

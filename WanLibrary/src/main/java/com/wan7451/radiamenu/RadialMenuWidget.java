@@ -1,4 +1,4 @@
-package com.wan7451.advancedview;
+package com.wan7451.radiamenu;
 
 /**
  * Created by wanggang on 15/11/15.

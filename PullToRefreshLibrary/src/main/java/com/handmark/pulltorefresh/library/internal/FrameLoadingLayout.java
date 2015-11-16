@@ -32,6 +32,8 @@ public class FrameLoadingLayout extends LoadingLayout {
         animationDrawable = (AnimationDrawable) mHeaderImage.getDrawable();
     }
 
+
+
     @Override
     protected int getDefaultDrawableResId() {
         switch (getContext().getPackageName()) {

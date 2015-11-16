@@ -14,7 +14,7 @@
 
     <View style="@style/divider1" />
 
-    <com.wan7451.advancedview.RadialMenuWidget
+    <com.wan7451.radiamenu.RadialMenuWidget
         android:id="@+id/sunbjectOne_radiaMenu"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space290" />

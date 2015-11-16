@@ -1,4 +1,4 @@
-package com.wan7451.advancedview;
+package com.wan7451.radiamenu;
 
 import android.graphics.Path;
 import android.graphics.RectF;

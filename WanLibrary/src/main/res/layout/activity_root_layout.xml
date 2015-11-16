@@ -1,29 +1,13 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.administrator.wanlibrarytest.Main2Activity">
+    android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/activity_base_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+    <include layout="@layout/layout_title_view"
+        android:id="@+id/activity_base_toolbar"/>
 
-            <include layout="@layout/layout_title_view" />
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
 
     <com.wan7451.advancedview.ErrorLayoutView
         android:id="@+id/activity_base_errorView"
@@ -31,13 +15,11 @@
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-    <android.support.v4.widget.NestedScrollView
+    <ScrollView
         android:id="@+id/activity_base_mainview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="fill_vertical"
-        android:fillViewport="true"
-        app:layout_anchorGravity="top|start"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:fillViewport="true" />
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

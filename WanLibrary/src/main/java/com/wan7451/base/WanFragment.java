@@ -22,33 +22,51 @@ import com.wan7451.wanadapter.mylibrary.R;
 public abstract class WanFragment extends Fragment implements INetLoadAction {
 
     private ErrorLayoutView errorView;
-    private Toolbar toolbar;
+    private View toolbar;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_root_layout, container, false);
+        View rootView = inflater.inflate(getMainRootLayout(), container, false);
 
-        toolbar = (Toolbar) rootView.findViewById(R.id.fragment_base_toolbar);
-        if (isShowTitleView()) {
-            //去掉左边距
-            toolbar.setContentInsetsAbsolute(0, 0);
-            getWanActivity().setSupportActionBar(toolbar);
-        } else {
-            toolbar.setVisibility(View.GONE);
+        toolbar = rootView.findViewById(R.id.fragment_base_toolbar);
+        if (toolbar != null) {
+            if (!isShowTitleView()) {
+                toolbar.setVisibility(View.GONE);
+            }
         }
 
-        toolbar.setScrollContainer(false);
-
         ViewGroup mainView = (ViewGroup) rootView.findViewById(R.id.fragment_base_mainview);
-        View mainContent = inflater.inflate(getMainViewLayoutId(), mainView, false);
-        mainView.addView(mainContent);
+        if (mainView != null) {
+            View mainContent = inflater.inflate(getMainViewLayoutId(), mainView, false);
+            mainView.addView(mainContent);
+        }
 
-
-        initView(mainContent);
+        initView(rootView);
 
         return rootView;
 
+    }
+
+
+    /**
+     * 初始化UI组件
+     */
+    protected abstract void initView(View view);
+
+    protected abstract int getMainViewLayoutId();
+
+    /**
+     * 是否显示标题栏
+     *
+     * @return true 显示标题 false 不显示标题
+     */
+    protected boolean isShowTitleView() {
+        return true;
+    }
+
+    int getMainRootLayout() {
+        return R.layout.fragment_root_layout;
     }
 
 
@@ -64,22 +82,6 @@ public abstract class WanFragment extends Fragment implements INetLoadAction {
         this.context = context;
     }
 
-    /**
-     * 初始化UI组件
-     */
-    protected abstract void initView(View view);
-
-    protected abstract int getMainViewLayoutId();
-
-
-    /**
-     * 是否显示标题栏
-     *
-     * @return true 显示标题 false 不显示标题
-     */
-    protected boolean isShowTitleView() {
-        return true;
-    }
 
     public Context getContext() {
         return context;

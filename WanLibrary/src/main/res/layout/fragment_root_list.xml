@@ -1,13 +1,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
 
 
     <include
         android:id="@+id/fragment_base_toolbar"
         layout="@layout/layout_title_view" />
+
 
     <com.wan7451.advancedview.ErrorLayoutView
         android:id="@+id/fragment_base_errorView"
@@ -15,12 +16,15 @@
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-    <ScrollView
-        android:id="@+id/fragment_base_mainview"
+    <RelativeLayout
+        android:id="@+id/fragment_main_headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.wan7451.wanadapter.recycle.WanRecycleView
+        android:id="@+id/fragment_mainView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="fill_vertical"
-        android:fillViewport="true"
-        android:scrollbars="none" />
+         />
 
 </LinearLayout>

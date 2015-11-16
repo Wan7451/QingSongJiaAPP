@@ -1,22 +1,92 @@
 package com.qingsongjia.qingsongjia.fragment;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.adapter.SchoolListAdapter;
+import com.qingsongjia.qingsongjia.bean.School;
+import com.qingsongjia.qingsongjia.utils.UIManager;
+import com.wan7451.advancedview.FilterMenuView;
+import com.wan7451.base.WanListFragment;
+import com.wan7451.wanadapter.recycle.WanAdapter;
+import com.wan7451.wanadapter.recycle.WanViewHolder;
 
-public class SchoolFragment extends Fragment {
+import java.util.ArrayList;
+
+public class SchoolFragment extends WanListFragment {
+    ArrayList<School> data=new ArrayList<>();
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_school, container, false);
+    protected boolean addData() {
+        return true;
     }
+
+    @Override
+    protected boolean isShowTitleView() {
+        return false;
+    }
+
+    @Override
+    protected boolean loadData() {
+
+
+        data.add(new School("A"));
+        data.add(new School("A"));
+        data.add(new School("A"));
+        data.add(new School("A"));
+        data.add(new School("A"));
+        data.add(new School("A"));
+        data.add(new School("A"));
+        data.add(new School("A"));
+        data.add(new School("A"));
+        data.add(new School("A"));
+        data.add(new School("A"));
+        data.add(new School("A"));
+        loadFinish("数据空");
+
+        return false;
+    }
+
+    @Override
+    public WanAdapter getAdapter() {
+        return new SchoolListAdapter(getContext(),data, R.layout.item_school_list);
+    }
+
+    @Override
+    public void onItemClickListener(int posotion, WanViewHolder holder) {
+        Toast.makeText(getContext(),data.get(posotion).getName(),Toast.LENGTH_SHORT).show();
+        UIManager.startSchoolList(getContext());
+    }
+
+    @Override
+    public View getListHeaderView() {
+        Button btn=new Button(getContext());
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ArrayList<String> data=new ArrayList<String>();
+                data.add("A");
+                data.add("A");
+                data.add("A");
+                data.add("A");
+                data.add("A");
+
+                FilterMenuView.showFilterMenu(getActivity(), data, view, new WanAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClickListener(int posotion, WanViewHolder holder) {
+
+                    }
+                });
+            }
+        });
+
+        return btn;
+    }
+
+    //R.layout.fragment_school
 
 }

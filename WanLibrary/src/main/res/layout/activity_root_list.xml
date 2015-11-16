@@ -6,21 +6,29 @@
 
 
     <include
-        android:id="@+id/fragment_base_toolbar"
+        android:id="@+id/activity_base_toolbar"
         layout="@layout/layout_title_view" />
 
+
     <com.wan7451.advancedview.ErrorLayoutView
-        android:id="@+id/fragment_base_errorView"
+        android:id="@+id/activity_base_errorView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-    <ScrollView
-        android:id="@+id/fragment_base_mainview"
+    <RelativeLayout
+        android:id="@+id/activity_main_headerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="fill_vertical"
-        android:fillViewport="true"
-        android:scrollbars="none" />
+        android:layout_height="wrap_content" />
+
+    <com.wan7451.wanadapter.recycle.WanRecycleView
+        android:id="@+id/activity_mainView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 </LinearLayout>
+
+
+
+

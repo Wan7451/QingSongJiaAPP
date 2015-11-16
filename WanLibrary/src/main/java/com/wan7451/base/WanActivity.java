@@ -34,30 +34,33 @@ public abstract class WanActivity extends AppCompatActivity implements INetLoadA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getAppContext().addAcitivty(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_root_layout);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.activity_base_toolbar);
-        if (isShowTitleView()) {
-            //去掉左边距
-            toolbar.setContentInsetsAbsolute(0, 0);
-            setSupportActionBar(toolbar);
-        } else {
-            toolbar.setVisibility(View.GONE);
-        }
+        setContentView(getMainRootLayout());
 
-        toolbar.setScrollContainer(false);
+        View toolbar = findViewById(R.id.activity_base_toolbar);
+        if (toolbar != null) {
+            if (!isShowTitleView()) {
+                toolbar.setVisibility(View.GONE);
+            }
+        }
 
         initSystemBar();
 
         ViewGroup mainView = (ViewGroup) findViewById(R.id.activity_base_mainview);
-        View mainContent = getLayoutInflater().inflate(getMainViewLayoutId(), mainView, false);
-        mainView.addView(mainContent);
+        if (mainView != null) {
+            View mainContent = getLayoutInflater().inflate(getMainViewLayoutId(), mainView, false);
+            mainView.addView(mainContent);
+        }
 
         errorView = (ErrorLayoutView) findViewById(R.id.activity_base_errorView);
 
         initView();
         getAppContext().addAcitivty(this);
+    }
+
+
+    int getMainRootLayout() {
+        return R.layout.activity_root_layout;
     }
 
 
@@ -117,7 +120,7 @@ public abstract class WanActivity extends AppCompatActivity implements INetLoadA
     private SystemBarTintManager.SystemBarConfig config;
 
     protected void initSystemBar() {
-        initSystemBar(0xFFE46451);
+        initSystemBar(getResources().getColor(R.color.title_bar_color));
     }
 
     public void initSystemBar(int color) {
@@ -178,7 +181,7 @@ public abstract class WanActivity extends AppCompatActivity implements INetLoadA
 
     public View getTitleBar() {
         if (mTitlebar == null) {
-            mTitlebar = findViewById(R.id.title);
+            mTitlebar = findViewById(R.id.activity_base_toolbar);
         }
         return mTitlebar;
     }
