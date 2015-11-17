@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.qingsongjia.qingsongjia.activity.LoginActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:layout_marginRight="@dimen/view_margin"
+        android:layout_marginTop="@dimen/view_margin"
+        android:background="@drawable/shape_login_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/view_margin"
+            android:paddingBottom="@dimen/view_margin"
+            android:paddingLeft="@dimen/view_margin"
+            android:paddingRight="@dimen/view_margin">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_login_phone" />
+
+            <EditText
+                android:id="@+id/login_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space10"
+                android:background="@null"
+                android:inputType="phone"
+                android:hint="请输入手机号码"
+                 />
+        </LinearLayout>
+
+        <View
+            style="@style/divider1"
+            android:layout_marginLeft="@dimen/space10"
+            android:layout_marginRight="@dimen/space10"
+            android:background="@color/login_bkuang" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/view_margin"
+            android:paddingBottom="@dimen/view_margin"
+            android:paddingLeft="@dimen/view_margin"
+            android:paddingRight="@dimen/view_margin">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_login_pasd" />
+
+            <EditText
+                android:id="@+id/login_pasd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space10"
+                android:background="@null"
+                android:hint="请输入密码"
+                 />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:layout_marginRight="@dimen/view_margin">
+
+        <TextView
+            android:id="@+id/login_canNotLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/view_margin"
+            android:text="无法登陆?"
+            android:textColor="@color/toolbar_bg"
+            android:textSize="@dimen/textSize14" />
+
+        <TextView
+            android:id="@+id/login_fastRegist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/view_margin"
+            android:text="快速注册"
+            android:textColor="@color/toolbar_bg"
+            android:textSize="@dimen/textSize14" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/login_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登陆"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:layout_marginRight="@dimen/view_margin"
+        style="@style/button"/>
+
+</LinearLayout>

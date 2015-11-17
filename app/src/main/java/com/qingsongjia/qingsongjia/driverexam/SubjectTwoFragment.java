@@ -56,7 +56,7 @@ public class SubjectTwoFragment extends WanFragment {
         data.add(new ExamImageText(R.drawable.icon_exam_seatbelt,"安全带"));
         data.add(new ExamImageText(R.drawable.icon_exam_dhkg,"点火开关"));
         data.add(new ExamImageText(R.drawable.icon_exam_fxp,"方向盘"));
-        data.add(new ExamImageText(R.drawable.icon_exam_cjpd,"离合器"));
+        data.add(new ExamImageText(R.drawable.icon_exam_lhq,"离合器"));
         data.add(new ExamImageText(R.drawable.icon_exam_jstb,"加速踏板"));
         data.add(new ExamImageText(R.drawable.icon_exam_zxzd,"驻车制动"));
         data.add(new ExamImageText(R.drawable.icon_exam_zytz,"座椅调整"));

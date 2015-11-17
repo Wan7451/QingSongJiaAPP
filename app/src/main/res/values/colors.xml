@@ -8,6 +8,8 @@
     <color name="navigationbar_bg">#FAFAF5</color>
     <color name="divider10">#ECECEC</color>
     <color name="divider1">#D6D6D6</color>
+    <color name="login_bkuang">#DEDEDE</color>
+    <color name="login_text">#999999</color>
 
 <color name="default_bg">#ECECEC</color>
 

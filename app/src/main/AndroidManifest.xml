@@ -19,8 +19,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".driverschool.SchoolListActivity" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".driverschool.SchoolListActivity"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.VerifyPhoneActivity"
+            android:label="@string/title_activity_verify_phone"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.SetPasswordActivity"
+            android:label="@string/title_activity_set_password"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

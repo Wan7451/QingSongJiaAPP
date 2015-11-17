@@ -1,5 +1,11 @@
 <resources>
 
+    <style name="button">
+        <item name="android:background">@drawable/shape_button_bg</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textSize">@dimen/textSize14</item>
+    </style>
+
     <!--一行显示一个可以点击的TextView-->
     <style name="clickTextView">
         <item name="android:clickable">true</item>
@@ -27,11 +33,13 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/divider10</item>
     </style>
+
     <style name="divider10">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">10dp</item>
         <item name="android:background">@color/divider10</item>
     </style>
+
     <style name="divider1">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1px</item>
@@ -55,7 +63,6 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">17sp</item>
     </style>
-
 
 
     <!-- Base application theme. -->

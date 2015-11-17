@@ -1,13 +1,34 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qingsongjia.qingsongjia.driverexam.SubjectFourFragment">
+    android:orientation="vertical"
+    tools:context="com.qingsongjia.qingsongjia.driverexam.SubjectOneFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.wan7451.adbar.ADBarView
+        android:id="@+id/sunbjectFour_AdView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="@dimen/space90" />
 
-</FrameLayout>
+    <View style="@style/divider10" />
+
+    <View style="@style/divider1" />
+
+    <com.wan7451.radiamenu.RadialMenuWidget
+        android:id="@+id/sunbjectFour_radiaMenu"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space290" />
+
+    <GridView
+        android:id="@+id/sunbjectFour_views"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space85"
+        android:layout_marginBottom="@dimen/view_margin"
+        android:numColumns="4" />
+
+
+    <View style="@style/divider1" />
+
+    <View style="@style/dividerFill" />
+
+</LinearLayout>

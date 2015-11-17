@@ -11,17 +11,17 @@ import android.widget.TextView;
 public class WanTextView extends TextView {
     public WanTextView(Context context) {
         super(context);
-        setTextTypeface("fonts/myFont.ttf");
+//        setTextTypeface("fonts/myFont.ttf");
     }
 
     public WanTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setTextTypeface("fonts/myFont.ttf");
+//        setTextTypeface("fonts/myFont.ttf");
     }
 
     public WanTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setTextTypeface("fonts/myFont.ttf");
+//        setTextTypeface("fonts/myFont.ttf");
     }
 
     /**
