@@ -50,6 +50,8 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     RadioButton mainTab4;
     @Bind(R.id.main_navigation)
     RadioGroup mainNavigation;
+    @Bind(R.id.main_img_search)
+    ImageView mainImgSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         initSystemBar(getResources().getColor(R.color.toolbar_bg));
 
         mainTvTitle.setText("轻松驾");
+
 
         mainTabHost.setup(this, getSupportFragmentManager(), R.id.main_realtabcontent);
 
@@ -71,7 +74,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         mainNavigation.setOnCheckedChangeListener(this);
         mainImgDrawerIcon.setOnClickListener(this);
 
-        ((RadioButton)(mainNavigation.getChildAt(0))).setChecked(true);
+        ((RadioButton) (mainNavigation.getChildAt(0))).setChecked(true);
     }
 
 
@@ -105,6 +108,8 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
                 break;
             case R.id.main_tab2:
                 mainTabHost.setCurrentTab(1);
+                mainTvTitle.setText("找驾校");
+                mainImgSearch.setVisibility(View.VISIBLE);
                 break;
             case R.id.main_tab3:
                 mainTabHost.setCurrentTab(2);
