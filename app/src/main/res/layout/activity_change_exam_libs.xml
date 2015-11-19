@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.qingsongjia.qingsongjia.user.ChangeExamLibsActivity">
+
+    <TextView
+        style="@style/clickTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/view_margin"
+        android:text="驾驶证" />
+
+    <GridView
+        android:id="@+id/changeExam_jsz"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space85"
+        android:layout_marginBottom="@dimen/view_margin"
+        android:numColumns="4" />
+
+    <TextView
+        style="@style/clickTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/view_margin"
+        android:text="资格证" />
+
+    <GridView
+        android:id="@+id/changeExam_zgz"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space170"
+        android:layout_marginBottom="@dimen/view_margin"
+        android:numColumns="4" />
+</LinearLayout>
