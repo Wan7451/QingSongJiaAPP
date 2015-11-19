@@ -41,7 +41,8 @@
         <activity
             android:name=".activity.SetPasswordActivity"
             android:label="@string/title_activity_set_password"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".user.ChangeExamLibsActivity"></activity>
     </application>
 
 </manifest>
