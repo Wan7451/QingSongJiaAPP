@@ -6,9 +6,11 @@
 
     <dimen name="space2">2dp</dimen>
     <dimen name="space5">5dp</dimen>
+    <dimen name="space8">8dp</dimen>
     <dimen name="space10">10dp</dimen>
     <dimen name="space25">25dp</dimen>
     <dimen name="space30">30dp</dimen>
+    <dimen name="space50">50dp</dimen>
     <dimen name="space85">85dp</dimen>
     <dimen name="space90">90dp</dimen>
     <dimen name="space170">170dp</dimen>

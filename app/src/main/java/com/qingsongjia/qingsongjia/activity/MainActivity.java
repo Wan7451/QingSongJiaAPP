@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.fragment.ExamFragment;
 import com.qingsongjia.qingsongjia.fragment.ExchangeFragment;
+import com.qingsongjia.qingsongjia.fragment.MenuFragment;
 import com.qingsongjia.qingsongjia.fragment.SchoolFragment;
 import com.qingsongjia.qingsongjia.fragment.ToolsFragment;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -26,7 +27,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends FragmentActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
+public class MainActivity extends FragmentActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener, MenuFragment.OnMenuItemClick {
 
     @Bind(R.id.main_img_drawerIcon)
     ImageView mainImgDrawerIcon;
@@ -52,6 +53,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     RadioGroup mainNavigation;
     @Bind(R.id.main_img_search)
     ImageView mainImgSearch;
+    private SystemBarTintManager.SystemBarConfig config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +78,6 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
 
         ((RadioButton) (mainNavigation.getChildAt(0))).setChecked(true);
     }
-
-
-    private SystemBarTintManager.SystemBarConfig config;
 
     public void initSystemBar(int color) {
 
@@ -127,5 +126,11 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         } else {
             mainDrawerLayout.openDrawer(Gravity.LEFT);
         }
+    }
+
+
+    @Override
+    public void onItemClick(int position) {
+        mainDrawerLayout.closeDrawer(Gravity.LEFT);
     }
 }

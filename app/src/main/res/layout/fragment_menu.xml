@@ -1,14 +1,62 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
+    android:background="@color/default_bg"
+    android:orientation="vertical"
     tools:context="com.qingsongjia.qingsongjia.fragment.MenuFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?actionBarSize"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <com.wan7451.advancedview.CircleImageView
+            android:id="@+id/menu_user_icon"
+            android:layout_width="@dimen/space50"
+            android:layout_height="@dimen/space50"
+            android:src="@mipmap/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/space10"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/menu_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="name" />
+
+            <TextView
+                android:id="@+id/menu_user_design"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space5"
+                android:text="title" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/menu_user_center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/view_margin"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/menu_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/view_margin"
+        android:text="设置" />
+</LinearLayout>

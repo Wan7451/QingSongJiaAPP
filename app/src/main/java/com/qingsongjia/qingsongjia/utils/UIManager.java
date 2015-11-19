@@ -7,7 +7,7 @@ import com.qingsongjia.qingsongjia.activity.RegisterActivity;
 import com.qingsongjia.qingsongjia.activity.SetPasswordActivity;
 import com.qingsongjia.qingsongjia.activity.VerifyPhoneActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolListActivity;
-import com.wan7451.base.WanActivity;
+import com.qingsongjia.qingsongjia.user.ChangeExamLibsActivity;
 
 /**
  * Created by wanggang on 15/11/17.
@@ -35,6 +35,12 @@ public class UIManager {
     public static void startSetPassword(Context context) {
         Intent i=new Intent();
         i.setClass(context, SetPasswordActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startChangeExamLibs(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, ChangeExamLibsActivity.class);
         context.startActivity(i);
     }
 }
