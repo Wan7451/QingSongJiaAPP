@@ -29,6 +29,8 @@
             android:paddingRight="@dimen/space50"
             android:paddingTop="@dimen/space10"
             android:paddingBottom="@dimen/space10"
+            android:drawablePadding="@dimen/space10"
+            android:drawableLeft="@drawable/icon_exam_subject"
             android:text="交卷"/>
 
         <TextView
