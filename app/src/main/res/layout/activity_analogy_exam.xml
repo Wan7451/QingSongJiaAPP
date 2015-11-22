@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/analogy_icon"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/view_margin"
+        fresco:fadeDuration="300"
+        fresco:roundAsCircle="true" />
+
+    <TextView
+        android:id="@+id/analogy_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space10"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/analogy_school"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space5"
+        android:gravity="center"
+        android:textColor="@color/text_default_hint"
+        android:textSize="@dimen/textSize12" />
+
+    <TextView
+        android:id="@+id/analogy_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/view_margin"
+        android:layout_marginTop="@dimen/space10"
+        android:gravity="center"
+        android:textColor="@color/text_default_hint" />
+
+    <View style="@style/divider1" />
+
+    <View style="@style/divider10" />
+
+    <View style="@style/divider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="考试科目"
+            android:textColor="@color/text_default_hint" />
+
+        <TextView
+            android:id="@+id/analogy_subject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textColor="@color/text_default" />
+
+    </LinearLayout>
+
+    <View style="@style/divider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="考试车型"
+            android:textColor="@color/text_default_hint" />
+
+        <TextView
+            android:id="@+id/analogy_carType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textColor="@color/text_default" />
+
+    </LinearLayout>
+
+    <View style="@style/divider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="考试标准"
+            android:textColor="@color/text_default_hint" />
+
+        <TextView
+            android:id="@+id/analogy_tandard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textColor="@color/text_default" />
+
+    </LinearLayout>
+
+    <View style="@style/divider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="合格标准"
+            android:textColor="@color/text_default_hint" />
+
+        <TextView
+            android:id="@+id/analogy_qualified"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textColor="@color/text_default" />
+
+    </LinearLayout>
+
+    <View style="@style/divider1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View style="@style/divider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/space10"
+        android:paddingBottom="@dimen/space10"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingLeft="@dimen/view_margin">
+
+        <Button
+            android:id="@+id/analogy_analogy"
+            style="@style/button_ghost"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="全真模拟考试" />
+
+        <View
+            android:layout_width="@dimen/view_margin"
+            android:layout_height="0dp"/>
+
+        <Button
+            android:id="@+id/analogy_imquiryExam"
+            style="@style/button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="预约考试" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/space30"
+        android:layout_marginBottom="@dimen/view_margin">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="考试科目"
+            android:textSize="@dimen/textSize16"
+            android:textColor="@color/text_default"/>
+
+        <TextView
+            android:id="@+id/inquiry_project"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize20"
+            android:layout_marginLeft="@dimen/space10"
+            android:textColor="#F0630C"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/inquiry_choiceTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/view_margin"
+        android:background="@drawable/shape_login_bg"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_time" />
+
+        <TextView
+            android:id="@+id/inquiry_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/space10"
+            android:layout_weight="1"
+            android:text="请选择时间" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_calendar" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/inquiry_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/button"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:layout_marginRight="@dimen/view_margin"
+        android:layout_marginTop="@dimen/space30"
+        android:text="预约" />
+
+</LinearLayout>

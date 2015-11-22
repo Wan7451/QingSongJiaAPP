@@ -8,4 +8,9 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_verify_phone">VerifyPhoneActivity</string>
     <string name="title_activity_set_password">SetPasswordActivity</string>
+    <string name="title_activity_exam_detail">ExamDetailActivity</string>
+    <string name="title_activity_analogy_exam">AnalogyExamActivity</string>
+    <string name="title_activity_inquiry_exam">InquiryExamActivity</string>
+    <string name="title_activity_analogy_test">AnalogyTestActivity</string>
+    <string name="title_activity_exam_test">ExamTestActivity</string>
 </resources>

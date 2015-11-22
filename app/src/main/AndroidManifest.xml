@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.qingsongjia.qingsongjia">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".activity.App"
         android:allowBackup="true"
@@ -42,7 +44,35 @@
             android:name=".activity.SetPasswordActivity"
             android:label="@string/title_activity_set_password"
             android:theme="@style/AppTheme" />
-        <activity android:name=".user.ChangeExamLibsActivity"></activity>
+        <activity android:name=".user.ChangeExamLibsActivity" />
+        <activity
+            android:name=".driverexam.ExamDetailActivity"
+            android:label="@string/title_activity_exam_detail"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverexam.AnalogyExamActivity"
+            android:label="@string/title_activity_analogy_exam"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverexam.InquiryExamActivity"
+            android:label="@string/title_activity_inquiry_exam"
+            android:theme="@style/AppTheme" />
+        <!--
+             ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".driverexam.AnalogyTestActivity"
+            android:label="@string/title_activity_analogy_test"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverexam.ExamTestActivity"
+            android:label="@string/title_activity_exam_test"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

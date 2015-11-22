@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.ExamImageTextAdapter;
 import com.qingsongjia.qingsongjia.bean.ExamImageText;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.adbar.ADBarView;
 import com.wan7451.base.WanFragment;
 import com.wan7451.radiamenu.RadialMenuItem;
@@ -63,13 +64,19 @@ public class SubjectFourFragment extends WanFragment {
                 showToast("模拟考试");
             }
         });
+        testItem.setOnMenuItemPressed(new RadialMenuItem.RadialMenuItemClickListener() {
+            @Override
+            public void execute() {
+                UIManager.startAnalogyExam(getContext());
+            }
+        });
         pieMenu.setCenterCircle(testItem);
 
         orderItem = new RadialMenuItem("order", "顺序练习");
         orderItem.setOnMenuItemPressed(new RadialMenuItem.RadialMenuItemClickListener() {
             @Override
             public void execute() {
-                showToast("顺序练习");
+                UIManager.startExamTest(getContext());
             }
         });
         pieMenu.addMenuEntry(orderItem);
@@ -87,7 +94,7 @@ public class SubjectFourFragment extends WanFragment {
         specialItem.setOnMenuItemPressed(new RadialMenuItem.RadialMenuItemClickListener() {
             @Override
             public void execute() {
-                showToast("专项练习");
+                UIManager.startExamTest(getContext());
             }
         });
         pieMenu.addMenuEntry(specialItem);
@@ -96,7 +103,7 @@ public class SubjectFourFragment extends WanFragment {
         errorItem.setOnMenuItemPressed(new RadialMenuItem.RadialMenuItemClickListener() {
             @Override
             public void execute() {
-                showToast("错题练习");
+                UIManager.startExamTest(getContext());
             }
         });
         pieMenu.addMenuEntry(errorItem);
@@ -105,7 +112,7 @@ public class SubjectFourFragment extends WanFragment {
         randomItem.setOnMenuItemPressed(new RadialMenuItem.RadialMenuItemClickListener() {
             @Override
             public void execute() {
-                showToast("随机练习");
+                UIManager.startExamTest(getContext());
             }
         });
         pieMenu.addMenuEntry(randomItem);

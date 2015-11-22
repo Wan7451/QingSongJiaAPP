@@ -6,12 +6,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.ExamImageTextAdapter;
 import com.qingsongjia.qingsongjia.bean.ExamImageText;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.adbar.ADBarView;
 import com.wan7451.base.WanFragment;
 
@@ -23,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SubjectTwoFragment extends WanFragment {
+public class SubjectTwoFragment extends WanFragment implements AdapterView.OnItemClickListener {
 
 
     @Bind(R.id.sunbjectTwo_AdView)
@@ -63,7 +65,7 @@ public class SubjectTwoFragment extends WanFragment {
         data.add(new ExamImageText(R.drawable.icon_exam_hsj,"后视镜"));
         ExamImageTextAdapter adapter=new ExamImageTextAdapter(getContext(),data,R.layout.item_exam_imagetext);
         sunbjectTwoViews.setAdapter(adapter);
-
+        sunbjectTwoViews.setOnItemClickListener(this);
 
         ArrayList<ExamImageText> data2=new ArrayList<>();
         data2.add(new ExamImageText(R.drawable.icon_exam_yyks,"预约考试"));
@@ -85,5 +87,36 @@ public class SubjectTwoFragment extends WanFragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (i){
+            case 0:
+                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_AQD);
+                break;
+            case 1:
+                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_DHKG);
+                break;
+            case 2:
+                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_FXP);
+                break;
+            case 3:
+                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_LHQ);
+                break;
+            case 4:
+                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_JSTB);
+                break;
+            case 5:
+                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_ZCZD);
+                break;
+            case 6:
+                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_ZYTZ);
+                break;
+            case 7:
+                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_HSJ);
+                break;
+        }
+
     }
 }

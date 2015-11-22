@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#F0640C"
+        android:padding="@dimen/view_margin">
+
+        <ImageView
+            android:id="@+id/examDetail_detailIcon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_exam_bmxz"/>
+
+        <TextView
+            android:id="@+id/examDetail_detailName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="安全带"
+            android:gravity="center"
+            android:textColor="#FFF"
+            android:textSize="@dimen/textSize16"
+            android:layout_marginTop="@dimen/view_margin"
+            android:layout_marginBottom="@dimen/space10"/>
+
+        <TextView
+            android:id="@+id/examDetail_detailStep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:gravity="center"
+            android:textSize="@dimen/textSize12"
+            android:text="安全带"/>
+
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/examDetail_detailContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"/>
+
+</LinearLayout>
