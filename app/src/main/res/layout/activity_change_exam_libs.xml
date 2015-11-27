@@ -10,27 +10,40 @@
         style="@style/clickTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/view_margin"
         android:text="驾驶证" />
+
+    <View style="@style/divider1" />
 
     <GridView
         android:id="@+id/changeExam_jsz"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space85"
-        android:layout_marginBottom="@dimen/view_margin"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space10"
         android:numColumns="4" />
+
+    <View style="@style/divider1" />
+
+    <View style="@style/divider10" />
+
+    <View style="@style/divider1" />
 
     <TextView
         style="@style/clickTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/view_margin"
         android:text="资格证" />
+
+    <View style="@style/divider1" />
 
     <GridView
         android:id="@+id/changeExam_zgz"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space170"
-        android:layout_marginBottom="@dimen/view_margin"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space10"
         android:numColumns="4" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/default_bg" />
 </LinearLayout>

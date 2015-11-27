@@ -13,4 +13,7 @@
     <string name="title_activity_inquiry_exam">InquiryExamActivity</string>
     <string name="title_activity_analogy_test">AnalogyTestActivity</string>
     <string name="title_activity_exam_test">ExamTestActivity</string>
+    <string name="title_activity_inquiry_training">InquiryTrainingActivity</string>
+    <string name="title_activity_teacher_list">TeacherListActivity</string>
+    <string name="title_activity_teacher_detail">TeacherDetailActivity</string>
 </resources>

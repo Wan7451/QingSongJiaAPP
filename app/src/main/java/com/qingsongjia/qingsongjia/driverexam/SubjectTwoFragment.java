@@ -74,6 +74,20 @@ public class SubjectTwoFragment extends WanFragment implements AdapterView.OnIte
         sunbjectTwoOthers.setAdapter(adapter2);
 
 
+        sunbjectTwoOthers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               switch (i){
+                   case 0:
+                       UIManager.startInquiryExam(getContext(), InquiryExamActivity.INQUIRY_TYPE_TWO);
+                       break;
+                   case 1:
+                       UIManager.startInquiryTraining(getContext());
+                       break;
+               }
+            }
+        });
+
 
     }
 

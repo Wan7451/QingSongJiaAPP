@@ -72,6 +72,19 @@ public class SubjectThreeFragment extends WanFragment implements AdapterView.OnI
         ExamImageTextAdapter adapter2=new ExamImageTextAdapter(getContext(),data2,R.layout.item_exam_imagetext);
         sunbjectThreeeOthers.setAdapter(adapter2);
 
+        sunbjectThreeeOthers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        UIManager.startInquiryExam(getContext(), InquiryExamActivity.INQUIRY_TYPE_TWO);
+                        break;
+                    case 1:
+                        UIManager.startInquiryTraining(getContext());
+                        break;
+                }
+            }
+        });
     }
 
     @Override

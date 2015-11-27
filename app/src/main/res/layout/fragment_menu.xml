@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/default_bg"
     android:orientation="vertical"
     tools:context="com.qingsongjia.qingsongjia.fragment.MenuFragment">
@@ -9,14 +10,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="?actionBarSize"
+        android:background="#4C4662"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingTop="@dimen/space10"
+        android:paddingBottom="@dimen/space10"
         android:orientation="horizontal">
 
-        <com.wan7451.advancedview.CircleImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/menu_user_icon"
-            android:layout_width="@dimen/space50"
-            android:layout_height="@dimen/space50"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_width="@dimen/space60"
+            android:layout_height="@dimen/space60"
+            app:placeholderImage="@drawable/default_head"
+            app:roundAsCircle="true"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -30,33 +36,37 @@
                 android:id="@+id/menu_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="name" />
+                android:textColor="#FFF"
+                android:text="好运来了" />
 
             <TextView
                 android:id="@+id/menu_user_design"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space5"
-                android:text="title" />
+                android:textColor="#FFF"
+                android:text="还没有模拟考试成绩" />
         </LinearLayout>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_arrow_white"/>
     </LinearLayout>
+
+
+    <View
+       style="@style/divider10"/>
+
+    <View
+        style="@style/divider1"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/menu_user_center"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/view_margin"
+        android:background="@color/default_bg"
         android:layout_weight="1" />
 
-    <TextView
-        android:id="@+id/menu_setting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/view_margin"
-        android:text="设置" />
 </LinearLayout>

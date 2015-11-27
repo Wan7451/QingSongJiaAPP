@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.activity.MainActivity;
 import com.qingsongjia.qingsongjia.adapter.ItemClickDataAdapter;
@@ -30,15 +31,13 @@ import butterknife.ButterKnife;
 public class MenuFragment extends Fragment implements WanAdapter.OnItemClickListener {
 
     @Bind(R.id.menu_user_icon)
-    CircleImageView menuUserIcon;
+    SimpleDraweeView menuUserIcon;
     @Bind(R.id.menu_user_name)
     TextView menuUserName;
     @Bind(R.id.menu_user_design)
     TextView menuUserDesign;
     @Bind(R.id.menu_user_center)
     RecyclerView menuUserCenter;
-    @Bind(R.id.menu_setting)
-    TextView menuSetting;
     private OnMenuItemClick l;
 
     @Nullable
@@ -49,13 +48,14 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
 
 
         ArrayList<ItemClickData> datas = new ArrayList<>();
-        datas.add(new ItemClickData(R.mipmap.ic_launcher, "我的驾校", "XX学校", true));
-        datas.add(new ItemClickData(R.mipmap.ic_launcher, "我的题库", "小车", true));
-        datas.add(new ItemClickData(R.mipmap.ic_launcher, "我的教练", "张教练", true));
-        datas.add(new ItemClickData(R.mipmap.ic_launcher, "我的钱包", "", true));
-        datas.add(new ItemClickData(R.mipmap.ic_launcher, "我的练习", "", true));
-        datas.add(new ItemClickData(R.mipmap.ic_launcher, "我的考试", "", true));
-        datas.add(new ItemClickData(R.mipmap.ic_launcher, "我的陪练行程", "", true));
+        datas.add(new ItemClickData(R.drawable.icon_menu_school, "我的驾校", "XX学校", true));
+        datas.add(new ItemClickData(R.drawable.icon_menu_exam, "我的题库", "小车", true));
+        datas.add(new ItemClickData(R.drawable.icon_menu_header, "我的教练", "张教练", true));
+        datas.add(new ItemClickData(R.drawable.icon_menu_wallet, "我的钱包", "", true));
+        datas.add(new ItemClickData(R.drawable.icon_menu_test, "我的练习", "", true));
+        datas.add(new ItemClickData(R.drawable.icon_menu_exam, "我的考试", "", true));
+        datas.add(new ItemClickData(R.drawable.icon_menu_plxc, "我的陪练行程", "", true));
+        datas.add(new ItemClickData(R.drawable.icon_menu_setting, "设置", "", true));
 
 
         ItemClickDataAdapter adapter = new ItemClickDataAdapter(getContext(), datas, R.layout.item_icontext_arrows);
@@ -63,16 +63,6 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
         menuUserCenter.setLayoutManager(new LinearLayoutManager(getContext()));
         menuUserCenter.addItemDecoration(new WanItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         adapter.setOnItemClickListener(this);
-
-
-        menuSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (l != null) {
-                    l.onItemClick(-1);
-                }
-            }
-        });
         return view;
     }
 

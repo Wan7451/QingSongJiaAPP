@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/view_margin"
+    android:paddingRight="@dimen/view_margin"
+    android:paddingTop="@dimen/space10"
+    android:paddingBottom="@dimen/space10">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="@dimen/space80"
+        android:layout_height="@dimen/space80"
+        app:placeholderImage="@drawable/default_head"/>
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:columnCount="2"
+        android:layout_marginLeft="@dimen/space10"
+        android:layout_gravity="center_vertical"
+        app:rowCount="3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="名字"
+            app:layout_columnWeight="1"
+            android:textColor="@color/text_default"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="日期"
+            android:gravity="right"
+            android:textColor="@color/text_default_hint"
+            app:layout_column="1"
+            app:layout_row="0" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="科目"
+            android:layout_marginTop="@dimen/space5"
+            app:layout_columnWeight="1"
+            android:textColor="@color/default_btn_normal"
+            app:layout_column="0"
+            app:layout_row="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="教练"
+            android:gravity="right"
+            android:layout_marginTop="@dimen/space5"
+            android:textColor="@color/text_default_hint"
+            app:layout_column="1"
+            app:layout_row="1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="预约时间"
+            android:layout_marginTop="@dimen/space5"
+            app:layout_columnWeight="1"
+            android:textColor="@color/text_default_hint"
+            app:layout_column="0"
+            app:layout_row="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="练习内容"
+            android:layout_marginTop="@dimen/space5"
+            android:gravity="right"
+            android:textColor="@color/text_default_hint"
+            app:layout_column="1"
+            app:layout_row="2" />
+    </android.support.v7.widget.GridLayout>
+
+</LinearLayout>

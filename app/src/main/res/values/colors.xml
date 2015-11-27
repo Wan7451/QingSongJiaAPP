@@ -11,6 +11,8 @@
     <color name="login_bkuang">#DEDEDE</color>
     <color name="login_text">#999999</color>
 
+    <color name="divider_color">@color/divider1</color>
+
     <color name="default_bg">#ECECEC</color>
 
     <color name="default_btn_normal">#07BB9B</color>
@@ -18,5 +20,6 @@
 
     <color name="text_default_hint">#999999</color>
     <color name="text_default">#555555</color>
+    <color name="text_import">#F0630C</color>
 
 </resources>

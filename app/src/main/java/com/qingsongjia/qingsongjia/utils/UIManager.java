@@ -12,6 +12,9 @@ import com.qingsongjia.qingsongjia.driverexam.ExamDetailActivity;
 import com.qingsongjia.qingsongjia.driverexam.ExamTestActivity;
 import com.qingsongjia.qingsongjia.driverexam.ExamTestFragment;
 import com.qingsongjia.qingsongjia.driverexam.InquiryExamActivity;
+import com.qingsongjia.qingsongjia.driverexam.InquiryTrainingActivity;
+import com.qingsongjia.qingsongjia.driverexam.TeacherDetailActivity;
+import com.qingsongjia.qingsongjia.driverexam.TeacherListActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolListActivity;
 import com.qingsongjia.qingsongjia.user.ChangeExamLibsActivity;
 import com.wan7451.base.WanActivity;
@@ -78,7 +81,7 @@ public class UIManager {
      * @param context
      * @param inquiryTypeOne
      */
-    public static void startInquiryExam(WanActivity context, int inquiryTypeOne) {
+    public static void startInquiryExam(Context context, int inquiryTypeOne) {
         Intent i=new Intent();
         i.setClass(context, InquiryExamActivity.class);
         i.putExtra("type", inquiryTypeOne);
@@ -94,6 +97,24 @@ public class UIManager {
     public static void startExamTest(Context context) {
         Intent i=new Intent();
         i.setClass(context, ExamTestActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startInquiryTraining(Context context) {
+        Intent i=new Intent();
+        i.setClass(context, InquiryTrainingActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startTeacherList(Context context) {
+        Intent i=new Intent();
+        i.setClass(context, TeacherListActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startTeacherDetail(Context context) {
+        Intent i=new Intent();
+        i.setClass(context, TeacherDetailActivity.class);
         context.startActivity(i);
     }
 }

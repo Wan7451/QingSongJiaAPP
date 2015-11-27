@@ -19,7 +19,7 @@ public class ExamImageTextAdapter extends CommonAdapter<ExamImageText>{
     }
 
     @Override
-    public void convert(ViewHolder helper, ExamImageText item) {
+    public void convert(ViewHolder helper,int position, ExamImageText item) {
         helper.setText(R.id.imageText_text,item.getShowText());
         helper.setImageResource(R.id.imageText_image,item.getShowImageRes());
     }

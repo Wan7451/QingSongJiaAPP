@@ -4,10 +4,8 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/space8"
-    android:paddingLeft="@dimen/view_margin"
-    android:paddingRight="@dimen/view_margin"
-    android:paddingTop="@dimen/space8">
+    android:background="#FFF"
+    android:padding="@dimen/view_margin">
 
     <ImageView
         android:id="@+id/icontext_icon"
@@ -17,6 +15,7 @@
     <TextView
         android:id="@+id/icontext_mainText"
         android:layout_width="0dp"
+        android:layout_marginLeft="@dimen/space10"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
@@ -28,5 +27,7 @@
     <ImageView
         android:id="@+id/icontext_arrow"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:rotation="-90"
+        android:src="@drawable/icon_arrow_gray"/>
 </LinearLayout>
