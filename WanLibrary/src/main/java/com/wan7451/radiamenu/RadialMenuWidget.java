@@ -149,6 +149,7 @@ public class RadialMenuWidget extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
+
         int state = e.getAction();
         int eventX = (int) e.getX();
         int eventY = (int) e.getY();
@@ -182,6 +183,7 @@ public class RadialMenuWidget extends View {
 
                 if (inWedge == true) {
                     selected = f;
+                    getParent().requestDisallowInterceptTouchEvent(true);
                     break;
                 }
             }
@@ -212,6 +214,7 @@ public class RadialMenuWidget extends View {
 
                     if (inWedge2 == true) {
                         selected2 = f;
+                        getParent().requestDisallowInterceptTouchEvent(true);
                         break;
                     }
                 }
