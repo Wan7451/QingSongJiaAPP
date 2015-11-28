@@ -81,6 +81,24 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
             case 1:
                 UIManager.startChangeExamLibs(getContext());
                 break;
+            case 2:
+                UIManager.startMyTeacher(getContext());
+                break;
+            case 3:
+                UIManager.startMyMessage(getContext());
+                break;
+            case 4:
+                UIManager.startMyTest(getContext());
+                break;
+            case 5:
+                UIManager.startMyExam(getContext());
+                break;
+            case 6:
+                UIManager.startPenLian(getContext());
+                break;
+            case 7:
+                UIManager.startSetting(getContext());
+                break;
 
         }
     }

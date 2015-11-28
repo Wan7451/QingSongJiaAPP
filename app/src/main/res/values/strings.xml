@@ -16,4 +16,13 @@
     <string name="title_activity_inquiry_training">InquiryTrainingActivity</string>
     <string name="title_activity_teacher_list">TeacherListActivity</string>
     <string name="title_activity_teacher_detail">TeacherDetailActivity</string>
+    <string name="title_activity_my_teacher">MyTeacherActivity</string>
+    <string name="title_activity_my_message">MyMessageActivity</string>
+    <string name="title_activity_my_ji_fei">MyJiFeiActivity</string>
+    <string name="title_activity_my_yu_e">MyYuEActivity</string>
+    <string name="title_activity_ti_xian">TiXianActivity</string>
+    <string name="title_activity_my_test">MyTestActivity</string>
+    <string name="title_activity_my_exam">MyExamActivity</string>
+    <string name="title_activity_pen_lian">PenLianActivity</string>
+    <string name="title_activity_setting">SettingActivity</string>
 </resources>

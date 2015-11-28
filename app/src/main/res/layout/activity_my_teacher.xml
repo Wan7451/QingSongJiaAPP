@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF"
+    tools:context="com.qingsongjia.qingsongjia.user.MyTeacherActivity">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/teacher_icon"
+        android:layout_width="@dimen/space90"
+        android:layout_height="@dimen/space90"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/view_margin"
+        app:placeholderImage="@drawable/icon_default_head"
+        app:roundAsCircle="true" />
+
+    <TextView
+        android:id="@+id/teacher_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/view_margin"
+        android:layout_marginTop="@dimen/space10"
+        android:gravity="center"
+        android:text="教练" />
+
+    <View style="@style/divider1" />
+
+    <View style="@style/divider10" />
+
+    <View style="@style/divider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="性别"
+            android:textColor="@color/text_default" />
+
+        <TextView
+            android:id="@+id/teacher_sex"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="男"
+            android:textColor="@color/text_default_hint" />
+
+    </LinearLayout>
+
+    <View style="@style/divider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电话"
+            android:textColor="@color/text_default" />
+
+        <TextView
+            android:id="@+id/teacher_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="130"
+            android:textColor="@color/text_default_hint" />
+
+    </LinearLayout>
+
+    <View style="@style/divider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="驾校"
+            android:textColor="@color/text_default" />
+
+        <TextView
+            android:id="@+id/teacher_school"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="东方时尚"
+            android:textColor="@color/text_default_hint" />
+
+    </LinearLayout>
+
+    <View style="@style/divider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="车牌"
+            android:textColor="@color/text_default" />
+
+        <TextView
+            android:id="@+id/teacher_numb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="学"
+            android:textColor="@color/text_default_hint" />
+
+    </LinearLayout>
+
+    <View style="@style/divider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="车型"
+            android:textColor="@color/text_default" />
+
+        <TextView
+            android:id="@+id/teacher_model"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="小客车"
+            android:textColor="@color/text_default_hint" />
+
+    </LinearLayout>
+
+    <View style="@style/divider1" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/default_bg"/>
+
+</LinearLayout>

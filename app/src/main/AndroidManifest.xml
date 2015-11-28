@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.qingsongjia.qingsongjia" >
+    package="com.qingsongjia.qingsongjia">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,11 +10,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -84,8 +84,43 @@
         <activity
             android:name=".driverexam.TeacherDetailActivity"
             android:label="@string/title_activity_teacher_detail"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".user.MyTeacherActivity"
+            android:label="@string/title_activity_my_teacher"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".user.MyMessageActivity"
+            android:label="@string/title_activity_my_message"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".user.MyJiFeiActivity"
+            android:label="@string/title_activity_my_ji_fei"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".user.MyYuEActivity"
+            android:label="@string/title_activity_my_yu_e"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".user.TiXianActivity"
+            android:label="@string/title_activity_ti_xian"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".user.MyTestActivity"
+            android:label="@string/title_activity_my_test"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".user.MyExamActivity"
+            android:label="@string/title_activity_my_exam"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".user.PenLianActivity"
+            android:label="@string/title_activity_pen_lian"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".user.SettingActivity"
+            android:label="@string/title_activity_setting"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

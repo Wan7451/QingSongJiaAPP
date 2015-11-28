@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.qingsongjia.qingsongjia.user.MyJiFeiActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space210"
+        android:background="#F0640C"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/yue_count"
+            android:layout_gravity="bottom"
+            android:layout_toLeftOf="@+id/yue_count"
+            android:text="余额(元)"
+            android:textColor="#FFF"
+            android:textSize="@dimen/textSize16" />
+
+        <TextView
+            android:id="@+id/yue_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textColor="#FFF"
+            android:textSize="@dimen/textSize76"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <View style="@style/divider1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/default_bg"
+        android:padding="@dimen/view_margin"
+        android:gravity="center">
+
+
+        <LinearLayout
+            android:id="@+id/yue_tixian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space10"
+            android:background="@drawable/shape_btn_gray"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="@dimen/space10"
+            android:paddingBottom="@dimen/space10"
+            android:paddingLeft="@dimen/space60"
+            android:paddingRight="@dimen/space60">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_menu_tx" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="提现"
+                android:layout_marginLeft="@dimen/space10"
+                android:textColor="@color/title_bar_color" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <View style="@style/divider1"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/clickTextView"
+        android:text="积分明细"/>
+
+    <View style="@style/divider1"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/yue_checkout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
