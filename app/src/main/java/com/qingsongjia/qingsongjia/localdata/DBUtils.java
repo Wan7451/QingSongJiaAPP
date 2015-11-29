@@ -1,5 +1,6 @@
 package com.qingsongjia.qingsongjia.localdata;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,6 +9,7 @@ import com.qingsongjia.qingsongjia.bean.KeMu;
 import com.qingsongjia.qingsongjia.bean.TiKu;
 
 import java.io.File;
+
 
 /**
  * Created by wanggang on 15/11/29.
@@ -32,8 +34,9 @@ public class DBUtils {
     /**
      * 获得当前的题目
      */
-    public static Cursor getCurrentTiMu(Context context, int type, int position) {
+    public static Cursor getCurrentTiMu(Context context, int position) {
         SQLiteDatabase dbManager = getDBManager(context);
+
         KeMu kemu = LocalPreference.getCurrentKemu(context);
 
         Cursor c = dbManager.query("web_note",
@@ -46,23 +49,69 @@ public class DBUtils {
         return c;
     }
 
-    public static void saveOrUpdateCurrentId(Context context, int id) {
+    /**
+     * 保存做过的题目
+     *
+     * @param id
+     * @param my_answer
+     * @param true_answer
+     */
+    public static void saveOrUpdateCurrentId(Context context,
+                                             int id,
+                                             String my_answer,
+                                             String true_answer) {
         SQLiteDatabase dbManager = getDBManager(context);
         KeMu kemu = LocalPreference.getCurrentKemu(context);
         TiKu tiKu = LocalPreference.getCurrentTiKu(context);
-        dbManager.query("test_do",
+        Cursor c = dbManager.query("test_do",
                 null,
                 "kemu_type=? and car_type=? and test_id=?",
-                new String[]{kemu.getIndex()+"",tiKu.getIndex()+"",id+""},
+                new String[]{kemu.getIndex() + "", tiKu.getIndex() + "", id + ""},
                 null, null, null);
+        ContentValues values = new ContentValues();
+
+
+        if (c.getCount() > 0) {
+            c.moveToNext();
+            //已经存在，更新
+            values.put("update_time", System.currentTimeMillis());
+            if (!my_answer.equals(true_answer)) {
+                values.put("wrong_count", c.getInt(c.getColumnIndex("wrong_count") + 1));
+            }
+            dbManager.update("test_do",
+                    values,
+                    "kemu_type=? and car_type=? and test_id=?",
+                    new String[]{kemu.getIndex() + "", tiKu.getIndex() + "", id + ""});
+        } else {
+            //不存在，插入
+            values.put("my_answer", my_answer);
+            values.put("true_answer", true_answer);
+
+            values.put("is_show_in_wrong", false); //是否显示错误的答案
+            values.put("is_correct", false);  //是否收藏
+            values.put("car_type", tiKu.getIndex());
+            values.put("kemu_type", kemu.getIndex());
+
+            values.put("add_time", System.currentTimeMillis());
+            if (my_answer.equals(true_answer)) {
+                values.put("wrong_count", 0);
+            } else {
+                values.put("wrong_count", 1);
+            }
+            values.put("test_id", id);
+            dbManager.insert("test_do", null, values);
+        }
+
 
     }
+
 
     /**
      * 获取当前做的题目进度
      */
-    public static int getCurrentTiMu(Context context) {
+    public static int getLastTiMu(Context context) {
         SQLiteDatabase dbManager = getDBManager(context);
+
         KeMu kemu = LocalPreference.getCurrentKemu(context);
         TiKu tiKu = LocalPreference.getCurrentTiKu(context);
         Cursor c = dbManager.query(
@@ -75,9 +124,13 @@ public class DBUtils {
                 "test_id desc");
         if (c.getCount() > 0) {
             c.moveToNext();
-            return c.getInt(c.getColumnIndex("test_id"));
+            int test_id = c.getInt(c.getColumnIndex("test_id"));
+            c.close();
+            return test_id;
         }
-        return 1;
+        c.close();
+
+        return 0;
     }
 
 }

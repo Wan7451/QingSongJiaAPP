@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.localdata.DBUtils;
 import com.wan7451.base.WanActivity;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class AnalogyTestActivity extends WanActivity implements ViewPager.OnPage
 
     private int time = 40 * 60;
     private Timer timer;
+    private int currPro;
 
     @Override
     public void initView() {
@@ -69,6 +71,8 @@ public class AnalogyTestActivity extends WanActivity implements ViewPager.OnPage
                 });
             }
         }, 1000, 1000);
+
+        currPro = DBUtils.getLastTiMu(getContext());
 
     }
 
@@ -151,6 +155,7 @@ public class AnalogyTestActivity extends WanActivity implements ViewPager.OnPage
         public Fragment getItem(int position) {
 
             ExamTestFragment f = fragments.get(position % fragments.size());
+            f.setPosition(currPro+position);
 //            f.fillView(new ExamSubject());
             return f;
         }

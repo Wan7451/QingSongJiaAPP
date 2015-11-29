@@ -42,6 +42,7 @@ public abstract class WanListActivity extends WanActivity implements PullToRefre
 
     /**
      * List头部不滑动的View
+     *
      * @return
      */
     public View getListHeaderView() {
@@ -75,7 +76,7 @@ public abstract class WanListActivity extends WanActivity implements PullToRefre
         main.setScrollingWhileRefreshingEnabled(true);
 
         ViewGroup mainView = (ViewGroup) findViewById(R.id.activity_main_headerView);
-        View headerView=getListHeaderView();
+        View headerView = getListHeaderView();
         if (mainView != null && headerView != null) {
             mainView.addView(headerView);
         }
@@ -96,11 +97,28 @@ public abstract class WanListActivity extends WanActivity implements PullToRefre
         this.isOnStartedShow = isOnStartedShow;
     }
 
+
+    private  boolean isShowLocalData;
+    /**
+     * 显示本地数据
+     */
+    public void setIsShowLocalData(){
+        isShowLocalData=true;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         if (mAdapter == null)
             return;
+
+        if(isShowLocalData){
+            main.setMode(PullToRefreshBase.Mode.DISABLED);
+            loadData();
+            mAdapter.notifyDataSetChanged();
+            return;
+        }
+
         if (isOnStartedShow && mAdapter.getDatas() != null && mAdapter.getDatas().size() == 0)
             new Handler().postDelayed(new Runnable() {
                 @Override

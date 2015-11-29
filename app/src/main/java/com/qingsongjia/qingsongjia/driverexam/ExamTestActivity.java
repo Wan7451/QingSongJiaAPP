@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.localdata.DBUtils;
 import com.wan7451.base.WanActivity;
 
 import java.util.ArrayList;
@@ -27,12 +28,19 @@ import butterknife.ButterKnife;
  */
 public class ExamTestActivity extends WanActivity implements ViewPager.OnPageChangeListener {
 
+    public static final int TYPE_NORMAL = 1;
+    public static final int TYPE_RANDOM = 2;
+    public static final int TYPE_WRONG = 3;
+
     @Bind(R.id.analogy_MainView)
     ViewPager analogyMainView;
     @Bind(R.id.analogy_currProgress)
     TextView analogyCurrProgress;
 
-    private Timer timer;
+    private int currPro;
+
+    private int type;
+
 
     @Override
     public void initView() {
@@ -42,6 +50,21 @@ public class ExamTestActivity extends WanActivity implements ViewPager.OnPageCha
         AnalogyTestAdapter adapter = new AnalogyTestAdapter(getSupportFragmentManager());
         analogyMainView.setAdapter(adapter);
         analogyMainView.addOnPageChangeListener(this);
+
+        currPro = DBUtils.getLastTiMu(getContext());
+
+        type = getIntent().getIntExtra("type", 1);
+        switch (type) {
+            case TYPE_NORMAL:
+                setContentTitle("顺序练习");
+                break;
+            case TYPE_RANDOM:
+                setContentTitle("随机练习");
+                break;
+            case TYPE_WRONG:
+                setContentTitle("错题练习");
+                break;
+        }
 
     }
 
@@ -56,11 +79,6 @@ public class ExamTestActivity extends WanActivity implements ViewPager.OnPageCha
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
-
     }
 
 
@@ -105,6 +123,7 @@ public class ExamTestActivity extends WanActivity implements ViewPager.OnPageCha
         public Fragment getItem(int position) {
 
             ExamTestFragment f = fragments.get(position % fragments.size());
+            f.setPosition(currPro + position);
 //            f.fillView(new ExamSubject());
             return f;
         }

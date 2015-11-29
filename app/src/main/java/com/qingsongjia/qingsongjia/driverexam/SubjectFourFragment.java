@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -76,7 +77,7 @@ public class SubjectFourFragment extends WanFragment {
         orderItem.setOnMenuItemPressed(new RadialMenuItem.RadialMenuItemClickListener() {
             @Override
             public void execute() {
-                UIManager.startExamTest(getContext());
+                UIManager.startExamTest(getContext(),ExamTestActivity.TYPE_NORMAL);
             }
         });
         pieMenu.addMenuEntry(orderItem);
@@ -85,7 +86,7 @@ public class SubjectFourFragment extends WanFragment {
         chapterItem.setOnMenuItemPressed(new RadialMenuItem.RadialMenuItemClickListener() {
             @Override
             public void execute() {
-                showToast("章节练习");
+                UIManager.startZhangJieTest(getContext());
             }
         });
         pieMenu.addMenuEntry(chapterItem);
@@ -94,7 +95,7 @@ public class SubjectFourFragment extends WanFragment {
         specialItem.setOnMenuItemPressed(new RadialMenuItem.RadialMenuItemClickListener() {
             @Override
             public void execute() {
-                UIManager.startExamTest(getContext());
+                UIManager.startZhuanXiangTest(getContext());
             }
         });
         pieMenu.addMenuEntry(specialItem);
@@ -103,7 +104,7 @@ public class SubjectFourFragment extends WanFragment {
         errorItem.setOnMenuItemPressed(new RadialMenuItem.RadialMenuItemClickListener() {
             @Override
             public void execute() {
-                UIManager.startExamTest(getContext());
+                UIManager.startExamTest(getContext(),ExamTestActivity.TYPE_WRONG);
             }
         });
         pieMenu.addMenuEntry(errorItem);
@@ -112,7 +113,7 @@ public class SubjectFourFragment extends WanFragment {
         randomItem.setOnMenuItemPressed(new RadialMenuItem.RadialMenuItemClickListener() {
             @Override
             public void execute() {
-                UIManager.startExamTest(getContext());
+                UIManager.startExamTest(getContext(),ExamTestActivity.TYPE_RANDOM);
             }
         });
         pieMenu.addMenuEntry(randomItem);
@@ -125,7 +126,25 @@ public class SubjectFourFragment extends WanFragment {
         data.add(new ExamImageText(R.drawable.icon_exam_xssl, "新手上路"));
         ExamImageTextAdapter adapter = new ExamImageTextAdapter(getContext(), data, R.layout.item_exam_imagetext);
         sunbjectFourViews.setAdapter(adapter);
-
+        sunbjectFourViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0:
+                        UIManager.startWebView(getContext(), WebActivity.TYPE_BMXZ);
+                        break;
+                    case 1:
+                        UIManager.startWebView(getContext(), WebActivity.TYPE_JTFG);
+                        break;
+                    case 2:
+                        UIManager.startJiaoTongBiaoZhi(getContext());
+                        break;
+                    case 3:
+                        UIManager.startWebView(getContext(), WebActivity.TYPE_XSSL);
+                        break;
+                }
+            }
+        });
     }
 
     @Override

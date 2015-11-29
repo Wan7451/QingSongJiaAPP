@@ -29,5 +29,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rotation="-90"
+        android:layout_marginLeft="@dimen/space10"
         android:src="@drawable/icon_arrow_gray"/>
 </LinearLayout>

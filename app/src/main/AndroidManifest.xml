@@ -124,7 +124,28 @@
 
         <service
             android:name=".localdata.CopyDBFileService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity
+            android:name=".driverexam.ZhangJieLianXiActivity"
+            android:label="@string/title_activity_zhang_jie_lian_xi"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverexam.ZhuanIXiangLianXiActivity"
+            android:label="@string/title_activity_zhuan_ixiang_lian_xi"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverexam.WebActivity"
+            android:label="@string/title_activity_web"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverexam.JiaoTongBiaoZhiActivity"
+            android:label="@string/title_activity_jiao_tong_biao_zhi"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverexam.JiaoTongBiaoZhiGridActivity"
+            android:label="@string/title_activity_jiao_tong_biao_zhi_grid"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

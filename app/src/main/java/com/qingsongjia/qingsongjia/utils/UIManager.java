@@ -13,8 +13,13 @@ import com.qingsongjia.qingsongjia.driverexam.ExamTestActivity;
 import com.qingsongjia.qingsongjia.driverexam.ExamTestFragment;
 import com.qingsongjia.qingsongjia.driverexam.InquiryExamActivity;
 import com.qingsongjia.qingsongjia.driverexam.InquiryTrainingActivity;
+import com.qingsongjia.qingsongjia.driverexam.JiaoTongBiaoZhiActivity;
+import com.qingsongjia.qingsongjia.driverexam.JiaoTongBiaoZhiGridActivity;
 import com.qingsongjia.qingsongjia.driverexam.TeacherDetailActivity;
 import com.qingsongjia.qingsongjia.driverexam.TeacherListActivity;
+import com.qingsongjia.qingsongjia.driverexam.WebActivity;
+import com.qingsongjia.qingsongjia.driverexam.ZhangJieLianXiActivity;
+import com.qingsongjia.qingsongjia.driverexam.ZhuanIXiangLianXiActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolListActivity;
 import com.qingsongjia.qingsongjia.user.ChangeExamLibsActivity;
 import com.qingsongjia.qingsongjia.user.MyExamActivity;
@@ -106,9 +111,10 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startExamTest(Context context) {
+    public static void startExamTest(Context context,int type) {
         Intent i = new Intent();
         i.setClass(context, ExamTestActivity.class);
+        i.putExtra("type",type);
         context.startActivity(i);
     }
 
@@ -181,6 +187,38 @@ public class UIManager {
     public static void startSetting(Context context) {
         Intent i = new Intent();
         i.setClass(context, SettingActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startZhangJieTest(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, ZhangJieLianXiActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startZhuanXiangTest(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, ZhuanIXiangLianXiActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startWebView(Context context, int type) {
+        Intent i = new Intent();
+        i.setClass(context, WebActivity.class);
+        i.putExtra("type",type);
+        context.startActivity(i);
+    }
+
+    public static void startJiaoTongBiaoZhi(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, JiaoTongBiaoZhiActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startJiaoTongBiaoZhiGrid(Context context) {
+
+        Intent i = new Intent();
+        i.setClass(context, JiaoTongBiaoZhiGridActivity.class);
         context.startActivity(i);
     }
 }

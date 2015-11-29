@@ -25,4 +25,9 @@
     <string name="title_activity_my_exam">MyExamActivity</string>
     <string name="title_activity_pen_lian">PenLianActivity</string>
     <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_zhang_jie_lian_xi">ZhangJieLianXiActivity</string>
+    <string name="title_activity_zhuan_ixiang_lian_xi">ZhuanIXiangLianXiActivity</string>
+    <string name="title_activity_web">WebActivity</string>
+    <string name="title_activity_jiao_tong_biao_zhi">JiaoTongBiaoZhiActivity</string>
+    <string name="title_activity_jiao_tong_biao_zhi_grid">JiaoTongBiaoZhiGridActivity</string>
 </resources>
