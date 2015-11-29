@@ -120,7 +120,11 @@
         <activity
             android:name=".user.SettingActivity"
             android:label="@string/title_activity_setting"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+
+        <service
+            android:name=".localdata.CopyDBFileService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

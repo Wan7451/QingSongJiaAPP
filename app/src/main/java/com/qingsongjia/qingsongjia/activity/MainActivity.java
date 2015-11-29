@@ -16,11 +16,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.bean.KeMu;
 import com.qingsongjia.qingsongjia.fragment.ExamFragment;
 import com.qingsongjia.qingsongjia.fragment.ExchangeFragment;
 import com.qingsongjia.qingsongjia.fragment.MenuFragment;
 import com.qingsongjia.qingsongjia.fragment.SchoolFragment;
 import com.qingsongjia.qingsongjia.fragment.ToolsFragment;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import butterknife.Bind;
@@ -104,17 +106,21 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         switch (i) {
             case R.id.main_tab1:
                 mainTabHost.setCurrentTab(0);
+                LocalPreference.setCurrentKemu(this, KeMu.KEMU1);
                 break;
             case R.id.main_tab2:
                 mainTabHost.setCurrentTab(1);
                 mainTvTitle.setText("找驾校");
                 mainImgSearch.setVisibility(View.VISIBLE);
+                LocalPreference.setCurrentKemu(this, KeMu.KEMU2);
                 break;
             case R.id.main_tab3:
                 mainTabHost.setCurrentTab(2);
+                LocalPreference.setCurrentKemu(this, KeMu.KEMU3);
                 break;
             case R.id.main_tab4:
                 mainTabHost.setCurrentTab(3);
+                LocalPreference.setCurrentKemu(this, KeMu.KEMU4);
                 break;
         }
     }
