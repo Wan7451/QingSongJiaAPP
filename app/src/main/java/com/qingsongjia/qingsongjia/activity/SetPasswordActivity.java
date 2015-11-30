@@ -4,7 +4,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.utils.NetRequest;
+import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
@@ -31,7 +34,29 @@ public class SetPasswordActivity extends WanActivity {
         setPsdSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                NetRequest.getVerificationForPwd(getContext(),"13716458664", new NetUtils.NetUtilsHandler() {
+                    @Override
+                    public void onResponseOK(JSONArray response, int total) {
+                        showToast("验证码已发送");
+                    }
 
+                    @Override
+                    public void onResponseError(String error) {
+                        showToast(error);
+                    }
+                });
+
+                NetRequest.loadCampusState(getContext(),"250", new NetUtils.NetUtilsHandler() {
+                    @Override
+                    public void onResponseOK(JSONArray response, int total) {
+                        showToast("验证码已发送");
+                    }
+
+                    @Override
+                    public void onResponseError(String error) {
+
+                    }
+                });
             }
         });
     }
