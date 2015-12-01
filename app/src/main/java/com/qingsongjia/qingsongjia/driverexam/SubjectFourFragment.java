@@ -130,18 +130,18 @@ public class SubjectFourFragment extends WanFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i){
-                    case 0:
-                        UIManager.startWebView(getContext(), WebActivity.TYPE_BMXZ);
-                        break;
-                    case 1:
-                        UIManager.startWebView(getContext(), WebActivity.TYPE_JTFG);
-                        break;
-                    case 2:
-                        UIManager.startJiaoTongBiaoZhi(getContext());
-                        break;
-                    case 3:
-                        UIManager.startWebView(getContext(), WebActivity.TYPE_XSSL);
-                        break;
+//                    case 0:
+//                        UIManager.startWebView(getContext(), WebActivity.TYPE_BMXZ);
+//                        break;
+//                    case 1:
+//                        UIManager.startWebView(getContext(), WebActivity.TYPE_JTFG);
+//                        break;
+//                    case 2:
+//                        UIManager.startJiaoTongBiaoZhi(getContext());
+//                        break;
+//                    case 3:
+//                        UIManager.startWebView(getContext(), WebActivity.TYPE_XSSL);
+//                        break;
                 }
             }
         });

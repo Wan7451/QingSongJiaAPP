@@ -13,6 +13,7 @@ import com.qingsongjia.qingsongjia.driverexam.ExamTestActivity;
 import com.qingsongjia.qingsongjia.driverexam.ExamTestFragment;
 import com.qingsongjia.qingsongjia.driverexam.InquiryExamActivity;
 import com.qingsongjia.qingsongjia.driverexam.InquiryTrainingActivity;
+import com.qingsongjia.qingsongjia.driverexam.ItemListActivity;
 import com.qingsongjia.qingsongjia.driverexam.JiaoTongBiaoZhiActivity;
 import com.qingsongjia.qingsongjia.driverexam.JiaoTongBiaoZhiGridActivity;
 import com.qingsongjia.qingsongjia.driverexam.TeacherDetailActivity;
@@ -111,10 +112,10 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startExamTest(Context context,int type) {
+    public static void startExamTest(Context context, int type) {
         Intent i = new Intent();
         i.setClass(context, ExamTestActivity.class);
-        i.putExtra("type",type);
+        i.putExtra("type", type);
         context.startActivity(i);
     }
 
@@ -202,10 +203,11 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startWebView(Context context, int type) {
+    public static void startWebView(Context context,String title, String url) {
         Intent i = new Intent();
         i.setClass(context, WebActivity.class);
-        i.putExtra("type",type);
+        i.putExtra("url", url);
+        i.putExtra("title", title);
         context.startActivity(i);
     }
 
@@ -219,6 +221,13 @@ public class UIManager {
 
         Intent i = new Intent();
         i.setClass(context, JiaoTongBiaoZhiGridActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startItemList(Context context, int type) {
+        Intent i = new Intent();
+        i.setClass(context, ItemListActivity.class);
+        i.putExtra("type", type);
         context.startActivity(i);
     }
 }

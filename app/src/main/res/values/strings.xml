@@ -30,4 +30,5 @@
     <string name="title_activity_web">WebActivity</string>
     <string name="title_activity_jiao_tong_biao_zhi">JiaoTongBiaoZhiActivity</string>
     <string name="title_activity_jiao_tong_biao_zhi_grid">JiaoTongBiaoZhiGridActivity</string>
+    <string name="title_activity_item_list">ItemListActivity</string>
 </resources>

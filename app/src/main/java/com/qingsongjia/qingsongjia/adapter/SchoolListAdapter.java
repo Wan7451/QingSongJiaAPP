@@ -20,6 +20,5 @@ public class SchoolListAdapter extends WanAdapter<School> {
 
     @Override
     public void convert(WanViewHolder holder, int position, School item) {
-        holder.setText(R.id.schoollist_text,item.getName());
     }
 }

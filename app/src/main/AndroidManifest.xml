@@ -3,7 +3,7 @@
     package="com.qingsongjia.qingsongjia">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".activity.App"
@@ -146,6 +146,10 @@
         <activity
             android:name=".driverexam.JiaoTongBiaoZhiGridActivity"
             android:label="@string/title_activity_jiao_tong_biao_zhi_grid"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverexam.ItemListActivity"
+            android:label="@string/title_activity_item_list"
             android:theme="@style/AppTheme"></activity>
     </application>
 

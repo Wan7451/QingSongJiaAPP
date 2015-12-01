@@ -1,6 +1,7 @@
 package com.qingsongjia.qingsongjia.driverexam;
 
 
+import android.content.ClipData;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.AdapterView;
@@ -131,16 +132,16 @@ public class SubjectOneFragment extends WanFragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i){
                     case 0:
-                        UIManager.startWebView(getContext(), WebActivity.TYPE_BMXZ);
+                        UIManager.startItemList(getContext(), ItemListActivity.TYPE_BMXZ);
                         break;
                     case 1:
-                        UIManager.startWebView(getContext(), WebActivity.TYPE_JTFG);
+                        UIManager.startItemList(getContext(), ItemListActivity.TYPE_BMXZ);
                         break;
                     case 2:
                         UIManager.startJiaoTongBiaoZhi(getContext());
                         break;
                     case 3:
-                        UIManager.startWebView(getContext(), WebActivity.TYPE_XSSL);
+                        UIManager.startItemList(getContext(), ItemListActivity.TYPE_BMXZ);
                         break;
                 }
             }
