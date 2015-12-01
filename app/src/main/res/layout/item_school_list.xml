@@ -1,12 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space95"
+    android:paddingBottom="@dimen/space20"
+    android:paddingLeft="@dimen/space30"
+    android:paddingRight="@dimen/space30"
+    android:paddingTop="@dimen/space20">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/schoollist_iv_logo"
+        android:layout_width="@dimen/space110"
+        android:layout_height="@dimen/space75"
+        android:layout_marginRight="@dimen/space20"
+        android:background="@color/com_facebook_blue" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/schoollist_tv_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/view_margin"
-        android:id="@+id/schoollist_text"
-        android:layout_gravity="center_horizontal" />
-</LinearLayout>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/space10"
+        android:layout_toRightOf="@+id/schoollist_iv_logo"
+        android:text="北京远大驾校"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/space14" />
+
+    <TextView
+        android:id="@+id/schoollist_tv_attent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/schoollist_tv_name"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/space10"
+        android:textColor="@color/text_default_hint"
+        android:layout_toRightOf="@+id/schoollist_iv_logo"
+        android:text="7.4万人关注"
+        android:textSize="@dimen/space12" />
+
+    <TextView
+        android:id="@+id/schoollist_tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:text="4600元起"
+        android:layout_marginTop="@dimen/space10"
+        android:textColor="@color/title_bar_color"
+        android:textSize="@dimen/space12" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/schoollist_iv_support"
+        android:layout_width="@dimen/space22"
+        android:layout_height="@dimen/space22"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/icon_schoollist_zan" />
+</RelativeLayout>
