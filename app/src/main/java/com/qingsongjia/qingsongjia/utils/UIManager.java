@@ -131,9 +131,10 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startTeacherDetail(Context context) {
+    public static void startTeacherDetail(Context context, String id) {
         Intent i = new Intent();
         i.setClass(context, TeacherDetailActivity.class);
+        i.putExtra("id", id);
         context.startActivity(i);
     }
 
@@ -203,7 +204,7 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startWebView(Context context,String title, String url) {
+    public static void startWebView(Context context, String title, String url) {
         Intent i = new Intent();
         i.setClass(context, WebActivity.class);
         i.putExtra("url", url);

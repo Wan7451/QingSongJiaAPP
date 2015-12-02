@@ -8,18 +8,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.alibaba.fastjson.JSONArray;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.bean.Teacher;
+import com.qingsongjia.qingsongjia.utils.NetRequest;
+import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanListActivity;
 import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TeacherListActivity extends WanListActivity {
 
-    ArrayList<String> data=new ArrayList<>();
+    ArrayList<Teacher> data = new ArrayList<>();
 
     @Override
     protected int getMainViewLayoutId() {
@@ -40,33 +47,54 @@ public class TeacherListActivity extends WanListActivity {
 
     @Override
     public WanAdapter getAdapter() {
-        return new TeacherAdapter(getContext(),data,R.layout.item_teacher_list);
+        return new TeacherAdapter(getContext(), data, R.layout.item_teacher_list);
     }
 
     @Override
     protected void loadData() {
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        loadFinish("");
+
+
+        NetRequest.queryForCoursePlanList(getContext(), new NetUtils.NetUtilsHandler() {
+            @Override
+            public void onResponseOK(JSONArray response, int total) {
+
+                data.clear();
+                data.addAll(JSONArray.parseArray(response.toJSONString(), Teacher.class));
+                loadFinish("");
+            }
+
+            @Override
+            public void onResponseError(String error) {
+
+            }
+        });
+
+
     }
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-        UIManager.startTeacherDetail(getContext());
+        UIManager.startTeacherDetail(getContext(),data.get(posotion).getId()+"");
     }
 
-    static class TeacherAdapter extends WanAdapter<String>{
+    static class TeacherAdapter extends WanAdapter<Teacher> {
 
-        public TeacherAdapter(Context context, List<String> mDatas, int itemLayoutId) {
+        SimpleDateFormat format;
+        public TeacherAdapter(Context context, List<Teacher> mDatas, int itemLayoutId) {
             super(context, mDatas, itemLayoutId);
+            format=new SimpleDateFormat("yyyy年MM月dd日");
         }
 
         @Override
-        public void convert(WanViewHolder holder, int position, String item) {
+        public void convert(WanViewHolder holder, int position, Teacher item) {
+            SimpleDraweeView icon = holder.getView(R.id.teacher_icon);
+            holder.setText(R.id.teacher_name,item.getDri_coach_nm());//名字
+            holder.setText(R.id.teacher_kemu,item.getDri_sub_nm_nm());//科目
+            holder.setText(R.id.teacher_chepai,item.getDri_plate_num());//车牌
+            holder.setText(R.id.teacher_neirong,item.getDri_report());//内容
+            holder.setText(R.id.teacher_time,format.format(new Date(item.getDri_date().getTime())));//时间
+            holder.setText(R.id.teacher_yuyue,item.getDri_start_hm()+"-"+item.getDri_end_hm());//预约时间
+
 
         }
     }

@@ -3,8 +3,10 @@ package com.qingsongjia.qingsongjia.localdata;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.alibaba.fastjson.JSON;
 import com.qingsongjia.qingsongjia.bean.KeMu;
 import com.qingsongjia.qingsongjia.bean.TiKu;
+import com.qingsongjia.qingsongjia.bean.User;
 
 /**
  * 本地缓存数据
@@ -93,4 +95,18 @@ public class LocalPreference {
         return TiKu.XiaoChe;
     }
 
+
+    /**
+     * 保存当前用户数据
+     */
+    public static void saveCurrentUser(Context context, String user) {
+        getPreference(context);
+        spref.edit().putString("currentUser", user).commit();
+    }
+
+    public static User getCurrentUser(Context context) {
+        getPreference(context);
+        String curr = spref.getString("currentUser", "{}");
+        return JSON.parseObject(curr,User.class);
+    }
 }

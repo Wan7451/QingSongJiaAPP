@@ -45,9 +45,10 @@
             <View
                 android:layout_width="1px"
                 android:layout_height="match_parent"
-                android:background="@color/login_bkuang"/>
+                android:background="@color/login_bkuang" />
 
             <TextView
+                android:id="@+id/verify_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/space10"

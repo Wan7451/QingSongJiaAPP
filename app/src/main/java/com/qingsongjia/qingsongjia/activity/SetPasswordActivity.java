@@ -1,5 +1,7 @@
 package com.qingsongjia.qingsongjia.activity;
 
+import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,34 +33,41 @@ public class SetPasswordActivity extends WanActivity {
             }
         });
         setContentTitle("设置密码");
+
         setPsdSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NetRequest.getVerificationForPwd(getContext(),"13716458664", new NetUtils.NetUtilsHandler() {
+
+                String pasd = setPsdPasd.getText().toString();
+
+                if (TextUtils.isEmpty(pasd)) {
+                    showToast("新密码不能为空");
+                    return;
+                }
+                NetRequest.changePasd(getContext(), pasd, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
-                        showToast("验证码已发送");
+                        showToast("密码修改成功，请重新登陆！");
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                finish();
+                            }
+                        }, 300);
                     }
 
                     @Override
                     public void onResponseError(String error) {
-                        showToast(error);
-                    }
-                });
-
-                NetRequest.loadCampusState(getContext(),"250", new NetUtils.NetUtilsHandler() {
-                    @Override
-                    public void onResponseOK(JSONArray response, int total) {
-                        showToast("验证码已发送");
-                    }
-
-                    @Override
-                    public void onResponseError(String error) {
-
+                        if (!TextUtils.isEmpty(error)) {
+                            showToast(error);
+                        } else {
+                            showToast("修改密码失败，请重试");
+                        }
                     }
                 });
             }
         });
+
     }
 
     @Override

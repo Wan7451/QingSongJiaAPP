@@ -10,6 +10,7 @@
     android:paddingBottom="@dimen/space10">
 
     <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/teacher_icon"
         android:layout_width="@dimen/space80"
         android:layout_height="@dimen/space80"
         app:placeholderImage="@drawable/default_head"/>
@@ -26,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="名字"
+            android:id="@+id/teacher_name"
             app:layout_columnWeight="1"
             android:textColor="@color/text_default"
             app:layout_column="0"
@@ -34,7 +36,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="日期"
+            android:text="预约日期"
+            android:id="@+id/teacher_yuyue"
             android:gravity="right"
             android:textColor="@color/text_default_hint"
             app:layout_column="1"
@@ -43,6 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="科目"
+            android:id="@+id/teacher_kemu"
             android:layout_marginTop="@dimen/space5"
             app:layout_columnWeight="1"
             android:textColor="@color/default_btn_normal"
@@ -53,6 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="教练"
+            android:id="@+id/teacher_chepai"
             android:gravity="right"
             android:layout_marginTop="@dimen/space5"
             android:textColor="@color/text_default_hint"
@@ -61,7 +66,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="预约时间"
+            android:text="时间"
+            android:id="@+id/teacher_time"
             android:layout_marginTop="@dimen/space5"
             app:layout_columnWeight="1"
             android:textColor="@color/text_default_hint"
@@ -69,6 +75,7 @@
             app:layout_row="2" />
 
         <TextView
+            android:id="@+id/teacher_neirong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="练习内容"
