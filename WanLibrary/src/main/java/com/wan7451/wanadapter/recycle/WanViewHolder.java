@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
 
 /**
  * 自定义ViewHolder
@@ -134,5 +136,41 @@ public class WanViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
+    /**
+     * 为SimpleDraweeView设置图片
+     *
+     * @param viewId     组件ID
+     * @param drawableId 图片资源ID
+     * @return 当前对象
+     */
+    public WanViewHolder setImgResource(int viewId, int drawableId) {
+        SimpleDraweeView view = getView(viewId);
+        view.setImageResource(drawableId);
+
+        return this;
+    }
+
+    /**
+     * 为SimpleDraweeView设置图片
+     *
+     * @param viewId 组件ID
+     * @return 当前对象
+     */
+    public WanViewHolder setImgBitmap(int viewId, Bitmap bm) {
+        SimpleDraweeView view = getView(viewId);
+        view.setImageBitmap(bm);
+        return this;
+    }
+    /**
+     * 为ImageView设置点击状态
+     *
+     * @param viewId 组件ID
+     * @return 当前对象
+     */
+    public WanViewHolder setImageStatus(int viewId, Boolean isClick) {
+        ImageView view = getView(viewId);
+        view.setPressed(isClick);
+        return this;
+    }
 
 }
