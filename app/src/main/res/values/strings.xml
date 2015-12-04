@@ -31,4 +31,18 @@
     <string name="title_activity_jiao_tong_biao_zhi">JiaoTongBiaoZhiActivity</string>
     <string name="title_activity_jiao_tong_biao_zhi_grid">JiaoTongBiaoZhiGridActivity</string>
     <string name="title_activity_item_list">ItemListActivity</string>
+    <string name="title_activity_teacher_login">TeacherLoginActivity</string>
+    <string name="title_activity_my_student">MyStudentActivity</string>
+    <string name="title_activity_teacher_test">TeacherTestActivity</string>
+    <string name="title_activity_my_student_yk">MyStudentYKActivity</string>
+    <string name="title_activity_my_student_yx">MyStudentYXActivity</string>
+    <string name="title_activity_yxconfirm">YXConfirmActivity</string>
+    <string name="title_activity_yxevaluate">YXEvaluateActivity</string>
+    <string name="title_activity_pei_lian_xing_cheng">PeiLianXingChengActivity</string>
+    <string name="title_activity_order_list">OrderListActivity</string>
+    <string name="title_activity_send_inquiry">SendInquiryActivity</string>
+    <string name="title_activity_inquiry_confirm">InquiryConfirmActivity</string>
+    <string name="title_activity_inquiry_evaluate">InquiryEvaluateActivity</string>
+    <string name="title_activity_tou_su">TouSuActivity</string>
+    <string name="title_activity_push_order">PushOrderActivity</string>
 </resources>

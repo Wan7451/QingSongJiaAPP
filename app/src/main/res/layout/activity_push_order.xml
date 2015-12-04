@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF"
+    tools:context="com.qingsongjia.qingsongjia.driverexam.InquiryTrainingActivity">
+
+    <LinearLayout
+        android:id="@+id/training_choiceTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/view_margin"
+        android:background="@drawable/shape_login_bg"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_time" />
+
+        <TextView
+            android:id="@+id/training_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/space10"
+            android:layout_weight="1"
+            android:text="请选择时间" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_calendar" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/training_choiceTeacher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:layout_marginRight="@dimen/view_margin"
+        android:background="@drawable/shape_login_bg"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_menu_je" />
+
+        <EditText
+            android:id="@+id/training_teacher"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/space10"
+            android:layout_weight="1"
+            android:background="#0000"
+            android:hint="请输入价格"
+            android:textSize="@dimen/textSize14" />
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_marginTop="@dimen/view_margin"
+        style="@style/divider1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/view_margin"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:button="@drawable/icon_gouxuan_selector" />
+
+            <TextView
+                android:layout_marginLeft="@dimen/space10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="定点上车" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:button="@drawable/icon_gouxuan_selector" />
+
+            <TextView
+                android:layout_marginLeft="@dimen/space10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车接车送" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingBottom="@dimen/view_margin"
+        android:orientation="horizontal">
+
+        <EditText
+            android:padding="@dimen/space5"
+            android:gravity="left|top"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@drawable/shape_et_bg" />
+    </LinearLayout>
+
+    <View style="@style/divider1" />
+
+    <Button
+        android:layout_marginTop="@dimen/space30"
+        android:id="@+id/training_send"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:layout_marginRight="@dimen/view_margin"
+        android:text="预约" />
+
+
+</LinearLayout>

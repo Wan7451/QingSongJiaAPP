@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/space10"
+    android:paddingBottom="@dimen/space10"
+    android:paddingLeft="@dimen/view_margin"
+    android:paddingRight="@dimen/view_margin">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="名称"
+            android:textSize="@dimen/textSize16"
+            android:textColor="@color/text_default"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space10"
+            android:text="科目"
+            android:drawableLeft="@drawable/icon_menu_hd"
+            android:textColor="@color/text_default_hint"
+            android:drawablePadding="@dimen/space5"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="手机号"
+        android:layout_marginTop="@dimen/space5"
+        android:gravity="center"
+        android:textColor="@color/text_default_hint"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="-90"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/space10"
+        android:src="@drawable/icon_arrow_gray"/>
+</LinearLayout>

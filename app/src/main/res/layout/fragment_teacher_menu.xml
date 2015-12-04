@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/default_bg"
+    android:orientation="vertical"
+    tools:context="com.qingsongjia.qingsongjia.fragment.MenuFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4C4662"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/space10"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingTop="@dimen/space10">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/menu_user_icon"
+            android:layout_width="@dimen/space60"
+            android:layout_height="@dimen/space60"
+            app:placeholderImage="@drawable/default_head"
+            app:roundAsCircle="true" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/space10"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/menu_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="好运来了"
+                android:textColor="#FFF" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_arrow_white" />
+    </LinearLayout>
+
+
+    <View style="@style/divider10" />
+
+    <View style="@style/divider1" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/menu_user_center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/default_bg" />
+
+</LinearLayout>

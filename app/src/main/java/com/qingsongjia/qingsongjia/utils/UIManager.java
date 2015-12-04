@@ -22,6 +22,12 @@ import com.qingsongjia.qingsongjia.driverexam.WebActivity;
 import com.qingsongjia.qingsongjia.driverexam.ZhangJieLianXiActivity;
 import com.qingsongjia.qingsongjia.driverexam.ZhuanIXiangLianXiActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolListActivity;
+import com.qingsongjia.qingsongjia.teacher.MyStudentActivity;
+import com.qingsongjia.qingsongjia.teacher.MyStudentYKActivity;
+import com.qingsongjia.qingsongjia.teacher.MyStudentYXActivity;
+import com.qingsongjia.qingsongjia.teacher.PeiLianXingChengActivity;
+import com.qingsongjia.qingsongjia.teacher.YXConfirmActivity;
+import com.qingsongjia.qingsongjia.teacher.YXEvaluateActivity;
 import com.qingsongjia.qingsongjia.user.ChangeExamLibsActivity;
 import com.qingsongjia.qingsongjia.user.MyExamActivity;
 import com.qingsongjia.qingsongjia.user.MyJiFeiActivity;
@@ -229,6 +235,44 @@ public class UIManager {
         Intent i = new Intent();
         i.setClass(context, ItemListActivity.class);
         i.putExtra("type", type);
+        context.startActivity(i);
+    }
+
+    public static void startMyStudents(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, MyStudentActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startMyStudentYK(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, MyStudentYKActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startMyStudentYX(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, MyStudentYXActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startYXConfirm(WanActivity context, int id) {
+        Intent i = new Intent();
+        i.setClass(context, YXConfirmActivity.class);
+        i.putExtra("id",id);
+        context.startActivity(i);
+    }
+
+    public static void startYXEvaluate(WanActivity context, int id) {
+        Intent i = new Intent();
+        i.setClass(context, YXEvaluateActivity.class);
+        i.putExtra("id",id);
+        context.startActivity(i);
+    }
+
+    public static void startMyPeiLianXingCheng(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, PeiLianXingChengActivity.class);
         context.startActivity(i);
     }
 }

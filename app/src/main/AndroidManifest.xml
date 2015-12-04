@@ -150,6 +150,68 @@
         <activity
             android:name=".driverexam.ItemListActivity"
             android:label="@string/title_activity_item_list"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.TeacherLoginActivity"
+            android:label="@string/title_activity_teacher_login"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.MyStudentActivity"
+            android:label="@string/title_activity_my_student"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.TeacherTestActivity"
+            android:label="@string/title_activity_teacher_test"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".teacher.MyStudentYKActivity"
+            android:label="@string/title_activity_my_student_yk"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.MyStudentYXActivity"
+            android:label="@string/title_activity_my_student_yx"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.YXConfirmActivity"
+            android:label="@string/title_activity_yxconfirm"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.YXEvaluateActivity"
+            android:label="@string/title_activity_yxevaluate"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.PeiLianXingChengActivity"
+            android:label="@string/title_activity_pei_lian_xing_cheng"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.OrderListActivity"
+            android:label="@string/title_activity_order_list"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.InquirySendActivity"
+            android:label="@string/title_activity_send_inquiry"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.InquiryConfirmActivity"
+            android:label="@string/title_activity_inquiry_confirm"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.InquiryEvaluateActivity"
+            android:label="@string/title_activity_inquiry_evaluate"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.TouSuActivity"
+            android:label="@string/title_activity_tou_su"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.PushOrderActivity"
+            android:label="@string/title_activity_push_order"
             android:theme="@style/AppTheme"></activity>
     </application>
 
