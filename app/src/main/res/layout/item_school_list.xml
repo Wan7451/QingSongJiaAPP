@@ -10,7 +10,7 @@
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/schoollist_iv_logo"
         android:layout_width="@dimen/space110"
-        android:layout_height="@dimen/space75"
+        android:layout_height="@dimen/space76"
         android:layout_marginRight="@dimen/space20"
         android:background="@color/com_facebook_blue" />
 
