@@ -55,7 +55,16 @@ public class TeacherDetail {
     private int update_id;
     private String update_nm;
 
+    private String dri_file_path;
 
+
+    public String getDri_file_path() {
+        return dri_file_path;
+    }
+
+    public void setDri_file_path(String dri_file_path) {
+        this.dri_file_path = dri_file_path;
+    }
 
     private UpdateTmEntity update_tm;
     private String update_tm_str;

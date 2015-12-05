@@ -15,6 +15,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="时间"
@@ -22,6 +23,7 @@
             android:textColor="@color/text_default"/>
 
         <TextView
+            android:id="@+id/kemu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space10"
@@ -32,6 +34,7 @@
             />
 
         <TextView
+            android:id="@+id/zhishidian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space10"
@@ -43,6 +46,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/textSize18"
@@ -51,6 +55,7 @@
         android:textColor="@color/text_import"/>
 
     <ImageView
+        android:id="@+id/arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rotation="-90"

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.alibaba.fastjson.JSON;
 import com.qingsongjia.qingsongjia.bean.KeMu;
+import com.qingsongjia.qingsongjia.bean.UserData;
 import com.qingsongjia.qingsongjia.bean.TiKu;
 import com.qingsongjia.qingsongjia.bean.User;
 
@@ -108,5 +109,16 @@ public class LocalPreference {
         getPreference(context);
         String curr = spref.getString("currentUser", "{}");
         return JSON.parseObject(curr,User.class);
+    }
+
+    public static void saveCurrentUserData(Context context,String data) {
+        getPreference(context);
+        spref.edit().putString("currentUserData", data).commit();
+    }
+
+    public static UserData getCurrentUserData(Context context) {
+        getPreference(context);
+        String curr = spref.getString("currentUserData", "{}");
+        return JSON.parseObject(curr,UserData.class);
     }
 }

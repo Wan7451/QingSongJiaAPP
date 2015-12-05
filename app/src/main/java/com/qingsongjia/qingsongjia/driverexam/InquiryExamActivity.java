@@ -1,6 +1,8 @@
 package com.qingsongjia.qingsongjia.driverexam;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -9,10 +11,13 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.utils.NetRequest;
+import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.wan7451.base.WanActivity;
 
 import java.text.SimpleDateFormat;
@@ -33,6 +38,10 @@ public class InquiryExamActivity extends WanActivity {
     public static final int INQUIRY_TYPE_FOUR = 4;
     @Bind(R.id.inquiry_project)
     TextView inquiryProject;
+    @Bind(R.id.inquiry_date)
+    TextView inquiryDate;
+    @Bind(R.id.inquiry_choiceDate)
+    LinearLayout inquiryChoiceDate;
     @Bind(R.id.inquiry_time)
     TextView inquiryTime;
     @Bind(R.id.inquiry_choiceTime)
@@ -40,6 +49,12 @@ public class InquiryExamActivity extends WanActivity {
     @Bind(R.id.inquiry_send)
     Button inquirySend;
 
+    String[] times = {"上午", "下午"};
+
+
+    private String upDate;
+    private String upTime="1";
+    private int upKemu;
 
     @Override
     public void initView() {
@@ -51,19 +66,25 @@ public class InquiryExamActivity extends WanActivity {
         switch (type) {
             case INQUIRY_TYPE_ONE:
                 inquiryProject.setText("科目一");
+                upKemu = 1;
                 break;
             case INQUIRY_TYPE_TWO:
                 inquiryProject.setText("科目二");
+                upKemu = 2;
                 break;
             case INQUIRY_TYPE_THREE:
                 inquiryProject.setText("科目三");
+                upKemu = 3;
                 break;
             case INQUIRY_TYPE_FOUR:
                 inquiryProject.setText("科目四");
+                upKemu = 1;
                 break;
         }
 
-        inquiryChoiceTime.setOnClickListener(new View.OnClickListener() {
+        inquiryTime.setText("上午");
+
+        inquiryChoiceDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
@@ -72,7 +93,8 @@ public class InquiryExamActivity extends WanActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                inquiryTime.setText(year+"年"+month+"月"+day+"日");
+                                upDate = year + "-" + month + "-" + day;
+                                inquiryDate.setText(year + "年" + month + "月" + day + "日");
                             }
                         },
                         calendar.get(Calendar.YEAR),
@@ -81,9 +103,26 @@ public class InquiryExamActivity extends WanActivity {
 
                 DatePicker datePicker = dialog.getDatePicker();
 
-                datePicker.setMinDate(Calendar.getInstance().getTimeInMillis()-40*60*1000);
+                datePicker.setMinDate(Calendar.getInstance().getTimeInMillis() - 40 * 60 * 1000);
 
                 dialog.show();
+            }
+        });
+
+        inquiryChoiceTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(getContext())
+                        .setSingleChoiceItems(times, 0, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                upTime = i + 1 + "";
+                                inquiryTime.setText(times[i]);
+                            }
+                        })
+                        .setTitle("选择时间")
+                        .setPositiveButton("确认", null)
+                        .show();
             }
         });
 
@@ -91,6 +130,19 @@ public class InquiryExamActivity extends WanActivity {
             @Override
             public void onClick(View view) {
                 showToast("预约成功");
+
+                NetRequest.yuekao(getContext(), upDate, upTime, upKemu + "", new NetUtils.NetUtilsHandler() {
+                    @Override
+                    public void onResponseOK(JSONArray response, int total) {
+
+                    }
+
+                    @Override
+                    public void onResponseError(String error) {
+
+                    }
+                });
+
             }
         });
 
