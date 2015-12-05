@@ -1,70 +1,45 @@
 package com.qingsongjia.qingsongjia.bean;
 
-import java.util.Date;
-
 /**
- * Created by wanggang on 15/12/2.
+ * Created by wanggang on 15/12/5.
  */
-public class Teacher {
-
-//    private Integer id;//（账户编码）
-//    private Integer dri_fx_campus_id;//（分校编码）
-//    private String dri_sub_nm;//（科目名称）
-//    private Integer dri_coach_id;//(教练名称)
-//    private String dri_coach_nm;//(教练名称)
-//    private Date dri_date;//(日期)
-//    private Integer dri_start_hm;//开始时刻
-//    private Integer dri_campus_id;//（主校）	integer		（为空则代表：主校区，不为空：看做分校区）
-//    private Integer dri_end_hm;//（截止时刻）
-//    private Integer dri_rv_num;//（最大预约人数）
-//    private Integer dri_rvd_num;//已预约人数
-//    private String dri_report;//（练习内容）
-//    private String dri_campus_nm;	//主校名称
-//    private String dri_fx_campus_nm;//分校名称
-//    private String dri_plate_num;//车牌号
-//    private final String DIC_DRI_SUB_NM = "1";//（是否可用） -- 字典
+public class MyKaoShi {
 
 
     private int campusId;
     private String campusName;
     private int create_id;
     private String create_nm;
+
+
     private CreateTmEntity create_tm;
     private String create_tm_str;
     private int did;
     private int dri_campus_id;
     private String dri_campus_nm;
-    private int dri_coach_id;
-    private String dri_coach_nm;
-    private DriDateEntity dri_date;
-    private String dri_date_str;
-    private int dri_end_hm;
+    private Object dri_dt;
+    private String dri_dt_str;
+    private Object dri_exam_dt;
+    private String dri_exam_dt_str;
+    private String dri_exam_tm;
     private int dri_fx_campus_id;
     private String dri_fx_campus_nm;
-    private String dri_plate_num;
-    private String dri_report;
-    private int dri_rv_num;
-    private int dri_rvd_num;
-    private int dri_start_hm;
+    private String dri_result;
+    private int dri_score;
+    private int dri_student_id;
+    private String dri_student_nm;
     private String dri_sub_nm;
     private String dri_sub_nm_nm;
+    private String dri_tm;
     private int id;
     private int isdel;
     private String name;
     private int update_id;
     private String update_nm;
+
+
     private UpdateTmEntity update_tm;
     private String update_tm_str;
-
-    private String dri_file_path;
-
-    public String getDri_file_path() {
-        return dri_file_path;
-    }
-
-    public void setDri_file_path(String dri_file_path) {
-        this.dri_file_path = dri_file_path;
-    }
 
     public void setCampusId(int campusId) {
         this.campusId = campusId;
@@ -102,24 +77,24 @@ public class Teacher {
         this.dri_campus_nm = dri_campus_nm;
     }
 
-    public void setDri_coach_id(int dri_coach_id) {
-        this.dri_coach_id = dri_coach_id;
+    public void setDri_dt(Object dri_dt) {
+        this.dri_dt = dri_dt;
     }
 
-    public void setDri_coach_nm(String dri_coach_nm) {
-        this.dri_coach_nm = dri_coach_nm;
+    public void setDri_dt_str(String dri_dt_str) {
+        this.dri_dt_str = dri_dt_str;
     }
 
-    public void setDri_date(DriDateEntity dri_date) {
-        this.dri_date = dri_date;
+    public void setDri_exam_dt(Object dri_exam_dt) {
+        this.dri_exam_dt = dri_exam_dt;
     }
 
-    public void setDri_date_str(String dri_date_str) {
-        this.dri_date_str = dri_date_str;
+    public void setDri_exam_dt_str(String dri_exam_dt_str) {
+        this.dri_exam_dt_str = dri_exam_dt_str;
     }
 
-    public void setDri_end_hm(int dri_end_hm) {
-        this.dri_end_hm = dri_end_hm;
+    public void setDri_exam_tm(String dri_exam_tm) {
+        this.dri_exam_tm = dri_exam_tm;
     }
 
     public void setDri_fx_campus_id(int dri_fx_campus_id) {
@@ -130,24 +105,20 @@ public class Teacher {
         this.dri_fx_campus_nm = dri_fx_campus_nm;
     }
 
-    public void setDri_plate_num(String dri_plate_num) {
-        this.dri_plate_num = dri_plate_num;
+    public void setDri_result(String dri_result) {
+        this.dri_result = dri_result;
     }
 
-    public void setDri_report(String dri_report) {
-        this.dri_report = dri_report;
+    public void setDri_score(int dri_score) {
+        this.dri_score = dri_score;
     }
 
-    public void setDri_rv_num(int dri_rv_num) {
-        this.dri_rv_num = dri_rv_num;
+    public void setDri_student_id(int dri_student_id) {
+        this.dri_student_id = dri_student_id;
     }
 
-    public void setDri_rvd_num(int dri_rvd_num) {
-        this.dri_rvd_num = dri_rvd_num;
-    }
-
-    public void setDri_start_hm(int dri_start_hm) {
-        this.dri_start_hm = dri_start_hm;
+    public void setDri_student_nm(String dri_student_nm) {
+        this.dri_student_nm = dri_student_nm;
     }
 
     public void setDri_sub_nm(String dri_sub_nm) {
@@ -156,6 +127,10 @@ public class Teacher {
 
     public void setDri_sub_nm_nm(String dri_sub_nm_nm) {
         this.dri_sub_nm_nm = dri_sub_nm_nm;
+    }
+
+    public void setDri_tm(String dri_tm) {
+        this.dri_tm = dri_tm;
     }
 
     public void setId(int id) {
@@ -222,24 +197,24 @@ public class Teacher {
         return dri_campus_nm;
     }
 
-    public int getDri_coach_id() {
-        return dri_coach_id;
+    public Object getDri_dt() {
+        return dri_dt;
     }
 
-    public String getDri_coach_nm() {
-        return dri_coach_nm;
+    public String getDri_dt_str() {
+        return dri_dt_str;
     }
 
-    public DriDateEntity getDri_date() {
-        return dri_date;
+    public Object getDri_exam_dt() {
+        return dri_exam_dt;
     }
 
-    public String getDri_date_str() {
-        return dri_date_str;
+    public String getDri_exam_dt_str() {
+        return dri_exam_dt_str;
     }
 
-    public int getDri_end_hm() {
-        return dri_end_hm;
+    public String getDri_exam_tm() {
+        return dri_exam_tm;
     }
 
     public int getDri_fx_campus_id() {
@@ -250,24 +225,20 @@ public class Teacher {
         return dri_fx_campus_nm;
     }
 
-    public String getDri_plate_num() {
-        return dri_plate_num;
+    public String getDri_result() {
+        return dri_result;
     }
 
-    public String getDri_report() {
-        return dri_report;
+    public int getDri_score() {
+        return dri_score;
     }
 
-    public int getDri_rv_num() {
-        return dri_rv_num;
+    public int getDri_student_id() {
+        return dri_student_id;
     }
 
-    public int getDri_rvd_num() {
-        return dri_rvd_num;
-    }
-
-    public int getDri_start_hm() {
-        return dri_start_hm;
+    public String getDri_student_nm() {
+        return dri_student_nm;
     }
 
     public String getDri_sub_nm() {
@@ -276,6 +247,10 @@ public class Teacher {
 
     public String getDri_sub_nm_nm() {
         return dri_sub_nm_nm;
+    }
+
+    public String getDri_tm() {
+        return dri_tm;
     }
 
     public int getId() {
@@ -317,6 +292,11 @@ public class Teacher {
         private long time;
         private int timezoneOffset;
         private int year;
+
+        @Override
+        public String toString() {
+            return month+1+"月"+day+"日";
+        }
 
         public void setDate(int date) {
             this.date = date;
@@ -380,91 +360,6 @@ public class Teacher {
 
         public int getNanos() {
             return nanos;
-        }
-
-        public int getSeconds() {
-            return seconds;
-        }
-
-        public long getTime() {
-            return time;
-        }
-
-        public int getTimezoneOffset() {
-            return timezoneOffset;
-        }
-
-        public int getYear() {
-            return year;
-        }
-    }
-
-    public static class DriDateEntity {
-        private int date;
-        private int day;
-        private int hours;
-        private int minutes;
-        private int month;
-        private int seconds;
-        private long time;
-        private int timezoneOffset;
-        private int year;
-
-
-        public void setDate(int date) {
-            this.date = date;
-        }
-
-        public void setDay(int day) {
-            this.day = day;
-        }
-
-        public void setHours(int hours) {
-            this.hours = hours;
-        }
-
-        public void setMinutes(int minutes) {
-            this.minutes = minutes;
-        }
-
-        public void setMonth(int month) {
-            this.month = month;
-        }
-
-        public void setSeconds(int seconds) {
-            this.seconds = seconds;
-        }
-
-        public void setTime(long time) {
-            this.time = time;
-        }
-
-        public void setTimezoneOffset(int timezoneOffset) {
-            this.timezoneOffset = timezoneOffset;
-        }
-
-        public void setYear(int year) {
-            this.year = year;
-        }
-
-        public int getDate() {
-            return date;
-        }
-
-        public int getDay() {
-            return day;
-        }
-
-        public int getHours() {
-            return hours;
-        }
-
-        public int getMinutes() {
-            return minutes;
-        }
-
-        public int getMonth() {
-            return month;
         }
 
         public int getSeconds() {

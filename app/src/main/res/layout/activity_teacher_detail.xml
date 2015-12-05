@@ -159,6 +159,7 @@
         android:background="@color/default_bg">
 
         <Button
+            android:id="@+id/teacher_choice"
             android:layout_marginLeft="@dimen/view_margin"
             android:layout_marginRight="@dimen/view_margin"
             android:layout_marginTop="@dimen/space30"

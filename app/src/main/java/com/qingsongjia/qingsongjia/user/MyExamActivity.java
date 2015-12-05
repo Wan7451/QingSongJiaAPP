@@ -7,8 +7,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.bean.MyKaoShi;
+import com.qingsongjia.qingsongjia.utils.NetRequest;
+import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.wan7451.base.WanListActivity;
 import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
@@ -17,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyExamActivity extends WanListActivity {
-    private ArrayList<String> data=new ArrayList<>();
+    private ArrayList<MyKaoShi> data = new ArrayList<>();
 
     @Override
     protected int getMainViewLayoutId() {
@@ -39,24 +44,32 @@ public class MyExamActivity extends WanListActivity {
 
     @Override
     public WanAdapter getAdapter() {
-        MyTestAdapter adapter=new MyTestAdapter(getContext(),data,R.layout.item_mytest_list);
-        View header= getLayoutInflater().inflate(R.layout.activity_my_test,null);
+        MyTestAdapter adapter = new MyTestAdapter(getContext(), data, R.layout.item_mytest_list);
+        View header = getLayoutInflater().inflate(R.layout.activity_my_test, null);
         adapter.addHeaderView(header);
         return adapter;
     }
 
     @Override
     protected void loadData() {
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        loadFinish("");
+
+        NetRequest.getMyYueKao(getContext(), new NetUtils.NetUtilsHandler() {
+                    @Override
+                    public void onResponseOK(JSONArray response, int total) {
+                        data.clear();
+                        List<MyKaoShi> kaoShis = JSONArray.parseArray(response.toJSONString(), MyKaoShi.class);
+                        data.addAll(kaoShis);
+                        loadFinish("");
+                    }
+
+                    @Override
+                    public void onResponseError(String error) {
+
+                    }
+                }
+        );
+
+
     }
 
     @Override
@@ -64,15 +77,28 @@ public class MyExamActivity extends WanListActivity {
 
     }
 
-    static class MyTestAdapter extends WanAdapter<String>{
+    static class MyTestAdapter extends WanAdapter<MyKaoShi> {
 
-        public MyTestAdapter(Context context, List<String> mDatas, int itemLayoutId) {
+        public MyTestAdapter(Context context, List<MyKaoShi> mDatas, int itemLayoutId) {
             super(context, mDatas, itemLayoutId);
         }
 
         @Override
-        public void convert(WanViewHolder holder, int position, String item) {
+        public void convert(WanViewHolder holder, int position, MyKaoShi item) {
+            TextView time = holder.getView(R.id.time);
+            String t = item.getDri_tm();
+            time.setText(t);
 
+            TextView keme = holder.getView(R.id.kemu);
+            keme.setText(item.getDri_sub_nm());
+
+           TextView zsd= holder.findViewById(R.id.zhishidian);
+            zsd.setText(item.getDri_score()+"");
+
+            TextView status= holder.findViewById(R.id.status);
+            status.setText(item.getDri_result());
+
+            holder.getView(R.id.arrow).setVisibility(View.GONE);
         }
     }
 

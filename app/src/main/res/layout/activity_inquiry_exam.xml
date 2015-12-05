@@ -31,6 +31,36 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/inquiry_choiceDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/view_margin"
+        android:background="@drawable/shape_login_bg"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_time" />
+
+        <TextView
+            android:id="@+id/inquiry_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/space10"
+            android:layout_weight="1"
+            android:text="请选择时间" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_calendar" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/inquiry_choiceTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,7 +89,6 @@
             android:src="@drawable/icon_calendar" />
 
     </LinearLayout>
-
     <Button
         android:id="@+id/inquiry_send"
         android:layout_width="match_parent"

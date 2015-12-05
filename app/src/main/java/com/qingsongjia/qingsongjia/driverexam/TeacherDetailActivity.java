@@ -1,6 +1,9 @@
 package com.qingsongjia.qingsongjia.driverexam;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -8,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.TeacherDetail;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.wan7451.base.WanActivity;
@@ -17,6 +21,7 @@ import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 public class TeacherDetailActivity extends WanActivity {
 
@@ -64,10 +69,28 @@ public class TeacherDetailActivity extends WanActivity {
                 teacherMax.setText(teacherDetail.getDri_rv_num()+"人");
                 teacherCurr.setText(teacherDetail.getDri_rvd_num()+"人");
 
+                if(TextUtils.isEmpty(teacherDetail.getDri_file_path())){
+                    teacherIcon.setImageURI(Uri.parse("res:// /"+R.drawable.default_head));
+                }else {
+                    teacherIcon.setImageURI(Uri.parse(teacherDetail.getDri_file_path()));
+                }
             }
 
             @Override
             public void onResponseError(String error) {
+
+            }
+        });
+
+
+        findViewById(R.id.teacher_choice).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EventBus.getDefault().post(
+                        new EventData(EventData.TYPE_YUELIAN,teacherDetail));
+
+                getAppContext().closeActivity(TeacherListActivity.class);
+                getAppContext().closeActivity(TeacherDetailActivity.class);
 
             }
         });

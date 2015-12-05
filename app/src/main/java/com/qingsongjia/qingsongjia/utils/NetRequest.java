@@ -94,8 +94,9 @@ public class NetRequest {
      * @param context
      * @param handler
      */
-    public static void queryForCoursePlanList(WanActivity context, NetUtils.NetUtilsHandler handler) {
+    public static void queryForCoursePlanList(WanActivity context,String time, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
+        params.put("dri_dt_str",time);
         NetUtils.baseRequest(context, "driappcorvpracticWeb/queryForCoursePlanList", params, false, handler);
 
     }
@@ -109,5 +110,61 @@ public class NetRequest {
         HashMap<String, String> params = new HashMap<>();
         params.put("id", id);
         NetUtils.baseRequest(context, "driappcorvpracticWeb/loadCoursePlanByCoursePlanId", params, true, handler);
+    }
+
+    public static void sendInuiryTraining(WanActivity context, String dri_plan, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_student_id", LocalPreference.getCurrentUser(context).getId()+"");
+        params.put("dri_plan", dri_plan);
+        NetUtils.baseRequest(context, "driappcorvpracticWeb/save", params, true, handler);
+
+    }
+
+    public static void loadMyData(Context context, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", LocalPreference.getCurrentUser(context).getId()+"");
+        NetUtils.baseRequest(context, "driappconsultclientWeb/load", params, false, handler);
+
+    }
+
+    public static void loadMyTeacher(WanActivity context, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", LocalPreference.getCurrentUserData(context).getDri_coach_id()+"");
+        NetUtils.baseRequest(context, "driappcoach/load", params, true, handler);
+
+    }
+
+    /**
+     * 我的约练
+     * @param context
+     * @param handler
+     */
+    public static void getMyYueLian(WanActivity context, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_student_id", LocalPreference.getCurrentUser(context).getId()+"");
+        NetUtils.baseRequest(context, "driappcorvpracticWeb/queryForList", params, true, handler);
+
+    }
+
+    public static void getMyYueKao(WanActivity context, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("Id", "127");
+//        params.put("Id", LocalPreference.getCurrentUser(context).getId()+"");
+        NetUtils.baseRequest(context, "driappcorvexamweb/load", params, false, handler);
+
+    }
+
+    public static void yuekao(WanActivity context,
+                              String dri_dt,
+                              String dri_tm,
+                              String dri_sub_nm,
+                              NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_student_id", LocalPreference.getCurrentUser(context).getId()+"");
+        params.put("dri_dt_str",dri_dt);
+        params.put("dri_tm",dri_tm);
+        params.put("dri_sub_nm",dri_sub_nm);
+        NetUtils.baseRequest(context, "driappcorvexamweb/save", params, false, handler);
+
     }
 }

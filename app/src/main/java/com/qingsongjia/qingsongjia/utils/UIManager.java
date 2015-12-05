@@ -131,9 +131,10 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startTeacherList(Context context) {
+    public static void startTeacherList(Context context,String time) {
         Intent i = new Intent();
         i.setClass(context, TeacherListActivity.class);
+        i.putExtra("time",time);
         context.startActivity(i);
     }
 
