@@ -129,12 +129,12 @@ public class InquiryExamActivity extends WanActivity {
         inquirySend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showToast("预约成功");
+
 
                 NetRequest.yuekao(getContext(), upDate, upTime, upKemu + "", new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
-
+                        showToast("预约成功");
                     }
 
                     @Override
