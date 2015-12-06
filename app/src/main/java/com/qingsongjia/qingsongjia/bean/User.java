@@ -21,6 +21,8 @@ public class User {
      private String dri_upwd;//（账号密码）
      */
 
+
+
     private int did;
     private int dri_campus_id;
     private String dri_campus_nm;
@@ -28,6 +30,9 @@ public class User {
     private String dri_unm;
     private String dri_upwd;
     private int id;
+
+    private String dri_type;
+
 
     public void setDid(int did) {
         this.did = did;
@@ -83,5 +88,13 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    public void setDri_type(String dri_type) {
+        this.dri_type = dri_type;
+    }
+
+    public String getDri_type() {
+        return dri_type;
     }
 }

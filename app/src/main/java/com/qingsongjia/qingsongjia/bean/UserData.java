@@ -80,6 +80,7 @@ public class UserData {
     private String update_nm;
 
 
+
     private UpdateTmEntity update_tm;
     private String update_tm_str;
 

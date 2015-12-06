@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
@@ -17,10 +18,14 @@ import android.widget.TextView;
 
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.KeMu;
+import com.qingsongjia.qingsongjia.bean.OnMenuItemClick;
+import com.qingsongjia.qingsongjia.bean.User;
 import com.qingsongjia.qingsongjia.fragment.ExamFragment;
 import com.qingsongjia.qingsongjia.fragment.ExchangeFragment;
+import com.qingsongjia.qingsongjia.fragment.JiaoLianToolsFragment;
 import com.qingsongjia.qingsongjia.fragment.MenuFragment;
 import com.qingsongjia.qingsongjia.fragment.SchoolFragment;
+import com.qingsongjia.qingsongjia.fragment.TeacherMenuFragment;
 import com.qingsongjia.qingsongjia.fragment.ToolsFragment;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -29,7 +34,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends FragmentActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener, MenuFragment.OnMenuItemClick {
+public class MainActivity extends FragmentActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener, OnMenuItemClick {
 
     @Bind(R.id.main_img_drawerIcon)
     ImageView mainImgDrawerIcon;
@@ -55,6 +60,12 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     RadioGroup mainNavigation;
     @Bind(R.id.main_img_search)
     ImageView mainImgSearch;
+
+    @Bind(R.id.main_menu_left)
+    FrameLayout mainMenuLeft;
+
+    private boolean isUser = false;
+
     private SystemBarTintManager.SystemBarConfig config;
 
     @Override
@@ -72,7 +83,26 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         mainTabHost.addTab(mainTabHost.newTabSpec("1").setIndicator("A"), ExamFragment.class, null);
         mainTabHost.addTab(mainTabHost.newTabSpec("2").setIndicator("B"), SchoolFragment.class, null);
         mainTabHost.addTab(mainTabHost.newTabSpec("3").setIndicator("C"), ExchangeFragment.class, null);
-        mainTabHost.addTab(mainTabHost.newTabSpec("4").setIndicator("D"), ToolsFragment.class, null);
+
+
+        //dri_type 0 :学生 1 教练
+        User u = LocalPreference.getCurrentUser(this);
+
+        if (u.getDri_type().endsWith("0")) {
+            //学员
+            mainTabHost.addTab(mainTabHost.newTabSpec("4").setIndicator("D"), ToolsFragment.class, null);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            MenuFragment useMenu = new MenuFragment();
+            ft.replace(R.id.main_menu_left, useMenu).commit();
+
+        } else {
+            //教练
+            mainTabHost.addTab(mainTabHost.newTabSpec("4").setIndicator("D"), JiaoLianToolsFragment.class, null);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            TeacherMenuFragment teacherMenu = new TeacherMenuFragment();
+            ft.replace(R.id.main_menu_left, teacherMenu).commit();
+        }
+
 
         mainTabHost.setCurrentTab(0);
         mainNavigation.setOnCheckedChangeListener(this);
@@ -83,9 +113,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
 
     public void initSystemBar(int color) {
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-
             getWindow().setFlags(
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -133,7 +161,6 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
             mainDrawerLayout.openDrawer(Gravity.LEFT);
         }
     }
-
 
     @Override
     public void onItemClick(int position) {

@@ -212,6 +212,10 @@
         <activity
             android:name=".teacher.PushOrderActivity"
             android:label="@string/title_activity_push_order"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.YXStudentConfirmActivity"
+            android:label="@string/title_activity_yxstudent_confirm"
             android:theme="@style/AppTheme"></activity>
     </application>
 

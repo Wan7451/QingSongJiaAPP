@@ -57,7 +57,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/space10"
-            android:text="5712"
             android:id="@+id/myMessage_yhj_Left"
             android:textColor="@color/text_default_hint" />
 
@@ -100,7 +99,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/space10"
-            android:text="2069"
             android:textColor="@color/text_default_hint" />
 
 
@@ -140,11 +138,9 @@
 
         <TextView
             android:id="@+id/myMessage_yue_Left"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/space10"
-            android:text="0元"
             android:textColor="@color/text_default_hint" />
 
 

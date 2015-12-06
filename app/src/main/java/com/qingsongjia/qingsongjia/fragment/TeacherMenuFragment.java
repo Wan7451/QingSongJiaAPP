@@ -17,6 +17,7 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.activity.MainActivity;
 import com.qingsongjia.qingsongjia.adapter.ItemClickDataAdapter;
 import com.qingsongjia.qingsongjia.bean.ItemClickData;
+import com.qingsongjia.qingsongjia.bean.OnMenuItemClick;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanItemDecoration;
@@ -106,7 +107,4 @@ public class TeacherMenuFragment extends Fragment implements WanAdapter.OnItemCl
         l = null;
     }
 
-    public interface OnMenuItemClick {
-        void onItemClick(int position);
-    }
 }

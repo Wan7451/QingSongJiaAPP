@@ -6,6 +6,7 @@ package com.qingsongjia.qingsongjia.bean;
 public class MyKaoShi {
 
 
+
     private int campusId;
     private String campusName;
     private int create_id;

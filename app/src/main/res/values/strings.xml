@@ -45,4 +45,5 @@
     <string name="title_activity_inquiry_evaluate">InquiryEvaluateActivity</string>
     <string name="title_activity_tou_su">TouSuActivity</string>
     <string name="title_activity_push_order">PushOrderActivity</string>
+    <string name="title_activity_yxstudent_confirm">YXStudentConfirmActivity</string>
 </resources>

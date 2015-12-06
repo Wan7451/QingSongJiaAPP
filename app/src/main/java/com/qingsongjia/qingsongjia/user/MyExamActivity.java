@@ -90,7 +90,7 @@ public class MyExamActivity extends WanListActivity {
             time.setText(t);
 
             TextView keme = holder.getView(R.id.kemu);
-            keme.setText(item.getDri_sub_nm());
+            keme.setText(item.getDri_sub_nm_nm());
 
            TextView zsd= holder.findViewById(R.id.zhishidian);
             zsd.setText(item.getDri_score()+"");

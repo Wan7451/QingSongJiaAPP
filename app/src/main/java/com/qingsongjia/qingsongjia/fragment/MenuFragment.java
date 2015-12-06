@@ -20,6 +20,7 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.activity.MainActivity;
 import com.qingsongjia.qingsongjia.adapter.ItemClickDataAdapter;
 import com.qingsongjia.qingsongjia.bean.ItemClickData;
+import com.qingsongjia.qingsongjia.bean.OnMenuItemClick;
 import com.qingsongjia.qingsongjia.bean.UserData;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
@@ -49,7 +50,7 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
 
 
     ArrayList<ItemClickData> datas;//展示的数据
-
+    ItemClickDataAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
 
         loadData();
 
-        ItemClickDataAdapter adapter = new ItemClickDataAdapter(getContext(), datas, R.layout.item_icontext_arrows);
+        adapter = new ItemClickDataAdapter(getContext(), datas, R.layout.item_icontext_arrows);
         menuUserCenter.setAdapter(adapter);
         menuUserCenter.setLayoutManager(new LinearLayoutManager(getContext()));
         menuUserCenter.addItemDecoration(new WanItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
@@ -89,27 +90,29 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
                 UserData loginData = JSONObject.parseObject(data, UserData.class);
 
 
-                if(!TextUtils.isEmpty(loginData.getDri_nm())){
+                if (!TextUtils.isEmpty(loginData.getDri_nm())) {
                     menuUserName.setText(loginData.getDri_nm());
-                }else {
+                } else {
                     menuUserName.setText("嘟嘟驾道");
                 }
 
-                if(!TextUtils.isEmpty(loginData.getDri_campus_nm())) {
+                if (!TextUtils.isEmpty(loginData.getDri_campus_nm())) {
                     datas.get(0).setSecondText(loginData.getDri_campus_nm());
                 }
 
-                String teacherName=loginData.getDri_coach_nm();
-                if(!TextUtils.isEmpty(teacherName)){
+                String teacherName = loginData.getDri_coach_nm();
+                if (!TextUtils.isEmpty(teacherName)) {
                     datas.get(2).setSecondText(teacherName);
                 }
 
-               String iconPath= loginData.getDri_file_path();
-                if(TextUtils.isEmpty(iconPath)){
-                    menuUserIcon.setImageURI(Uri.parse("res:// /"+R.drawable.default_head));
-                }else {
+                String iconPath = loginData.getDri_file_path();
+                if (TextUtils.isEmpty(iconPath)) {
+                    menuUserIcon.setImageURI(Uri.parse("res:// /" + R.drawable.default_head));
+                } else {
                     menuUserIcon.setImageURI(Uri.parse(iconPath));
                 }
+
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -170,7 +173,4 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
         l = null;
     }
 
-    public interface OnMenuItemClick {
-        void onItemClick(int position);
-    }
 }

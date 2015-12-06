@@ -26,6 +26,7 @@ import com.qingsongjia.qingsongjia.teacher.MyStudentActivity;
 import com.qingsongjia.qingsongjia.teacher.MyStudentYKActivity;
 import com.qingsongjia.qingsongjia.teacher.MyStudentYXActivity;
 import com.qingsongjia.qingsongjia.teacher.PeiLianXingChengActivity;
+import com.qingsongjia.qingsongjia.teacher.PushOrderActivity;
 import com.qingsongjia.qingsongjia.teacher.YXConfirmActivity;
 import com.qingsongjia.qingsongjia.teacher.YXEvaluateActivity;
 import com.qingsongjia.qingsongjia.user.ChangeExamLibsActivity;
@@ -157,15 +158,17 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startMyJiFei(Context context) {
+    public static void startMyJiFei(Context context, int integral) {
         Intent i = new Intent();
         i.setClass(context, MyJiFeiActivity.class);
+        i.putExtra("jifen",integral);
         context.startActivity(i);
     }
 
-    public static void startMyYuE(Context context) {
+    public static void startMyYuE(Context context, int money) {
         Intent i = new Intent();
         i.setClass(context, MyYuEActivity.class);
+        i.putExtra("money",money);
         context.startActivity(i);
     }
 
@@ -274,6 +277,28 @@ public class UIManager {
     public static void startMyPeiLianXingCheng(Context context) {
         Intent i = new Intent();
         i.setClass(context, PeiLianXingChengActivity.class);
+        context.startActivity(i);
+    }
+
+    /**
+     * 打开发布
+     * @param context
+     */
+    public static void startPushOrder(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, PushOrderActivity.class);
+        context.startActivity(i);
+
+    }
+
+    /**
+     * 预约训练
+     * @param id
+     */
+    public static void startYueXunConfirm(WanActivity context, int id) {
+        Intent i = new Intent();
+        i.setClass(context, YXConfirmActivity.class);
+        i.putExtra("id",id);
         context.startActivity(i);
     }
 }

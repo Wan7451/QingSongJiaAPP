@@ -144,20 +144,20 @@ public abstract class WanListActivity extends WanActivity implements PullToRefre
 
         main.onRefreshComplete();
         mAdapter.notifyDataSetChanged();
-        if (mAdapter.getDatas().size() == 0) {
-            //数据空
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    errorView.setVisibility(View.VISIBLE);
-                    errorView.setErrorType(ErrorLayoutView.NODATA);
-                    errorView.setErrorMessage(emptyHint);
-                    errorView.setErrorImag(R.drawable.bow_doctor_zheng1);
-                }
-            }, 300);
-        } else {
-            errorView.dismiss();
-        }
+//        if (mAdapter.getDatas().size() == 0) {
+//            //数据空
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    errorView.setVisibility(View.VISIBLE);
+//                    errorView.setErrorType(ErrorLayoutView.NODATA);
+//                    errorView.setErrorMessage(emptyHint);
+//                    errorView.setErrorImag(R.drawable.bow_doctor_zheng1);
+//                }
+//            }, 300);
+//        } else {
+//            errorView.dismiss();
+//        }
     }
 
 

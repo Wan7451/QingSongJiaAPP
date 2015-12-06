@@ -64,6 +64,8 @@ public abstract class WanActivity extends AppCompatActivity implements INetLoadA
     }
 
 
+
+
     /**
      * 初始化UI组件
      */

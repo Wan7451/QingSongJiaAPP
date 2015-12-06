@@ -139,16 +139,6 @@
         android:orientation="horizontal"
         android:background="#FFF"
         android:padding="@dimen/space10">
-        <TextView
-            android:id="@+id/yxconfirm_quexi"
-            android:paddingTop="@dimen/space10"
-            android:paddingBottom="@dimen/space10"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            style="@style/button_ghost"
-            android:text="缺席"/>
 
         <TextView
             android:id="@+id/yxconfirm_queren"
@@ -160,6 +150,6 @@
             android:layout_marginLeft="@dimen/space10"
             android:layout_height="wrap_content"
             style="@style/button"
-            android:text="确认学习"/>
+            android:text="确认预约"/>
     </LinearLayout>
 </LinearLayout>

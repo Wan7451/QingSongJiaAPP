@@ -1,6 +1,5 @@
 package com.qingsongjia.qingsongjia.teacher;
 
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -16,7 +15,7 @@ import com.wan7451.base.WanActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class YXConfirmActivity extends WanActivity {
+public class YXStudentConfirmActivity extends WanActivity {
 
 
     @Bind(R.id.teacher_icon)
@@ -42,17 +41,18 @@ public class YXConfirmActivity extends WanActivity {
     @Override
     public void initView() {
         setBackFinish();
-        setContentTitle("训练确认");
+        setContentTitle("预约确认");
         ButterKnife.bind(this);
 
         id = getIntent().getIntExtra("id", 0);
 
 
-        //确认
+        //确认  接受 预约
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NetRequest.studentCome(getContext(), id + "", "2", new NetUtils.NetUtilsHandler() {
+
+                NetRequest.yxconfirm(getContext(), id + "", new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("确认成功");
@@ -68,39 +68,12 @@ public class YXConfirmActivity extends WanActivity {
                         }
                     }
                 });
-
             }
         });
-        //缺席
-        yxconfirmQuexi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NetRequest.studentCome(getContext(), id + "", "1", new NetUtils.NetUtilsHandler() {
-                    @Override
-                    public void onResponseOK(JSONArray response, int total) {
-                        showToast("确认成功");
-                        UIManager.startYXEvaluate(getContext(), id);
-
-                    }
-
-                    @Override
-                    public void onResponseError(String error) {
-                        if (TextUtils.isEmpty(error)) {
-                            showToast("确认失败");
-                        } else {
-                            showToast(error);
-                        }
-                    }
-                });
-            }
-        });
-
-
     }
 
     @Override
     protected int getMainViewLayoutId() {
-        return R.layout.activity_yxconfirm;
+        return R.layout.activity_yxstudent_confirm;
     }
-
 }

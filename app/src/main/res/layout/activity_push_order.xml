@@ -39,7 +39,6 @@
 
 
     <LinearLayout
-        android:id="@+id/training_choiceTeacher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/view_margin"
@@ -54,13 +53,14 @@
             android:src="@drawable/icon_menu_je" />
 
         <EditText
-            android:id="@+id/training_teacher"
+            android:id="@+id/training_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/space10"
             android:layout_weight="1"
             android:background="#0000"
+            android:inputType="numberDecimal"
             android:hint="请输入价格"
             android:textSize="@dimen/textSize14" />
 
@@ -79,6 +79,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/training_typeAView"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
@@ -86,6 +87,7 @@
             android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/training_typeA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -99,6 +101,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/training_typeBView"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
@@ -106,6 +109,7 @@
             android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/training_typeB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -129,6 +133,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/training_other"
             android:padding="@dimen/space5"
             android:gravity="left|top"
             android:layout_width="match_parent"
