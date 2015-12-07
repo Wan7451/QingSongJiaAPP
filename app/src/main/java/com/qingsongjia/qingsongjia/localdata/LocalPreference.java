@@ -121,4 +121,9 @@ public class LocalPreference {
         String curr = spref.getString("currentUserData", "{}");
         return JSON.parseObject(curr,UserData.class);
     }
+
+    public static void clearData(Context context) {
+        getPreference(context);
+        spref.edit().clear().commit();
+    }
 }

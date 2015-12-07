@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.qingsongjia.qingsongjia.activity.RegisterActivity;
 import com.qingsongjia.qingsongjia.activity.SetPasswordActivity;
 import com.qingsongjia.qingsongjia.activity.VerifyPhoneActivity;
+import com.qingsongjia.qingsongjia.bean.PeiLian;
 import com.qingsongjia.qingsongjia.driverexam.AnalogyExamActivity;
 import com.qingsongjia.qingsongjia.driverexam.AnalogyTestActivity;
 import com.qingsongjia.qingsongjia.driverexam.ExamDetailActivity;
@@ -22,6 +23,7 @@ import com.qingsongjia.qingsongjia.driverexam.WebActivity;
 import com.qingsongjia.qingsongjia.driverexam.ZhangJieLianXiActivity;
 import com.qingsongjia.qingsongjia.driverexam.ZhuanIXiangLianXiActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolListActivity;
+import com.qingsongjia.qingsongjia.plxc.InquirySendActivity;
 import com.qingsongjia.qingsongjia.teacher.MyStudentActivity;
 import com.qingsongjia.qingsongjia.teacher.MyStudentYKActivity;
 import com.qingsongjia.qingsongjia.teacher.MyStudentYXActivity;
@@ -299,6 +301,18 @@ public class UIManager {
         Intent i = new Intent();
         i.setClass(context, YXConfirmActivity.class);
         i.putExtra("id",id);
+        context.startActivity(i);
+    }
+
+    /**
+     * 打开培训详情
+     * @param context
+     * @param item
+     */
+    public static void startPenLianDetail(Context context, PeiLian item) {
+        Intent i = new Intent();
+        i.setClass(context, InquirySendActivity.class);
+        i.putExtra("peilian",item);
         context.startActivity(i);
     }
 }

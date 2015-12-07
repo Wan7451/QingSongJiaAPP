@@ -8,7 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.adapter.PenLianAdapter;
+import com.qingsongjia.qingsongjia.bean.PeiLian;
+import com.qingsongjia.qingsongjia.utils.NetRequest;
+import com.qingsongjia.qingsongjia.utils.NetUtils;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanListActivity;
 import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
@@ -19,7 +25,7 @@ import java.util.List;
 public class PenLianActivity extends WanListActivity {
 
 
-    private ArrayList<String> data=new ArrayList<>();
+    private ArrayList<PeiLian> data = new ArrayList<>();
 
     @Override
     protected int getMainViewLayoutId() {
@@ -41,40 +47,35 @@ public class PenLianActivity extends WanListActivity {
 
     @Override
     public WanAdapter getAdapter() {
-        MyTestAdapter adapter=new MyTestAdapter(getContext(),data,R.layout.item_mytest_list);
-        View header= getLayoutInflater().inflate(R.layout.activity_my_test,null);
+        PenLianAdapter adapter = new PenLianAdapter(getContext(), data, R.layout.item_order_list);
+        View header = getLayoutInflater().inflate(R.layout.activity_my_test, null);
         adapter.addHeaderView(header);
         return adapter;
     }
 
     @Override
     protected void loadData() {
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        loadFinish("");
+
+        NetRequest.loadMyPenLian(getContext(), new NetUtils.NetUtilsHandler() {
+            @Override
+            public void onResponseOK(JSONArray response, int total) {
+                data.clear();
+                if (response.size() > 0) {
+                    data.addAll(JSONArray.parseArray(response.toJSONString(), PeiLian.class));
+                }
+                loadFinish("");
+            }
+
+            @Override
+            public void onResponseError(String error) {
+
+            }
+        });
     }
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-
+        UIManager.startPenLianDetail(getContext(),data.get(posotion));
     }
 
-    static class MyTestAdapter extends WanAdapter<String>{
-
-        public MyTestAdapter(Context context, List<String> mDatas, int itemLayoutId) {
-            super(context, mDatas, itemLayoutId);
-        }
-
-        @Override
-        public void convert(WanViewHolder holder, int position, String item) {
-
-        }
-    }
 }

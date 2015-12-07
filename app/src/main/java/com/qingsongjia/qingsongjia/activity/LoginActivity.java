@@ -45,6 +45,12 @@ public class LoginActivity extends WanActivity {
         });
         setContentTitle("登陆");
 
+
+        User user = LocalPreference.getCurrentUser(getContext());
+        if(!TextUtils.isEmpty(user.getDri_type())){
+            startActivity(new Intent(getContext(),MainActivity.class));
+            finish();
+        }
         loginFastRegist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

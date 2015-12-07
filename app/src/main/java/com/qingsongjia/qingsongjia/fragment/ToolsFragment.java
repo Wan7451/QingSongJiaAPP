@@ -7,12 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.adapter.PenLianAdapter;
 import com.qingsongjia.qingsongjia.bean.PeiLian;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanListFragment;
 import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
@@ -20,8 +23,12 @@ import com.wan7451.wanadapter.recycle.WanViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 学员端  抢单
+ */
+
 public class ToolsFragment extends WanListFragment {
-    private ArrayList<PeiLian> data=new ArrayList<>();
+    private ArrayList<PeiLian> data = new ArrayList<>();
 
     @Override
     protected boolean isShowTitleView() {
@@ -40,7 +47,7 @@ public class ToolsFragment extends WanListFragment {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();
-                if(response.size()>0){
+                if (response.size() > 0) {
                     data.addAll(JSONArray.parseArray(response.toJSONString(), PeiLian.class));
                 }
                 loadFinish("");
@@ -58,24 +65,38 @@ public class ToolsFragment extends WanListFragment {
 
     @Override
     public WanAdapter getAdapter() {
-        MyTestAdapter adapter=new MyTestAdapter(getContext(),data,R.layout.item_mytest_list);
+        PenLianAdapter adapter = new PenLianAdapter(getContext(), data, R.layout.item_order_list);
         return adapter;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
     }
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
+        PeiLian item = data.get(posotion);
 
+        switch (item.getStatus()) {
+            case "1":
+                //   state= "未抢单";
+                UIManager.startPenLianDetail(getContext(),item);
+
+                break;
+            case "2":
+                //   state= "已抢单";
+                break;
+            case "3":
+                //   state="已确认";
+                break;
+            case "4":
+                //   state="已取消";
+                break;
+        }
+//        UIManager.start
     }
 
-    static class MyTestAdapter extends WanAdapter<PeiLian>{
-
-        public MyTestAdapter(Context context, List<PeiLian> mDatas, int itemLayoutId) {
-            super(context, mDatas, itemLayoutId);
-        }
-
-        @Override
-        public void convert(WanViewHolder holder, int position, PeiLian item) {
-
-        }
-    }
 }
