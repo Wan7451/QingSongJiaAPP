@@ -14,6 +14,7 @@ import com.qingsongjia.qingsongjia.driverexam.SubjectTwoFragment;
 import java.util.ArrayList;
 
 /**
+ * 科目练习
  * Created by wanggang on 15/11/14.
  */
 public class ExamAdapter extends FragmentStatePagerAdapter {

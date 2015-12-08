@@ -29,6 +29,12 @@ public class JiaoLianToolsFragment extends WanFragment implements AdapterView.On
     @Bind(R.id.sunbjectTools_views)
     GridView sunbjectToolsViews;
 
+
+    @Override
+    protected boolean isShowTitleView() {
+        return false;
+    }
+
     @Override
     protected void initView(View view) {
         ButterKnife.bind(this, view);

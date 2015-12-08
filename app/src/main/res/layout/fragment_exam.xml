@@ -3,22 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:orientation="vertical">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/exam_navigation_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabGravity="center"
         app:tabIndicatorColor="@color/toolbar_bg"
-        app:tabSelectedTextColor="@color/toolbar_bg"
-        app:tabTextColor="#999999"
         app:tabMode="fixed"
-        app:tabGravity="center"/>
+        app:tabSelectedTextColor="@color/toolbar_bg"
+        app:tabTextColor="#999999" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/exam_navigation_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -307,8 +307,23 @@ public class NetRequest {
      */
     public static void loadMyStudent(WanActivity context, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("dri_coach_id", LocalPreference.getCurrentUser(context).getId() + "");
+        params.put("dri_coach_id", "171");
+//        params.put("dri_coach_id", LocalPreference.getCurrentUser(context).getId() + "");
         NetUtils.baseRequest(context, "driappconsultclientWeb/queryForList", params, false, handler);
+
+    }
+
+    /**
+     * 教练  我的陪练列表
+     * @param context
+     * @param handler
+     */
+    public static void loadMyPeiLian(WanActivity context, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+//        params.put("dri_user_id", "171");
+        params.put("dri_user_id", LocalPreference.getCurrentUser(context).getId() + "");
+        NetUtils.baseRequest(context, "driapppartnerTrain/queryForList", params, false, handler);
+
 
     }
 }

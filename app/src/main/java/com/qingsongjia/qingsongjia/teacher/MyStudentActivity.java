@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.bean.MyStudent;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.wan7451.base.WanListActivity;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class MyStudentActivity extends WanListActivity {
 
-    private ArrayList<String> data=new ArrayList<>();
+    private ArrayList<MyStudent> data=new ArrayList<>();
 
     @Override
     protected boolean addData() {
@@ -50,25 +51,18 @@ public class MyStudentActivity extends WanListActivity {
         NetRequest.loadMyStudent(getContext(), new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
-
+                data.clear();
+                if(response.size()>0){
+                    data.addAll(JSONArray.parseArray(response.toJSONString(),MyStudent.class));
+                }
+                loadFinish("");
             }
 
             @Override
             public void onResponseError(String error) {
-
+                loadError();
             }
         });
-
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        loadFinish("");
     }
 
     @Override
@@ -82,15 +76,17 @@ public class MyStudentActivity extends WanListActivity {
     }
 
 
-    static class MyTestAdapter extends WanAdapter<String>{
+    static class MyTestAdapter extends WanAdapter<MyStudent>{
 
-        public MyTestAdapter(Context context, List<String> mDatas, int itemLayoutId) {
+        public MyTestAdapter(Context context, List<MyStudent> mDatas, int itemLayoutId) {
             super(context, mDatas, itemLayoutId);
         }
 
         @Override
-        public void convert(WanViewHolder holder, int position, String item) {
-
+        public void convert(WanViewHolder holder, int position, MyStudent item) {
+            holder.setText(R.id.mystudent_name,item.getDri_nm());
+            holder.setText(R.id.mystudent_kemu,item.getDri_course_pro_nm());
+            holder.setText(R.id.mystudent_phone,item.getDri_tel());
         }
     }
 }

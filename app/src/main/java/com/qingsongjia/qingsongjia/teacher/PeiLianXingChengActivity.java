@@ -8,7 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.utils.NetRequest;
+import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.wan7451.base.WanListActivity;
 import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
@@ -49,6 +52,19 @@ public class PeiLianXingChengActivity extends WanListActivity {
 
     @Override
     protected void loadData() {
+
+        NetRequest.loadMyPeiLian(getContext(), new NetUtils.NetUtilsHandler() {
+            @Override
+            public void onResponseOK(JSONArray response, int total) {
+
+            }
+
+            @Override
+            public void onResponseError(String error) {
+
+            }
+        });
+
         data.add("");
         data.add("");
         data.add("");
