@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -75,6 +76,10 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         ButterKnife.bind(this);
         initSystemBar(getResources().getColor(R.color.toolbar_bg));
 
+        if(getApplication() instanceof App){
+            ((App) getApplication()).addAcitivty(this);
+        }
+
         mainTvTitle.setText("轻松驾");
 
 
@@ -87,8 +92,13 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
 
         //dri_type 0 :学生 1 教练
         User u = LocalPreference.getCurrentUser(this);
+        int type = 0;
+        if (!TextUtils.isEmpty(u.getDri_type()) && (
+                !u.getDri_type().endsWith("0"))) {
+            type = 1;
+        }
 
-        if (u.getDri_type().endsWith("0")) {
+        if (type == 0) {
             //学员
             mainTabHost.addTab(mainTabHost.newTabSpec("4").setIndicator("D"), ToolsFragment.class, null);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

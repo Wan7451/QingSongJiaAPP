@@ -49,6 +49,7 @@ public class PushOrderActivity extends WanActivity {
     Calendar calendar = Calendar.getInstance();
 
     private String upDate;
+    private String upTime;
     private String tempDate;
 
     private int datacount;
@@ -108,17 +109,18 @@ public class PushOrderActivity extends WanActivity {
                     return;
                 }
 
-                NetRequest.pushOrder(getContext(), upDate, price, type + "", other, new NetUtils.NetUtilsHandler() {
+                NetRequest.pushOrder(getContext(), upDate,upTime,
+                        price, type + "", other, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("发布成功");
+                        finish();
                     }
 
                     @Override
                     public void onResponseError(String error) {
                         if (TextUtils.isEmpty(error)) {
-                            showToast("发布成功");
-                            finish();
+                            showToast("发布失败");
                         } else {
                             showToast(error);
                         }
@@ -134,8 +136,8 @@ public class PushOrderActivity extends WanActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        upDate = year + "-" + month + "-" + day;
-                        tempDate = year + "年" + month + "月" + day + "日";
+                        upDate = year + "-" + (month+1) + "-" + day;
+                        tempDate = year + "年" + (month+1) + "月" + day + "日";
 
                         datacount++;
 
@@ -148,6 +150,7 @@ public class PushOrderActivity extends WanActivity {
                                             timecount++;
                                             if (timecount == 2) {
                                                 tempDate += i + "时";
+                                                upTime=i+"";
                                                 trainingTime.setText(tempDate);
                                             }
                                         }

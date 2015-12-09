@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,7 +20,9 @@ import com.wan7451.base.WanListActivity;
 import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -55,6 +58,13 @@ public class MyStudentYXActivity extends WanListActivity {
         return adapter;
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
+    }
+
     @Override
     protected void loadData() {
 
@@ -63,8 +73,9 @@ public class MyStudentYXActivity extends WanListActivity {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();
-                if (response.size() != 0)
+                if (!TextUtils.equals("[{}]", response.toJSONString())) {
                     data.addAll(JSONArray.parseArray(response.toJSONString(), MyYueKao.class));
+                }
                 loadFinish("");
             }
 
@@ -79,13 +90,17 @@ public class MyStudentYXActivity extends WanListActivity {
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-        UIManager.startYueXunConfirm(getContext(), data.get(posotion).getId());
+        UIManager.startYueXunConfirm(getContext(), data.get(posotion));
     }
 
     static class MyTestAdapter extends WanAdapter<MyYueKao> {
 
+        private final SimpleDateFormat sdformat;
+
         public MyTestAdapter(Context context, List<MyYueKao> mDatas, int itemLayoutId) {
             super(context, mDatas, itemLayoutId);
+            //24小时制
+            sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         }
 
         @Override
@@ -94,15 +109,17 @@ public class MyStudentYXActivity extends WanListActivity {
                 return;
 
             TextView time = holder.getView(R.id.time);
-            String t = item.getDri_dt().toString() + " " + item.getDri_start_hm() + "-" + item.getDri_end_hm();
-            time.setText(t);
+            time.setText(item.getDri_dt_str()+" "+item.getDri_start_hm()+"-"+item.getDri_end_hm());
 
             TextView keme = holder.getView(R.id.kemu);
             keme.setText(item.getDri_sub_nm());
 
-            TextView status= holder.findViewById(R.id.status);
-            String state= item.getDri_state_nm();
+            TextView status = holder.findViewById(R.id.status);
+            String state = item.getDri_state_nm();
             status.setText(state);
+
+            holder.setText(R.id.kemu,item.getDri_sub_nm_nm());
+            holder.setText(R.id.zhishidian,item.getDri_learning_content());
 
         }
     }

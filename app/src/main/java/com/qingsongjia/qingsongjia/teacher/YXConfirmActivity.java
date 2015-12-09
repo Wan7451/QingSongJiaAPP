@@ -8,10 +8,14 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.bean.MyYueKao;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,6 +42,7 @@ public class YXConfirmActivity extends WanActivity {
     @Bind(R.id.yxconfirm_queren)
     TextView yxconfirmQueren;
     private int id;
+    private MyYueKao yueKao;
 
     @Override
     public void initView() {
@@ -45,8 +50,15 @@ public class YXConfirmActivity extends WanActivity {
         setContentTitle("训练确认");
         ButterKnife.bind(this);
 
-        id = getIntent().getIntExtra("id", 0);
 
+        yueKao = getIntent().getParcelableExtra("data");
+        id=yueKao.getId();
+        SimpleDateFormat  sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        teacherName.setText(yueKao.getDri_student_nm());
+        teacherKemu.setText(yueKao.getDri_sub_nm_nm());
+        teacherTime.setText(sdformat.format(new Date(yueKao.getDri_dt().getTime())));
+        teacherYuyue.setText(yueKao.getDri_start_hm()+"-"+yueKao.getDri_end_hm());
+        teacherNeirong.setText(yueKao.getDri_learning_content());
 
         //确认
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +68,7 @@ public class YXConfirmActivity extends WanActivity {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("确认成功");
-                        UIManager.startYXEvaluate(getContext(), id);
+                        UIManager.startYXEvaluate(getContext(), yueKao);
                     }
 
                     @Override
@@ -79,7 +91,7 @@ public class YXConfirmActivity extends WanActivity {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("确认成功");
-                        UIManager.startYXEvaluate(getContext(), id);
+                        UIManager.startYXEvaluate(getContext(), yueKao);
 
                     }
 

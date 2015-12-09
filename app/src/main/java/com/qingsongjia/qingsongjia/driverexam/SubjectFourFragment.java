@@ -68,7 +68,7 @@ public class SubjectFourFragment extends WanFragment {
         testItem.setOnMenuItemPressed(new RadialMenuItem.RadialMenuItemClickListener() {
             @Override
             public void execute() {
-                UIManager.startAnalogyExam(getContext());
+                UIManager.startAnalogyExam(getContext(),4);
             }
         });
         pieMenu.setCenterCircle(testItem);

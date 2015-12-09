@@ -40,12 +40,17 @@ public class AnalogyExamActivity extends WanActivity {
     Button analogyAnalogy;   //模拟考试
     @Bind(R.id.analogy_imquiryExam)
     Button analogyImquiryExam;   //预约报名
+    private int type;
 
     @Override
     public void initView() {
         ButterKnife.bind(this);
         setBackFinish();
         setContentTitle("模拟考试");
+
+
+        type = getIntent().getIntExtra("type", 1);
+
         analogyIcon.setImageURI(Uri.parse("res:// /" + R.drawable.icon_default_head));
         analogyName.setText("好运到");
         analogySchool.setText("(东方时尚驾校)");
@@ -56,11 +61,12 @@ public class AnalogyExamActivity extends WanActivity {
         analogyTandard.setText("100题 45分钟");
         analogyQualified.setText("满分100分，80分及格");
 
+
         analogyAnalogy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //模拟考试
-                UIManager.startAnalogyTest(getContext());
+                UIManager.startAnalogyTest(getContext(), type);
 
             }
         });
@@ -69,7 +75,7 @@ public class AnalogyExamActivity extends WanActivity {
             @Override
             public void onClick(View view) {
                 //预约考试
-                UIManager.startInquiryExam(getContext(), InquiryExamActivity.INQUIRY_TYPE_ONE);
+                UIManager.startInquiryExam(getContext(), type);
             }
         });
 

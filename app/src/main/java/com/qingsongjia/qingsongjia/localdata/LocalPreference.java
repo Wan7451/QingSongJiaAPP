@@ -8,6 +8,7 @@ import com.qingsongjia.qingsongjia.bean.KeMu;
 import com.qingsongjia.qingsongjia.bean.UserData;
 import com.qingsongjia.qingsongjia.bean.TiKu;
 import com.qingsongjia.qingsongjia.bean.User;
+import com.wan7451.base.WanActivity;
 
 /**
  * 本地缓存数据
@@ -108,10 +109,10 @@ public class LocalPreference {
     public static User getCurrentUser(Context context) {
         getPreference(context);
         String curr = spref.getString("currentUser", "{}");
-        return JSON.parseObject(curr,User.class);
+        return JSON.parseObject(curr, User.class);
     }
 
-    public static void saveCurrentUserData(Context context,String data) {
+    public static void saveCurrentUserData(Context context, String data) {
         getPreference(context);
         spref.edit().putString("currentUserData", data).commit();
     }
@@ -119,11 +120,12 @@ public class LocalPreference {
     public static UserData getCurrentUserData(Context context) {
         getPreference(context);
         String curr = spref.getString("currentUserData", "{}");
-        return JSON.parseObject(curr,UserData.class);
+        return JSON.parseObject(curr, UserData.class);
     }
 
     public static void clearData(Context context) {
         getPreference(context);
         spref.edit().clear().commit();
     }
+
 }

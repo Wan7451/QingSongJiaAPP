@@ -10,9 +10,13 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.bean.MyYueKao;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.wan7451.base.WanActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,13 +47,25 @@ public class YXEvaluateActivity extends WanActivity {
 
 
     int id;
+    private MyYueKao yueKao;
 
     @Override
     public void initView() {
-        setContentTitle("训练确认");
+        setContentTitle("训练评论");
         setBackFinish();
+        ButterKnife.bind(this);
 
-        id = getIntent().getIntExtra("id", 0);
+        yueKao = getIntent().getParcelableExtra("data");
+        id=yueKao.getId();
+
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        teacherName.setText(yueKao.getDri_student_nm());
+        teacherKemu.setText(yueKao.getDri_sub_nm_nm());
+        teacherTime.setText(sdformat.format(new Date(yueKao.getDri_dt().getTime())));
+        teacherYuyue.setText(yueKao.getDri_start_hm()+"-"+yueKao.getDri_end_hm());
+        teacherNeirong.setText(yueKao.getDri_learning_content());
+
+
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,10 +101,4 @@ public class YXEvaluateActivity extends WanActivity {
         return R.layout.activity_yxevaluate;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

@@ -1,6 +1,7 @@
 package com.qingsongjia.qingsongjia.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -8,7 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.User;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
@@ -33,6 +33,10 @@ public class LoginActivity extends WanActivity {
     TextView loginFastRegist;
     @Bind(R.id.login_login)
     Button loginLogin;
+    @Bind(R.id.login_noLigin)
+    TextView loginNoLigin; //游客登陆
+
+    private boolean isLogin;
 
     @Override
     public void initView() {
@@ -45,12 +49,16 @@ public class LoginActivity extends WanActivity {
         });
         setContentTitle("登陆");
 
+        isLogin = getIntent().getBooleanExtra("isLogin",false);
+
 
         User user = LocalPreference.getCurrentUser(getContext());
-        if(!TextUtils.isEmpty(user.getDri_type())){
-            startActivity(new Intent(getContext(),MainActivity.class));
+//        if (!TextUtils.isEmpty(user.getDri_type())) {
+        if (!isLogin && !LocalPreference.isFirstUse(getContext())) {
+            startActivity(new Intent(getContext(), MainActivity.class));
             finish();
         }
+
         loginFastRegist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,6 +93,7 @@ public class LoginActivity extends WanActivity {
                 NetRequest.loginLogin(getContext(), tel, pasd, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
+                        colseActivity(MainActivity.class);
                         String user = response.getString(0);
                         LocalPreference.saveCurrentUser(getContext(), user);
                         startActivity(new Intent(getContext(), MainActivity.class));
@@ -100,6 +109,14 @@ public class LoginActivity extends WanActivity {
                         }
                     }
                 });
+            }
+        });
+
+
+        loginNoLigin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), MainActivity.class));
             }
         });
     }

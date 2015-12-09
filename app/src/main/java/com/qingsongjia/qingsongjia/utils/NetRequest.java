@@ -142,8 +142,8 @@ public class NetRequest {
      */
     public static void getMyYueLian(WanActivity context, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("dri_student_id", LocalPreference.getCurrentUser(context).getId() + "");
-        NetUtils.baseRequest(context, "driappcorvpracticWeb/queryForList", params, true, handler);
+        params.put("dri_coach_id", LocalPreference.getCurrentUser(context).getId() + "");
+        NetUtils.baseRequest(context, "driappcorvpracticWeb/queryForList", params, false, handler);
 
     }
 
@@ -152,7 +152,7 @@ public class NetRequest {
 //        params.put("Id", "127");
         params.put("dri_student_id", LocalPreference.getCurrentUser(context).getId() + "");
 //        params.put("Id", LocalPreference.getCurrentUser(context).getId()+"");
-        NetUtils.baseRequest(context, "driappcorvexamweb/ownerQuery", params, false, handler);
+        NetUtils.baseRequest(context, "driappcorvexamweb/queryForList", params, false, handler);
 //        NetUtils.baseRequest(context, "driappcorvexamweb/load", params, false, handler);
 
     }
@@ -173,13 +173,15 @@ public class NetRequest {
 
     public static void pushOrder(WanActivity context,
                                  String upDate,
+                                 String time,
                                  String price,
                                  String type,
                                  String other,
                                  NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("dri_student_id", LocalPreference.getCurrentUser(context).getId() + "");
+        params.put("dri_user_id", LocalPreference.getCurrentUser(context).getId() + "");
         params.put("meetingDate_str", upDate);
+        params.put("meetingTime", time);
         params.put("dri_price", price);
         params.put("dri_partner_type", type);
         params.put("dri_comments", other);
@@ -324,6 +326,32 @@ public class NetRequest {
         params.put("dri_user_id", LocalPreference.getCurrentUser(context).getId() + "");
         NetUtils.baseRequest(context, "driapppartnerTrain/queryForList", params, false, handler);
 
+
+    }
+
+    /**
+     * 获取我的优惠劵
+     * @param context
+     * @param handler
+     */
+    public static void loadMyYouHuiJuan(WanActivity context, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+//        params.put("dri_user_id", "171");
+        params.put("dri_user_id", LocalPreference.getCurrentUser(context).getId() + "");
+        NetUtils.baseRequest(context, "driappcoupon/queryForList", params, false, handler);
+
+    }
+
+    /**
+     * 提现
+     * @param context
+     * @param handler
+     */
+    public static void tixian(WanActivity context, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+//        params.put("dri_user_id", "171");
+        params.put("user_id", LocalPreference.getCurrentUser(context).getId() + "");
+        NetUtils.baseRequest(context, "driappcoupon/queryForList", params, false, handler);
 
     }
 }

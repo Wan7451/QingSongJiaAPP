@@ -1,10 +1,12 @@
 package com.qingsongjia.qingsongjia.driverexam;
 
 
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.TextView;
 
@@ -42,7 +44,7 @@ public class AnalogyTestActivity extends WanActivity implements ViewPager.OnPage
         setLeftIcon(R.drawable.icon_left_back, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                finish();
             }
         });
         setContentTitle("模拟考试");
@@ -51,10 +53,27 @@ public class AnalogyTestActivity extends WanActivity implements ViewPager.OnPage
         analogyMainView.setAdapter(adapter);
         analogyMainView.addOnPageChangeListener(this);
 
+        //科目
+        int type = getIntent().getIntExtra("type", 1);
+
         analogySubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //提交
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("提示")
+                        .setMessage("您确定要交卷么?")
+                        .setPositiveButton("交卷", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                showToast("交卷成功");
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("不交卷", null)
+                        .show();
+
+
             }
         });
 
@@ -155,7 +174,7 @@ public class AnalogyTestActivity extends WanActivity implements ViewPager.OnPage
         public Fragment getItem(int position) {
 
             ExamTestFragment f = fragments.get(position % fragments.size());
-            f.setPosition(currPro+position);
+            f.setPosition(currPro + position);
 //            f.fillView(new ExamSubject());
             return f;
         }

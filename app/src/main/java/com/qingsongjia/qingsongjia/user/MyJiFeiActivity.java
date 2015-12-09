@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -65,7 +66,8 @@ public class MyJiFeiActivity extends WanActivity {
         NetRequest.getMyJiFen(getContext(), new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
-                if (response.size() > 0) {
+                data.clear();
+                if (!TextUtils.equals("[{}]", response.toJSONString())) {
                     data.addAll(JSONArray.parseArray(response.toJSONString(), JiFei.class));
                 }
 

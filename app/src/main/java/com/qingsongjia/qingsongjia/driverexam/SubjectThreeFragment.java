@@ -77,7 +77,7 @@ public class SubjectThreeFragment extends WanFragment implements AdapterView.OnI
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-                        UIManager.startInquiryExam(getContext(), InquiryExamActivity.INQUIRY_TYPE_TWO);
+                        UIManager.startInquiryExam(getContext(), InquiryExamActivity.INQUIRY_TYPE_THREE);
                         break;
                     case 1:
                         UIManager.startInquiryTraining(getContext());

@@ -63,10 +63,10 @@ public class TeacherListActivity extends WanListActivity {
             public void onResponseOK(JSONArray response, int total) {
 
                 data.clear();
-                List<Teacher> teachers = JSONArray.parseArray(response.toJSONString(), Teacher.class);
-                if (teachers.size() != 0)
-                    data.addAll(teachers);
-                loadFinish("");
+                if(!TextUtils.equals("[{}]",response.toJSONString())) {
+                    data.addAll(JSONArray.parseArray(response.toJSONString(), Teacher.class));
+                }
+                loadFinish("该时间段没有教练，请换个时间试试");
             }
 
             @Override

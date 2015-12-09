@@ -2,10 +2,14 @@ package com.qingsongjia.qingsongjia.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 
+import com.qingsongjia.qingsongjia.activity.LoginActivity;
 import com.qingsongjia.qingsongjia.activity.RegisterActivity;
 import com.qingsongjia.qingsongjia.activity.SetPasswordActivity;
 import com.qingsongjia.qingsongjia.activity.VerifyPhoneActivity;
+import com.qingsongjia.qingsongjia.bean.MyPeiLian;
+import com.qingsongjia.qingsongjia.bean.MyYueKao;
 import com.qingsongjia.qingsongjia.bean.PeiLian;
 import com.qingsongjia.qingsongjia.driverexam.AnalogyExamActivity;
 import com.qingsongjia.qingsongjia.driverexam.AnalogyTestActivity;
@@ -24,6 +28,7 @@ import com.qingsongjia.qingsongjia.driverexam.ZhangJieLianXiActivity;
 import com.qingsongjia.qingsongjia.driverexam.ZhuanIXiangLianXiActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolListActivity;
 import com.qingsongjia.qingsongjia.plxc.InquirySendActivity;
+import com.qingsongjia.qingsongjia.teacher.InquiryConfirmActivity;
 import com.qingsongjia.qingsongjia.teacher.MyStudentActivity;
 import com.qingsongjia.qingsongjia.teacher.MyStudentYKActivity;
 import com.qingsongjia.qingsongjia.teacher.MyStudentYXActivity;
@@ -37,11 +42,13 @@ import com.qingsongjia.qingsongjia.user.MyJiFeiActivity;
 import com.qingsongjia.qingsongjia.user.MyMessageActivity;
 import com.qingsongjia.qingsongjia.user.MyTeacherActivity;
 import com.qingsongjia.qingsongjia.user.MyTestActivity;
+import com.qingsongjia.qingsongjia.user.MyYouHuiJuanActivity;
 import com.qingsongjia.qingsongjia.user.MyYuEActivity;
 import com.qingsongjia.qingsongjia.user.PenLianActivity;
 import com.qingsongjia.qingsongjia.user.SettingActivity;
 import com.qingsongjia.qingsongjia.user.TiXianActivity;
 import com.wan7451.base.WanActivity;
+import com.wan7451.base.WanFragment;
 
 /**
  * Created by wanggang on 15/11/17.
@@ -72,11 +79,6 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startChangeExamLibs(Context context) {
-        Intent i = new Intent();
-        i.setClass(context, ChangeExamLibsActivity.class);
-        context.startActivity(i);
-    }
 
     /**
      * 打开练习详情
@@ -96,9 +98,10 @@ public class UIManager {
      *
      * @param context
      */
-    public static void startAnalogyExam(Context context) {
+    public static void startAnalogyExam(Context context,int type) {
         Intent i = new Intent();
         i.setClass(context, AnalogyExamActivity.class);
+        i.putExtra("type",type);
         context.startActivity(i);
     }
 
@@ -115,9 +118,10 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startAnalogyTest(Context context) {
+    public static void startAnalogyTest(Context context,int type) {
         Intent i = new Intent();
         i.setClass(context, AnalogyTestActivity.class);
+        i.putExtra("type",type);
         context.startActivity(i);
     }
 
@@ -134,10 +138,10 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startTeacherList(Context context,String time) {
+    public static void startTeacherList(Context context, String time) {
         Intent i = new Intent();
         i.setClass(context, TeacherListActivity.class);
-        i.putExtra("time",time);
+        i.putExtra("time", time);
         context.startActivity(i);
     }
 
@@ -163,14 +167,14 @@ public class UIManager {
     public static void startMyJiFei(Context context, int integral) {
         Intent i = new Intent();
         i.setClass(context, MyJiFeiActivity.class);
-        i.putExtra("jifen",integral);
+        i.putExtra("jifen", integral);
         context.startActivity(i);
     }
 
     public static void startMyYuE(Context context, int money) {
         Intent i = new Intent();
         i.setClass(context, MyYuEActivity.class);
-        i.putExtra("money",money);
+        i.putExtra("money", money);
         context.startActivity(i);
     }
 
@@ -265,14 +269,14 @@ public class UIManager {
     public static void startYXConfirm(WanActivity context, int id) {
         Intent i = new Intent();
         i.setClass(context, YXConfirmActivity.class);
-        i.putExtra("id",id);
+        i.putExtra("id", id);
         context.startActivity(i);
     }
 
-    public static void startYXEvaluate(WanActivity context, int id) {
+    public static void startYXEvaluate(WanActivity context, MyYueKao data) {
         Intent i = new Intent();
         i.setClass(context, YXEvaluateActivity.class);
-        i.putExtra("id",id);
+        i.putExtra("data", data);
         context.startActivity(i);
     }
 
@@ -284,6 +288,7 @@ public class UIManager {
 
     /**
      * 打开发布
+     *
      * @param context
      */
     public static void startPushOrder(Context context) {
@@ -295,24 +300,68 @@ public class UIManager {
 
     /**
      * 预约训练
-     * @param id
+     *
+     * @param data
      */
-    public static void startYueXunConfirm(WanActivity context, int id) {
+    public static void startYueXunConfirm(WanActivity context, MyYueKao data) {
         Intent i = new Intent();
         i.setClass(context, YXConfirmActivity.class);
-        i.putExtra("id",id);
+        i.putExtra("data", data);
         context.startActivity(i);
     }
 
     /**
      * 打开培训详情
+     *
      * @param context
      * @param item
      */
     public static void startPenLianDetail(Context context, PeiLian item) {
         Intent i = new Intent();
         i.setClass(context, InquirySendActivity.class);
-        i.putExtra("peilian",item);
+        i.putExtra("peilian", item);
+        context.startActivity(i);
+    }
+
+    /**
+     * 修改题库
+     *
+     * @param context
+     * @param code
+     */
+    public static void startChangeExamLibsForReslut(Fragment context, int code) {
+        Intent i = new Intent();
+        i.setClass(context.getContext(), ChangeExamLibsActivity.class);
+        context.startActivityForResult(i, code);
+    }
+
+
+    public static void startLogin(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, LoginActivity.class);
+        i.putExtra("isLogin",true);
+        context.startActivity(i);
+    }
+
+    /**
+     * 打开我的优惠劵列表
+     * @param context
+     */
+    public static void startMyYouHuiJuan(WanActivity context) {
+        Intent i = new Intent();
+        i.setClass(context.getContext(), MyYouHuiJuanActivity.class);
+        context.startActivity(i);
+    }
+
+    /**
+     * 确认 陪练预约
+     * @param context
+     * @param data
+     */
+    public static void startInquiryConfirm(WanActivity context, MyPeiLian data) {
+        Intent i = new Intent();
+        i.setClass(context.getContext(), InquiryConfirmActivity.class);
+        i.putExtra("data",data);
         context.startActivity(i);
     }
 }

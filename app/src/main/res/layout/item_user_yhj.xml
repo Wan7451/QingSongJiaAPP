@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/view_margin"
+    android:paddingRight="@dimen/view_margin"
+    android:paddingTop="@dimen/space10"
+    android:paddingBottom="@dimen/space10">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:text="优惠券"
+        android:textColor="#FFF"
+        android:gravity="center"
+        android:textSize="@dimen/textSize16"
+        android:background="@drawable/icon_menu_yhj"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:background="@drawable/icon_menu_yhjr"
+        android:layout_height="100dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textColor="@color/text_import"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:id="@+id/yhj_charge"
+                android:textStyle="bold"
+                android:textSize="@dimen/textSize30"
+                android:textColor="@color/text_import"
+                />
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="有效期"
+            android:id="@+id/yhj_endTime"
+            android:textStyle="bold"
+            android:textColor="@color/text_default_hint"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="条件"
+            android:id="@+id/yhj_tj"
+            android:textStyle="bold"
+            android:textColor="@color/text_default_hint"
+            />
+    </LinearLayout>
+
+</LinearLayout>

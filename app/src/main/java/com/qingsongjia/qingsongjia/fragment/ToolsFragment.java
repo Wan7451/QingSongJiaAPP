@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,8 @@ public class ToolsFragment extends WanListFragment {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();
-                if (response.size() > 0) {
+                data.clear();
+                if (!TextUtils.equals("[{}]", response.toJSONString())) {
                     data.addAll(JSONArray.parseArray(response.toJSONString(), PeiLian.class));
                 }
                 loadFinish("");

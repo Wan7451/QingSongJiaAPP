@@ -50,8 +50,15 @@ public class MyMessageActivity extends WanActivity {
     @Override
     public void initView() {
         setBackFinish();
-        setContentTitle("我的信息");
+        setContentTitle("我的钱包");
         ButterKnife.bind(this);
+
+        myMessageYhj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIManager.startMyYouHuiJuan(getContext());
+            }
+        });
 
         myMessageJf.setOnClickListener(new View.OnClickListener() {
             @Override

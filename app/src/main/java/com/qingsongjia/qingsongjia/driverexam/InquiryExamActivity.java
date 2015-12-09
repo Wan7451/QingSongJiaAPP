@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -16,9 +17,13 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -63,6 +68,11 @@ public class InquiryExamActivity extends WanActivity {
         setBackFinish();
         setContentTitle("预约考试");
 
+        if(TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())){
+            UIManager.startLogin(getContext());
+            finish();
+        }
+
         switch (type) {
             case INQUIRY_TYPE_ONE:
                 inquiryProject.setText("科目一");
@@ -93,8 +103,8 @@ public class InquiryExamActivity extends WanActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                upDate = year + "-" + month + "-" + day;
-                                inquiryDate.setText(year + "年" + month + "月" + day + "日");
+                                upDate = year + "-" + (month+1) + "-" + day;
+                                inquiryDate.setText(year + "年" + (month+1) + "月" + day + "日");
                             }
                         },
                         calendar.get(Calendar.YEAR),
@@ -130,6 +140,14 @@ public class InquiryExamActivity extends WanActivity {
             @Override
             public void onClick(View view) {
 
+                if(TextUtils.isEmpty(upDate)){
+                    showToast("请选择约考时间");
+                    return;
+                }
+                if(TextUtils.isEmpty(upTime)){
+                    showToast("请选择约考时间");
+                    return;
+                }
 
                 NetRequest.yuekao(getContext(), upDate, upTime, upKemu + "", new NetUtils.NetUtilsHandler() {
                     @Override

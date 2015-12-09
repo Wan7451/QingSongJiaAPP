@@ -56,7 +56,7 @@ public class YXStudentConfirmActivity extends WanActivity {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("确认成功");
-                        UIManager.startYXEvaluate(getContext(), id);
+//                        UIManager.startYXEvaluate(getContext(), id);
                     }
 
                     @Override

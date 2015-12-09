@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -57,8 +58,10 @@ public class MyExamActivity extends WanListActivity {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         data.clear();
-                        List<MyKaoShi> kaoShis = JSONArray.parseArray(response.toJSONString(), MyKaoShi.class);
-                        data.addAll(kaoShis);
+                        if (!TextUtils.equals("[{}]", response.toJSONString())) {
+                            List<MyKaoShi> kaoShis = JSONArray.parseArray(response.toJSONString(), MyKaoShi.class);
+                            data.addAll(kaoShis);
+                        }
                         loadFinish("");
                     }
 
@@ -92,10 +95,10 @@ public class MyExamActivity extends WanListActivity {
             TextView keme = holder.getView(R.id.kemu);
             keme.setText(item.getDri_sub_nm_nm());
 
-           TextView zsd= holder.findViewById(R.id.zhishidian);
-            zsd.setText(item.getDri_score()+"");
+            TextView zsd = holder.findViewById(R.id.zhishidian);
+            zsd.setText(item.getDri_score() + "");
 
-            TextView status= holder.findViewById(R.id.status);
+            TextView status = holder.findViewById(R.id.status);
             status.setText(item.getDri_result());
 
             holder.getView(R.id.arrow).setVisibility(View.GONE);

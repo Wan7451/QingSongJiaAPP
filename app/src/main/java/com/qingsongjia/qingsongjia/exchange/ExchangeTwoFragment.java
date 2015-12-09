@@ -8,21 +8,56 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.adapter.ExchangeListAdapter;
+import com.wan7451.base.WanListFragment;
+import com.wan7451.wanadapter.recycle.WanAdapter;
+import com.wan7451.wanadapter.recycle.WanViewHolder;
 
-public class ExchangeTwoFragment extends Fragment {
+import java.util.ArrayList;
 
+public class ExchangeTwoFragment extends WanListFragment {
+
+    ArrayList<String> date=new ArrayList<>();
 
     public ExchangeTwoFragment() {
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText(R.string.hello_blank_fragment);
-        return textView;
+    protected boolean addData() {
+        return false;
     }
 
+    @Override
+    protected boolean loadData() {
 
+        date.add("");
+        date.add("");
+        date.add("");
+        date.add("");
+        date.add("");
+        date.add("");
+
+        loadFinish("");
+
+        return false;
+    }
+
+    @Override
+    public WanAdapter getAdapter() {
+
+        return new ExchangeListAdapter(getContext(),date,R.layout.item_exchange_list);
+    }
+
+    @Override
+    public void initView(View v) {
+        super.initView(v);
+        getMainView().getRefreshableView().removeItemDecoration(getItemDecore());
+
+    }
+
+    @Override
+    public void onItemClickListener(int posotion, WanViewHolder holder) {
+
+    }
 }

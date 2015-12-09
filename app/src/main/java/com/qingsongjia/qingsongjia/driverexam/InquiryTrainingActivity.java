@@ -61,8 +61,8 @@ public class InquiryTrainingActivity extends WanActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                trainingTime.setText(year + "年" + month + "月" + day + "日");
-                                time=year+"-"+month+"-"+day;
+                                trainingTime.setText(year + "年" + (month+1) + "月" + day + "日");
+                                time=year+"-"+(month+1)+"-"+day;
                             }
                         },
                         calendar.get(Calendar.YEAR),

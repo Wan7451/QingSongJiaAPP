@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.fastjson.JSONArray;
@@ -60,7 +61,7 @@ public class PenLianActivity extends WanListActivity {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();
-                if (response.size() > 0) {
+                if (!TextUtils.equals("[{}]", response.toJSONString())) {
                     data.addAll(JSONArray.parseArray(response.toJSONString(), PeiLian.class));
                 }
                 loadFinish("");

@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -60,7 +61,9 @@ public class MyTestActivity extends WanListActivity {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();
-                data.addAll(JSONArray.parseArray(response.toJSONString(), MyYueKao.class));
+                if (!TextUtils.equals("[{}]", response.toJSONString())) {
+                    data.addAll(JSONArray.parseArray(response.toJSONString(), MyYueKao.class));
+                }
                 loadFinish("");
             }
 
@@ -93,8 +96,8 @@ public class MyTestActivity extends WanListActivity {
             TextView keme = holder.getView(R.id.kemu);
             keme.setText(item.getDri_sub_nm());
 
-           TextView status= holder.findViewById(R.id.status);
-           String state= item.getDri_state_nm();
+            TextView status = holder.findViewById(R.id.status);
+            String state = item.getDri_state_nm();
             status.setText(state);
 
         }

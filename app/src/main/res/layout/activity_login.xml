@@ -22,10 +22,10 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/view_margin"
             android:paddingBottom="@dimen/view_margin"
             android:paddingLeft="@dimen/view_margin"
-            android:paddingRight="@dimen/view_margin">
+            android:paddingRight="@dimen/view_margin"
+            android:paddingTop="@dimen/view_margin">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -38,9 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/space10"
                 android:background="@null"
-                android:singleLine="true"
                 android:hint="请输入手机号码"
-                 />
+                android:singleLine="true" />
         </LinearLayout>
 
         <View
@@ -54,10 +53,10 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/view_margin"
             android:paddingBottom="@dimen/view_margin"
             android:paddingLeft="@dimen/view_margin"
-            android:paddingRight="@dimen/view_margin">
+            android:paddingRight="@dimen/view_margin"
+            android:paddingTop="@dimen/view_margin">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -70,10 +69,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/space10"
                 android:background="@null"
-                android:singleLine="true"
-                android:inputType="textPassword"
                 android:hint="请输入密码"
-                 />
+                android:inputType="textPassword"
+                android:singleLine="true" />
         </LinearLayout>
     </LinearLayout>
 
@@ -106,11 +104,27 @@
 
     <Button
         android:id="@+id/login_login"
+        style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="登陆"
         android:layout_marginLeft="@dimen/view_margin"
         android:layout_marginRight="@dimen/view_margin"
-        style="@style/button"/>
+        android:text="登陆" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/login_noLigin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/view_margin"
+        android:text="游客登陆"
+        android:textColor="@color/toolbar_bg"
+        android:textSize="@dimen/textSize14"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/space30"/>
 
 </LinearLayout>

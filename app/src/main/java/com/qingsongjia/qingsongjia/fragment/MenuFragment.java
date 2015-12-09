@@ -1,6 +1,7 @@
 package com.qingsongjia.qingsongjia.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,10 +18,13 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.activity.LoginActivity;
 import com.qingsongjia.qingsongjia.activity.MainActivity;
 import com.qingsongjia.qingsongjia.adapter.ItemClickDataAdapter;
 import com.qingsongjia.qingsongjia.bean.ItemClickData;
 import com.qingsongjia.qingsongjia.bean.OnMenuItemClick;
+import com.qingsongjia.qingsongjia.bean.TiKu;
+import com.qingsongjia.qingsongjia.bean.User;
 import com.qingsongjia.qingsongjia.bean.UserData;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
@@ -51,6 +55,7 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
 
     ArrayList<ItemClickData> datas;//展示的数据
     ItemClickDataAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,7 +65,9 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
 
         datas = new ArrayList<>();
         datas.add(new ItemClickData(R.drawable.icon_menu_school, "我的驾校", "还没有选择驾校", true));
-        datas.add(new ItemClickData(R.drawable.icon_menu_exam, "我的题库", "小车", true));
+
+        TiKu tiKu = LocalPreference.getCurrentTiKu(getContext());
+        datas.add(new ItemClickData(R.drawable.icon_menu_exam, "我的题库", tiKu.getName(), true));
         datas.add(new ItemClickData(R.drawable.icon_menu_header, "我的教练", "还没有选择教练", true));
         datas.add(new ItemClickData(R.drawable.icon_menu_wallet, "我的钱包", "", true));
         datas.add(new ItemClickData(R.drawable.icon_menu_test, "我的练习", "", true));
@@ -78,6 +85,7 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
         adapter.setOnItemClickListener(this);
         return view;
     }
+
 
     private void loadData() {
         NetRequest.loadMyData(getContext(), new NetUtils.NetUtilsHandler() {
@@ -133,9 +141,16 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
         if (l != null) {
             l.onItemClick(posotion);
         }
+
+        User user = LocalPreference.getCurrentUser(getContext());
+        if (TextUtils.isEmpty(user.getDri_type())) {
+            UIManager.startLogin(getContext());
+            return;
+        }
+
         switch (posotion) {
             case 1:
-                UIManager.startChangeExamLibs(getContext());
+                UIManager.startChangeExamLibsForReslut(this, 1234);
                 break;
             case 2:
                 UIManager.startMyTeacher(getContext());
@@ -156,6 +171,16 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
                 UIManager.startSetting(getContext());
                 break;
 
+        }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1234) {
+            datas.get(1).setSecondText(LocalPreference.getCurrentTiKu(getContext()).getName());
+            adapter.notifyDataSetChanged();
         }
     }
 
