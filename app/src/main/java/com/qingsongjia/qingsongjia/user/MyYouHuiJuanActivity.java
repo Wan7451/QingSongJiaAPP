@@ -26,6 +26,13 @@ public class MyYouHuiJuanActivity extends WanListActivity {
 
 
     @Override
+    public void initView() {
+        super.initView();
+        setBackFinish();
+        setContentTitle("优惠券");
+    }
+
+    @Override
     protected boolean addData() {
         return false;
     }

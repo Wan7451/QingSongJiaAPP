@@ -3,20 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="bottom"
+    android:orientation="vertical"
     tools:context="com.qingsongjia.qingsongjia.user.SettingActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/setting_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
 
     <Button
         android:id="@+id/login_out"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space5"
         android:layout_gravity="bottom"
+        android:layout_margin="@dimen/space5"
+        android:background="@drawable/shape_btn_import"
         android:text="退出"
-        android:textColor="#FFF"
-        android:background="@drawable/shape_btn_import"/>
+        android:textColor="#FFF" />
 
 
 </LinearLayout>

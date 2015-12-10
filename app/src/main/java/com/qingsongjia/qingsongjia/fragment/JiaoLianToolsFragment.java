@@ -11,6 +11,7 @@ import android.widget.GridView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.ExamImageTextAdapter;
 import com.qingsongjia.qingsongjia.bean.ExamImageText;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.adbar.ADBarView;
 import com.wan7451.base.WanFragment;
@@ -40,7 +41,7 @@ public class JiaoLianToolsFragment extends WanFragment implements AdapterView.On
         ButterKnife.bind(this, view);
 
         ArrayList<String> urls=new ArrayList<>();
-        urls.add("http://h.hiphotos.baidu.com/image/pic/item/4ec2d5628535e5dd2820232370c6a7efce1b623a.jpg");
+        urls.add(LocalPreference.getTopImagePath(getContext()));
         sunbjectOneAdView.setShowURLs(urls);
 
         ArrayList<ExamImageText> data=new ArrayList<>();

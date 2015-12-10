@@ -10,7 +10,12 @@ public class EventData {
     /**
      * 约练数据
      */
-    public static final int TYPE_YUELIAN=0;
+    public static final int TYPE_YUELIAN = 0;
+
+    /**
+     * 更新广告条
+     */
+    public static final int TYPE_CHANGETOP = 1;
 
     private int type;
     private Object data;

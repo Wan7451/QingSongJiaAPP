@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.ExamImageTextAdapter;
 import com.qingsongjia.qingsongjia.bean.ExamImageText;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.adbar.ADBarView;
 import com.wan7451.base.WanFragment;
@@ -55,7 +56,7 @@ public class SubjectFourFragment extends WanFragment {
         ButterKnife.bind(this, v);
 
         ArrayList<String> urls=new ArrayList<>();
-        urls.add("http://h.hiphotos.baidu.com/image/pic/item/4ec2d5628535e5dd2820232370c6a7efce1b623a.jpg");
+        urls.add(LocalPreference.getTopImagePath(getContext()));
         sunbjectFourAdView.setShowURLs(urls);
 
         testItem = new RadialMenuItem("test", "模拟考试");

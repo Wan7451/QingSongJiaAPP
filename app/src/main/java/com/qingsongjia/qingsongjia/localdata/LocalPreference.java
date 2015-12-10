@@ -128,4 +128,15 @@ public class LocalPreference {
         spref.edit().clear().commit();
     }
 
+
+    public static void savaTopImgPath(Context context,String path){
+        getPreference(context);
+        spref.edit().putString("imgPath",path).commit();
+    }
+
+    public static String getTopImagePath(Context context){
+        getPreference(context);
+       return spref.getString("imgPath","http://pic.baike.soso.com/p/20120418/20120418170004-227985725.jpg");
+    }
+
 }

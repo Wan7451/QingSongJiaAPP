@@ -2,8 +2,12 @@ package com.qingsongjia.qingsongjia.driverexam;
 
 
 import android.content.ClipData;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -11,6 +15,8 @@ import android.widget.Toast;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.ExamImageTextAdapter;
 import com.qingsongjia.qingsongjia.bean.ExamImageText;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.adbar.ADBarView;
 import com.wan7451.base.WanActivity;
@@ -22,6 +28,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,7 +63,7 @@ public class SubjectOneFragment extends WanFragment {
         ButterKnife.bind(this, v);
 
         ArrayList<String> urls=new ArrayList<>();
-        urls.add("http://h.hiphotos.baidu.com/image/pic/item/4ec2d5628535e5dd2820232370c6a7efce1b623a.jpg");
+        urls.add(LocalPreference.getTopImagePath(getContext()));
         sunbjectOneAdView.setShowURLs(urls);
 
         testItem = new RadialMenuItem("test", "模拟考试");
@@ -164,5 +171,19 @@ public class SubjectOneFragment extends WanFragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+        EventBus.getDefault().unregister(this);
+    }
+
+    public void onEventMainThread(EventData data) {
+        if(data.getType()==EventData.TYPE_CHANGETOP){
+
+        }
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

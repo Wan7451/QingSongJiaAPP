@@ -352,6 +352,10 @@ public class NetRequest {
 //        params.put("dri_user_id", "171");
         params.put("user_id", LocalPreference.getCurrentUser(context).getId() + "");
         NetUtils.baseRequest(context, "driappcoupon/queryForList", params, false, handler);
+    }
 
+    public static void downTopPicture(WanActivity context, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        NetUtils.baseRequest(context, "driapptoppicture/getTopPicture", params, false, handler);
     }
 }

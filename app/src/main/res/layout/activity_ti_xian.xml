@@ -70,7 +70,7 @@
         android:id="@+id/tixian_subject"
         android:layout_marginLeft="@dimen/view_margin"
         android:layout_marginRight="@dimen/view_margin"
-        android:text="预约" />
+        android:text="提现" />
 
 
 </LinearLayout>
