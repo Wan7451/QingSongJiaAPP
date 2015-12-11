@@ -8,6 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:fillViewport="true">
 
         <LinearLayout
@@ -29,7 +30,6 @@
                     android:layout_width="@dimen/space110"
                     android:layout_height="@dimen/space76"
                     android:layout_centerVertical="true"
-                    app:roundAsCircle="true"
                     app:roundedCornerRadius="@dimen/space2"
                     fresco:placeholderImage="@drawable/icon_placeholder" />
 
@@ -134,6 +134,7 @@
                     android:textSize="@dimen/space14" />
 
                 <TextView
+                    android:id="@+id/schoolinfo_iv_imgsCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -145,7 +146,7 @@
             <View style="@style/divider1" />
 
             <GridView
-                android:id="@+id/schoolinfo_gv_img"
+                android:id="@+id/schoolinfo_gv_imgs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:numColumns="2"
@@ -167,6 +168,7 @@
                 android:text="驾校评分"
                 android:textColor="@color/text_default_hint"
                 android:textSize="@dimen/space14" />
+
             <View style="@style/divider1" />
 
             <LinearLayout
@@ -186,6 +188,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/schoolinfo_tv_fen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0分"
@@ -193,6 +196,7 @@
                         android:textSize="@dimen/textSize20" />
 
                     <TextView
+                        android:id="@+id/schoolinfo_tv_ren"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0人评分" />
@@ -225,6 +229,7 @@
                             android:text="练车时间:" />
 
                         <RatingBar
+                            android:id="@+id/schoolinfo_time_rating"
                             style="@style/ratingBar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -233,12 +238,14 @@
                             android:rating="5" />
 
                         <TextView
+                            android:id="@+id/schoolinfo_time_fen"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="5分" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -251,6 +258,7 @@
                             android:text="练车场地:" />
 
                         <RatingBar
+                            android:id="@+id/schoolinfo_addr_rating"
                             style="@style/ratingBar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -259,12 +267,14 @@
                             android:rating="4.5" />
 
                         <TextView
+                            android:id="@+id/schoolinfo_addr_fen"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="5分" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -277,6 +287,7 @@
                             android:text="通&#160;&#160;过&#160;&#160;率:" />
 
                         <RatingBar
+                            android:id="@+id/schoolinfo_pass_rating"
                             style="@style/ratingBar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -285,6 +296,7 @@
                             android:rating="4.5" />
 
                         <TextView
+                            android:id="@+id/schoolinfo_pass_fen"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
@@ -315,6 +327,7 @@
 
 
             <TextView
+                android:id="@+id/schoolinfo_tv_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -325,23 +338,33 @@
                 android:text="驾校简介"
                 android:textColor="@color/text_default"
                 android:textSize="@dimen/space14" />
+
+            <View style="@style/divider1" />
+
+            <View style="@style/divider10" />
+
+            <View style="@style/divider1" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:paddingBottom="@dimen/space10"
+                android:paddingTop="@dimen/space10">
+
+                <Button
+                    android:id="@+id/schoolinfo_btn_baoming"
+                    style="@style/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="@dimen/space60"
+                    android:paddingRight="@dimen/space60"
+                    android:text="在线报名" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="@dimen/space10"
-        android:paddingTop="@dimen/space10">
 
-        <Button
-            style="@style/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingLeft="@dimen/space60"
-            android:paddingRight="@dimen/space60"
-            android:text="在线报名" />
-    </RelativeLayout>
 </RelativeLayout>
