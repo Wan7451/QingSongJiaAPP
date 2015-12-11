@@ -86,7 +86,7 @@ public class SchoolFragment extends WanListFragment {
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-        UIManager.startSchoolDetail(getContext(),posotion);
+        UIManager.startSchoolDetail(getContext(),data.get(posotion).getDri_campus_id());
     }
 
 

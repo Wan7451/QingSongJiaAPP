@@ -417,4 +417,16 @@ public class NetRequest {
 
         return unicode.toString();
     }
+
+    /**
+     * 驾校详情
+     *
+     * @param id
+     */
+    public static void loadSchoolDeatail(WanActivity context, int id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("campusId", id + "");
+        NetUtils.baseRequest(context, "driappcommentweb/loadCampusState", params, false, handler);
+
+    }
 }

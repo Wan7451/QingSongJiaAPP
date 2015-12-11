@@ -38,6 +38,7 @@ public class InquiryConfirmActivity extends WanActivity {
         setContentTitle("预约");
         setBackFinish();
         peiLian = getIntent().getParcelableExtra("data");
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -45,10 +46,4 @@ public class InquiryConfirmActivity extends WanActivity {
         return R.layout.activity_inquiry_confirm;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

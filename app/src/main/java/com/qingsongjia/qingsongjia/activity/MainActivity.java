@@ -90,6 +90,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         mainTabHost.addTab(mainTabHost.newTabSpec("1").setIndicator("A"), ExamFragment.class, null);
         mainTabHost.addTab(mainTabHost.newTabSpec("2").setIndicator("B"), SchoolFragment.class, null);
         mainTabHost.addTab(mainTabHost.newTabSpec("3").setIndicator("C"), ExchangeFragment.class, null);
+        mainTabHost.addTab(mainTabHost.newTabSpec("4").setIndicator("D"), JiaoLianToolsFragment.class, null);
 
 
         //dri_type 0 :学生 1 教练
@@ -102,14 +103,12 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
 
         if (type == 0) {
             //学员
-            mainTabHost.addTab(mainTabHost.newTabSpec("4").setIndicator("D"), ToolsFragment.class, null);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             MenuFragment useMenu = new MenuFragment();
             ft.replace(R.id.main_menu_left, useMenu).commit();
 
         } else {
             //教练
-            mainTabHost.addTab(mainTabHost.newTabSpec("4").setIndicator("D"), JiaoLianToolsFragment.class, null);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             TeacherMenuFragment teacherMenu = new TeacherMenuFragment();
             ft.replace(R.id.main_menu_left, teacherMenu).commit();
@@ -155,7 +154,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
                 mainTabHost.setCurrentTab(0);
                 LocalPreference.setCurrentKemu(this, KeMu.KEMU1);
                 mainImgSearch.setVisibility(View.GONE);
-                mainTvTitle.setText("轻松驾");
+                mainTvTitle.setText("嘟嘟驾道");
                 break;
             case R.id.main_tab2:
                 mainTabHost.setCurrentTab(1);
@@ -167,13 +166,13 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
                 mainTabHost.setCurrentTab(2);
                 LocalPreference.setCurrentKemu(this, KeMu.KEMU3);
                 mainImgSearch.setVisibility(View.GONE);
-                mainTvTitle.setText("交流中心");
+                mainTvTitle.setText("交流");
                 break;
             case R.id.main_tab4:
                 mainTabHost.setCurrentTab(3);
                 LocalPreference.setCurrentKemu(this, KeMu.KEMU4);
                 mainImgSearch.setVisibility(View.GONE);
-                mainTvTitle.setText("陪驾");
+                mainTvTitle.setText("工具");
                 break;
         }
     }

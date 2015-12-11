@@ -21,6 +21,7 @@ import com.qingsongjia.qingsongjia.driverexam.ExamTestActivity;
 import com.qingsongjia.qingsongjia.driverschool.AreaListActivity;
 import com.qingsongjia.qingsongjia.driverschool.CityListActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolDetailActivity;
+import com.qingsongjia.qingsongjia.plxc.PeiLianListActivity;
 import com.qingsongjia.qingsongjia.yuekao.InquiryExamActivity;
 import com.qingsongjia.qingsongjia.yuexun.InquiryTrainingActivity;
 import com.qingsongjia.qingsongjia.driverexam.ItemListActivity;
@@ -418,6 +419,12 @@ public class UIManager {
         Intent i = new Intent();
         i.setClass(context, SchoolDetailActivity.class);
         i.putExtra("id", id);
+        context.startActivity(i);
+    }
+
+    public static void startPeiLianList(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, PeiLianListActivity.class);
         context.startActivity(i);
     }
 }

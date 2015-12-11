@@ -51,4 +51,5 @@
     <string name="title_activity_city_list">CityListActivity</string>
     <string name="title_activity_area">AreaActivity</string>
     <string name="title_activity_school_detail">SchoolDetailActivity</string>
+    <string name="title_activity_pei_lian_list">PeiLianListActivity</string>
 </resources>

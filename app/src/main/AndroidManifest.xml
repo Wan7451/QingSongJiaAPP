@@ -229,6 +229,10 @@
         <activity
             android:name=".driverschool.SchoolDetailActivity"
             android:label="@string/title_activity_school_detail"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".plxc.PeiLianListActivity"
+            android:label="@string/title_activity_pei_lian_list"
             android:theme="@style/AppTheme"></activity>
     </application>
 
