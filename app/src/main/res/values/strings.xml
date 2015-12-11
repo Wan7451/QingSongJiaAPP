@@ -47,4 +47,8 @@
     <string name="title_activity_push_order">PushOrderActivity</string>
     <string name="title_activity_yxstudent_confirm">YXStudentConfirmActivity</string>
     <string name="title_activity_my_you_hui_juan">MyYouHuiJuanActivity</string>
+    <string name="title_activity_my_test_detail">MyTestDetailActivity</string>
+    <string name="title_activity_city_list">CityListActivity</string>
+    <string name="title_activity_area">AreaActivity</string>
+    <string name="title_activity_school_detail">SchoolDetailActivity</string>
 </resources>

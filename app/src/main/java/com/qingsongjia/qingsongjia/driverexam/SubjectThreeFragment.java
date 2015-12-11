@@ -1,11 +1,8 @@
 package com.qingsongjia.qingsongjia.driverexam;
 
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -15,6 +12,7 @@ import com.qingsongjia.qingsongjia.adapter.ExamImageTextAdapter;
 import com.qingsongjia.qingsongjia.bean.ExamImageText;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.UIManager;
+import com.qingsongjia.qingsongjia.yuekao.InquiryExamActivity;
 import com.wan7451.adbar.ADBarView;
 import com.wan7451.base.WanFragment;
 

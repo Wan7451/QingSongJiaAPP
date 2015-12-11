@@ -7,7 +7,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -15,157 +16,332 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/schoolinfo_layout_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/navigationbar_bg"
-                android:paddingLeft="@dimen/space30"
-                android:paddingRight="@dimen/space30">
+                android:paddingBottom="@dimen/space10"
+                android:paddingLeft="@dimen/view_margin"
+                android:paddingRight="@dimen/view_margin"
+                android:paddingTop="@dimen/space10">
 
-                <RelativeLayout
-                    android:id="@+id/schoolinfo_layout_price"
-                    android:layout_width="match_parent"
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/schoolinfo_iv_logo"
+                    android:layout_width="@dimen/space110"
+                    android:layout_height="@dimen/space76"
+                    android:layout_centerVertical="true"
+                    app:roundAsCircle="true"
+                    app:roundedCornerRadius="@dimen/space2"
+                    fresco:placeholderImage="@drawable/icon_placeholder" />
+
+                <TextView
+                    android:id="@+id/schoolinfo_tv_name"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/space20"
-                    android:paddingTop="@dimen/space20">
+                    android:layout_margin="@dimen/space14"
+                    android:layout_toRightOf="@+id/schoolinfo_iv_logo"
+                    android:text="北京远大驾校"
+                    android:textColor="@color/text_default"
+                    android:textSize="@dimen/textSize16" />
 
-                    <com.facebook.drawee.view.SimpleDraweeView
-                        android:id="@+id/schoolinfo_iv_logo"
-                        android:layout_width="@dimen/space110"
-                        android:layout_height="@dimen/space76"
-                        android:layout_centerVertical="true"
-                        app:roundAsCircle="true"
-                        app:roundedCornerRadius="@dimen/space2"
-                        fresco:placeholderImage="@drawable/icon_placeholder" />
+                <TextView
+                    android:id="@+id/schoolinfo_tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/schoolinfo_tv_name"
+                    android:layout_marginLeft="@dimen/space14"
+                    android:layout_toRightOf="@+id/schoolinfo_iv_logo"
+                    android:text="4600元起"
+                    android:textColor="@color/text_import"
+                    android:textSize="@dimen/textSize18" />
+            </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/schoolinfo_tv_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/space14"
-                        android:layout_toRightOf="@+id/schoolinfo_iv_logo"
-                        android:text="北京远大驾校"
-                        android:textColor="@color/text_default"
-                        android:textSize="@dimen/space12" />
 
-                    <TextView
-                        android:id="@+id/schoolinfo_tv_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/schoolinfo_tv_name"
-                        android:layout_marginLeft="@dimen/space14"
-                        android:layout_toRightOf="@+id/schoolinfo_iv_logo"
-                        android:text="4600元起"
-                        android:textColor="@color/title_bar_color"
-                        android:textSize="@dimen/space14" />
-                </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/view_margin"
+                android:paddingRight="@dimen/view_margin">
+
+                <View style="@style/divider1" />
 
                 <TextView
                     android:id="@+id/schoolinfo_tv_tel"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/space60"
-                    android:layout_below="@+id/schoolinfo_layout_price"
+                    android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/icon_school_tel"
                     android:drawablePadding="@dimen/space10"
                     android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/space10"
+                    android:paddingTop="@dimen/space10"
                     android:text="0351-3185768\t13800009876"
                     android:textColor="@color/text_default"
                     android:textSize="@dimen/space14" />
 
+                <View style="@style/divider1" />
+
                 <TextView
                     android:id="@+id/schoolinfo_tv_addr"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/space60"
-                    android:layout_below="@+id/schoolinfo_tv_tel"
+                    android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/icon_school_addr"
                     android:drawablePadding="@dimen/space10"
-                    android:drawableRight="@drawable/icon_school_more"
                     android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/space10"
+                    android:paddingTop="@dimen/space10"
                     android:text="海淀区苏家坨北安河河滩69号"
                     android:textColor="@color/text_default" />
 
-            </RelativeLayout>
+                <View style="@style/divider1" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space20"
-                android:background="@color/navigationbar_bg">
-
-                <RelativeLayout
-                    android:id="@+id/schoolinfo_layout_img"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/space60"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/space30"
-                    android:paddingRight="@dimen/space30">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:text="驾校街景"
-                        android:textColor="@color/text_default_hint"
-                        android:textSize="@dimen/space14" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:drawableRight="@drawable/icon_school_more"
-                        android:text="共20张" />
-                </RelativeLayout>
-
-                <GridView
-                    android:id="@+id/schoolinfo_gv_img"
+                <TextView
+                    android:id="@+id/schoolinfo_tv_bus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/schoolinfo_layout_img"
-                    android:padding="@dimen/space30" />
+                    android:drawableLeft="@drawable/icon_school_bus"
+                    android:drawablePadding="@dimen/space10"
+                    android:drawableRight="@drawable/icon_school_more"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/space10"
+                    android:paddingTop="@dimen/space10"
+                    android:text="班车路线"
+                    android:textColor="@color/text_default" />
+            </LinearLayout>
 
-            </RelativeLayout>
+            <View style="@style/divider1" />
+
+            <View style="@style/divider10" />
+
+            <View style="@style/divider1" />
 
 
             <RelativeLayout
+                android:id="@+id/schoolinfo_layout_img"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space20"
-                android:background="@color/navigationbar_bg"
-                android:paddingLeft="@dimen/space30"
-                android:paddingRight="@dimen/space30">
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/space10"
+                android:paddingLeft="@dimen/view_margin"
+                android:paddingRight="@dimen/view_margin"
+                android:paddingTop="@dimen/space10">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/space60"
-                    android:gravity="center_vertical"
-                    android:text="驾校评分"
-                    android:textColor="@color/text_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="驾校街景"
+                    android:textColor="@color/text_default_hint"
                     android:textSize="@dimen/space14" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="@dimen/space5"
+                    android:drawableRight="@drawable/icon_school_more"
+                    android:text="共20张" />
             </RelativeLayout>
 
-            <RelativeLayout
+            <View style="@style/divider1" />
+
+            <GridView
+                android:id="@+id/schoolinfo_gv_img"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space20"
-                android:background="@color/navigationbar_bg"
-                android:paddingLeft="@dimen/space30"
-                android:paddingRight="@dimen/space30">
+                android:numColumns="2"
+                android:padding="@dimen/view_margin" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/space60"
-                    android:gravity="center_vertical"
-                    android:text="驾校简介"
-                    android:textColor="@color/text_default"
-                    android:textSize="@dimen/space14" />
-            </RelativeLayout>
+            <View style="@style/divider1" />
+
+            <View style="@style/divider10" />
+
+            <View style="@style/divider1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/space10"
+                android:paddingLeft="@dimen/view_margin"
+                android:paddingRight="@dimen/view_margin"
+                android:paddingTop="@dimen/space10"
+                android:text="驾校评分"
+                android:textColor="@color/text_default_hint"
+                android:textSize="@dimen/space14" />
+            <View style="@style/divider1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/space10"
+                android:paddingLeft="@dimen/view_margin"
+                android:paddingRight="@dimen/view_margin"
+                android:paddingTop="@dimen/space10">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0分"
+                        android:textColor="@color/text_import"
+                        android:textSize="@dimen/textSize20" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0人评分" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/space10"
+                    android:layout_marginTop="@dimen/space10"
+                    android:background="@color/divider1" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="练车时间:" />
+
+                        <RatingBar
+                            style="@style/ratingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:numStars="5"
+                            android:rating="5" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="5分" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="练车场地:" />
+
+                        <RatingBar
+                            style="@style/ratingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:numStars="5"
+                            android:rating="4.5" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="5分" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="通&#160;&#160;过&#160;&#160;率:" />
+
+                        <RatingBar
+                            style="@style/ratingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:numStars="5"
+                            android:rating="4.5" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="5分" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <View style="@style/divider1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/space10"
+                android:paddingLeft="@dimen/view_margin"
+                android:paddingRight="@dimen/view_margin"
+                android:paddingTop="@dimen/space10"
+                android:text="驾校简介"
+                android:textColor="@color/text_default_hint"
+                android:textSize="@dimen/space14" />
+
+            <View style="@style/divider1" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/space10"
+                android:paddingLeft="@dimen/view_margin"
+                android:paddingRight="@dimen/view_margin"
+                android:paddingTop="@dimen/space10"
+                android:text="驾校简介"
+                android:textColor="@color/text_default"
+                android:textSize="@dimen/space14" />
         </LinearLayout>
     </ScrollView>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="@dimen/space10"
+        android:paddingTop="@dimen/space10">
+
+        <Button
+            style="@style/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="在线报名"/>
+            android:layout_centerInParent="true"
+            android:paddingLeft="@dimen/space60"
+            android:paddingRight="@dimen/space60"
+            android:text="在线报名" />
     </RelativeLayout>
 </RelativeLayout>

@@ -85,6 +85,8 @@ public abstract class WanListFragment extends WanFragment implements PullToRefre
 
     }
 
+
+
     @Override
     protected boolean isShowTitleView() {
         return false;

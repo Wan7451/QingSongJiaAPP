@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.qingsongjia.qingsongjia.bean.CityData;
 import com.qingsongjia.qingsongjia.bean.KeMu;
 import com.qingsongjia.qingsongjia.bean.UserData;
 import com.qingsongjia.qingsongjia.bean.TiKu;
@@ -129,14 +131,59 @@ public class LocalPreference {
     }
 
 
-    public static void savaTopImgPath(Context context,String path){
+    public static void savaTopImgPath(Context context, String path) {
         getPreference(context);
-        spref.edit().putString("imgPath",path).commit();
+        spref.edit().putString("imgPath", path).commit();
     }
 
-    public static String getTopImagePath(Context context){
+    public static String getTopImagePath(Context context) {
         getPreference(context);
-       return spref.getString("imgPath","http://pic.baike.soso.com/p/20120418/20120418170004-227985725.jpg");
+        return spref.getString("imgPath", "http://pic.baike.soso.com/p/20120418/20120418170004-227985725.jpg");
     }
 
+
+    /**
+     * 保存当前的区域地址
+     *
+     * @param context
+     * @param cityData
+     */
+    public static void saveCurrentAreaData(WanActivity context, CityData cityData) {
+        getPreference(context);
+        spref.edit().putString("area", JSONObject.toJSONString(cityData)).commit();
+    }
+
+    /**
+     * 保存当前的城市地址
+     *
+     * @param context
+     * @param cityData
+     */
+    public static void saveCurrentCityData(WanActivity context, CityData cityData) {
+        getPreference(context);
+        spref.edit().putString("city", JSONObject.toJSONString(cityData)).commit();
+    }
+
+    /**
+     * 获得当前的城市地址
+     *
+     * @param context
+     * @return
+     */
+    public static CityData getCurrentCityData(Context context) {
+        getPreference(context);
+        String city = spref.getString("city", "{}");
+        return JSONObject.parseObject(city, CityData.class);
+    }
+
+    /**
+     * 获得当前的区域地址
+     *
+     * @return
+     */
+    public static CityData getCurrentAreaData(Context context) {
+        getPreference(context);
+        String city = spref.getString("area", "{}");
+        return JSONObject.parseObject(city, CityData.class);
+    }
 }

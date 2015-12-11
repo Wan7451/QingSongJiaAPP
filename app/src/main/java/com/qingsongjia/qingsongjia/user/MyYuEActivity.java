@@ -27,6 +27,9 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 我的余额
+ */
 public class MyYuEActivity extends WanActivity {
 
     @Bind(R.id.yue_count)

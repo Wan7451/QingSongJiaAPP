@@ -23,11 +23,12 @@ public abstract class WanFragment extends Fragment implements INetLoadAction {
 
     private ErrorLayoutView errorView;
     private View toolbar;
+    private View rootView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(getMainRootLayout(), container, false);
+        rootView = inflater.inflate(getMainRootLayout(), container, false);
 
         toolbar = rootView.findViewById(R.id.fragment_base_toolbar);
         if (toolbar != null) {
@@ -48,6 +49,9 @@ public abstract class WanFragment extends Fragment implements INetLoadAction {
 
     }
 
+    public View getRootView() {
+        return rootView;
+    }
 
     /**
      * 初始化UI组件

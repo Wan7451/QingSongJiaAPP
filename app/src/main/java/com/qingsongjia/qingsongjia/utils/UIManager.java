@@ -3,11 +3,14 @@ package com.qingsongjia.qingsongjia.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.qingsongjia.qingsongjia.activity.LoginActivity;
+import com.qingsongjia.qingsongjia.activity.MainActivity;
 import com.qingsongjia.qingsongjia.activity.RegisterActivity;
 import com.qingsongjia.qingsongjia.activity.SetPasswordActivity;
 import com.qingsongjia.qingsongjia.activity.VerifyPhoneActivity;
+import com.qingsongjia.qingsongjia.bean.CityData;
 import com.qingsongjia.qingsongjia.bean.MyPeiLian;
 import com.qingsongjia.qingsongjia.bean.MyYueKao;
 import com.qingsongjia.qingsongjia.bean.PeiLian;
@@ -15,9 +18,11 @@ import com.qingsongjia.qingsongjia.driverexam.AnalogyExamActivity;
 import com.qingsongjia.qingsongjia.driverexam.AnalogyTestActivity;
 import com.qingsongjia.qingsongjia.driverexam.ExamDetailActivity;
 import com.qingsongjia.qingsongjia.driverexam.ExamTestActivity;
-import com.qingsongjia.qingsongjia.driverexam.ExamTestFragment;
-import com.qingsongjia.qingsongjia.driverexam.InquiryExamActivity;
-import com.qingsongjia.qingsongjia.driverexam.InquiryTrainingActivity;
+import com.qingsongjia.qingsongjia.driverschool.AreaListActivity;
+import com.qingsongjia.qingsongjia.driverschool.CityListActivity;
+import com.qingsongjia.qingsongjia.driverschool.SchoolDetailActivity;
+import com.qingsongjia.qingsongjia.yuekao.InquiryExamActivity;
+import com.qingsongjia.qingsongjia.yuexun.InquiryTrainingActivity;
 import com.qingsongjia.qingsongjia.driverexam.ItemListActivity;
 import com.qingsongjia.qingsongjia.driverexam.JiaoTongBiaoZhiActivity;
 import com.qingsongjia.qingsongjia.driverexam.JiaoTongBiaoZhiGridActivity;
@@ -26,7 +31,7 @@ import com.qingsongjia.qingsongjia.driverexam.TeacherListActivity;
 import com.qingsongjia.qingsongjia.driverexam.WebActivity;
 import com.qingsongjia.qingsongjia.driverexam.ZhangJieLianXiActivity;
 import com.qingsongjia.qingsongjia.driverexam.ZhuanIXiangLianXiActivity;
-import com.qingsongjia.qingsongjia.driverschool.SchoolListActivity;
+import com.qingsongjia.qingsongjia.driverschool.SchoolSearchActivity;
 import com.qingsongjia.qingsongjia.plxc.InquirySendActivity;
 import com.qingsongjia.qingsongjia.teacher.InquiryConfirmActivity;
 import com.qingsongjia.qingsongjia.teacher.MyStudentActivity;
@@ -37,18 +42,20 @@ import com.qingsongjia.qingsongjia.teacher.PushOrderActivity;
 import com.qingsongjia.qingsongjia.teacher.YXConfirmActivity;
 import com.qingsongjia.qingsongjia.teacher.YXEvaluateActivity;
 import com.qingsongjia.qingsongjia.user.ChangeExamLibsActivity;
-import com.qingsongjia.qingsongjia.user.MyExamActivity;
+import com.qingsongjia.qingsongjia.yuekao.MyExamActivity;
 import com.qingsongjia.qingsongjia.user.MyJiFeiActivity;
 import com.qingsongjia.qingsongjia.user.MyMessageActivity;
 import com.qingsongjia.qingsongjia.user.MyTeacherActivity;
-import com.qingsongjia.qingsongjia.user.MyTestActivity;
 import com.qingsongjia.qingsongjia.user.MyYouHuiJuanActivity;
 import com.qingsongjia.qingsongjia.user.MyYuEActivity;
-import com.qingsongjia.qingsongjia.user.PenLianActivity;
+import com.qingsongjia.qingsongjia.plxc.PenLianActivity;
 import com.qingsongjia.qingsongjia.user.SettingActivity;
 import com.qingsongjia.qingsongjia.user.TiXianActivity;
+import com.qingsongjia.qingsongjia.yuexun.MyTestActivity;
+import com.qingsongjia.qingsongjia.yuexun.MyTestDetailActivity;
 import com.wan7451.base.WanActivity;
-import com.wan7451.base.WanFragment;
+
+import java.util.ArrayList;
 
 /**
  * Created by wanggang on 15/11/17.
@@ -57,7 +64,7 @@ public class UIManager {
 
     public static void startSchoolList(Context context) {
         Intent i = new Intent();
-        i.setClass(context, SchoolListActivity.class);
+        i.setClass(context, SchoolSearchActivity.class);
         context.startActivity(i);
     }
 
@@ -98,10 +105,10 @@ public class UIManager {
      *
      * @param context
      */
-    public static void startAnalogyExam(Context context,int type) {
+    public static void startAnalogyExam(Context context, int type) {
         Intent i = new Intent();
         i.setClass(context, AnalogyExamActivity.class);
-        i.putExtra("type",type);
+        i.putExtra("type", type);
         context.startActivity(i);
     }
 
@@ -118,10 +125,10 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startAnalogyTest(Context context,int type) {
+    public static void startAnalogyTest(Context context, int type) {
         Intent i = new Intent();
         i.setClass(context, AnalogyTestActivity.class);
-        i.putExtra("type",type);
+        i.putExtra("type", type);
         context.startActivity(i);
     }
 
@@ -339,12 +346,13 @@ public class UIManager {
     public static void startLogin(Context context) {
         Intent i = new Intent();
         i.setClass(context, LoginActivity.class);
-        i.putExtra("isLogin",true);
+        i.putExtra("isLogin", true);
         context.startActivity(i);
     }
 
     /**
      * 打开我的优惠劵列表
+     *
      * @param context
      */
     public static void startMyYouHuiJuan(WanActivity context) {
@@ -355,13 +363,61 @@ public class UIManager {
 
     /**
      * 确认 陪练预约
+     *
      * @param context
      * @param data
      */
     public static void startInquiryConfirm(WanActivity context, MyPeiLian data) {
         Intent i = new Intent();
         i.setClass(context.getContext(), InquiryConfirmActivity.class);
-        i.putExtra("data",data);
+        i.putExtra("data", data);
+        context.startActivity(i);
+    }
+
+    /**
+     * 打开我的练习
+     *
+     * @param context
+     * @param data
+     */
+    public static void startMyTestDetail(WanActivity context, MyYueKao data) {
+        Intent i = new Intent();
+        i.setClass(context.getContext(), MyTestDetailActivity.class);
+        i.putExtra("data", data);
+        context.startActivity(i);
+    }
+
+    /**
+     * 打开 区域选择
+     *
+     * @param context
+     * @param s
+     */
+    public static void startAreaList(WanActivity context, ArrayList<CityData> s, CityData c) {
+        Intent i = new Intent();
+        i.setClass(context.getContext(), AreaListActivity.class);
+        i.putExtra("data", s);
+        i.putExtra("city", c);
+        context.startActivity(i);
+    }
+
+    public static void startChoiceCity(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, CityListActivity.class);
+        context.startActivity(i);
+    }
+
+
+    public static void startSchoolSearch(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, SchoolSearchActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startSchoolDetail(Context context, int id) {
+        Intent i = new Intent();
+        i.setClass(context, SchoolDetailActivity.class);
+        i.putExtra("id", id);
         context.startActivity(i);
     }
 }

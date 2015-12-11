@@ -29,6 +29,7 @@ import com.qingsongjia.qingsongjia.fragment.SchoolFragment;
 import com.qingsongjia.qingsongjia.fragment.TeacherMenuFragment;
 import com.qingsongjia.qingsongjia.fragment.ToolsFragment;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import butterknife.Bind;
@@ -68,6 +69,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     private boolean isUser = false;
 
     private SystemBarTintManager.SystemBarConfig config;
+    private int type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +78,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         ButterKnife.bind(this);
         initSystemBar(getResources().getColor(R.color.toolbar_bg));
 
-        if(getApplication() instanceof App){
+        if (getApplication() instanceof App) {
             ((App) getApplication()).addAcitivty(this);
         }
 
@@ -92,7 +94,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
 
         //dri_type 0 :学生 1 教练
         User u = LocalPreference.getCurrentUser(this);
-        int type = 0;
+        type = 0;
         if (!TextUtils.isEmpty(u.getDri_type()) && (
                 !u.getDri_type().endsWith("0"))) {
             type = 1;
@@ -119,6 +121,13 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         mainImgDrawerIcon.setOnClickListener(this);
 
         ((RadioButton) (mainNavigation.getChildAt(0))).setChecked(true);
+
+        mainImgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIManager.startSchoolSearch(MainActivity.this);
+            }
+        });
     }
 
     public void initSystemBar(int color) {
@@ -145,6 +154,8 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
             case R.id.main_tab1:
                 mainTabHost.setCurrentTab(0);
                 LocalPreference.setCurrentKemu(this, KeMu.KEMU1);
+                mainImgSearch.setVisibility(View.GONE);
+                mainTvTitle.setText("轻松驾");
                 break;
             case R.id.main_tab2:
                 mainTabHost.setCurrentTab(1);
@@ -155,10 +166,14 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
             case R.id.main_tab3:
                 mainTabHost.setCurrentTab(2);
                 LocalPreference.setCurrentKemu(this, KeMu.KEMU3);
+                mainImgSearch.setVisibility(View.GONE);
+                mainTvTitle.setText("交流中心");
                 break;
             case R.id.main_tab4:
                 mainTabHost.setCurrentTab(3);
                 LocalPreference.setCurrentKemu(this, KeMu.KEMU4);
+                mainImgSearch.setVisibility(View.GONE);
+                mainTvTitle.setText("陪驾");
                 break;
         }
     }

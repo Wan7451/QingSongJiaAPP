@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.qingsongjia.qingsongjia.driverexam.InquiryTrainingActivity">
+    tools:context=".yuexun.InquiryTrainingActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,11 +28,40 @@
             android:paddingLeft="@dimen/space10"
             android:layout_weight="1"
             android:background="@null"
+            android:inputType="number"
             android:textColorHint="@color/text_default_hint"
             android:hint="请输入银行卡号" />
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:layout_marginRight="@dimen/view_margin"
+        android:layout_marginBottom="@dimen/view_margin"
+        android:background="@drawable/shape_login_bg"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_menu_yhk" />
+
+        <EditText
+            android:id="@+id/tixian_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="@dimen/space10"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textColorHint="@color/text_default_hint"
+            android:hint="请输入银行卡号对应的姓名" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,6 +86,7 @@
             android:paddingLeft="@dimen/space10"
             android:layout_weight="1"
             android:background="@null"
+            android:inputType="numberDecimal"
             android:hint="请输入提取现金数" />
 
     </LinearLayout>

@@ -19,6 +19,9 @@ import org.w3c.dom.Text;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 教练信息
+ */
 public class MyTeacherActivity extends WanActivity {
 
 

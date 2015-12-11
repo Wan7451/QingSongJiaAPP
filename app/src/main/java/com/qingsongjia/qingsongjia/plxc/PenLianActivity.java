@@ -1,4 +1,4 @@
-package com.qingsongjia.qingsongjia.user;
+package com.qingsongjia.qingsongjia.plxc;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -23,6 +23,9 @@ import com.wan7451.wanadapter.recycle.WanViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 学员    陪练列表
+ */
 public class PenLianActivity extends WanListActivity {
 
 

@@ -286,7 +286,7 @@ public class NetRequest {
      */
     public static void inquiryPeiLian(WanActivity context, int id, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("id", id+"");
+        params.put("id", id + "");
         params.put("dri_coach_id", LocalPreference.getCurrentUser(context).getId() + "");
         NetUtils.baseRequest(context, "driapppartnerTrain/gradList", params, false, handler);
 
@@ -304,6 +304,7 @@ public class NetRequest {
 
     /**
      * 我的学员
+     *
      * @param context
      * @param handler
      */
@@ -317,6 +318,7 @@ public class NetRequest {
 
     /**
      * 教练  我的陪练列表
+     *
      * @param context
      * @param handler
      */
@@ -331,6 +333,7 @@ public class NetRequest {
 
     /**
      * 获取我的优惠劵
+     *
      * @param context
      * @param handler
      */
@@ -344,12 +347,20 @@ public class NetRequest {
 
     /**
      * 提现
+     *
      * @param context
+     * @param card
+     * @param name
+     * @param charge
      * @param handler
      */
-    public static void tixian(WanActivity context, NetUtils.NetUtilsHandler handler) {
+    public static void tixian(WanActivity context, String card, String name, String charge, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
 //        params.put("dri_user_id", "171");
+        params.put("user_id", LocalPreference.getCurrentUser(context).getId() + "");
+        params.put("worth", charge);
+        params.put("card_num", card);
+        params.put("opr", name);
         params.put("user_id", LocalPreference.getCurrentUser(context).getId() + "");
         NetUtils.baseRequest(context, "driappcoupon/queryForList", params, false, handler);
     }
@@ -357,5 +368,53 @@ public class NetRequest {
     public static void downTopPicture(WanActivity context, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
         NetUtils.baseRequest(context, "driapptoppicture/getTopPicture", params, false, handler);
+    }
+
+    /**
+     * 驾校列表
+     */
+    public static void getSchoolList(Context context,
+                                     String cityCode,
+                                     int money,
+                                     int care,
+                                     int praise,
+                                     NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_city_code_id", cityCode);
+        params.put("dri_money", money + "");
+        params.put("dri_care", care + "");
+        params.put("dri_praise", praise + "");
+        NetUtils.baseRequest(context, "driapppraiseweb/queryForList", params, false, handler);
+
+    }
+
+    /**
+     * 搜索驾校
+     *
+     * @param search
+     */
+    public static void searchSchoolList(Context context, String search, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("campusName", string2Unicode(search));
+        NetUtils.baseRequest(context, "driapppraiseweb/queryForList", params, false, handler);
+    }
+
+    /**
+     * 字符串转换unicode
+     */
+    public static String string2Unicode(String string) {
+
+        StringBuffer unicode = new StringBuffer();
+
+        for (int i = 0; i < string.length(); i++) {
+
+            // 取出每一个字符
+            char c = string.charAt(i);
+
+            // 转换为unicode
+            unicode.append("\\u" + Integer.toHexString(c));
+        }
+
+        return unicode.toString();
     }
 }
