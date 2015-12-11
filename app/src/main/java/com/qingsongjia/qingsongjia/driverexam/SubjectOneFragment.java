@@ -142,13 +142,14 @@ public class SubjectOneFragment extends WanFragment {
                         UIManager.startItemList(getContext(), ItemListActivity.TYPE_BMXZ);
                         break;
                     case 1:
-                        UIManager.startItemList(getContext(), ItemListActivity.TYPE_BMXZ);
+                        String path = "file:///android_asset/html/kemu1/jiaotongfagui.html";
+                        UIManager.startWebView(getContext(), "交通法规", path);
                         break;
                     case 2:
                         UIManager.startJiaoTongBiaoZhi(getContext());
                         break;
                     case 3:
-                        UIManager.startItemList(getContext(), ItemListActivity.TYPE_BMXZ);
+                        UIManager.startXinShouShangLu(getContext());
                         break;
                 }
             }

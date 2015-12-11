@@ -120,6 +120,7 @@
             android:src="@drawable/icon_telephone" />
 
         <TextView
+            android:id="@+id/teacher_tele"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/space10"
@@ -142,12 +143,14 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/teacher_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="定点上车" />
 
         <TextView
+            android:id="@+id/teacher_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/space10"
@@ -164,6 +167,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/teacher_typeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -49,6 +49,7 @@ public class MyYueKao implements Parcelable {
      * update_tm_str : 2015-12-10 00:51:55
      */
 
+
     //    private Integer id;//（主键）
 //    private Integer dri_campus_id;//（驾校编码）
 //    private String dri_campus_nm;//（驾校名称）

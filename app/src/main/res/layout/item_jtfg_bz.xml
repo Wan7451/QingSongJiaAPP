@@ -13,9 +13,10 @@
         <!--app:placeholderImage="@drawable/icon_yuan_cheng"-->
         <!--app:roundAsCircle="true" />-->
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/jtfg_icon"
         android:layout_width="@dimen/space30"
         android:layout_height="@dimen/space30"
-        android:src="@drawable/icon_yuan_cheng"
+        app:roundAsCircle="true"
         android:layout_marginRight="@dimen/space10"/>
 </LinearLayout>

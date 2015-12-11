@@ -97,12 +97,12 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
 
                 UserData loginData = JSONObject.parseObject(data, UserData.class);
 
-
-                if (!TextUtils.isEmpty(loginData.getDri_nm())) {
-                    menuUserName.setText(loginData.getDri_nm());
-                } else {
-                    menuUserName.setText("嘟嘟驾道");
-                }
+                if (menuUserName != null)
+                    if (!TextUtils.isEmpty(loginData.getDri_nm())) {
+                        menuUserName.setText(loginData.getDri_nm());
+                    } else {
+                        menuUserName.setText("嘟嘟驾道");
+                    }
 
                 if (!TextUtils.isEmpty(loginData.getDri_campus_nm())) {
                     datas.get(0).setSecondText(loginData.getDri_campus_nm());
@@ -112,12 +112,13 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
                 if (!TextUtils.isEmpty(teacherName)) {
                     datas.get(2).setSecondText(teacherName);
                 }
-
-                String iconPath = loginData.getDri_file_path();
-                if (TextUtils.isEmpty(iconPath)) {
-                    menuUserIcon.setImageURI(Uri.parse("res:// /" + R.drawable.default_head));
-                } else {
-                    menuUserIcon.setImageURI(Uri.parse(iconPath));
+                if (menuUserIcon != null) {
+                    String iconPath = loginData.getDri_file_path();
+                    if (TextUtils.isEmpty(iconPath)) {
+                        menuUserIcon.setImageURI(Uri.parse("res:// /" + R.drawable.default_head));
+                    } else {
+                        menuUserIcon.setImageURI(Uri.parse(iconPath));
+                    }
                 }
 
                 adapter.notifyDataSetChanged();
@@ -149,6 +150,9 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
         }
 
         switch (posotion) {
+            case 0:
+                UIManager.startSchoolDetail(getContext(), user.getDri_campus_id());
+                break;
             case 1:
                 UIManager.startChangeExamLibsForReslut(this, 1234);
                 break;

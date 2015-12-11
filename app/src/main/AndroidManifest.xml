@@ -190,7 +190,7 @@
             android:label="@string/title_activity_inquiry_evaluate"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.TouSuActivity"
+            android:name=".teacher.PeiLianTouSuActivity"
             android:label="@string/title_activity_tou_su"
             android:theme="@style/AppTheme" />
         <activity
@@ -233,6 +233,34 @@
         <activity
             android:name=".plxc.PeiLianListActivity"
             android:label="@string/title_activity_pei_lian_list"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.YXTConfrimActivity"
+            android:label="@string/title_activity_yxtconfrim"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".yuexun.YXEvaluateActivity"
+            android:label="@string/title_activity_yxevaluate"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverexam.HtmlResActivity"
+            android:label="@string/title_activity_html_res"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverexam.JiaoTongBiaoZhiListActivity"
+            android:label="@string/title_activity_jiao_tong_biao_zhi_list"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverexam.WebListActivity"
+            android:label="@string/title_activity_web_list"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverexam.XinShouShangLuActivity"
+            android:label="@string/title_activity_xin_shou_shang_lu"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".driverexam.XinShouShangLuListActivity"
+            android:label="@string/title_activity_xin_shou_shang_lu"
             android:theme="@style/AppTheme"></activity>
     </application>
 

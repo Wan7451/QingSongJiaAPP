@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -31,6 +32,8 @@ import com.qingsongjia.qingsongjia.fragment.ToolsFragment;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+
+import java.io.File;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

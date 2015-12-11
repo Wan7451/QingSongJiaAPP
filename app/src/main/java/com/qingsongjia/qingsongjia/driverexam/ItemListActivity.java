@@ -24,15 +24,15 @@ public class ItemListActivity extends WanListActivity {
 
     ArrayList<ItemClickData> datas = new ArrayList<>();
 
-    int[] icons = {R.drawable.icon_yuan_hong,
-            R.drawable.icon_yuan_lv,
-            R.drawable.icon_yuan_zi,
-            R.drawable.icon_yuan_lan,
-            R.drawable.icon_yuan_lanlv,
-            R.drawable.icon_yuan_cheng,
-            R.drawable.icon_yuan_huang,
-            R.drawable.icon_yuan_hong,
-            R.drawable.icon_yuan_fei,};
+    int[] icons = {R.drawable.icon_1,
+            R.drawable.icon_2,
+            R.drawable.icon_3,
+            R.drawable.icon_4,
+            R.drawable.icon_5,
+            R.drawable.icon_6,
+            R.drawable.icon_7,
+            R.drawable.icon_8,
+            };
 
     String[] bmxz = {"报名条件", "体检事项", "学车费用", "学车流程", "择校指南", "准驾车型", "作弊处罚"};
     String[] bmxzUrl = {"baomingtiaojian.html",

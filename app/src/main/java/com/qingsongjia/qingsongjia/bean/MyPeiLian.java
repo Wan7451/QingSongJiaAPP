@@ -39,6 +39,8 @@ public class MyPeiLian implements Parcelable {
      * validateCode :
      */
 
+
+
     private String carType;
     private String contactName;
     private int create_id;
@@ -65,6 +67,13 @@ public class MyPeiLian implements Parcelable {
     private int update_id;
     private String validateCode;
     private TarenaTime meetingDate;
+    /**
+     * create_tm : {"date":10,"day":4,"hours":1,"minutes":33,"month":11,"nanos":0,"seconds":38,"time":1449682418000,"timezoneOffset":-480,"year":115}
+     * dri_file_path : http://7xlt5l.com1.z0.glb.clouddn.com/1449569620506bktgst2225720
+     * update_tm : {"date":10,"day":4,"hours":1,"minutes":33,"month":11,"nanos":0,"seconds":38,"time":1449682418000,"timezoneOffset":-480,"year":115}
+     */
+
+    private String dri_file_path;
 
     public TarenaTime getMeetingDate() {
         return meetingDate;
@@ -320,7 +329,7 @@ public class MyPeiLian implements Parcelable {
         this.dri_coach_id = in.readInt();
         this.dri_coach_nm = in.readString();
         this.dri_comments = in.readString();
-        this.dri_grab_date = in.readParcelable(Object.class.getClassLoader());
+        this.dri_grab_date = in.readParcelable(TarenaTime.class.getClassLoader());
         this.dri_grab_date_str = in.readString();
         this.dri_partner_type = in.readString();
         this.dri_partner_type_nm = in.readString();
@@ -341,7 +350,7 @@ public class MyPeiLian implements Parcelable {
         this.meetingDate = in.readParcelable(TarenaTime.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<MyPeiLian> CREATOR = new Parcelable.Creator<MyPeiLian>() {
+    public static final Creator<MyPeiLian> CREATOR = new Creator<MyPeiLian>() {
         public MyPeiLian createFromParcel(Parcel source) {
             return new MyPeiLian(source);
         }
@@ -350,4 +359,12 @@ public class MyPeiLian implements Parcelable {
             return new MyPeiLian[size];
         }
     };
+
+    public void setDri_file_path(String dri_file_path) {
+        this.dri_file_path = dri_file_path;
+    }
+
+    public String getDri_file_path() {
+        return dri_file_path;
+    }
 }

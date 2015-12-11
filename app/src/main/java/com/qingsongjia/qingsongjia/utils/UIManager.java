@@ -3,10 +3,8 @@ package com.qingsongjia.qingsongjia.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.view.View;
 
 import com.qingsongjia.qingsongjia.activity.LoginActivity;
-import com.qingsongjia.qingsongjia.activity.MainActivity;
 import com.qingsongjia.qingsongjia.activity.RegisterActivity;
 import com.qingsongjia.qingsongjia.activity.SetPasswordActivity;
 import com.qingsongjia.qingsongjia.activity.VerifyPhoneActivity;
@@ -18,10 +16,15 @@ import com.qingsongjia.qingsongjia.driverexam.AnalogyExamActivity;
 import com.qingsongjia.qingsongjia.driverexam.AnalogyTestActivity;
 import com.qingsongjia.qingsongjia.driverexam.ExamDetailActivity;
 import com.qingsongjia.qingsongjia.driverexam.ExamTestActivity;
+import com.qingsongjia.qingsongjia.driverexam.JiaoTongBiaoZhiListActivity;
+import com.qingsongjia.qingsongjia.driverexam.WebListActivity;
+import com.qingsongjia.qingsongjia.driverexam.XinShouShangLuActivity;
+import com.qingsongjia.qingsongjia.driverexam.XinShouShangLuListActivity;
 import com.qingsongjia.qingsongjia.driverschool.AreaListActivity;
 import com.qingsongjia.qingsongjia.driverschool.CityListActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolDetailActivity;
 import com.qingsongjia.qingsongjia.plxc.PeiLianListActivity;
+import com.qingsongjia.qingsongjia.teacher.PeiLianTouSuActivity;
 import com.qingsongjia.qingsongjia.yuekao.InquiryExamActivity;
 import com.qingsongjia.qingsongjia.yuexun.InquiryTrainingActivity;
 import com.qingsongjia.qingsongjia.driverexam.ItemListActivity;
@@ -94,10 +97,11 @@ public class UIManager {
      * @param context
      * @param type
      */
-    public static void startExamDetail(Context context, String type) {
+    public static void startExamDetail(Context context,String title, String type) {
         Intent i = new Intent();
         i.setClass(context, ExamDetailActivity.class);
         i.putExtra("type", type);
+        i.putExtra("title", title);
         context.startActivity(i);
     }
 
@@ -242,10 +246,12 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startJiaoTongBiaoZhiGrid(Context context) {
+    public static void startJiaoTongBiaoZhiGrid(Context context, String title, String path) {
 
         Intent i = new Intent();
         i.setClass(context, JiaoTongBiaoZhiGridActivity.class);
+        i.putExtra("path",path);
+        i.putExtra("title",title);
         context.startActivity(i);
     }
 
@@ -425,6 +431,56 @@ public class UIManager {
     public static void startPeiLianList(Context context) {
         Intent i = new Intent();
         i.setClass(context, PeiLianListActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startYueXunComnent(WanActivity context, MyYueKao data) {
+        Intent i = new Intent();
+        i.setClass(context, YXEvaluateActivity.class);
+        i.putExtra("data",data);
+        context.startActivity(i);
+    }
+
+    /**
+     * 打开投诉
+     * @param context
+     */
+    public static void startTouSuo(WanActivity context,int id) {
+        Intent i = new Intent();
+        i.setClass(context, PeiLianTouSuActivity.class);
+        i.putExtra("id",id);
+        context.startActivity(i);
+    }
+
+    public static void startStudentYXEval(WanActivity context, MyYueKao data) {
+        Intent i = new Intent();
+        i.setClass(context, com.qingsongjia.qingsongjia.yuexun.YXEvaluateActivity.class);
+        i.putExtra("data",data);
+        context.startActivity(i);
+    }
+
+    public static void startJiaoTongBiaoZhiList(WanActivity context) {
+        Intent i = new Intent();
+        i.setClass(context, JiaoTongBiaoZhiListActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startWebList(WanActivity context) {
+        Intent i = new Intent();
+        i.setClass(context, WebListActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startXinShouShangLu(Context context) {
+        Intent i = new Intent();
+        i.setClass(context, XinShouShangLuActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startXinShouShangLuList(WanActivity context, int type) {
+        Intent i = new Intent();
+        i.setClass(context, XinShouShangLuListActivity.class);
+        i.putExtra("type",type);
         context.startActivity(i);
     }
 }

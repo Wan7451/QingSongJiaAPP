@@ -77,7 +77,7 @@ public class YXEvaluateActivity extends WanActivity {
                 NetRequest.markStudent(getContext(),id+"",mark, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
-                        showToast("确认成功");
+                        showToast("评价成功");
                         finish();
                         colseActivity(YXConfirmActivity.class);
                     }
@@ -85,7 +85,7 @@ public class YXEvaluateActivity extends WanActivity {
                     @Override
                     public void onResponseError(String error) {
                         if (TextUtils.isEmpty(error)) {
-                            showToast("确认失败");
+                            showToast("评价失败");
                         } else {
                             showToast(error);
                         }

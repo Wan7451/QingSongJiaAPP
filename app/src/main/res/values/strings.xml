@@ -52,4 +52,9 @@
     <string name="title_activity_area">AreaActivity</string>
     <string name="title_activity_school_detail">SchoolDetailActivity</string>
     <string name="title_activity_pei_lian_list">PeiLianListActivity</string>
+    <string name="title_activity_yxtconfrim">YXTConfrimActivity</string>
+    <string name="title_activity_html_res">HtmlResActivity</string>
+    <string name="title_activity_jiao_tong_biao_zhi_list">JiaoTongBiaoZhiListActivity</string>
+    <string name="title_activity_web_list">WebListActivity</string>
+    <string name="title_activity_xin_shou_shang_lu">XinShouShangLuActivity</string>
 </resources>

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.MyYueKao;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
@@ -46,7 +47,8 @@ public class MyTestDetailActivity extends WanActivity {
         pingjia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //学生评论练习
+                UIManager.startStudentYXEval(getContext(),data);
             }
         });
     }

@@ -90,7 +90,18 @@ public class MyStudentYXActivity extends WanListActivity {
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-        UIManager.startYueXunConfirm(getContext(), data.get(posotion));
+//        MyYueKao yueKao = data.get(posotion);
+//        if (yueKao.getDri_state().equals("1")) {
+//            UIManager.startYueXunConfirm(getContext(), data.get(posotion));
+//        }else if(yueKao.getDri_remark_state().equals("1")){
+//            UIManager.startYueXunComnent(getContext(),data.get(posotion));
+//        }
+
+        if(posotion==0){
+            UIManager.startYueXunConfirm(getContext(), data.get(posotion));
+        }else {
+            UIManager.startYueXunComnent(getContext(), data.get(posotion));
+        }
     }
 
     static class MyTestAdapter extends WanAdapter<MyYueKao> {
@@ -109,17 +120,26 @@ public class MyStudentYXActivity extends WanListActivity {
                 return;
 
             TextView time = holder.getView(R.id.time);
-            time.setText(item.getDri_dt_str()+" "+item.getDri_start_hm()+"-"+item.getDri_end_hm());
+            time.setText(item.getDri_dt_str() + " " + item.getDri_start_hm() + "-" + item.getDri_end_hm());
 
             TextView keme = holder.getView(R.id.kemu);
             keme.setText(item.getDri_sub_nm());
 
             TextView status = holder.findViewById(R.id.status);
-            String state = item.getDri_state_nm();
-            status.setText(state);
 
-            holder.setText(R.id.kemu,item.getDri_sub_nm_nm());
-            holder.setText(R.id.zhishidian,item.getDri_learning_content());
+//            if (item.getDri_state().equals("1")) {//未学习
+//
+//            }else
+            if(item.getDri_remark_state().equals("1")){//待评价，显示学习状态
+                String state = item.getDri_state_nm();
+                status.setText(state);
+            }else {  //已评价 显示评价状态
+                String remark = item.getDri_remark_state_nm();
+                status.setText(remark);
+            }
+
+            holder.setText(R.id.kemu, item.getDri_sub_nm_nm());
+            holder.setText(R.id.zhishidian, item.getDri_learning_content());
 
         }
     }

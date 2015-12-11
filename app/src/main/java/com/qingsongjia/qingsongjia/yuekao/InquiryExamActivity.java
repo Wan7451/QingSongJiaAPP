@@ -88,7 +88,7 @@ public class InquiryExamActivity extends WanActivity {
                 break;
             case INQUIRY_TYPE_FOUR:
                 inquiryProject.setText("科目四");
-                upKemu = 1;
+                upKemu = 4;
                 break;
         }
 
@@ -153,11 +153,16 @@ public class InquiryExamActivity extends WanActivity {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("预约成功");
+                        finish();
                     }
 
                     @Override
                     public void onResponseError(String error) {
-
+                        if(TextUtils.isEmpty(error)){
+                            showToast("预约失败");
+                        }else {
+                            showToast(error);
+                        }
                     }
                 });
 

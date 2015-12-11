@@ -2,6 +2,7 @@ package com.qingsongjia.qingsongjia.utils;
 
 import android.content.Context;
 
+import com.qingsongjia.qingsongjia.bean.User;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.wan7451.base.WanActivity;
 
@@ -185,7 +186,7 @@ public class NetRequest {
         params.put("dri_price", price);
         params.put("dri_partner_type", type);
         params.put("dri_comments", other);
-        NetUtils.baseRequest(context, "driapppartnerTrain/save", params, false, handler);
+        NetUtils.baseRequest(context, "driapppartnerTrain/sav", params, false, handler);
 
     }
 
@@ -327,8 +328,6 @@ public class NetRequest {
 //        params.put("dri_user_id", "171");
         params.put("dri_user_id", LocalPreference.getCurrentUser(context).getId() + "");
         NetUtils.baseRequest(context, "driapppartnerTrain/queryForList", params, false, handler);
-
-
     }
 
     /**
@@ -427,6 +426,26 @@ public class NetRequest {
         HashMap<String, String> params = new HashMap<>();
         params.put("campusId", id + "");
         NetUtils.baseRequest(context, "driappcommentweb/loadCampusState", params, false, handler);
+
+    }
+
+    /**
+     * 陪练投诉
+     *
+     * @param context
+     * @param id
+     * @param con
+     * @param handler
+     */
+    public static void peilianTouSu(WanActivity context, int id, String con, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        User user = LocalPreference.getCurrentUser(context);
+        params.put("dri_user_id", user.getId() + "");
+        params.put("dri_type", user.getDri_type());
+        params.put("dri_partner_id", id + "");
+        params.put("dri_complaint_content", string2Unicode(con));
+        NetUtils.baseRequest(context, "driappcommentweb/loadCampusState", params, false, handler);
+
 
     }
 }

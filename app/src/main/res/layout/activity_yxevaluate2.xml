@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/space10"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingTop="@dimen/space10">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="时间"
+                android:textColor="@color/text_default"
+                android:textSize="@dimen/textSize16" />
+
+            <TextView
+                android:id="@+id/kemu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space10"
+                android:drawableLeft="@drawable/icon_menu_hd"
+                android:drawablePadding="@dimen/space5"
+                android:text="科目"
+                android:textColor="@color/text_default_hint" />
+
+            <TextView
+                android:id="@+id/zhishidian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space10"
+                android:drawableLeft="@drawable/icon_menu_ld"
+                android:drawablePadding="@dimen/space5"
+                android:text="知识点"
+                android:textColor="@color/text_default_hint" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="状态"
+            android:textColor="@color/text_import"
+            android:textSize="@dimen/textSize18" />
+    </LinearLayout>
+
+    <View style="@style/divider1" />
+
+    <View style="@style/divider10" />
+
+    <View style="@style/divider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#FFF"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
+
+        <EditText
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_et_bg"
+            android:gravity="left|top"
+            android:padding="@dimen/space5" />
+    </LinearLayout>
+
+
+    <View style="@style/divider1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/default_bg"/>
+
+    <View style="@style/divider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF">
+
+        <Button
+            android:id="@+id/pingjia"
+            style="@style/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space5"
+            android:text="提交" />
+
+    </LinearLayout>
+
+</LinearLayout>

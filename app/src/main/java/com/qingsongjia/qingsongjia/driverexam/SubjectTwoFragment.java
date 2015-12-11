@@ -35,6 +35,7 @@ public class SubjectTwoFragment extends WanFragment implements AdapterView.OnIte
     GridView sunbjectTwoViews;
     @Bind(R.id.sunbjectTwo_others)
     GridView sunbjectTwoOthers;
+    private ArrayList<ExamImageText> data;
 
     public SubjectTwoFragment() {
         // Required empty public constructor
@@ -53,7 +54,7 @@ public class SubjectTwoFragment extends WanFragment implements AdapterView.OnIte
         urls.add(LocalPreference.getTopImagePath(getContext()));
         sunbjectTwoAdView.setShowURLs(urls);
 
-        ArrayList<ExamImageText> data=new ArrayList<>();
+        data = new ArrayList<>();
         data.add(new ExamImageText(R.drawable.icon_exam_seatbelt,"安全带"));
         data.add(new ExamImageText(R.drawable.icon_exam_dhkg,"点火开关"));
         data.add(new ExamImageText(R.drawable.icon_exam_fxp,"方向盘"));
@@ -62,7 +63,7 @@ public class SubjectTwoFragment extends WanFragment implements AdapterView.OnIte
         data.add(new ExamImageText(R.drawable.icon_exam_zxzd,"驻车制动"));
         data.add(new ExamImageText(R.drawable.icon_exam_zytz,"座椅调整"));
         data.add(new ExamImageText(R.drawable.icon_exam_hsj,"后视镜"));
-        ExamImageTextAdapter adapter=new ExamImageTextAdapter(getContext(),data,R.layout.item_exam_imagetext);
+        ExamImageTextAdapter adapter=new ExamImageTextAdapter(getContext(), data,R.layout.item_exam_imagetext);
         sunbjectTwoViews.setAdapter(adapter);
         sunbjectTwoViews.setOnItemClickListener(this);
 
@@ -106,28 +107,28 @@ public class SubjectTwoFragment extends WanFragment implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         switch (i){
             case 0:
-                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_AQD);
+                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_AQD);
                 break;
             case 1:
-                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_DHKG);
+                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_DHKG);
                 break;
             case 2:
-                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_FXP);
+                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_FXP);
                 break;
             case 3:
-                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_LHQ);
+                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_LHQ);
                 break;
             case 4:
-                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_JSTB);
+                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_JSTB);
                 break;
             case 5:
-                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_ZCZD);
+                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_ZCZD);
                 break;
             case 6:
-                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_ZYTZ);
+                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_ZYTZ);
                 break;
             case 7:
-                UIManager.startExamDetail(getContext(),ExamDetailActivity.DETAIL_TYPE_HSJ);
+                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_HSJ);
                 break;
         }
 

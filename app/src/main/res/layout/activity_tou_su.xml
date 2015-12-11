@@ -12,6 +12,7 @@
         android:padding="@dimen/view_margin">
 
         <EditText
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/shape_et_bg"
@@ -29,7 +30,7 @@
         android:background="@color/default_bg">
 
         <Button
-            android:id="@+id/yxconfirm_queren"
+            android:id="@+id/tousu"
             style="@style/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +38,7 @@
             android:layout_marginLeft="@dimen/view_margin"
             android:layout_marginRight="@dimen/view_margin"
             android:layout_marginTop="@dimen/space30"
-            android:text="添加印象" />
+            android:text="投诉" />
 
     </LinearLayout>
 </LinearLayout>

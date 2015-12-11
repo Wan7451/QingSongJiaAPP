@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.RatingBar;
@@ -24,49 +25,7 @@ import butterknife.ButterKnife;
 
 public class SchoolDetailActivity extends WanActivity {
 
-    private void fillData(SchoolDetail detail) {
-        if (detail == null)
-            return;
-        if (!TextUtils.isEmpty(detail.getDri_file_path())) {
-            schoolinfoIvLogo.setImageURI(Uri.parse(detail.getDri_file_path()));
-        }
-        schoolinfoTvName.setText(detail.getDri_nm());
-        schoolinfoTvPrice.setText(detail.getDri_money() + "元");
-        if (!TextUtils.isEmpty(detail.getDri_tel1())
-                && !TextUtils.isEmpty(detail.getDri_tel2())) {
-            schoolinfoTvTel.setText(detail.getDri_tel1() + " " + detail.getDri_tel2());
-        } else if (!TextUtils.isEmpty(detail.getDri_tel1())
-                && TextUtils.isEmpty(detail.getDri_tel2())) {
-            schoolinfoTvTel.setText(detail.getDri_tel1());
-        } else if (TextUtils.isEmpty(detail.getDri_tel1())
-                && !TextUtils.isEmpty(detail.getDri_tel2())) {
-            schoolinfoTvTel.setText(detail.getDri_tel2());
-        } else {
-            schoolinfoTvTel.setText("暂时没有电话");
-        }
-        schoolinfoTvAddr.setText(detail.getDri_address());
-        schoolinfoIvImgsCount.setText(detail.getStreet_view().length+"张");
-//        schoolinfoGvImgs
 
-        schoolinfoTvFen.setText(detail.getDri_sum()+"分");
-        schoolinfoTvRen.setText(detail.getCountpepole()+"人评分");
-
-        schoolinfoTimeRating.setRating(detail.getDri_time());
-        schoolinfoTimeRating.setMax(10);
-        schoolinfoTimeFen.setText(detail.getDri_time()+"分");
-
-        schoolinfoAddrRating.setRating(detail.getDri_place());
-        schoolinfoAddrRating.setMax(10);
-        schoolinfoAddrFen.setText(detail.getDri_place()+"分");
-
-        schoolinfoPassRating.setRating(detail.getDri_pass());
-        schoolinfoPassRating.setMax(10);
-        schoolinfoPassFen.setText(detail.getDri_pass()+"分");
-
-        schoolinfoTvInfo.setText(detail.getDri_report());
-
-//        schoolinfoTvBus.setText(detail.getDri_way());
-    }
 
 
     @Bind(R.id.schoolinfo_iv_logo)
@@ -116,8 +75,16 @@ public class SchoolDetailActivity extends WanActivity {
         setContentTitle("驾校详情");
         setBackFinish();
         id = getIntent().getIntExtra("id", 0);
-
+        ButterKnife.bind(this);
         loadData();
+
+
+        schoolinfoBtnBaoming.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void loadData() {
@@ -145,10 +112,50 @@ public class SchoolDetailActivity extends WanActivity {
         return R.layout.activity_school_info;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+
+
+    private void fillData(SchoolDetail detail) {
+        if (detail == null)
+            return;
+        if (!TextUtils.isEmpty(detail.getDri_file_path())) {
+            schoolinfoIvLogo.setImageURI(Uri.parse(detail.getDri_file_path()));
+        }
+        schoolinfoTvName.setText(detail.getDri_nm());
+        schoolinfoTvPrice.setText(detail.getDri_money() + "元");
+        if (!TextUtils.isEmpty(detail.getDri_tel1())
+                && !TextUtils.isEmpty(detail.getDri_tel2())) {
+            schoolinfoTvTel.setText(detail.getDri_tel1() + " " + detail.getDri_tel2());
+        } else if (!TextUtils.isEmpty(detail.getDri_tel1())
+                && TextUtils.isEmpty(detail.getDri_tel2())) {
+            schoolinfoTvTel.setText(detail.getDri_tel1());
+        } else if (TextUtils.isEmpty(detail.getDri_tel1())
+                && !TextUtils.isEmpty(detail.getDri_tel2())) {
+            schoolinfoTvTel.setText(detail.getDri_tel2());
+        } else {
+            schoolinfoTvTel.setText("暂时没有电话");
+        }
+        schoolinfoTvAddr.setText(detail.getDri_address());
+        schoolinfoIvImgsCount.setText(detail.getStreet_view().length+"张");
+//        schoolinfoGvImgs
+
+        schoolinfoTvFen.setText(detail.getDri_sum()+"分");
+        schoolinfoTvRen.setText(detail.getCountpepole()+"人评分");
+
+        schoolinfoTimeRating.setRating(detail.getDri_time());
+        schoolinfoTimeRating.setMax(5);
+        schoolinfoTimeFen.setText(detail.getDri_time()+"分");
+
+        schoolinfoAddrRating.setRating(detail.getDri_place());
+        schoolinfoAddrRating.setMax(5);
+        schoolinfoAddrFen.setText(detail.getDri_place()+"分");
+
+        schoolinfoPassRating.setRating(detail.getDri_pass());
+        schoolinfoPassRating.setMax(5);
+        schoolinfoPassFen.setText(detail.getDri_pass()+"分");
+
+        schoolinfoTvInfo.setText(detail.getDri_report());
+
+//        schoolinfoTvBus.setText(detail.getDri_way());
     }
+
 }
