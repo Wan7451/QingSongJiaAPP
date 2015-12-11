@@ -142,15 +142,12 @@ public class SchoolDetailActivity extends WanActivity {
         schoolinfoTvRen.setText(detail.getCountpepole()+"人评分");
 
         schoolinfoTimeRating.setRating(detail.getDri_time());
-        schoolinfoTimeRating.setMax(5);
         schoolinfoTimeFen.setText(detail.getDri_time()+"分");
 
         schoolinfoAddrRating.setRating(detail.getDri_place());
-        schoolinfoAddrRating.setMax(5);
         schoolinfoAddrFen.setText(detail.getDri_place()+"分");
 
         schoolinfoPassRating.setRating(detail.getDri_pass());
-        schoolinfoPassRating.setMax(5);
         schoolinfoPassFen.setText(detail.getDri_pass()+"分");
 
         schoolinfoTvInfo.setText(detail.getDri_report());
