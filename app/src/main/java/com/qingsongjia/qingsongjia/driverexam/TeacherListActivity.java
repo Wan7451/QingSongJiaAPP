@@ -71,7 +71,7 @@ public class TeacherListActivity extends WanListActivity {
 
             @Override
             public void onResponseError(String error) {
-
+                loadError();
             }
         });
 

@@ -50,7 +50,18 @@ public class JiaoLianToolsFragment extends WanFragment implements AdapterView.On
         sunbjectOneAdView.setShowURLs(urls);
 
         ArrayList<ExamImageText> data = new ArrayList<>();
-        data.add(new ExamImageText(R.drawable.icon_exam_seatbelt, "陪驾"));
+        User u = LocalPreference.getCurrentUser(getContext());
+        int type = 0;
+        if (!TextUtils.isEmpty(u.getDri_type()) && (
+                !u.getDri_type().endsWith("0"))) {
+            type = 1;
+        }
+        if (type == 0) {
+            data.add(new ExamImageText(R.drawable.icon_exam_seatbelt, "嘟嘟驾道"));
+        } else {
+            data.add(new ExamImageText(R.drawable.icon_exam_seatbelt, "陪驾"));
+        }
+
         ExamImageTextAdapter adapter = new ExamImageTextAdapter(getContext(), data, R.layout.item_exam_imagetext);
         sunbjectToolsViews.setAdapter(adapter);
         sunbjectToolsViews.setOnItemClickListener(this);

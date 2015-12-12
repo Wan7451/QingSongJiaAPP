@@ -143,6 +143,19 @@ public class NetRequest {
      */
     public static void getMyYueLian(WanActivity context, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
+        params.put("dri_student_id", LocalPreference.getCurrentUser(context).getId() + "");
+        NetUtils.baseRequest(context, "driappcorvpracticWeb/queryForList", params, false, handler);
+
+    }
+
+    /**
+     * 我的约练
+     *
+     * @param context
+     * @param handler
+     */
+    public static void getTeacherYueLian(WanActivity context, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
         params.put("dri_coach_id", LocalPreference.getCurrentUser(context).getId() + "");
         NetUtils.baseRequest(context, "driappcorvpracticWeb/queryForList", params, false, handler);
 
@@ -153,8 +166,8 @@ public class NetRequest {
 //        params.put("Id", "127");
         params.put("dri_student_id", LocalPreference.getCurrentUser(context).getId() + "");
 //        params.put("Id", LocalPreference.getCurrentUser(context).getId()+"");
-        NetUtils.baseRequest(context, "driappcorvexamweb/queryForList", params, false, handler);
-//        NetUtils.baseRequest(context, "driappcorvexamweb/load", params, false, handler);
+        NetUtils.baseRequest(context, "driappcorvexamweb/ownerQuery", params, false, handler);
+//        NetUtils.baseRequest(context, "driappcorvexamweb/ownerQuery", params, false, handler);
 
     }
 
@@ -224,9 +237,22 @@ public class NetRequest {
     public static void markStudent(WanActivity context, String id, String mark, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
         params.put("id", id);
-        params.put("dri_remarks", mark);
+        params.put("dri_student_remark", string2Unicode(mark));
         NetUtils.baseRequest(context, "driappcorvpracticWeb/edit", params, false, handler);
+    }
 
+
+    /**
+     * 学员学习评价
+     *
+     * @param id
+     * @param mark
+     */
+    public static void markTeacher(WanActivity context, String id, String mark, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", id);
+        params.put("dri_remark", string2Unicode(mark));
+        NetUtils.baseRequest(context, "driappcorvpracticWeb/edit", params, false, handler);
     }
 
     /**
@@ -273,6 +299,7 @@ public class NetRequest {
      */
     public static void getPeiLianList(Context context, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
+        params.put("dri_state","1");
 //        params.put("user_id", LocalPreference.getCurrentUser(context).getId()+"");
         NetUtils.baseRequest(context, "driapppartnerTrain/queryForList", params, false, handler);
 
@@ -311,8 +338,7 @@ public class NetRequest {
      */
     public static void loadMyStudent(WanActivity context, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("dri_coach_id", "171");
-//        params.put("dri_coach_id", LocalPreference.getCurrentUser(context).getId() + "");
+        params.put("dri_coach_id", LocalPreference.getCurrentUser(context).getId() + "");
         NetUtils.baseRequest(context, "driappconsultclientWeb/queryForList", params, false, handler);
 
     }
@@ -359,9 +385,11 @@ public class NetRequest {
         params.put("user_id", LocalPreference.getCurrentUser(context).getId() + "");
         params.put("worth", charge);
         params.put("card_num", card);
-        params.put("opr", name);
-        params.put("user_id", LocalPreference.getCurrentUser(context).getId() + "");
-        NetUtils.baseRequest(context, "driappcoupon/queryForList", params, false, handler);
+        params.put("opr", string2Unicode(name));
+
+        NetUtils.baseRequest(context, "driappmypurse/saveMoney", params, false, handler);
+
+
     }
 
     public static void downTopPicture(WanActivity context, NetUtils.NetUtilsHandler handler) {

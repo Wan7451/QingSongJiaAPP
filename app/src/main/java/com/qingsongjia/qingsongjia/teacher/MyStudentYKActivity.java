@@ -92,14 +92,14 @@ public class MyStudentYKActivity extends WanListActivity {
         @Override
         public void convert(WanViewHolder holder, int position, MyKaoShi item) {
             TextView time = holder.getView(R.id.time);
-            String t = item.getDri_student_nm();
+            String t = item.getDri_dt_str()+" "+(item.getDri_tm().equals("1")?"上午":"下午");
             time.setText(t);
 
             TextView keme = holder.getView(R.id.kemu);
             keme.setText(item.getDri_sub_nm_nm());
 
             TextView zsd = holder.findViewById(R.id.zhishidian);
-            zsd.setText(item.getDri_score() + "");
+            zsd.setText(item.getDri_student_nm() + "");
 
             TextView status = holder.findViewById(R.id.status);
             status.setText(item.getDri_result());

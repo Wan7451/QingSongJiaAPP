@@ -18,6 +18,9 @@ import com.wan7451.base.WanActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 学员练习评价
+ */
 public class YXEvaluateActivity extends WanActivity {
 
 

@@ -74,7 +74,7 @@ public class YXEvaluateActivity extends WanActivity {
                     showToast("评价内容不能为空");
                     return;
                 }
-                NetRequest.markStudent(getContext(),id+"",mark, new NetUtils.NetUtilsHandler() {
+                NetRequest.markTeacher(getContext(),id+"",mark, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("评价成功");

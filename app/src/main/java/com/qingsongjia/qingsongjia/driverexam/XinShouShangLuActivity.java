@@ -52,6 +52,7 @@ public class XinShouShangLuActivity extends WanListActivity {
 
     @Override
     protected void loadData() {
+        datas.clear();
         datas.add(new ItemClickData(R.drawable.icon_1, data[0], "", true));
         datas.add(new ItemClickData(R.drawable.icon_2, data[1], "", true));
         datas.add(new ItemClickData(R.drawable.icon_3, data[2], "", true));

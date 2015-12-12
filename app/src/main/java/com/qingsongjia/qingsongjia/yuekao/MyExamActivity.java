@@ -90,7 +90,11 @@ public class MyExamActivity extends WanListActivity {
         public void convert(WanViewHolder holder, int position, MyKaoShi item) {
             TextView time = holder.getView(R.id.time);
             String t = item.getDri_tm();
-            time.setText(t);
+            if (TextUtils.equals(t, "1")) {
+                time.setText("上午");
+            }else {
+                time.setText("下午");
+            }
 
             TextView keme = holder.getView(R.id.kemu);
             keme.setText(item.getDri_sub_nm_nm());

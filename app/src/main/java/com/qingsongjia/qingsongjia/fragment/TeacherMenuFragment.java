@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.activity.MainActivity;
@@ -21,7 +23,10 @@ import com.qingsongjia.qingsongjia.adapter.ItemClickDataAdapter;
 import com.qingsongjia.qingsongjia.bean.ItemClickData;
 import com.qingsongjia.qingsongjia.bean.OnMenuItemClick;
 import com.qingsongjia.qingsongjia.bean.User;
+import com.qingsongjia.qingsongjia.bean.UserData;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.NetRequest;
+import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanItemDecoration;
@@ -64,8 +69,44 @@ public class TeacherMenuFragment extends Fragment implements WanAdapter.OnItemCl
         menuUserCenter.addItemDecoration(new WanItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         adapter.setOnItemClickListener(this);
 
+        loadData();
 
         return view;
+    }
+
+
+    private void loadData() {
+        NetRequest.loadMyData(getContext(), new NetUtils.NetUtilsHandler() {
+            @Override
+            public void onResponseOK(JSONArray response, int total) {
+                String data = response.getString(0);
+
+                LocalPreference.saveCurrentUserData(getContext(), data);
+
+                UserData loginData = JSONObject.parseObject(data, UserData.class);
+
+                if (menuUserName != null)
+                    if (!TextUtils.isEmpty(loginData.getDri_nm())) {
+                        menuUserName.setText(loginData.getDri_nm());
+                    } else {
+                        menuUserName.setText("嘟嘟驾道");
+                    }
+
+                if (menuUserIcon != null) {
+                    String iconPath = loginData.getDri_file_path();
+                    if (TextUtils.isEmpty(iconPath)) {
+                        menuUserIcon.setImageURI(Uri.parse("http://7xlt5l.com1.z0.glb.clouddn.com/1449734769519ohgmmj3048628"));
+                    } else {
+                        menuUserIcon.setImageURI(Uri.parse(iconPath));
+                    }
+                }
+            }
+
+            @Override
+            public void onResponseError(String error) {
+
+            }
+        });
     }
 
     @Override

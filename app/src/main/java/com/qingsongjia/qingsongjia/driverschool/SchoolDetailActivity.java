@@ -1,5 +1,6 @@
 package com.qingsongjia.qingsongjia.driverschool;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -16,9 +17,16 @@ import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.SchoolDetail;
+import com.qingsongjia.qingsongjia.bean.StreetView;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.wan7451.base.WanActivity;
+import com.wan7451.wanadapter.list.CommonAdapter;
+import com.wan7451.wanadapter.list.ViewHolder;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -135,7 +143,7 @@ public class SchoolDetailActivity extends WanActivity {
             schoolinfoTvTel.setText("暂时没有电话");
         }
         schoolinfoTvAddr.setText(detail.getDri_address());
-        schoolinfoIvImgsCount.setText(detail.getStreet_view().length+"张");
+        schoolinfoIvImgsCount.setText(detail.getStreet_view().size()+"张");
 //        schoolinfoGvImgs
 
         schoolinfoTvFen.setText(detail.getDri_sum()+"分");
@@ -152,7 +160,25 @@ public class SchoolDetailActivity extends WanActivity {
 
         schoolinfoTvInfo.setText(detail.getDri_report());
 
+        ImageAdapter adapte = new ImageAdapter(getContext(), detail.getStreet_view(), R.layout.item_school_grid);
+        schoolinfoGvImgs.setAdapter(adapte);
 //        schoolinfoTvBus.setText(detail.getDri_way());
+    }
+
+
+    class ImageAdapter extends CommonAdapter<StreetView>{
+
+        public ImageAdapter(Context context, List<StreetView> mDatas, int itemLayoutId) {
+            super(context, mDatas, itemLayoutId);
+        }
+
+        @Override
+        public void convert(ViewHolder helper, int position, StreetView item) {
+            SimpleDraweeView icon=    helper.getView(R.id.img);
+            if(!TextUtils.isEmpty(item.getDri_file_path())){
+                icon.setImageURI(Uri.parse(item.getDri_file_path()));
+            }
+        }
     }
 
 }

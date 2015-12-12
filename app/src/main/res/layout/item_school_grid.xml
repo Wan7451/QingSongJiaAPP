@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/img"
+        android:layout_width="@dimen/space150"
+        android:layout_height="@dimen/space150" />
+
+    <!--<ImageView-->
+    <!--android:layout_width="@dimen/space150"-->
+    <!--android:layout_height="@dimen/space150"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:src="@drawable/icon_yuan_cheng"/>-->
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="描述"-->
+    <!--android:layout_marginTop="@dimen/space10"-->
+    <!--android:gravity="center"-->
+    <!--android:textSize="@dimen/textSize16"-->
+    <!--android:textColor="@color/text_default"/>-->
+
+</LinearLayout>

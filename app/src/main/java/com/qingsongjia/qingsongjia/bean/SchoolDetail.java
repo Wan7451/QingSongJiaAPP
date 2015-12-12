@@ -1,5 +1,7 @@
 package com.qingsongjia.qingsongjia.bean;
 
+import java.util.ArrayList;
+
 /**
  * Created by wanggang on 15/12/11.
  */
@@ -38,7 +40,7 @@ public class SchoolDetail {
     private String dri_tel2;
     private String dri_way;
     private int dri_time;
-    private String[] street_view;
+    private ArrayList<StreetView> street_view;
 
     public SchoolDetail() {
     }
@@ -163,11 +165,11 @@ public class SchoolDetail {
         this.dri_time = dri_time;
     }
 
-    public String[] getStreet_view() {
+    public ArrayList<StreetView> getStreet_view() {
         return street_view;
     }
 
-    public void setStreet_view(String[] street_view) {
+    public void setStreet_view(ArrayList<StreetView> street_view) {
         this.street_view = street_view;
     }
 }

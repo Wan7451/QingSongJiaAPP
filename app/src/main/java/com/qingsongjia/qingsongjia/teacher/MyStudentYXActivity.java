@@ -69,7 +69,7 @@ public class MyStudentYXActivity extends WanListActivity {
     protected void loadData() {
 
         //我的约练
-        NetRequest.getMyYueLian(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.getTeacherYueLian(getContext(), new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

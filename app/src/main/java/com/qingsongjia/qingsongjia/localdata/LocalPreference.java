@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.CityData;
 import com.qingsongjia.qingsongjia.bean.KeMu;
 import com.qingsongjia.qingsongjia.bean.UserData;
@@ -138,7 +139,7 @@ public class LocalPreference {
 
     public static String getTopImagePath(Context context) {
         getPreference(context);
-        return spref.getString("imgPath", "http://pic.baike.soso.com/p/20120418/20120418170004-227985725.jpg");
+        return spref.getString("imgPath", "res:// /"+ R.drawable.banner);
     }
 
 
