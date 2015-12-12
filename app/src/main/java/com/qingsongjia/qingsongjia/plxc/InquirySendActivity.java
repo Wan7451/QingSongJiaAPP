@@ -12,6 +12,7 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.PeiLian;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
@@ -45,6 +46,13 @@ public class InquirySendActivity extends WanActivity {
         ButterKnife.bind(this);
         setBackFinish();
         setContentTitle("预约");
+
+        setRightText("投诉", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIManager.startTouSuo(getContext(), peiLian.getId());
+            }
+        });
 
         peiLian = getIntent().getParcelableExtra("peilian");
         teacherName.setText(peiLian.getContactName());

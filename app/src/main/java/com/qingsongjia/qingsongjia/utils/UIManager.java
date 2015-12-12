@@ -24,6 +24,7 @@ import com.qingsongjia.qingsongjia.driverschool.AreaListActivity;
 import com.qingsongjia.qingsongjia.driverschool.CityListActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolDetailActivity;
 import com.qingsongjia.qingsongjia.plxc.PeiLianListActivity;
+import com.qingsongjia.qingsongjia.teacher.PeiLianPingJiaActivity;
 import com.qingsongjia.qingsongjia.teacher.PeiLianTouSuActivity;
 import com.qingsongjia.qingsongjia.yuekao.InquiryExamActivity;
 import com.qingsongjia.qingsongjia.yuexun.InquiryTrainingActivity;
@@ -481,6 +482,18 @@ public class UIManager {
         Intent i = new Intent();
         i.setClass(context, XinShouShangLuListActivity.class);
         i.putExtra("type",type);
+        context.startActivity(i);
+    }
+
+    /**
+     * 教练  陪练 打开评论
+     * @param context
+     * @param data
+     */
+    public static void startPeiLianPingJia(WanActivity context, MyPeiLian data) {
+        Intent i=new Intent();
+        i.setClass(context, PeiLianPingJiaActivity.class);
+        i.putExtra("data",data);
         context.startActivity(i);
     }
 }

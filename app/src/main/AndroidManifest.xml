@@ -257,10 +257,14 @@
         <activity
             android:name=".driverexam.XinShouShangLuActivity"
             android:label="@string/title_activity_xin_shou_shang_lu"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".driverexam.XinShouShangLuListActivity"
             android:label="@string/title_activity_xin_shou_shang_lu"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".teacher.PeiLianPingJiaActivity"
+            android:label="@string/title_activity_pei_lian_ping_jia"
             android:theme="@style/AppTheme"></activity>
     </application>
 

@@ -7,9 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.MyPeiLian;
+import com.qingsongjia.qingsongjia.utils.NetRequest;
+import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
 
@@ -46,11 +49,12 @@ public class InquiryConfirmActivity extends WanActivity {
     TextView teacherPrice;
     @Bind(R.id.teacher_typeText)
     TextView teacherTypeText;
+
     private MyPeiLian peiLian;
 
     @Override
     public void initView() {
-        setContentTitle("预约");
+        setContentTitle("确认");
         setBackFinish();
         ButterKnife.bind(this);
         setRightText("投诉", new View.OnClickListener() {
@@ -74,6 +78,30 @@ public class InquiryConfirmActivity extends WanActivity {
 
         teacherType.setText(peiLian.getDri_partner_type_nm());
         teacherPrice.setText(peiLian.getDri_price()+"元");
+
+
+        yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NetRequest.queRenPeiLian(getContext(),peiLian.getId(), new NetUtils.NetUtilsHandler() {
+                    @Override
+                    public void onResponseOK(JSONArray response, int total) {
+                        showToast("确认成功");
+                       // UIManager.startPeiLianPingJia(getContext(),peiLian);
+                        finish();
+                    }
+
+                    @Override
+                    public void onResponseError(String error) {
+                        if(TextUtils.isEmpty(error)){
+                            showToast("确认失败");
+                        }else {
+                            showToast(error);
+                        }
+                    }
+                });
+            }
+        });
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -57,7 +58,7 @@ public class MyStudentYKActivity extends WanListActivity {
     @Override
     protected void loadData() {
 
-        NetRequest.getMyYueKao(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.getTeacherYueKao(getContext(), new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         data.clear();
@@ -70,6 +71,7 @@ public class MyStudentYKActivity extends WanListActivity {
 
                     @Override
                     public void onResponseError(String error) {
+                            loadError();
 
                     }
                 }

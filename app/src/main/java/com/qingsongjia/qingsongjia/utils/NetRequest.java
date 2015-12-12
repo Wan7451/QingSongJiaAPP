@@ -161,6 +161,16 @@ public class NetRequest {
 
     }
 
+    public static void getTeacherYueKao(WanActivity context, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+//        params.put("Id", "127");
+        params.put("dri_coach_id", LocalPreference.getCurrentUser(context).getId() + "");
+//        params.put("Id", LocalPreference.getCurrentUser(context).getId()+"");
+        NetUtils.baseRequest(context, "driappcorvexamweb/ownerQuery", params, false, handler);
+//        NetUtils.baseRequest(context, "driappcorvexamweb/ownerQuery", params, false, handler);
+
+    }
+
     public static void getMyYueKao(WanActivity context, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
 //        params.put("Id", "127");
@@ -472,8 +482,21 @@ public class NetRequest {
         params.put("dri_type", user.getDri_type());
         params.put("dri_partner_id", id + "");
         params.put("dri_complaint_content", string2Unicode(con));
-        NetUtils.baseRequest(context, "driappcommentweb/loadCampusState", params, false, handler);
+        NetUtils.baseRequest(context, "driapppartnerTrain/complaint", params, false, handler);
 
+
+    }
+
+    /**
+     * 教练端  确认学员陪练
+     * @param context
+     * @param handler
+     */
+    public static void queRenPeiLian(WanActivity context,int id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", id+"");
+        params.put("status", "3");
+        NetUtils.baseRequest(context, "driapppartnerTrain/changeState", params, false, handler);
 
     }
 }
