@@ -2,6 +2,7 @@ package com.qingsongjia.qingsongjia.driverexam;
 
 
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.ExamImageTextAdapter;
 import com.qingsongjia.qingsongjia.bean.ExamImageText;
+import com.qingsongjia.qingsongjia.bean.User;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.qingsongjia.qingsongjia.yuekao.InquiryExamActivity;
@@ -71,6 +73,19 @@ public class SubjectThreeFragment extends WanFragment implements AdapterView.OnI
         data2.add(new ExamImageText(R.drawable.icon_exam_yylc,"预约教练"));
         ExamImageTextAdapter adapter2=new ExamImageTextAdapter(getContext(),data2,R.layout.item_exam_imagetext);
         sunbjectThreeeOthers.setAdapter(adapter2);
+
+
+        User u = LocalPreference.getCurrentUser(getContext());
+        int type = 0;
+        if (!TextUtils.isEmpty(u.getDri_type()) && (
+                !u.getDri_type().endsWith("0"))) {
+            type = 1;
+        }
+
+        if (type == 1) {
+            //教练
+            sunbjectThreeeOthers.setVisibility(View.GONE);
+        }
 
         sunbjectThreeeOthers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

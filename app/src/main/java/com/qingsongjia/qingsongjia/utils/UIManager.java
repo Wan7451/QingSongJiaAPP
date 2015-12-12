@@ -490,10 +490,11 @@ public class UIManager {
      * @param context
      * @param data
      */
-    public static void startPeiLianPingJia(WanActivity context, MyPeiLian data) {
+    public static void startPeiLianPingJia(WanActivity context, PeiLian data) {
         Intent i=new Intent();
         i.setClass(context, PeiLianPingJiaActivity.class);
         i.putExtra("data",data);
         context.startActivity(i);
     }
+
 }

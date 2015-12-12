@@ -2,6 +2,7 @@ package com.qingsongjia.qingsongjia.driverexam;
 
 
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.ExamImageTextAdapter;
 import com.qingsongjia.qingsongjia.bean.ExamImageText;
+import com.qingsongjia.qingsongjia.bean.User;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.qingsongjia.qingsongjia.yuekao.InquiryExamActivity;
@@ -50,41 +52,53 @@ public class SubjectTwoFragment extends WanFragment implements AdapterView.OnIte
     protected void initView(View view) {
         ButterKnife.bind(this, view);
 
-        ArrayList<String> urls=new ArrayList<>();
+        ArrayList<String> urls = new ArrayList<>();
         urls.add(LocalPreference.getTopImagePath(getContext()));
         sunbjectTwoAdView.setShowURLs(urls);
 
         data = new ArrayList<>();
-        data.add(new ExamImageText(R.drawable.icon_exam_seatbelt,"安全带"));
-        data.add(new ExamImageText(R.drawable.icon_exam_dhkg,"点火开关"));
-        data.add(new ExamImageText(R.drawable.icon_exam_fxp,"方向盘"));
-        data.add(new ExamImageText(R.drawable.icon_exam_lhq,"离合器"));
-        data.add(new ExamImageText(R.drawable.icon_exam_jstb,"加速踏板"));
-        data.add(new ExamImageText(R.drawable.icon_exam_zxzd,"驻车制动"));
-        data.add(new ExamImageText(R.drawable.icon_exam_zytz,"座椅调整"));
-        data.add(new ExamImageText(R.drawable.icon_exam_hsj,"后视镜"));
-        ExamImageTextAdapter adapter=new ExamImageTextAdapter(getContext(), data,R.layout.item_exam_imagetext);
+        data.add(new ExamImageText(R.drawable.icon_exam_seatbelt, "安全带"));
+        data.add(new ExamImageText(R.drawable.icon_exam_dhkg, "点火开关"));
+        data.add(new ExamImageText(R.drawable.icon_exam_fxp, "方向盘"));
+        data.add(new ExamImageText(R.drawable.icon_exam_lhq, "离合器"));
+        data.add(new ExamImageText(R.drawable.icon_exam_jstb, "加速踏板"));
+        data.add(new ExamImageText(R.drawable.icon_exam_zxzd, "驻车制动"));
+        data.add(new ExamImageText(R.drawable.icon_exam_zytz, "座椅调整"));
+        data.add(new ExamImageText(R.drawable.icon_exam_hsj, "后视镜"));
+        ExamImageTextAdapter adapter = new ExamImageTextAdapter(getContext(), data, R.layout.item_exam_imagetext);
         sunbjectTwoViews.setAdapter(adapter);
         sunbjectTwoViews.setOnItemClickListener(this);
 
-        ArrayList<ExamImageText> data2=new ArrayList<>();
-        data2.add(new ExamImageText(R.drawable.icon_exam_yyks,"预约考试"));
-        data2.add(new ExamImageText(R.drawable.icon_exam_yylc,"预约教练"));
-        ExamImageTextAdapter adapter2=new ExamImageTextAdapter(getContext(),data2,R.layout.item_exam_imagetext);
+        ArrayList<ExamImageText> data2 = new ArrayList<>();
+        data2.add(new ExamImageText(R.drawable.icon_exam_yyks, "预约考试"));
+        data2.add(new ExamImageText(R.drawable.icon_exam_yylc, "预约教练"));
+        ExamImageTextAdapter adapter2 = new ExamImageTextAdapter(getContext(), data2, R.layout.item_exam_imagetext);
         sunbjectTwoOthers.setAdapter(adapter2);
+        //dri_type 0 :学生 1 教练
+        User u = LocalPreference.getCurrentUser(getContext());
+        int type = 0;
+        if (!TextUtils.isEmpty(u.getDri_type()) && (
+                !u.getDri_type().endsWith("0"))) {
+            type = 1;
+        }
+
+        if (type == 1) {
+            //教练
+            sunbjectTwoOthers.setVisibility(View.GONE);
+        }
 
 
         sunbjectTwoOthers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               switch (i){
-                   case 0:
-                       UIManager.startInquiryExam(getContext(), InquiryExamActivity.INQUIRY_TYPE_TWO);
-                       break;
-                   case 1:
-                       UIManager.startInquiryTraining(getContext());
-                       break;
-               }
+                switch (i) {
+                    case 0:
+                        UIManager.startInquiryExam(getContext(), InquiryExamActivity.INQUIRY_TYPE_TWO);
+                        break;
+                    case 1:
+                        UIManager.startInquiryTraining(getContext());
+                        break;
+                }
             }
         });
 
@@ -105,30 +119,30 @@ public class SubjectTwoFragment extends WanFragment implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (i){
+        switch (i) {
             case 0:
-                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_AQD);
+                UIManager.startExamDetail(getContext(), data.get(i).getShowText(), ExamDetailActivity.DETAIL_TYPE_AQD);
                 break;
             case 1:
-                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_DHKG);
+                UIManager.startExamDetail(getContext(), data.get(i).getShowText(), ExamDetailActivity.DETAIL_TYPE_DHKG);
                 break;
             case 2:
-                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_FXP);
+                UIManager.startExamDetail(getContext(), data.get(i).getShowText(), ExamDetailActivity.DETAIL_TYPE_FXP);
                 break;
             case 3:
-                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_LHQ);
+                UIManager.startExamDetail(getContext(), data.get(i).getShowText(), ExamDetailActivity.DETAIL_TYPE_LHQ);
                 break;
             case 4:
-                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_JSTB);
+                UIManager.startExamDetail(getContext(), data.get(i).getShowText(), ExamDetailActivity.DETAIL_TYPE_JSTB);
                 break;
             case 5:
-                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_ZCZD);
+                UIManager.startExamDetail(getContext(), data.get(i).getShowText(), ExamDetailActivity.DETAIL_TYPE_ZCZD);
                 break;
             case 6:
-                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_ZYTZ);
+                UIManager.startExamDetail(getContext(), data.get(i).getShowText(), ExamDetailActivity.DETAIL_TYPE_ZYTZ);
                 break;
             case 7:
-                UIManager.startExamDetail(getContext(),data.get(i).getShowText(),ExamDetailActivity.DETAIL_TYPE_HSJ);
+                UIManager.startExamDetail(getContext(), data.get(i).getShowText(), ExamDetailActivity.DETAIL_TYPE_HSJ);
                 break;
         }
 

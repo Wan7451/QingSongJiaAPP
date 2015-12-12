@@ -499,4 +499,11 @@ public class NetRequest {
         NetUtils.baseRequest(context, "driapppartnerTrain/changeState", params, false, handler);
 
     }
+
+    public static void peijiapinglui(WanActivity context, int id,String remark, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", id+"");
+        params.put("dri_remark", string2Unicode(remark));
+        NetUtils.baseRequest(context, "driapppartnerTrain/remark", params, false, handler);
+    }
 }

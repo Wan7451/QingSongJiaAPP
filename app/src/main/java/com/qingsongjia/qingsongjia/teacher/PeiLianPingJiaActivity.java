@@ -5,13 +5,18 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.MyPeiLian;
+import com.qingsongjia.qingsongjia.bean.PeiLian;
+import com.qingsongjia.qingsongjia.utils.NetRequest;
+import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
@@ -44,7 +49,7 @@ public class PeiLianPingJiaActivity extends WanActivity {
     @Bind(R.id.yxconfirm_queren)
     Button yxconfirmQueren;
 
-    private MyPeiLian peiLian;
+    private PeiLian peiLian;
 
 
     @Override
@@ -66,6 +71,35 @@ public class PeiLianPingJiaActivity extends WanActivity {
         teacherType.setText(peiLian.getDri_partner_type_nm());
         teacherPrice.setText(peiLian.getDri_price() + "元");
 
+
+        yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String remark = content.getText().toString();
+                if (TextUtils.isEmpty(remark)) {
+                    showToast("评论不能为空");
+                    return;
+                }
+
+                NetRequest.peijiapinglui(getContext(), peiLian.getId(), remark, new NetUtils.NetUtilsHandler() {
+                    @Override
+                    public void onResponseOK(JSONArray response, int total) {
+                        showToast("评论成功");
+                        finish();
+                    }
+
+                    @Override
+                    public void onResponseError(String error) {
+                        if(TextUtils.isEmpty(error)){
+                            showToast("评论失败");
+                        }else {
+                            showToast(error);
+                        }
+
+                    }
+                });
+            }
+        });
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.qingsongjia.qingsongjia.plxc;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -58,6 +59,10 @@ public class InquirySendActivity extends WanActivity {
         teacherName.setText(peiLian.getContactName());
         teacherTime.setText(peiLian.getMeetingDate_str()+" "+peiLian.getMeetingTime()+"时");
 
+        if(!TextUtils.isEmpty(peiLian.getDri_file_path())){
+            teacherIcon.setImageURI(Uri.parse(peiLian.getDri_file_path()));
+        }
+
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,6 +72,8 @@ public class InquirySendActivity extends WanActivity {
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("预约成功");
                         finish();
+                        UIManager.startPeiLianPingJia(getContext(),peiLian);
+
                     }
 
                     @Override

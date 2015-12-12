@@ -39,6 +39,7 @@ public class PeiLian implements Parcelable {
      * validateCode :
      */
 
+
     private String carType;
     private String contactName;
     private int create_id;
@@ -116,6 +117,13 @@ public class PeiLian implements Parcelable {
 
     private UpdateTmEntity update_tm;
     private String validateCode;
+    /**
+     * dri_file_path : http://7xlt5l.com1.z0.glb.clouddn.com/1449569620506bktgst2225720
+     * dri_user_nm : 李响
+     */
+
+    private String dri_file_path;
+    private String dri_user_nm;
 
     public void setCarType(String carType) {
         this.carType = carType;
@@ -331,6 +339,22 @@ public class PeiLian implements Parcelable {
 
     public String getValidateCode() {
         return validateCode;
+    }
+
+    public void setDri_file_path(String dri_file_path) {
+        this.dri_file_path = dri_file_path;
+    }
+
+    public void setDri_user_nm(String dri_user_nm) {
+        this.dri_user_nm = dri_user_nm;
+    }
+
+    public String getDri_file_path() {
+        return dri_file_path;
+    }
+
+    public String getDri_user_nm() {
+        return dri_user_nm;
     }
 
     public static class CreateTmEntity {
@@ -748,7 +772,7 @@ public class PeiLian implements Parcelable {
         this.validateCode = in.readString();
     }
 
-    public static final Parcelable.Creator<PeiLian> CREATOR = new Parcelable.Creator<PeiLian>() {
+    public static final Creator<PeiLian> CREATOR = new Creator<PeiLian>() {
         public PeiLian createFromParcel(Parcel source) {
             return new PeiLian(source);
         }
