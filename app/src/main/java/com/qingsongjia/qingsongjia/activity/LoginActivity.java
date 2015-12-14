@@ -52,9 +52,7 @@ public class LoginActivity extends WanActivity {
         isLogin = getIntent().getBooleanExtra("isLogin",false);
 
 
-        User user = LocalPreference.getCurrentUser(getContext());
-//        if (!TextUtils.isEmpty(user.getDri_type())) {
-        if (!isLogin && !LocalPreference.isFirstUse(getContext())) {
+        if (!isLogin) {
             startActivity(new Intent(getContext(), MainActivity.class));
             finish();
         }
