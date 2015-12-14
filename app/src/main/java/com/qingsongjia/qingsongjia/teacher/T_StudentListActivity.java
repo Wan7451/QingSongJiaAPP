@@ -20,7 +20,7 @@ import com.wan7451.wanadapter.recycle.WanViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyStudentActivity extends WanListActivity {
+public class T_StudentListActivity extends WanListActivity {
 
     private ArrayList<MyStudent> data=new ArrayList<>();
 

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFF"
-    tools:context=".yuexun.InquiryTrainingActivity">
+    tools:context=".yuexun.S_InquiryTrainingActivity">
 
     <LinearLayout
         android:id="@+id/training_choiceTime"

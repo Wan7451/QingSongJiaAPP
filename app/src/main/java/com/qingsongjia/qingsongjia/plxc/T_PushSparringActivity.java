@@ -1,4 +1,4 @@
-package com.qingsongjia.qingsongjia.teacher;
+package com.qingsongjia.qingsongjia.plxc;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -24,7 +24,10 @@ import java.util.Calendar;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class PushOrderActivity extends WanActivity {
+/**
+ * 发布陪练
+ */
+public class T_PushSparringActivity extends WanActivity {
 
 
     @Bind(R.id.training_time)

@@ -1,28 +1,29 @@
-package com.qingsongjia.qingsongjia.teacher;
+package com.qingsongjia.qingsongjia.plxc;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.MyPeiLian;
-import com.qingsongjia.qingsongjia.bean.PeiLian;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class PeiLianPingJiaActivity extends WanActivity {
+/**
+ * 陪练确认接口
+ */
+public class T_SparringConfirmActivity extends WanActivity {
+
 
     @Bind(R.id.teacher_icon)
     SimpleDraweeView teacherIcon;
@@ -38,26 +39,33 @@ public class PeiLianPingJiaActivity extends WanActivity {
     TextView teacherTime;
     @Bind(R.id.teacher_neirong)
     TextView teacherNeirong;
+    @Bind(R.id.yxconfirm_queren)
+    Button yxconfirmQueren;
     @Bind(R.id.teacher_tele)
     TextView teacherTele;
     @Bind(R.id.teacher_type)
     TextView teacherType;
     @Bind(R.id.teacher_price)
     TextView teacherPrice;
-    @Bind(R.id.content)
-    EditText content;
-    @Bind(R.id.yxconfirm_queren)
-    Button yxconfirmQueren;
+    @Bind(R.id.teacher_typeText)
+    TextView teacherTypeText;
 
-    private PeiLian peiLian;
-
+    private MyPeiLian peiLian;
 
     @Override
     public void initView() {
-        ButterKnife.bind(this);
-        setContentTitle("评价");
+        setContentTitle("确认");
         setBackFinish();
+        ButterKnife.bind(this);
+        setRightText("投诉", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIManager.startTouSuo(getContext(), peiLian.getId());
+            }
+        });
+
         peiLian = getIntent().getParcelableExtra("data");
+
 
 
         if (!TextUtils.isEmpty(peiLian.getDri_file_path())) {
@@ -69,33 +77,27 @@ public class PeiLianPingJiaActivity extends WanActivity {
         teacherTele.setText(peiLian.getTelephoneNumber());
 
         teacherType.setText(peiLian.getDri_partner_type_nm());
-        teacherPrice.setText(peiLian.getDri_price() + "元");
+        teacherPrice.setText(peiLian.getDri_price()+"元");
 
 
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String remark = content.getText().toString();
-                if (TextUtils.isEmpty(remark)) {
-                    showToast("评论不能为空");
-                    return;
-                }
-
-                NetRequest.peijiapinglui(getContext(), peiLian.getId(), remark, new NetUtils.NetUtilsHandler() {
+                NetRequest.queRenPeiLian(getContext(),peiLian.getId(), new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
-                        showToast("评论成功");
+                        showToast("确认成功");
+                       // UIManager.startPeiLianPingJia(getContext(),peiLian);
                         finish();
                     }
 
                     @Override
                     public void onResponseError(String error) {
                         if(TextUtils.isEmpty(error)){
-                            showToast("评论失败");
+                            showToast("确认失败");
                         }else {
                             showToast(error);
                         }
-
                     }
                 });
             }
@@ -104,7 +106,7 @@ public class PeiLianPingJiaActivity extends WanActivity {
 
     @Override
     protected int getMainViewLayoutId() {
-        return R.layout.activity_pei_lian_ping_jia;
+        return R.layout.activity_inquiry_confirm;
     }
 
 }

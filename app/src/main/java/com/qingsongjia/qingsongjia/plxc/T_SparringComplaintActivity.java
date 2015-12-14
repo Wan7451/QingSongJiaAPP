@@ -1,4 +1,4 @@
-package com.qingsongjia.qingsongjia.teacher;
+package com.qingsongjia.qingsongjia.plxc;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,7 +15,10 @@ import com.wan7451.base.WanActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class PeiLianTouSuActivity extends WanActivity {
+/**
+ * 陪练投诉
+ */
+public class T_SparringComplaintActivity extends WanActivity {
 
 
     @Bind(R.id.content)

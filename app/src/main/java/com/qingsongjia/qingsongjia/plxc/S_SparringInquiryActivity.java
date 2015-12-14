@@ -1,4 +1,4 @@
-package com.qingsongjia.qingsongjia.teacher;
+package com.qingsongjia.qingsongjia.plxc;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
-import com.qingsongjia.qingsongjia.bean.MyPeiLian;
+import com.qingsongjia.qingsongjia.bean.PeiLian;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -19,10 +19,7 @@ import com.wan7451.base.WanActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * 陪练确认接口
- */
-public class InquiryConfirmActivity extends WanActivity {
+public class S_SparringInquiryActivity extends WanActivity {
 
 
     @Bind(R.id.teacher_icon)
@@ -41,22 +38,16 @@ public class InquiryConfirmActivity extends WanActivity {
     TextView teacherNeirong;
     @Bind(R.id.yxconfirm_queren)
     Button yxconfirmQueren;
-    @Bind(R.id.teacher_tele)
-    TextView teacherTele;
-    @Bind(R.id.teacher_type)
-    TextView teacherType;
-    @Bind(R.id.teacher_price)
-    TextView teacherPrice;
-    @Bind(R.id.teacher_typeText)
-    TextView teacherTypeText;
 
-    private MyPeiLian peiLian;
+
+   private PeiLian peiLian;//陪练数据
 
     @Override
     public void initView() {
-        setContentTitle("确认");
-        setBackFinish();
         ButterKnife.bind(this);
+        setBackFinish();
+        setContentTitle("预约");
+
         setRightText("投诉", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,37 +55,31 @@ public class InquiryConfirmActivity extends WanActivity {
             }
         });
 
-        peiLian = getIntent().getParcelableExtra("data");
+        peiLian = getIntent().getParcelableExtra("peilian");
+        teacherName.setText(peiLian.getContactName());
+        teacherTime.setText(peiLian.getMeetingDate_str()+" "+peiLian.getMeetingTime()+"时");
 
-
-
-        if (!TextUtils.isEmpty(peiLian.getDri_file_path())) {
+        if(!TextUtils.isEmpty(peiLian.getDri_file_path())){
             teacherIcon.setImageURI(Uri.parse(peiLian.getDri_file_path()));
         }
-        teacherName.setText(peiLian.getDri_user_nm());
-        teacherTime.setText(peiLian.getMeetingDate_str());
-        teacherNeirong.setText(peiLian.getDri_partner_type_nm());
-        teacherTele.setText(peiLian.getTelephoneNumber());
-
-        teacherType.setText(peiLian.getDri_partner_type_nm());
-        teacherPrice.setText(peiLian.getDri_price()+"元");
-
 
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NetRequest.queRenPeiLian(getContext(),peiLian.getId(), new NetUtils.NetUtilsHandler() {
+                //预约陪练
+                NetRequest.inquiryPeiLian(getContext(),peiLian.getId(), new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
-                        showToast("确认成功");
-                       // UIManager.startPeiLianPingJia(getContext(),peiLian);
+                        showToast("预约成功");
                         finish();
+                        UIManager.startPeiLianPingJia(getContext(),peiLian);
+
                     }
 
                     @Override
                     public void onResponseError(String error) {
                         if(TextUtils.isEmpty(error)){
-                            showToast("确认失败");
+                            showToast("预约失败");
                         }else {
                             showToast(error);
                         }
@@ -106,7 +91,7 @@ public class InquiryConfirmActivity extends WanActivity {
 
     @Override
     protected int getMainViewLayoutId() {
-        return R.layout.activity_inquiry_confirm;
+        return R.layout.activity_send_inquiry;
     }
 
 }

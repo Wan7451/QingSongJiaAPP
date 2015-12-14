@@ -23,7 +23,7 @@ import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
+@Deprecated
 public class TeacherLoginActivity extends WanActivity {
 
 

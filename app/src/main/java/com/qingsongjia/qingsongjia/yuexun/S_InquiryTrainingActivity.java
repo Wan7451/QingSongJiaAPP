@@ -25,7 +25,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
-public class InquiryTrainingActivity extends WanActivity {
+/**
+ * 预约训练
+ */
+public class S_InquiryTrainingActivity extends WanActivity {
 
 
     @Bind(R.id.training_time)

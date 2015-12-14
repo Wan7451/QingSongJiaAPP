@@ -1,4 +1,4 @@
-package com.qingsongjia.qingsongjia.teacher;
+package com.qingsongjia.qingsongjia.yuexun;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -29,7 +29,7 @@ import java.util.List;
  * 教练 学生约训
  */
 
-public class MyStudentYXActivity extends WanListActivity {
+public class T_TrainingListActivity extends WanListActivity {
 
     private ArrayList<MyYueKao> data = new ArrayList<>();
 

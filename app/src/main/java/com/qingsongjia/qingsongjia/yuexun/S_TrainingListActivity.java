@@ -1,18 +1,13 @@
-package com.qingsongjia.qingsongjia.plxc;
+package com.qingsongjia.qingsongjia.yuexun;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
-import com.qingsongjia.qingsongjia.adapter.PenLianAdapter;
-import com.qingsongjia.qingsongjia.bean.PeiLian;
+import com.qingsongjia.qingsongjia.bean.MyYueKao;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -24,12 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 学员    陪练列表
+ * 学员  我的练习 约训列表
  */
-public class PenLianActivity extends WanListActivity {
+public class S_TrainingListActivity extends WanListActivity {
 
 
-    private ArrayList<PeiLian> data = new ArrayList<>();
+    private ArrayList<MyYueKao> data = new ArrayList<>();
 
     @Override
     protected int getMainViewLayoutId() {
@@ -40,7 +35,7 @@ public class PenLianActivity extends WanListActivity {
     public void initView() {
         super.initView();
         setBackFinish();
-        setContentTitle("陪练行程");
+        setContentTitle("我的练习");
         setRightText("编辑");
     }
 
@@ -51,7 +46,7 @@ public class PenLianActivity extends WanListActivity {
 
     @Override
     public WanAdapter getAdapter() {
-        PenLianAdapter adapter = new PenLianAdapter(getContext(), data, R.layout.item_order_list);
+        MyTestAdapter adapter = new MyTestAdapter(getContext(), data, R.layout.item_mytest_list);
         View header = getLayoutInflater().inflate(R.layout.activity_my_test, null);
         adapter.addHeaderView(header);
         return adapter;
@@ -60,12 +55,13 @@ public class PenLianActivity extends WanListActivity {
     @Override
     protected void loadData() {
 
-        NetRequest.loadMyPenLian(getContext(), new NetUtils.NetUtilsHandler() {
+        //我的约练
+        NetRequest.getMyYueLian(getContext(), new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();
                 if (!TextUtils.equals("[{}]", response.toJSONString())) {
-                    data.addAll(JSONArray.parseArray(response.toJSONString(), PeiLian.class));
+                    data.addAll(JSONArray.parseArray(response.toJSONString(), MyYueKao.class));
                 }
                 loadFinish("");
             }
@@ -75,11 +71,34 @@ public class PenLianActivity extends WanListActivity {
 
             }
         });
+
+
     }
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-        UIManager.startPenLianDetail(getContext(),data.get(posotion));
+        UIManager.startMyTestDetail(getContext(),data.get(posotion));
     }
 
+    static class MyTestAdapter extends WanAdapter<MyYueKao> {
+
+        public MyTestAdapter(Context context, List<MyYueKao> mDatas, int itemLayoutId) {
+            super(context, mDatas, itemLayoutId);
+        }
+
+        @Override
+        public void convert(WanViewHolder holder, int position, MyYueKao item) {
+            TextView time = holder.getView(R.id.time);
+            String t = item.getDri_dt_str()+ " " + item.getDri_start_hm() + "-" + item.getDri_end_hm();
+            time.setText(t);
+
+            TextView keme = holder.getView(R.id.kemu);
+            keme.setText(item.getDri_sub_nm());
+
+            TextView status = holder.findViewById(R.id.status);
+            String state = item.getDri_state_nm();
+            status.setText(state);
+
+        }
+    }
 }

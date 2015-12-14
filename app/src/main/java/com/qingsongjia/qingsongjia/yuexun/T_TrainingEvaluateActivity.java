@@ -1,6 +1,5 @@
-package com.qingsongjia.qingsongjia.teacher;
+package com.qingsongjia.qingsongjia.yuexun;
 
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +12,7 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.MyYueKao;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
+import com.qingsongjia.qingsongjia.yuexun.T_TrainingConfirmActivity;
 import com.wan7451.base.WanActivity;
 
 import java.text.SimpleDateFormat;
@@ -21,7 +21,7 @@ import java.util.Date;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class YXEvaluateActivity extends WanActivity {
+public class T_TrainingEvaluateActivity extends WanActivity {
 
 
     @Bind(R.id.teacher_icon)
@@ -79,7 +79,7 @@ public class YXEvaluateActivity extends WanActivity {
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("评价成功");
                         finish();
-                        colseActivity(YXConfirmActivity.class);
+                        colseActivity(T_TrainingConfirmActivity.class);
                     }
 
                     @Override

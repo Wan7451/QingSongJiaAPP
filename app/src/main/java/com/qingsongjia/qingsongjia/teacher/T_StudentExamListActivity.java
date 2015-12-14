@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * 教练 学生约考
  */
-public class MyStudentYKActivity extends WanListActivity {
+public class T_StudentExamListActivity extends WanListActivity {
 
     private ArrayList<MyKaoShi> data = new ArrayList<>();
 

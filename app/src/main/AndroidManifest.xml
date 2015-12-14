@@ -69,7 +69,7 @@
             android:label="@string/title_activity_exam_test"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".yuexun.InquiryTrainingActivity"
+            android:name=".yuexun.S_InquiryTrainingActivity"
             android:label="@string/title_activity_inquiry_training"
             android:theme="@style/AppTheme" />
         <activity
@@ -105,7 +105,7 @@
             android:label="@string/title_activity_my_exam"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".plxc.PenLianActivity"
+            android:name=".plxc.S_SparringListActivity"
             android:label="@string/title_activity_pen_lian"
             android:theme="@style/AppTheme" />
         <activity
@@ -146,59 +146,47 @@
             android:label="@string/title_activity_teacher_login"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.MyStudentActivity"
+            android:name=".teacher.T_StudentListActivity"
             android:label="@string/title_activity_my_student"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.TeacherTestActivity"
-            android:label="@string/title_activity_teacher_test"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".teacher.MyStudentYKActivity"
+            android:name=".teacher.T_StudentExamListActivity"
             android:label="@string/title_activity_my_student_yk"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.MyStudentYXActivity"
+            android:name=".yuexun.T_TrainingListActivity"
             android:label="@string/title_activity_my_student_yx"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.YXConfirmActivity"
+            android:name=".yuexun.T_TrainingConfirmActivity"
             android:label="@string/title_activity_yxconfirm"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.YXEvaluateActivity"
+            android:name=".yuexun.T_TrainingEvaluateActivity"
             android:label="@string/title_activity_yxevaluate"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.PeiLianXingChengActivity"
+            android:name=".plxc.T_SparringListActivity"
             android:label="@string/title_activity_pei_lian_xing_cheng"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.OrderListActivity"
-            android:label="@string/title_activity_order_list"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".plxc.InquirySendActivity"
+            android:name=".plxc.S_SparringInquiryActivity"
             android:label="@string/title_activity_send_inquiry"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.InquiryConfirmActivity"
+            android:name=".plxc.T_SparringConfirmActivity"
             android:label="@string/title_activity_inquiry_confirm"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.InquiryEvaluateActivity"
-            android:label="@string/title_activity_inquiry_evaluate"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".teacher.PeiLianTouSuActivity"
+            android:name=".plxc.T_SparringComplaintActivity"
             android:label="@string/title_activity_tou_su"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.PushOrderActivity"
+            android:name=".plxc.T_PushSparringActivity"
             android:label="@string/title_activity_push_order"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.YXStudentConfirmActivity"
+            android:name=".yuexun.S_TrainingConfirmActivity"
             android:label="@string/title_activity_yxstudent_confirm"
             android:theme="@style/AppTheme" />
         <activity
@@ -211,11 +199,11 @@
             android:exported="false" />
 
         <activity
-            android:name=".yuexun.MyTestDetailActivity"
+            android:name=".yuexun.S_TrainingDetailActivity"
             android:label="@string/title_activity_my_test_detail"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".yuexun.MyTestActivity"
+            android:name=".yuexun.S_TrainingListActivity"
             android:label="@string/title_activity_my_test_detail"
             android:theme="@style/AppTheme" />
         <activity
@@ -231,15 +219,11 @@
             android:label="@string/title_activity_school_detail"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".plxc.PeiLianListActivity"
+            android:name=".plxc.AllSparringListActivity"
             android:label="@string/title_activity_pei_lian_list"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.YXTConfrimActivity"
-            android:label="@string/title_activity_yxtconfrim"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".yuexun.YXEvaluateActivity"
+            android:name=".yuexun.S_TrainingEvaluateActivity"
             android:label="@string/title_activity_yxevaluate"
             android:theme="@style/AppTheme" />
         <activity
@@ -263,7 +247,7 @@
             android:label="@string/title_activity_xin_shou_shang_lu"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".teacher.PeiLianPingJiaActivity"
+            android:name=".plxc.T_SparringEvaluateActivity"
             android:label="@string/title_activity_pei_lian_ping_jia"
             android:theme="@style/AppTheme"></activity>
     </application>

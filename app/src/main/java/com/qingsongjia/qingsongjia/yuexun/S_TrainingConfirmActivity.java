@@ -1,4 +1,4 @@
-package com.qingsongjia.qingsongjia.teacher;
+package com.qingsongjia.qingsongjia.yuexun;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -15,7 +15,7 @@ import com.wan7451.base.WanActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class YXStudentConfirmActivity extends WanActivity {
+public class S_TrainingConfirmActivity extends WanActivity {
 
 
     @Bind(R.id.teacher_icon)

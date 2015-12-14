@@ -13,7 +13,10 @@ import com.wan7451.base.WanActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MyTestDetailActivity extends WanActivity {
+/**
+ * 约训详情
+ */
+public class S_TrainingDetailActivity extends WanActivity {
 
 
     @Bind(R.id.time)

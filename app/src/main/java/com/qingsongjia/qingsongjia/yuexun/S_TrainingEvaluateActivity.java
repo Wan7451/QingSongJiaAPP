@@ -1,6 +1,5 @@
 package com.qingsongjia.qingsongjia.yuexun;
 
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.MyYueKao;
-import com.qingsongjia.qingsongjia.teacher.YXConfirmActivity;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.wan7451.base.WanActivity;
@@ -21,7 +19,7 @@ import butterknife.ButterKnife;
 /**
  * 学员练习评价
  */
-public class YXEvaluateActivity extends WanActivity {
+public class S_TrainingEvaluateActivity extends WanActivity {
 
 
     @Bind(R.id.time)

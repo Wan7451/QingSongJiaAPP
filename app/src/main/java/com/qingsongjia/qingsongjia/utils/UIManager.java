@@ -23,11 +23,11 @@ import com.qingsongjia.qingsongjia.driverexam.XinShouShangLuListActivity;
 import com.qingsongjia.qingsongjia.driverschool.AreaListActivity;
 import com.qingsongjia.qingsongjia.driverschool.CityListActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolDetailActivity;
-import com.qingsongjia.qingsongjia.plxc.PeiLianListActivity;
-import com.qingsongjia.qingsongjia.teacher.PeiLianPingJiaActivity;
-import com.qingsongjia.qingsongjia.teacher.PeiLianTouSuActivity;
+import com.qingsongjia.qingsongjia.plxc.AllSparringListActivity;
+import com.qingsongjia.qingsongjia.plxc.T_SparringEvaluateActivity;
+import com.qingsongjia.qingsongjia.plxc.T_SparringComplaintActivity;
 import com.qingsongjia.qingsongjia.yuekao.InquiryExamActivity;
-import com.qingsongjia.qingsongjia.yuexun.InquiryTrainingActivity;
+import com.qingsongjia.qingsongjia.yuexun.S_InquiryTrainingActivity;
 import com.qingsongjia.qingsongjia.driverexam.ItemListActivity;
 import com.qingsongjia.qingsongjia.driverexam.JiaoTongBiaoZhiActivity;
 import com.qingsongjia.qingsongjia.driverexam.JiaoTongBiaoZhiGridActivity;
@@ -37,15 +37,15 @@ import com.qingsongjia.qingsongjia.driverexam.WebActivity;
 import com.qingsongjia.qingsongjia.driverexam.ZhangJieLianXiActivity;
 import com.qingsongjia.qingsongjia.driverexam.ZhuanIXiangLianXiActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolSearchActivity;
-import com.qingsongjia.qingsongjia.plxc.InquirySendActivity;
-import com.qingsongjia.qingsongjia.teacher.InquiryConfirmActivity;
-import com.qingsongjia.qingsongjia.teacher.MyStudentActivity;
-import com.qingsongjia.qingsongjia.teacher.MyStudentYKActivity;
-import com.qingsongjia.qingsongjia.teacher.MyStudentYXActivity;
-import com.qingsongjia.qingsongjia.teacher.PeiLianXingChengActivity;
-import com.qingsongjia.qingsongjia.teacher.PushOrderActivity;
-import com.qingsongjia.qingsongjia.teacher.YXConfirmActivity;
-import com.qingsongjia.qingsongjia.teacher.YXEvaluateActivity;
+import com.qingsongjia.qingsongjia.plxc.S_SparringInquiryActivity;
+import com.qingsongjia.qingsongjia.plxc.T_SparringConfirmActivity;
+import com.qingsongjia.qingsongjia.teacher.T_StudentListActivity;
+import com.qingsongjia.qingsongjia.teacher.T_StudentExamListActivity;
+import com.qingsongjia.qingsongjia.yuexun.T_TrainingListActivity;
+import com.qingsongjia.qingsongjia.plxc.T_SparringListActivity;
+import com.qingsongjia.qingsongjia.plxc.T_PushSparringActivity;
+import com.qingsongjia.qingsongjia.yuexun.T_TrainingConfirmActivity;
+import com.qingsongjia.qingsongjia.yuexun.T_TrainingEvaluateActivity;
 import com.qingsongjia.qingsongjia.user.ChangeExamLibsActivity;
 import com.qingsongjia.qingsongjia.yuekao.MyExamActivity;
 import com.qingsongjia.qingsongjia.user.MyJiFeiActivity;
@@ -53,11 +53,12 @@ import com.qingsongjia.qingsongjia.user.MyMessageActivity;
 import com.qingsongjia.qingsongjia.user.MyTeacherActivity;
 import com.qingsongjia.qingsongjia.user.MyYouHuiJuanActivity;
 import com.qingsongjia.qingsongjia.user.MyYuEActivity;
-import com.qingsongjia.qingsongjia.plxc.PenLianActivity;
+import com.qingsongjia.qingsongjia.plxc.S_SparringListActivity;
 import com.qingsongjia.qingsongjia.user.SettingActivity;
 import com.qingsongjia.qingsongjia.user.TiXianActivity;
-import com.qingsongjia.qingsongjia.yuexun.MyTestActivity;
-import com.qingsongjia.qingsongjia.yuexun.MyTestDetailActivity;
+import com.qingsongjia.qingsongjia.yuexun.S_TrainingEvaluateActivity;
+import com.qingsongjia.qingsongjia.yuexun.S_TrainingListActivity;
+import com.qingsongjia.qingsongjia.yuexun.S_TrainingDetailActivity;
 import com.wan7451.base.WanActivity;
 
 import java.util.ArrayList;
@@ -147,7 +148,7 @@ public class UIManager {
 
     public static void startInquiryTraining(Context context) {
         Intent i = new Intent();
-        i.setClass(context, InquiryTrainingActivity.class);
+        i.setClass(context, S_InquiryTrainingActivity.class);
         context.startActivity(i);
     }
 
@@ -199,7 +200,7 @@ public class UIManager {
 
     public static void startMyTest(Context context) {
         Intent i = new Intent();
-        i.setClass(context, MyTestActivity.class);
+        i.setClass(context, S_TrainingListActivity.class);
         context.startActivity(i);
     }
 
@@ -211,7 +212,7 @@ public class UIManager {
 
     public static void startPenLian(Context context) {
         Intent i = new Intent();
-        i.setClass(context, PenLianActivity.class);
+        i.setClass(context, S_SparringListActivity.class);
         context.startActivity(i);
     }
 
@@ -265,39 +266,39 @@ public class UIManager {
 
     public static void startMyStudents(Context context) {
         Intent i = new Intent();
-        i.setClass(context, MyStudentActivity.class);
+        i.setClass(context, T_StudentListActivity.class);
         context.startActivity(i);
     }
 
     public static void startMyStudentYK(Context context) {
         Intent i = new Intent();
-        i.setClass(context, MyStudentYKActivity.class);
+        i.setClass(context, T_StudentExamListActivity.class);
         context.startActivity(i);
     }
 
     public static void startMyStudentYX(Context context) {
         Intent i = new Intent();
-        i.setClass(context, MyStudentYXActivity.class);
+        i.setClass(context, T_TrainingListActivity.class);
         context.startActivity(i);
     }
 
     public static void startYXConfirm(WanActivity context, int id) {
         Intent i = new Intent();
-        i.setClass(context, YXConfirmActivity.class);
+        i.setClass(context, T_TrainingConfirmActivity.class);
         i.putExtra("id", id);
         context.startActivity(i);
     }
 
     public static void startYXEvaluate(WanActivity context, MyYueKao data) {
         Intent i = new Intent();
-        i.setClass(context, YXEvaluateActivity.class);
+        i.setClass(context, T_TrainingEvaluateActivity.class);
         i.putExtra("data", data);
         context.startActivity(i);
     }
 
     public static void startMyPeiLianXingCheng(Context context) {
         Intent i = new Intent();
-        i.setClass(context, PeiLianXingChengActivity.class);
+        i.setClass(context, T_SparringListActivity.class);
         context.startActivity(i);
     }
 
@@ -308,7 +309,7 @@ public class UIManager {
      */
     public static void startPushOrder(Context context) {
         Intent i = new Intent();
-        i.setClass(context, PushOrderActivity.class);
+        i.setClass(context, T_PushSparringActivity.class);
         context.startActivity(i);
 
     }
@@ -320,7 +321,7 @@ public class UIManager {
      */
     public static void startYueXunConfirm(WanActivity context, MyYueKao data) {
         Intent i = new Intent();
-        i.setClass(context, YXConfirmActivity.class);
+        i.setClass(context, T_TrainingConfirmActivity.class);
         i.putExtra("data", data);
         context.startActivity(i);
     }
@@ -333,7 +334,7 @@ public class UIManager {
      */
     public static void startPenLianDetail(Context context, PeiLian item) {
         Intent i = new Intent();
-        i.setClass(context, InquirySendActivity.class);
+        i.setClass(context, S_SparringInquiryActivity.class);
         i.putExtra("peilian", item);
         context.startActivity(i);
     }
@@ -377,7 +378,7 @@ public class UIManager {
      */
     public static void startInquiryConfirm(WanActivity context, MyPeiLian data) {
         Intent i = new Intent();
-        i.setClass(context.getContext(), InquiryConfirmActivity.class);
+        i.setClass(context.getContext(), T_SparringConfirmActivity.class);
         i.putExtra("data", data);
         context.startActivity(i);
     }
@@ -390,7 +391,7 @@ public class UIManager {
      */
     public static void startMyTestDetail(WanActivity context, MyYueKao data) {
         Intent i = new Intent();
-        i.setClass(context.getContext(), MyTestDetailActivity.class);
+        i.setClass(context.getContext(), S_TrainingDetailActivity.class);
         i.putExtra("data", data);
         context.startActivity(i);
     }
@@ -431,13 +432,13 @@ public class UIManager {
 
     public static void startPeiLianList(Context context) {
         Intent i = new Intent();
-        i.setClass(context, PeiLianListActivity.class);
+        i.setClass(context, AllSparringListActivity.class);
         context.startActivity(i);
     }
 
     public static void startYueXunComnent(WanActivity context, MyYueKao data) {
         Intent i = new Intent();
-        i.setClass(context, YXEvaluateActivity.class);
+        i.setClass(context, T_TrainingEvaluateActivity.class);
         i.putExtra("data",data);
         context.startActivity(i);
     }
@@ -448,14 +449,14 @@ public class UIManager {
      */
     public static void startTouSuo(WanActivity context,int id) {
         Intent i = new Intent();
-        i.setClass(context, PeiLianTouSuActivity.class);
+        i.setClass(context, T_SparringComplaintActivity.class);
         i.putExtra("id",id);
         context.startActivity(i);
     }
 
     public static void startStudentYXEval(WanActivity context, MyYueKao data) {
         Intent i = new Intent();
-        i.setClass(context, com.qingsongjia.qingsongjia.yuexun.YXEvaluateActivity.class);
+        i.setClass(context, S_TrainingEvaluateActivity.class);
         i.putExtra("data",data);
         context.startActivity(i);
     }
@@ -492,7 +493,7 @@ public class UIManager {
      */
     public static void startPeiLianPingJia(WanActivity context, PeiLian data) {
         Intent i=new Intent();
-        i.setClass(context, PeiLianPingJiaActivity.class);
+        i.setClass(context, T_SparringEvaluateActivity.class);
         i.putExtra("data",data);
         context.startActivity(i);
     }
