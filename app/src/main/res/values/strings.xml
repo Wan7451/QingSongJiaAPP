@@ -59,4 +59,5 @@
     <string name="title_activity_xin_shou_shang_lu">XinShouShangLuActivity</string>
     <string name="title_activity_pei_lian_ping_jia">PeiLianPingJiaActivity</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_map">MapActivity</string>
 </resources>

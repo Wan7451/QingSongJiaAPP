@@ -17,13 +17,32 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+        debug {
+            storeFile file("/Users/wanggang/Documents/MyApplicationQingSongJia/dudujiadao.jks")
+            storePassword "dudujiadao"
+            keyAlias "dudujiadao"
+            keyPassword "dudujiadao"
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
 
 //    sourceSets {
 //        main {
 //            java.srcDirs = ['src/main/java', 'src/main/java-gen']
 //        }
 //    }
+
+
 }
+
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

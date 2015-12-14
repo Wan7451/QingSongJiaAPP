@@ -1,6 +1,7 @@
 package com.qingsongjia.qingsongjia.driverschool;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -16,6 +17,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.activity.MapActivity;
 import com.qingsongjia.qingsongjia.bean.SchoolDetail;
 import com.qingsongjia.qingsongjia.bean.StreetView;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
@@ -91,6 +93,13 @@ public class SchoolDetailActivity extends WanActivity {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+
+        schoolinfoTvAddr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),MapActivity.class));
             }
         });
     }
