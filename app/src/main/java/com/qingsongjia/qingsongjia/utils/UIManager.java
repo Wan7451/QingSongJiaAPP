@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 
 import com.qingsongjia.qingsongjia.activity.LoginActivity;
+import com.qingsongjia.qingsongjia.activity.MainActivity;
+import com.qingsongjia.qingsongjia.activity.MapActivity;
 import com.qingsongjia.qingsongjia.activity.RegisterActivity;
 import com.qingsongjia.qingsongjia.activity.SetPasswordActivity;
 import com.qingsongjia.qingsongjia.activity.VerifyPhoneActivity;
@@ -12,6 +14,7 @@ import com.qingsongjia.qingsongjia.bean.CityData;
 import com.qingsongjia.qingsongjia.bean.MyPeiLian;
 import com.qingsongjia.qingsongjia.bean.MyYueKao;
 import com.qingsongjia.qingsongjia.bean.PeiLian;
+import com.qingsongjia.qingsongjia.bean.SchoolDetail;
 import com.qingsongjia.qingsongjia.driverexam.AnalogyExamActivity;
 import com.qingsongjia.qingsongjia.driverexam.AnalogyTestActivity;
 import com.qingsongjia.qingsongjia.driverexam.ExamDetailActivity;
@@ -21,8 +24,11 @@ import com.qingsongjia.qingsongjia.driverexam.WebListActivity;
 import com.qingsongjia.qingsongjia.driverexam.XinShouShangLuActivity;
 import com.qingsongjia.qingsongjia.driverexam.XinShouShangLuListActivity;
 import com.qingsongjia.qingsongjia.driverschool.AreaListActivity;
+import com.qingsongjia.qingsongjia.driverschool.BusRouteActivity;
 import com.qingsongjia.qingsongjia.driverschool.CityListActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolDetailActivity;
+import com.qingsongjia.qingsongjia.driverschool.SchoolEvaluateActivity;
+import com.qingsongjia.qingsongjia.driverschool.SchoolImgsActivity;
 import com.qingsongjia.qingsongjia.plxc.AllSparringListActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringEvaluateActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringComplaintActivity;
@@ -498,4 +504,40 @@ public class UIManager {
         context.startActivity(i);
     }
 
+    /**
+     * 打开百度地图
+     * @param context
+     */
+    public static void startMapView(WanActivity context, String title, String map_addr) {
+        Intent i=new Intent();
+        i.setClass(context, MapActivity.class);
+        i.putExtra("title",title);
+        i.putExtra("map_addr",map_addr);
+        context.startActivity(i);
+    }
+
+    /**
+     * 班车路线
+     * @param context
+     */
+    public static void startBusRoute(WanActivity context, String routeLine) {
+        Intent i=new Intent();
+        i.setClass(context, BusRouteActivity.class);
+        i.putExtra("routeLine",routeLine);
+        context.startActivity(i);
+    }
+
+    public static void startSchoolImages(WanActivity context, String[] imgs) {
+        Intent i=new Intent();
+        i.setClass(context, SchoolImgsActivity.class);
+        i.putExtra("imgs",imgs);
+        context.startActivity(i);
+    }
+
+    public static void startSchoolEvaluate(WanActivity context, SchoolDetail data ) {
+        Intent i=new Intent();
+        i.setClass(context, SchoolEvaluateActivity.class);
+        i.putExtra("data",data);
+        context.startActivity(i);
+    }
 }

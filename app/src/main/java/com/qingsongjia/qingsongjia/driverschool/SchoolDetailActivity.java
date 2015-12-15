@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,11 +24,13 @@ import com.qingsongjia.qingsongjia.bean.SchoolDetail;
 import com.qingsongjia.qingsongjia.bean.StreetView;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
 import com.wan7451.wanadapter.list.CommonAdapter;
 import com.wan7451.wanadapter.list.ViewHolder;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,8 +38,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class SchoolDetailActivity extends WanActivity {
-
-
 
 
     @Bind(R.id.schoolinfo_iv_logo)
@@ -78,7 +80,11 @@ public class SchoolDetailActivity extends WanActivity {
     TextView schoolinfoTvInfo;
     @Bind(R.id.schoolinfo_btn_baoming)
     Button schoolinfoBtnBaoming;
+
+    @Bind(R.id.schoolinfo_score)
+    LinearLayout schoolinfoScore;
     private int id;
+    private SchoolDetail detail;
 
     @Override
     public void initView() {
@@ -99,9 +105,47 @@ public class SchoolDetailActivity extends WanActivity {
         schoolinfoTvAddr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(),MapActivity.class));
+
+                UIManager.startMapView(getContext(), detail.getDri_nm(), detail.getDri_map_address());
             }
         });
+
+        schoolinfoTvBus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIManager.startBusRoute(getContext(), detail.getDri_way());
+            }
+        });
+
+        schoolinfoIvImgsCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSchoolImgs();
+            }
+        });
+        schoolinfoGvImgs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                showSchoolImgs();
+            }
+        });
+
+        schoolinfoScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIManager.startSchoolEvaluate(getContext(),detail);
+            }
+        });
+    }
+
+    private void showSchoolImgs() {
+        ArrayList<StreetView> streetViews = detail.getStreet_view();
+        String[] paths = new String[streetViews.size()];
+        for (int i = 0; i < streetViews.size(); i++) {
+            String path = streetViews.get(i).getDri_file_path();
+            paths[i] = path;
+        }
+        UIManager.startSchoolImages(getContext(), paths);
     }
 
     private void loadData() {
@@ -110,7 +154,7 @@ public class SchoolDetailActivity extends WanActivity {
             public void onResponseOK(JSONArray response, int total) {
                 if (!TextUtils.equals(response.toJSONString(), "[{}]")) {
                     String data = response.getString(0);
-                    SchoolDetail detail = JSONObject.parseObject(data, SchoolDetail.class);
+                    detail = JSONObject.parseObject(data, SchoolDetail.class);
                     fillData(detail);
                 }
             }
@@ -128,7 +172,6 @@ public class SchoolDetailActivity extends WanActivity {
     protected int getMainViewLayoutId() {
         return R.layout.activity_school_info;
     }
-
 
 
     private void fillData(SchoolDetail detail) {
@@ -152,30 +195,30 @@ public class SchoolDetailActivity extends WanActivity {
             schoolinfoTvTel.setText("暂时没有电话");
         }
         schoolinfoTvAddr.setText(detail.getDri_address());
-        schoolinfoIvImgsCount.setText(detail.getStreet_view().size()+"张");
+        schoolinfoIvImgsCount.setText(detail.getStreet_view().size() + "张");
 //        schoolinfoGvImgs
 
-        schoolinfoTvFen.setText(detail.getDri_sum()+"分");
-        schoolinfoTvRen.setText(detail.getCountpepole()+"人评分");
+        schoolinfoTvFen.setText(detail.getDri_sum() + "分");
+        schoolinfoTvRen.setText(detail.getCountpepole() + "人评分");
 
         schoolinfoTimeRating.setRating(detail.getDri_time());
-        schoolinfoTimeFen.setText(detail.getDri_time()+"分");
+        schoolinfoTimeFen.setText(detail.getDri_time() + "分");
 
         schoolinfoAddrRating.setRating(detail.getDri_place());
-        schoolinfoAddrFen.setText(detail.getDri_place()+"分");
+        schoolinfoAddrFen.setText(detail.getDri_place() + "分");
 
         schoolinfoPassRating.setRating(detail.getDri_pass());
-        schoolinfoPassFen.setText(detail.getDri_pass()+"分");
+        schoolinfoPassFen.setText(detail.getDri_pass() + "分");
 
         schoolinfoTvInfo.setText(detail.getDri_report());
 
         ImageAdapter adapte = new ImageAdapter(getContext(), detail.getStreet_view(), R.layout.item_school_grid);
         schoolinfoGvImgs.setAdapter(adapte);
-//        schoolinfoTvBus.setText(detail.getDri_way());
+        schoolinfoTvBus.setText(detail.getDri_way());
     }
 
 
-    class ImageAdapter extends CommonAdapter<StreetView>{
+    class ImageAdapter extends CommonAdapter<StreetView> {
 
         public ImageAdapter(Context context, List<StreetView> mDatas, int itemLayoutId) {
             super(context, mDatas, itemLayoutId);
@@ -183,8 +226,8 @@ public class SchoolDetailActivity extends WanActivity {
 
         @Override
         public void convert(ViewHolder helper, int position, StreetView item) {
-            SimpleDraweeView icon=    helper.getView(R.id.img);
-            if(!TextUtils.isEmpty(item.getDri_file_path())){
+            SimpleDraweeView icon = helper.getView(R.id.img);
+            if (!TextUtils.isEmpty(item.getDri_file_path())) {
                 icon.setImageURI(Uri.parse(item.getDri_file_path()));
             }
         }

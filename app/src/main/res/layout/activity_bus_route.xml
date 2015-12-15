@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.qingsongjia.qingsongjia.driverschool.BusRouteActivity">
+
+
+    <TextView
+        android:id="@+id/luxian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/view_margin"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingTop="@dimen/view_margin"
+        android:background="#FFF"
+        android:textColor="@color/text_default"/>
+
+    <View style="@style/divider1" />
+
+    <View style="@style/divider10" />
+
+    <View style="@style/divider1" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/default_bg" />
+</LinearLayout>

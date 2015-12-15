@@ -1,9 +1,12 @@
 package com.qingsongjia.qingsongjia.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by wanggang on 15/12/12.
  */
-public class StreetView {
+public class StreetView implements Parcelable {
 
     /**
      * did : 131
@@ -78,4 +81,43 @@ public class StreetView {
     public int getId() {
         return id;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.did);
+        dest.writeInt(this.dri_campus_id);
+        dest.writeString(this.dri_campus_nm);
+        dest.writeString(this.dri_file_nm);
+        dest.writeString(this.dri_file_path);
+        dest.writeString(this.dri_fx_campus_nm);
+        dest.writeInt(this.id);
+    }
+
+    public StreetView() {
+    }
+
+    protected StreetView(Parcel in) {
+        this.did = in.readInt();
+        this.dri_campus_id = in.readInt();
+        this.dri_campus_nm = in.readString();
+        this.dri_file_nm = in.readString();
+        this.dri_file_path = in.readString();
+        this.dri_fx_campus_nm = in.readString();
+        this.id = in.readInt();
+    }
+
+    public static final Parcelable.Creator<StreetView> CREATOR = new Parcelable.Creator<StreetView>() {
+        public StreetView createFromParcel(Parcel source) {
+            return new StreetView(source);
+        }
+
+        public StreetView[] newArray(int size) {
+            return new StreetView[size];
+        }
+    };
 }

@@ -89,7 +89,7 @@ public class S_TrainingListActivity extends WanListActivity {
         @Override
         public void convert(WanViewHolder holder, int position, MyYueKao item) {
             TextView time = holder.getView(R.id.time);
-            String t = item.getDri_dt_str()+ " " + item.getDri_start_hm() + "-" + item.getDri_end_hm();
+            String t = item.getDri_dt_str()+ " " + item.getDri_start_hm() + "点 -" + item.getDri_end_hm()+"点";
             time.setText(t);
 
             TextView keme = holder.getView(R.id.kemu);

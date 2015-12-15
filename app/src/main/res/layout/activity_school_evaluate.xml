@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.qingsongjia.qingsongjia.driverschool.SchoolEvaluateActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/space10"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingTop="@dimen/space10">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/schoolinfo_tv_fen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0分"
+                android:textColor="@color/text_import"
+                android:textSize="@dimen/textSize20" />
+
+            <TextView
+                android:id="@+id/schoolinfo_tv_ren"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0人评分" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/space10"
+            android:layout_marginTop="@dimen/space10"
+            android:background="@color/divider1" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="练车时间:" />
+
+                <RatingBar
+                    android:id="@+id/schoolinfo_time_rating"
+                    style="@style/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:numStars="5"
+                    android:isIndicator="true"
+                    android:rating="5" />
+
+                <TextView
+                    android:id="@+id/schoolinfo_time_fen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="5分" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space10"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="练车场地:" />
+
+                <RatingBar
+                    android:isIndicator="true"
+                    android:id="@+id/schoolinfo_addr_rating"
+                    style="@style/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:numStars="5"
+                    android:rating="4.5" />
+
+                <TextView
+                    android:id="@+id/schoolinfo_addr_fen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="5分" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space10"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="通&#160;&#160;过&#160;&#160;率:" />
+
+                <RatingBar
+                    android:isIndicator="true"
+                    android:id="@+id/schoolinfo_pass_rating"
+                    style="@style/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:numStars="5"
+                    android:rating="4.5" />
+
+                <TextView
+                    android:id="@+id/schoolinfo_pass_fen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="5分" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/divider1"/>
+    <View style="@style/divider10"/>
+    <View style="@style/divider1"/>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/navigation_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="center"
+        app:tabIndicatorColor="@color/toolbar_bg"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/toolbar_bg"
+        app:tabTextColor="#999999" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <View style="@style/divider1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:background="#FFF">
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/button"
+            android:text="发表"
+            android:layout_marginLeft="@dimen/space5"
+            android:padding="@dimen/space10"/>
+    </LinearLayout>
+
+</LinearLayout>

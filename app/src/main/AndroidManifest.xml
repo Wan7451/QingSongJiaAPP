@@ -33,7 +33,7 @@
         <activity android:name=".driverschool.SchoolSearchActivity" />
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.RegisterActivity"
             android:label="@string/title_activity_register"
@@ -269,6 +269,18 @@
         <activity
             android:name=".activity.MapActivity"
             android:label="@string/title_activity_map"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverschool.BusRouteActivity"
+            android:label="@string/title_activity_bus_route"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverschool.SchoolImgsActivity"
+            android:label="@string/title_activity_school_imgs"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverschool.SchoolEvaluateActivity"
+            android:label="@string/title_activity_school_evaluate"
             android:theme="@style/AppTheme"></activity>
     </application>
 

@@ -120,7 +120,7 @@ public class T_TrainingListActivity extends WanListActivity {
                 return;
 
             TextView time = holder.getView(R.id.time);
-            time.setText(item.getDri_dt_str() + " " + item.getDri_start_hm() + "-" + item.getDri_end_hm());
+            time.setText(item.getDri_dt_str() + " " + item.getDri_start_hm() + "点 -" + item.getDri_end_hm()+"点");
 
             TextView keme = holder.getView(R.id.kemu);
             keme.setText(item.getDri_sub_nm());

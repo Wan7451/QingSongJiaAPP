@@ -60,4 +60,7 @@
     <string name="title_activity_pei_lian_ping_jia">PeiLianPingJiaActivity</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_bus_route">BusRouteActivity</string>
+    <string name="title_activity_school_imgs">SchoolImgsActivity</string>
+    <string name="title_activity_school_evaluate">SchoolEvaluateActivity</string>
 </resources>

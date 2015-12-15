@@ -2,12 +2,16 @@ package com.qingsongjia.qingsongjia.driverexam;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.bean.User;
+import com.qingsongjia.qingsongjia.bean.UserData;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
 
@@ -51,13 +55,18 @@ public class AnalogyExamActivity extends WanActivity {
 
         type = getIntent().getIntExtra("type", 1);
 
-        analogyIcon.setImageURI(Uri.parse("res:// /" + R.drawable.icon_default_head));
-        analogyName.setText("好运到");
-        analogySchool.setText("(东方时尚驾校)");
+        UserData user = LocalPreference.getCurrentUserData(getContext());
+        if (!TextUtils.isEmpty(user.getDri_file_path())) {
+            analogyIcon.setImageURI(Uri.parse(user.getDri_file_path()));
+        }
+        if (!TextUtils.isEmpty(user.getDri_nm()))
+            analogyName.setText(user.getDri_nm());
+        if (!TextUtils.isEmpty(user.getDri_campus_nm()))
+            analogySchool.setText("(" + user.getDri_campus_nm() + ")");
         analogyHint.setText("您可以登录学员中心更新个人资料哦");
 
-        analogySubject.setText("教练员考试");
-        analogyCarType.setText("手动档");
+        analogySubject.setText(LocalPreference.getCurrentKemu(getContext()).getName());
+        analogyCarType.setText(LocalPreference.getCurrentTiKu(getContext()).getName());
         analogyTandard.setText("100题 45分钟");
         analogyQualified.setText("满分100分，80分及格");
 

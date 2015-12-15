@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space10"
-            android:background="@drawable/icon_schoollist_zan" />
+            android:background="@drawable/icon_schoollist_zan_normal" />
 
     </LinearLayout>
 </LinearLayout>

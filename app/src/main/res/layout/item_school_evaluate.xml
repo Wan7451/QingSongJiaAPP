@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/view_margin"
+    android:paddingRight="@dimen/view_margin"
+    android:paddingTop="@dimen/space10"
+    android:paddingBottom="@dimen/space10">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/evaluate_icon"
+        android:layout_width="@dimen/space60"
+        android:layout_height="@dimen/space60"
+        app:roundAsCircle="true"
+        android:layout_marginRight="@dimen/space10" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space60"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/evaluate_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="name" />
+
+                <TextView
+                    android:id="@+id/evaluate_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space5"
+                    android:text="time" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_exch_zan" />
+
+            <TextView
+                android:id="@+id/evaluate_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space5"
+                android:text="count" />
+        </LinearLayout>
+
+        <View style="@style/divider1" />
+
+        <TextView
+            android:id="@+id/evaluate_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="text" />
+    </LinearLayout>
+
+</LinearLayout>

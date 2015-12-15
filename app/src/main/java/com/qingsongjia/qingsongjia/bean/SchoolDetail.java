@@ -1,11 +1,17 @@
 package com.qingsongjia.qingsongjia.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 /**
  * Created by wanggang on 15/12/11.
  */
-public class SchoolDetail {
+public class SchoolDetail implements Parcelable {
+
+
+
     //    "countpepole": 0,
 //            "dri_address": "山西省太原市东岗南路252-30号（南内环街现代女子医院南300米）",
 //            "dri_campus_id": 288,
@@ -172,4 +178,59 @@ public class SchoolDetail {
     public void setStreet_view(ArrayList<StreetView> street_view) {
         this.street_view = street_view;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.countpepole);
+        dest.writeString(this.dri_address);
+        dest.writeInt(this.dri_campus_id);
+        dest.writeString(this.dri_file_path);
+        dest.writeString(this.dri_map_address);
+        dest.writeInt(this.dri_money);
+        dest.writeString(this.dri_nm);
+        dest.writeInt(this.dri_pass);
+        dest.writeInt(this.dri_place);
+        dest.writeInt(this.dri_sum);
+        dest.writeString(this.dri_report);
+        dest.writeString(this.dri_tel1);
+        dest.writeString(this.dri_tel2);
+        dest.writeString(this.dri_way);
+        dest.writeInt(this.dri_time);
+        dest.writeList(this.street_view);
+    }
+
+    protected SchoolDetail(Parcel in) {
+        this.countpepole = in.readInt();
+        this.dri_address = in.readString();
+        this.dri_campus_id = in.readInt();
+        this.dri_file_path = in.readString();
+        this.dri_map_address = in.readString();
+        this.dri_money = in.readInt();
+        this.dri_nm = in.readString();
+        this.dri_pass = in.readInt();
+        this.dri_place = in.readInt();
+        this.dri_sum = in.readInt();
+        this.dri_report = in.readString();
+        this.dri_tel1 = in.readString();
+        this.dri_tel2 = in.readString();
+        this.dri_way = in.readString();
+        this.dri_time = in.readInt();
+        this.street_view = new ArrayList<>();
+        in.readList(this.street_view, getClass().getClassLoader());
+    }
+
+    public static final Parcelable.Creator<SchoolDetail> CREATOR = new Parcelable.Creator<SchoolDetail>() {
+        public SchoolDetail createFromParcel(Parcel source) {
+            return new SchoolDetail(source);
+        }
+
+        public SchoolDetail[] newArray(int size) {
+            return new SchoolDetail[size];
+        }
+    };
 }

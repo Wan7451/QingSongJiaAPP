@@ -309,7 +309,7 @@ public class NetRequest {
      */
     public static void getPeiLianList(Context context, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("dri_state","1");
+        params.put("dri_state", "1");
 //        params.put("user_id", LocalPreference.getCurrentUser(context).getId()+"");
         NetUtils.baseRequest(context, "driapppartnerTrain/queryForList", params, false, handler);
 
@@ -489,21 +489,78 @@ public class NetRequest {
 
     /**
      * 教练端  确认学员陪练
+     *
      * @param context
      * @param handler
      */
-    public static void queRenPeiLian(WanActivity context,int id, NetUtils.NetUtilsHandler handler) {
+    public static void queRenPeiLian(WanActivity context, int id, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("id", id+"");
+        params.put("id", id + "");
         params.put("status", "3");
         NetUtils.baseRequest(context, "driapppartnerTrain/changeState", params, false, handler);
 
     }
 
-    public static void peijiapinglui(WanActivity context, int id,String remark, NetUtils.NetUtilsHandler handler) {
+    public static void peijiapinglui(WanActivity context, int id, String remark, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("id", id+"");
+        params.put("id", id + "");
         params.put("dri_remark", string2Unicode(remark));
         NetUtils.baseRequest(context, "driapppartnerTrain/remark", params, false, handler);
+    }
+
+    /**
+     * 驾校点赞
+     *
+     * @param context
+     * @param campus_id
+     * @param handler
+     */
+    public static void schoolZan(Context context, int campus_id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        User user = LocalPreference.getCurrentUser(context);
+        params.put("user_id", user.getId() + "");
+        params.put("dri_praise", "1");
+        params.put("campusId", campus_id + "");
+        NetUtils.baseRequest(context, "driapppraiseweb/save", params, false, handler);
+
+    }
+
+    /**
+     * 驾校取消点赞
+     *
+     * @param context
+     * @param campus_id
+     * @param handler
+     */
+    public static void schoolCancelZan(Context context, int campus_id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        User user = LocalPreference.getCurrentUser(context);
+        params.put("user_id", user.getId() + "");
+        params.put("campusId", campus_id + "");
+        NetUtils.baseRequest(context, "driapppraiseweb/offpraise", params, false, handler);
+    }
+
+    /**
+     * 获得驾校评分
+     * @param context
+     * @param campus_id
+     */
+    public static void getSchoolScores(WanActivity context, int campus_id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+//        User user = LocalPreference.getCurrentUser(context);
+//        params.put("user_id", user.getId() + "");
+        params.put("campusId", campus_id + "");
+        NetUtils.baseRequest(context, "driappcommentweb/loadCampusGrade", params, true, handler);
+
+    }
+
+    public static void loadAllSchoolEvaluate(Context context, int id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+//        User user = LocalPreference.getCurrentUser(context);
+//        params.put("user_id", user.getId() + "");
+//        params.put("campusId", id + "");
+        params.put("campusId", 250+"");
+        NetUtils.baseRequest(context, "driappcommentweb/queryForList", params, false, handler);
+
     }
 }
