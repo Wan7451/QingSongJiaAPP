@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.qingsongjia.qingsongjia.user.StudentMessageActivity">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/space70"
+        android:layout_height="@dimen/space70"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/space30"
+        android:layout_marginTop="@dimen/space30"
+        app:fadeDuration="300"
+        app:placeholderImage="@drawable/default_head"
+        app:roundAsCircle="true" />
+
+
+    <View style="@style/divider1" />
+
+    <View style="@style/divider10" />
+
+    <View style="@style/divider1" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingTop="@dimen/space10"
+        android:paddingBottom="@dimen/space10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名"
+            android:textColor="@color/text_default_hint"/>
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:paddingTop="@dimen/space3"
+            android:paddingBottom="@dimen/space3"
+            android:gravity="right"
+            android:textSize="@dimen/textSize14"
+            android:layout_marginRight="@dimen/space10"
+            android:layout_marginLeft="@dimen/space10"
+            android:textColor="@color/text_default"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="-90"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_arrow_gray"/>
+    </LinearLayout>
+    <View style="@style/divider1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingTop="@dimen/space10"
+        android:paddingBottom="@dimen/space10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电话"
+            android:textColor="@color/text_default_hint"/>
+
+        <EditText
+            android:id="@+id/numb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:paddingTop="@dimen/space3"
+            android:paddingBottom="@dimen/space3"
+            android:gravity="right"
+            android:textSize="@dimen/textSize14"
+            android:layout_marginRight="@dimen/space10"
+            android:layout_marginLeft="@dimen/space10"
+            android:textColor="@color/text_default"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="-90"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_arrow_gray"/>
+    </LinearLayout>
+    <View style="@style/divider1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingTop="@dimen/space10"
+        android:paddingBottom="@dimen/space10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="驾校"
+            android:textColor="@color/text_default_hint"/>
+
+        <TextView
+            android:id="@+id/chool"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:paddingTop="@dimen/space3"
+            android:paddingBottom="@dimen/space3"
+            android:gravity="right"
+            android:layout_marginRight="@dimen/space10"
+            android:layout_marginLeft="@dimen/space10"
+            android:textColor="@color/text_default"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="-90"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_arrow_gray"/>
+    </LinearLayout>
+    <View style="@style/divider1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingTop="@dimen/space10"
+        android:paddingBottom="@dimen/space10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="教练"
+            android:textColor="@color/text_default_hint"/>
+
+        <TextView
+            android:id="@+id/teacher"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:paddingTop="@dimen/space3"
+            android:paddingBottom="@dimen/space3"
+            android:gravity="right"
+            android:layout_marginRight="@dimen/space10"
+            android:layout_marginLeft="@dimen/space10"
+            android:textColor="@color/text_default"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="-90"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_arrow_gray"/>
+    </LinearLayout>
+    <View style="@style/divider1" />
+    <View style="@style/divider10"
+        android:layout_weight="1"/>
+
+</LinearLayout>

@@ -281,7 +281,17 @@
         <activity
             android:name=".driverschool.SchoolEvaluateActivity"
             android:label="@string/title_activity_school_evaluate"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverschool.SchoolListActivity"
+            android:label="@string/title_activity_school_list"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".user.StudentMessageActivity"
+            android:label="@string/title_activity_student_message"
             android:theme="@style/AppTheme"></activity>
+
+        <activity android:name="com.wan7451.choicepicture.ChoicePicturesActivity"/>
     </application>
 
 </manifest>

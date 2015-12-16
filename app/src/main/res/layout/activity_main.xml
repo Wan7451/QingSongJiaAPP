@@ -8,8 +8,7 @@
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/main_drawerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,7 +28,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/icon_exam_grsz"/>
+                    android:src="@drawable/icon_exam_grsz" />
 
                 <TextView
                     android:id="@+id/main_tv_title"
@@ -48,6 +47,17 @@
                     android:paddingRight="5dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/icon_search"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/main_tv_right"
+                    style="@style/title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/view_margin"
+                    android:paddingLeft="@dimen/space10"
+                    android:paddingRight="@dimen/space10"
                     android:visibility="gone" />
 
             </RelativeLayout>
@@ -77,16 +87,19 @@
                     style="@style/navigation_text"
                     android:drawableTop="@drawable/icon_exam_jk"
                     android:text="驾考" />
+
                 <RadioButton
                     android:id="@+id/main_tab2"
                     style="@style/navigation_text"
                     android:drawableTop="@drawable/icon_exam_jx"
                     android:text="驾校" />
+
                 <RadioButton
                     android:id="@+id/main_tab3"
                     style="@style/navigation_text"
                     android:drawableTop="@drawable/icon_exam_jl"
                     android:text="交流" />
+
                 <RadioButton
                     android:id="@+id/main_tab4"
                     style="@style/navigation_text"
@@ -99,16 +112,16 @@
 
         <FrameLayout
             android:id="@+id/main_menu_left"
-            android:layout_gravity="left"
             android:layout_width="300dp"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="match_parent"
+            android:layout_gravity="left"></FrameLayout>
         <!--<fragment-->
-            <!--android:id="@+id/main_menu_left"-->
-            <!--android:name="com.qingsongjia.qingsongjia.fragment.MenuFragment"-->
-            <!--android:layout_width="300dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_gravity="left"-->
-            <!--android:tag="LEFT" />-->
+        <!--android:id="@+id/main_menu_left"-->
+        <!--android:name="com.qingsongjia.qingsongjia.fragment.MenuFragment"-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="left"-->
+        <!--android:tag="LEFT" />-->
 
 
     </android.support.v4.widget.DrawerLayout>

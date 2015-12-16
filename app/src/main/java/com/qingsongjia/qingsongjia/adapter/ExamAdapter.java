@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 
+import com.qingsongjia.qingsongjia.driverexam.MainFragment;
 import com.qingsongjia.qingsongjia.driverexam.SubjectFourFragment;
 import com.qingsongjia.qingsongjia.driverexam.SubjectOneFragment;
 import com.qingsongjia.qingsongjia.driverexam.SubjectThreeFragment;
@@ -20,10 +21,11 @@ import java.util.ArrayList;
 public class ExamAdapter extends FragmentStatePagerAdapter {
 
     ArrayList<Fragment> fragments=new ArrayList<>();
-    String[] titles={"科一","科二","科三","科四"};
+    String[] titles={"首页","科一","科二","科三","科四"};
 
     public ExamAdapter(FragmentManager fm) {
         super(fm);
+        fragments.add(new MainFragment());
         fragments.add(new SubjectOneFragment());
         fragments.add(new SubjectTwoFragment());
         fragments.add(new SubjectThreeFragment());

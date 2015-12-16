@@ -29,9 +29,11 @@ import com.qingsongjia.qingsongjia.driverschool.CityListActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolDetailActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolEvaluateActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolImgsActivity;
+import com.qingsongjia.qingsongjia.driverschool.SchoolListActivity;
 import com.qingsongjia.qingsongjia.plxc.AllSparringListActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringEvaluateActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringComplaintActivity;
+import com.qingsongjia.qingsongjia.user.StudentMessageActivity;
 import com.qingsongjia.qingsongjia.yuekao.InquiryExamActivity;
 import com.qingsongjia.qingsongjia.yuexun.S_InquiryTrainingActivity;
 import com.qingsongjia.qingsongjia.driverexam.ItemListActivity;
@@ -361,7 +363,7 @@ public class UIManager {
     public static void startLogin(Context context) {
         Intent i = new Intent();
         i.setClass(context, LoginActivity.class);
-        i.putExtra("isLogin", true);
+        i.putExtra("isGoBack", true);
         context.startActivity(i);
     }
 
@@ -538,6 +540,18 @@ public class UIManager {
         Intent i=new Intent();
         i.setClass(context, SchoolEvaluateActivity.class);
         i.putExtra("data",data);
+        context.startActivity(i);
+    }
+
+    public static void startAllSchoolList(Context context) {
+        Intent i=new Intent();
+        i.setClass(context, SchoolListActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startStudentData(Context context) {
+        Intent i=new Intent();
+        i.setClass(context, StudentMessageActivity.class);
         context.startActivity(i);
     }
 }

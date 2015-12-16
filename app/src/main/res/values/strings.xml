@@ -63,4 +63,6 @@
     <string name="title_activity_bus_route">BusRouteActivity</string>
     <string name="title_activity_school_imgs">SchoolImgsActivity</string>
     <string name="title_activity_school_evaluate">SchoolEvaluateActivity</string>
+    <string name="title_activity_school_list">SchoolListActivity</string>
+    <string name="title_activity_student_message">StudentMessageActivity</string>
 </resources>

@@ -9,7 +9,7 @@
         android:id="@+id/sunbjectOne_AdView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space90" />
-
+    <View style="@style/divider1" />
     <View style="@style/divider10" />
 
     <View style="@style/divider1" />

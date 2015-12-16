@@ -65,6 +65,8 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     RadioGroup mainNavigation;
     @Bind(R.id.main_img_search)
     ImageView mainImgSearch;
+    @Bind(R.id.main_tv_right)
+    TextView mainTvRight;
 
     @Bind(R.id.main_menu_left)
     FrameLayout mainMenuLeft;
@@ -157,24 +159,29 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
                 mainTabHost.setCurrentTab(0);
                 LocalPreference.setCurrentKemu(this, KeMu.KEMU1);
                 mainImgSearch.setVisibility(View.GONE);
+                mainTvRight.setVisibility(View.GONE);
                 mainTvTitle.setText("嘟嘟驾道");
                 break;
             case R.id.main_tab2:
                 mainTabHost.setCurrentTab(1);
                 mainTvTitle.setText("找驾校");
                 mainImgSearch.setVisibility(View.VISIBLE);
+                mainTvRight.setVisibility(View.GONE);
                 LocalPreference.setCurrentKemu(this, KeMu.KEMU2);
                 break;
             case R.id.main_tab3:
                 mainTabHost.setCurrentTab(2);
                 LocalPreference.setCurrentKemu(this, KeMu.KEMU3);
                 mainImgSearch.setVisibility(View.GONE);
+                mainTvRight.setText("发帖");
+                mainTvRight.setVisibility(View.VISIBLE);
                 mainTvTitle.setText("交流");
                 break;
             case R.id.main_tab4:
                 mainTabHost.setCurrentTab(3);
                 LocalPreference.setCurrentKemu(this, KeMu.KEMU4);
                 mainImgSearch.setVisibility(View.GONE);
+                mainTvRight.setVisibility(View.GONE);
                 mainTvTitle.setText("工具");
                 break;
         }

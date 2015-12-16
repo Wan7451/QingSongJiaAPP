@@ -17,6 +17,11 @@ public class EventData {
      */
     public static final int TYPE_CHANGETOP = 1;
 
+    /**
+     * 刷新个人信息
+     */
+    public static final int TYPE_REFRESH_MENU = 2;
+
     private int type;
     private Object data;
 

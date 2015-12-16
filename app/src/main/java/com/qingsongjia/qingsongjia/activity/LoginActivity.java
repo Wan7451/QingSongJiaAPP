@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.User;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -19,6 +20,7 @@ import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 public class LoginActivity extends WanActivity {
 
@@ -49,13 +51,6 @@ public class LoginActivity extends WanActivity {
         });
         setContentTitle("登陆");
 
-        isLogin = getIntent().getBooleanExtra("isLogin",false);
-
-
-        if (!isLogin) {
-            startActivity(new Intent(getContext(), MainActivity.class));
-            finish();
-        }
 
         loginFastRegist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,11 +86,20 @@ public class LoginActivity extends WanActivity {
                 NetRequest.loginLogin(getContext(), tel, pasd, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
-                        colseActivity(MainActivity.class);
                         String user = response.getString(0);
                         LocalPreference.saveCurrentUser(getContext(), user);
-                        startActivity(new Intent(getContext(), MainActivity.class));
-                        finish();
+
+                        boolean isGoBack = getIntent().getBooleanExtra("isGoBack", false);
+
+                        if (isGoBack) {
+                            finish();
+                            EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_MENU, null));
+                        } else {
+                            colseActivity(MainActivity.class);
+                            startActivity(new Intent(getContext(), MainActivity.class));
+                            finish();
+                        }
+
                     }
 
                     @Override
@@ -115,6 +119,7 @@ public class LoginActivity extends WanActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), MainActivity.class));
+                finish();
             }
         });
     }
