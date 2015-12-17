@@ -1,7 +1,10 @@
 package com.qingsongjia.qingsongjia.user;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +17,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.UserData;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.others.ChoicePictureDialog;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -36,6 +40,7 @@ public class StudentMessageActivity extends WanActivity {
     TextView chool;
     @Bind(R.id.teacher)
     TextView teacher;
+    private ChoicePictureDialog dialog;
 
     @Override
     public void initView() {
@@ -47,9 +52,16 @@ public class StudentMessageActivity extends WanActivity {
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ChoicePicturesActivity.startChoicePicturesForResult(getContext(),111);
+                dialog = new ChoicePictureDialog(getContext(),icon);
             }
         });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        dialog.onActivityResult(requestCode,resultCode,data);
     }
 
     @Override

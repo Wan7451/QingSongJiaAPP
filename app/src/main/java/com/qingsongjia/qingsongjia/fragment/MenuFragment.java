@@ -91,6 +91,12 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
         userData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                User user = LocalPreference.getCurrentUser(getContext());
+                if (TextUtils.isEmpty(user.getDri_type())) {
+                    UIManager.startLogin(getContext());
+                    return;
+                }
                 UIManager.startStudentData(getContext());
             }
         });

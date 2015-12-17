@@ -37,14 +37,14 @@ public class SplashActivity extends Activity {
     }
 
     private void goNext() {
-        User user = LocalPreference.getCurrentUser(this);
-        if (!TextUtils.isEmpty(user.getDri_type())) {
+//        User user = LocalPreference.getCurrentUser(this);
+//        if (!TextUtils.isEmpty(user.getDri_type())) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
-        } else {
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
-        }
+//        } else {
+//            startActivity(new Intent(this, LoginActivity.class));
+//            finish();
+//        }
     }
 
 }
