@@ -30,6 +30,7 @@ import com.qingsongjia.qingsongjia.driverschool.SchoolDetailActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolEvaluateActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolImgsActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolListActivity;
+import com.qingsongjia.qingsongjia.driverschool.SignUpActivity;
 import com.qingsongjia.qingsongjia.plxc.AllSparringListActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringEvaluateActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringComplaintActivity;
@@ -552,6 +553,13 @@ public class UIManager {
     public static void startStudentData(Context context) {
         Intent i=new Intent();
         i.setClass(context, StudentMessageActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startSignUp(WanActivity context, int dri_campus_id) {
+        Intent i=new Intent();
+        i.setClass(context, SignUpActivity.class);
+        i.putExtra("id",dri_campus_id);
         context.startActivity(i);
     }
 }

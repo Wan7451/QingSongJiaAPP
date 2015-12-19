@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.qingsongjia.qingsongjia.driverschool.SignUpActivity">
+
+    <View style="@style/divider1"/>
+    <View style="@style/divider10"/>
+    <View style="@style/divider1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FFF"
+        style="@style/padding_normal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_default"
+            android:text="目的"/>
+
+        <RadioGroup
+            android:id="@+id/signup_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="报名"
+                android:button="@drawable/icon_radio_selector"
+                android:textColor="@color/text_default_hint"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="咨询"
+                android:layout_marginLeft="@dimen/space10"
+                android:button="@drawable/icon_radio_selector"
+                android:textColor="@color/text_default_hint"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <View style="@style/divider1"/>
+    <View style="@style/divider10"/>
+    <View style="@style/divider1"/>
+
+    <LinearLayout
+        android:id="@+id/signup_careTypeView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@style/padding_normal"
+        android:background="#FFF">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_default"
+            android:text="车型"/>
+
+        <TextView
+            android:id="@+id/signup_careType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_default_hint"
+            android:text="C1型(手动挡小车)"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="-90"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/space10"
+            android:src="@drawable/icon_arrow_gray"/>
+
+    </LinearLayout>
+
+    <View style="@style/divider1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@style/padding_normal"
+        android:paddingTop="@dimen/space8"
+        android:paddingBottom="@dimen/space8"
+        android:background="#FFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_default"
+            android:text="姓名"/>
+
+        <EditText
+            android:id="@+id/signup_name"
+            android:background="@drawable/shape_et_bg_small"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space10"
+            style="@style/editText"
+            />
+    </LinearLayout>
+
+    <View style="@style/divider1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@style/padding_normal"
+        android:paddingTop="@dimen/space8"
+        android:paddingBottom="@dimen/space8"
+        android:background="#FFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_default"
+            android:text="电话"/>
+
+        <EditText
+            android:id="@+id/signup_phone"
+            android:background="@drawable/shape_et_bg_small"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="@style/editText"
+            android:layout_marginLeft="@dimen/space10"
+            />
+    </LinearLayout>
+
+    <View style="@style/divider1"/>
+    <View style="@style/divider10"/>
+    <View style="@style/divider1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        style="@style/padding_normal">
+
+        <EditText
+            android:id="@+id/signup_mark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="5"
+            android:hint="我想说"
+            style="@style/editText"
+            android:background="@drawable/shape_et_bg"
+            android:gravity="left|top"/>
+
+    </LinearLayout>
+
+    <View style="@style/divider1"/>
+    <View style="@style/divider10"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="@dimen/space5"
+        android:paddingTop="@dimen/space5"
+        android:background="#FFF">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/button"
+            android:layout_gravity="center"
+            android:paddingLeft="@dimen/space60"
+            android:paddingRight="@dimen/space60"
+            android:text="提交"/>
+    </LinearLayout>
+</LinearLayout>

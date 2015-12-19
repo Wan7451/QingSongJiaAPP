@@ -65,4 +65,7 @@
     <string name="title_activity_school_evaluate">SchoolEvaluateActivity</string>
     <string name="title_activity_school_list">SchoolListActivity</string>
     <string name="title_activity_student_message">StudentMessageActivity</string>
+    <string name="title_activity_teacher_nessage">TeacherNessageActivity</string>
+    <string name="title_activity_activity_s">ActivityS</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
 </resources>

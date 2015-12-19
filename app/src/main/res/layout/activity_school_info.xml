@@ -356,8 +356,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:paddingBottom="@dimen/space10"
-                android:paddingTop="@dimen/space10">
+                android:paddingBottom="@dimen/space5"
+                android:paddingTop="@dimen/space5">
 
                 <Button
                     android:id="@+id/schoolinfo_btn_baoming"

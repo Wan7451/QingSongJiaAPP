@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.qingsongjia.qingsongjia">
+    package="com.qingsongjia.qingsongjia" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -20,7 +20,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="A7G3FzaP5Ify5DwvsfMsn7Aj" />
@@ -259,7 +259,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.SplashActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -289,9 +289,17 @@
         <activity
             android:name=".user.StudentMessageActivity"
             android:label="@string/title_activity_student_message"
-            android:theme="@style/AppTheme"></activity>
-
-        <activity android:name="com.wan7451.choicepicture.ChoicePicturesActivity"/>
+            android:theme="@style/AppTheme" />
+        <activity android:name="com.wan7451.choicepicture.ChoicePicturesActivity" />
+        <activity
+            android:name=".teacher.TeacherMessageActivity"
+            android:label="@string/title_activity_teacher_nessage"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".driverschool.SignUpActivity"
+            android:label="@string/title_activity_sign_up"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>

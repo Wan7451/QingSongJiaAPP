@@ -98,7 +98,7 @@ public class SchoolDetailActivity extends WanActivity {
         schoolinfoBtnBaoming.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                UIManager.startSignUp(getContext(),detail.getDri_campus_id());
             }
         });
 
