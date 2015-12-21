@@ -13,6 +13,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.Teacher;
 import com.qingsongjia.qingsongjia.bean.TeacherDetail;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
@@ -54,6 +55,11 @@ public class S_InquiryTrainingActivity extends WanActivity {
         ButterKnife.bind(this);
         setBackFinish();
         setContentTitle("约练");
+
+        if(TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())){
+            UIManager.startLogin(getContext());
+            return;
+        }
 
         trainingChoiceTime.setOnClickListener(new View.OnClickListener() {
             @Override

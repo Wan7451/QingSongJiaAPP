@@ -3,13 +3,14 @@ package com.qingsongjia.qingsongjia.driverschool;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.qingsongjia.qingsongjia.R;
-import com.qingsongjia.qingsongjia.adapter.ExamAdapter;
 import com.qingsongjia.qingsongjia.bean.SchoolDetail;
 import com.qingsongjia.qingsongjia.bean.SchoolScore;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
@@ -42,6 +43,10 @@ public class SchoolEvaluateActivity extends WanActivity {
     TabLayout navigationTab;
     @Bind(R.id.navigation_view)
     ViewPager navigationView;
+    @Bind(R.id.schoolinfo_eval)
+    EditText schoolinfoEval;
+    @Bind(R.id.schoolinfo_eval_send)
+    TextView schoolinfoEvalSend;
     private int id;
     private SchoolDetail detail;
 
@@ -68,13 +73,20 @@ public class SchoolEvaluateActivity extends WanActivity {
         schoolinfoPassFen.setText(detail.getDri_pass() + "分");
 
 
-        SchoolEvaluateAdapter adapter=new SchoolEvaluateAdapter(getSupportFragmentManager());
+        SchoolEvaluateAdapter adapter = new SchoolEvaluateAdapter(getSupportFragmentManager());
         navigationTab.setTabsFromPagerAdapter(adapter);
         navigationView.setAdapter(adapter);
         navigationTab.setTabsFromPagerAdapter(adapter);
         navigationTab.setupWithViewPager(navigationView);
         navigationTab.setTabMode(TabLayout.MODE_FIXED);
         navigationTab.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        schoolinfoEvalSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     public SchoolDetail getDetail() {

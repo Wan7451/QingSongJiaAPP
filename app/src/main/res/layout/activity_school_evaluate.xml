@@ -176,11 +176,13 @@
         android:paddingRight="@dimen/view_margin"
         android:background="#FFF">
         <EditText
+            android:id="@+id/schoolinfo_eval"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
         <TextView
+            android:id="@+id/schoolinfo_eval_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/button"

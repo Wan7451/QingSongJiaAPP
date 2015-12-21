@@ -46,6 +46,8 @@ public class MapActivity extends Activity {
         String title = getIntent().getStringExtra("title");
         String map_addr = getIntent().getStringExtra("map_addr");
 
+        String[] posotion=map_addr.split(",");
+
         titleText.setText(title);
         titleBack.setImageResource(R.drawable.icon_left_back);
         titleBack.setVisibility(View.VISIBLE);
@@ -62,7 +64,7 @@ public class MapActivity extends Activity {
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
 
         //定义Maker坐标点
-        LatLng point = new LatLng(39.963175, 116.400244);
+        LatLng point = new LatLng(Double.parseDouble(posotion[0]), Double.parseDouble(posotion[1]));
 
         MapStatus statu = new MapStatus.Builder().target(point).zoom(16).build();
         MapStatusUpdate status = MapStatusUpdateFactory.newMapStatus(statu);

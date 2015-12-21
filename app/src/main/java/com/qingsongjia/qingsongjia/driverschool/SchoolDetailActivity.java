@@ -105,7 +105,7 @@ public class SchoolDetailActivity extends WanActivity {
         schoolinfoTvAddr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(!TextUtils.isEmpty(detail.getDri_address()))
                 UIManager.startMapView(getContext(), detail.getDri_nm(), detail.getDri_map_address());
             }
         });
