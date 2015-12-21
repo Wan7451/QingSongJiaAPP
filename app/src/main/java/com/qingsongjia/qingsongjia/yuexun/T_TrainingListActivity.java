@@ -39,7 +39,7 @@ public class T_TrainingListActivity extends WanListActivity {
         super.initView();
         setBackFinish();
         setContentTitle("学员约训");
-        setRightText("编辑");
+//        setRightText("编辑");
     }
 
     @Override
@@ -76,12 +76,12 @@ public class T_TrainingListActivity extends WanListActivity {
                 if (!TextUtils.equals("[{}]", response.toJSONString())) {
                     data.addAll(JSONArray.parseArray(response.toJSONString(), MyYueKao.class));
                 }
-                loadFinish("");
+                loadFinish("暂时没有学员预约练习~");
             }
 
             @Override
             public void onResponseError(String error) {
-
+                loadError();
             }
         });
 
@@ -97,9 +97,9 @@ public class T_TrainingListActivity extends WanListActivity {
 //            UIManager.startYueXunComnent(getContext(),data.get(posotion));
 //        }
 
-        if(posotion==0){
+        if (posotion == 0) {
             UIManager.startYueXunConfirm(getContext(), data.get(posotion));
-        }else {
+        } else {
             UIManager.startYueXunComnent(getContext(), data.get(posotion));
         }
     }
@@ -120,7 +120,7 @@ public class T_TrainingListActivity extends WanListActivity {
                 return;
 
             TextView time = holder.getView(R.id.time);
-            time.setText(item.getDri_dt_str() + " " + item.getDri_start_hm() + "点 -" + item.getDri_end_hm()+"点");
+            time.setText(item.getDri_dt_str() + " " + item.getDri_start_hm() + "时 -" + item.getDri_end_hm() + "时");
 
             TextView keme = holder.getView(R.id.kemu);
             keme.setText(item.getDri_sub_nm());
@@ -130,12 +130,23 @@ public class T_TrainingListActivity extends WanListActivity {
 //            if (item.getDri_state().equals("1")) {//未学习
 //
 //            }else
-            if(item.getDri_remark_state().equals("1")){//待评价，显示学习状态
-                String state = item.getDri_state_nm();
+
+            TextView name = holder.getView(R.id.name);
+            name.setVisibility(View.VISIBLE);
+            name.setText(item.getDri_student_nm());
+
+            if (TextUtils.equals(item.getDri_remark_state(), "2")) {
+                String state = item.getDri_remark_state_nm(); //评价状态
                 status.setText(state);
-            }else {  //已评价 显示评价状态
-                String remark = item.getDri_remark_state_nm();
-                status.setText(remark);
+            } else {
+                status.setText("待评价");
+                status.setTextColor(getContext().getResources().getColor(R.color.text_import));
+            }
+
+            if (TextUtils.equals(item.getDri_state(), "2")
+                    && TextUtils.equals(item.getDri_stu_remark_state(), "2")) {
+                status.setText("已完成");
+                status.setTextColor(getContext().getResources().getColor(R.color.text_default_hint));
             }
 
             holder.setText(R.id.kemu, item.getDri_sub_nm_nm());

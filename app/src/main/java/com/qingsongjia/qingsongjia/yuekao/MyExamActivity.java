@@ -107,6 +107,12 @@ public class MyExamActivity extends WanListActivity {
 
             TextView status = holder.findViewById(R.id.status);
             status.setText(item.getDri_result());
+            if(TextUtils.equals(item.getDri_result(),"通过")){
+                status.setTextColor(getContext().getResources().getColor(R.color.title_bar_color));
+            }else {
+                status.setText("未通过");
+                status.setTextColor(getContext().getResources().getColor(R.color.text_import));
+            }
 
             holder.getView(R.id.arrow).setVisibility(View.GONE);
         }

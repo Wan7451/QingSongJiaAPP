@@ -109,6 +109,36 @@ public class MyYueKao implements Parcelable {
 
     private TarenaTime dri_dt;
 
+
+    private String dri_stu_remark_state;
+    private String dri_stu_remark_state_nm;
+    private String dri_student_remark;
+
+
+    public String getDri_stu_remark_state() {
+        return dri_stu_remark_state;
+    }
+
+    public void setDri_stu_remark_state(String dri_stu_remark_state) {
+        this.dri_stu_remark_state = dri_stu_remark_state;
+    }
+
+    public String getDri_stu_remark_state_nm() {
+        return dri_stu_remark_state_nm;
+    }
+
+    public void setDri_stu_remark_state_nm(String dri_stu_remark_state_nm) {
+        this.dri_stu_remark_state_nm = dri_stu_remark_state_nm;
+    }
+
+    public String getDri_student_remark() {
+        return dri_student_remark;
+    }
+
+    public void setDri_student_remark(String dri_student_remark) {
+        this.dri_student_remark = dri_student_remark;
+    }
+
     public TarenaTime getDri_dt() {
         return dri_dt;
     }
@@ -398,6 +428,9 @@ public class MyYueKao implements Parcelable {
     }
 
 
+    public MyYueKao() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -440,10 +473,10 @@ public class MyYueKao implements Parcelable {
         dest.writeInt(this.update_id);
         dest.writeString(this.update_nm);
         dest.writeString(this.update_tm_str);
-        dest.writeParcelable(this.dri_dt, flags);
-    }
-
-    public MyYueKao() {
+        dest.writeParcelable(this.dri_dt, 0);
+        dest.writeString(this.dri_stu_remark_state);
+        dest.writeString(this.dri_stu_remark_state_nm);
+        dest.writeString(this.dri_student_remark);
     }
 
     protected MyYueKao(Parcel in) {
@@ -483,9 +516,12 @@ public class MyYueKao implements Parcelable {
         this.update_nm = in.readString();
         this.update_tm_str = in.readString();
         this.dri_dt = in.readParcelable(TarenaTime.class.getClassLoader());
+        this.dri_stu_remark_state = in.readString();
+        this.dri_stu_remark_state_nm = in.readString();
+        this.dri_student_remark = in.readString();
     }
 
-    public static final Parcelable.Creator<MyYueKao> CREATOR = new Parcelable.Creator<MyYueKao>() {
+    public static final Creator<MyYueKao> CREATOR = new Creator<MyYueKao>() {
         public MyYueKao createFromParcel(Parcel source) {
             return new MyYueKao(source);
         }

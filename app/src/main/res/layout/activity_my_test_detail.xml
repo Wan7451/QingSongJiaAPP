@@ -3,65 +3,132 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/space10"
-    android:paddingLeft="@dimen/view_margin"
-    android:paddingRight="@dimen/view_margin"
-    android:paddingTop="@dimen/space10">
+    >
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/space10"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingTop="@dimen/space10">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/student_icon"
+            android:layout_width="@dimen/space80"
+            android:layout_height="@dimen/space80"
+            app:placeholderImage="@drawable/default_head" />
+
+        <android.support.v7.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/space10"
+            app:columnCount="2"
+            app:rowCount="3">
+
+            <TextView
+                android:id="@+id/student_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="名字"
+                android:textColor="@color/text_default"
+                app:layout_column="0"
+                app:layout_columnWeight="1"
+                app:layout_row="0" />
+
+            <TextView
+                android:id="@+id/student_yuyue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="预约日期"
+                android:textColor="@color/text_default_hint"
+                app:layout_column="1"
+                app:layout_row="0" />
+
+            <TextView
+                android:id="@+id/student_kemu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space5"
+                android:text="科目"
+                android:textColor="@color/default_btn_normal"
+                app:layout_column="0"
+                app:layout_columnWeight="1"
+                app:layout_row="1" />
+
+            <TextView
+                android:id="@+id/student_chepai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space5"
+                android:gravity="right"
+                android:text="教练"
+                android:textColor="@color/text_default_hint"
+                app:layout_column="1"
+                app:layout_row="1" />
+
+            <TextView
+                android:id="@+id/student_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space5"
+                android:text="时间"
+                android:textColor="@color/text_default_hint"
+                app:layout_column="0"
+                app:layout_columnWeight="1"
+                app:layout_row="2" />
+
+            <TextView
+                android:id="@+id/student_neirong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space5"
+                android:gravity="right"
+                android:text="练习内容"
+                android:textColor="@color/text_default_hint"
+                app:layout_column="1"
+                app:layout_row="2" />
+        </android.support.v7.widget.GridLayout>
+
+    </LinearLayout>
+
+    <View
+        style="@style/divider1"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:layout_marginRight="@dimen/view_margin" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space10"
+        android:layout_marginLeft="@dimen/view_margin"
+        android:layout_marginRight="@dimen/view_margin"
+        android:layout_marginTop="@dimen/space10"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="时间"
-                android:textColor="@color/text_default"
-                android:textSize="@dimen/textSize16" />
-
-            <TextView
-                android:id="@+id/kemu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space10"
-                android:drawableLeft="@drawable/icon_menu_hd"
-                android:drawablePadding="@dimen/space5"
-                android:text="科目"
-                android:textColor="@color/text_default_hint" />
-
-            <TextView
-                android:id="@+id/zhishidian"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space10"
-                android:drawableLeft="@drawable/icon_menu_ld"
-                android:drawablePadding="@dimen/space5"
-                android:text="知识点"
-                android:textColor="@color/text_default_hint" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/status"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="状态"
-            android:textColor="@color/text_import"
-            android:textSize="@dimen/textSize18" />
+            android:src="@drawable/icon_telephone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space10"
+            android:text="电话" />
     </LinearLayout>
+
+    <View style="@style/divider1" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:background="@color/default_bg" />
 
 
     <Button

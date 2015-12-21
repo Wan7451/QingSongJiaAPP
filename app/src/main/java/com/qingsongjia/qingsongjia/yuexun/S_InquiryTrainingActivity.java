@@ -58,6 +58,7 @@ public class S_InquiryTrainingActivity extends WanActivity {
 
         if(TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())){
             UIManager.startLogin(getContext());
+            finish();
             return;
         }
 

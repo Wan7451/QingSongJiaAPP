@@ -3,63 +3,79 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingTop="@dimen/space10"
     android:paddingBottom="@dimen/space10"
     android:paddingLeft="@dimen/view_margin"
-    android:paddingRight="@dimen/view_margin">
+    android:paddingRight="@dimen/view_margin"
+    android:paddingTop="@dimen/space10">
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="时间"
-            android:textSize="@dimen/textSize16"
-            android:textColor="@color/text_default"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="时间"
+                android:textColor="@color/text_default"
+                android:textSize="@dimen/textSize16" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:text="name"
+                android:textColor="@color/text_default"
+                android:textSize="@dimen/textSize16" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/kemu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space10"
-            android:text="科目"
             android:drawableLeft="@drawable/icon_menu_hd"
-            android:textColor="@color/text_default_hint"
             android:drawablePadding="@dimen/space5"
-            />
+            android:text="科目"
+            android:textColor="@color/text_default_hint" />
 
         <TextView
             android:id="@+id/zhishidian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space10"
-            android:text="知识点"
             android:drawableLeft="@drawable/icon_menu_ld"
-            android:textColor="@color/text_default_hint"
             android:drawablePadding="@dimen/space5"
-            />
+            android:text="知识点"
+            android:textColor="@color/text_default_hint" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/textSize18"
-        android:text="状态"
         android:layout_gravity="center_vertical"
-        android:textColor="@color/text_import"/>
+        android:text="状态"
+        android:textColor="@color/text_import"
+        android:textSize="@dimen/textSize18" />
 
     <ImageView
         android:id="@+id/arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rotation="-90"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="@dimen/space10"
-        android:src="@drawable/icon_arrow_gray"/>
+        android:rotation="-90"
+        android:src="@drawable/icon_arrow_gray" />
 </LinearLayout>

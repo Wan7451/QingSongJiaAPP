@@ -59,6 +59,11 @@ public class TeacherMenuFragment extends Fragment implements WanAdapter.OnItemCl
         view.findViewById(R.id.userData).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                User user = LocalPreference.getCurrentUser(getContext());
+                if (TextUtils.isEmpty(user.getDri_type())) {
+                    UIManager.startLogin(getContext());
+                    return;
+                }
                 UIManager.startTeacherMessage(getContext());
             }
         });

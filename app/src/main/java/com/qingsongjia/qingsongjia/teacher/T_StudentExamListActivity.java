@@ -36,7 +36,7 @@ public class T_StudentExamListActivity extends WanListActivity {
         super.initView();
         setBackFinish();
         setContentTitle("学员约考");
-        setRightText("编辑");
+//        setRightText("编辑");
     }
 
     @Override
@@ -66,7 +66,7 @@ public class T_StudentExamListActivity extends WanListActivity {
                             List<MyKaoShi> kaoShis = JSONArray.parseArray(response.toJSONString(), MyKaoShi.class);
                             data.addAll(kaoShis);
                         }
-                        loadFinish("暂时没有学员");
+                        loadFinish("暂时没有学员参加考试");
                     }
 
                     @Override
@@ -105,6 +105,13 @@ public class T_StudentExamListActivity extends WanListActivity {
 
             TextView status = holder.findViewById(R.id.status);
             status.setText(item.getDri_result());
+
+            if(TextUtils.equals(item.getDri_result(),"通过")){
+                status.setTextColor(getContext().getResources().getColor(R.color.title_bar_color));
+            }else {
+                status.setText("未通过");
+                status.setTextColor(getContext().getResources().getColor(R.color.text_import));
+            }
 
             holder.getView(R.id.arrow).setVisibility(View.GONE);
         }

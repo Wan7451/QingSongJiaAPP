@@ -10,9 +10,10 @@
     <LinearLayout
         android:id="@+id/userData"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#4C4662"
+        android:layout_height="80dp"
+        android:background="@drawable/icon_menu_userdata"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:paddingBottom="@dimen/space10"
         android:paddingLeft="@dimen/view_margin"
         android:paddingRight="@dimen/view_margin"

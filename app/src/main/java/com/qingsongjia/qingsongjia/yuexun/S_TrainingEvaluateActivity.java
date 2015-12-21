@@ -1,5 +1,6 @@
 package com.qingsongjia.qingsongjia.yuexun;
 
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -7,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.MyYueKao;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
@@ -22,18 +24,24 @@ import butterknife.ButterKnife;
 public class S_TrainingEvaluateActivity extends WanActivity {
 
 
-    @Bind(R.id.time)
-    TextView time;
-    @Bind(R.id.kemu)
-    TextView kemu;
-    @Bind(R.id.zhishidian)
-    TextView zhishidian;
-    @Bind(R.id.status)
-    TextView status;
     @Bind(R.id.pingjia)
     Button pingjia;
     @Bind(R.id.content)
     EditText content;
+    @Bind(R.id.student_icon)
+    SimpleDraweeView studentIcon;
+    @Bind(R.id.student_name)
+    TextView studentName;
+    @Bind(R.id.student_yuyue)
+    TextView studentYuyue;
+    @Bind(R.id.student_kemu)
+    TextView studentKemu;
+    @Bind(R.id.student_chepai)
+    TextView studentChepai;
+    @Bind(R.id.student_time)
+    TextView studentTime;
+    @Bind(R.id.student_neirong)
+    TextView studentNeirong;
     private MyYueKao data;
 
     @Override
@@ -45,13 +53,13 @@ public class S_TrainingEvaluateActivity extends WanActivity {
         data = getIntent().getParcelableExtra("data");
 
 
-        String t = data.getDri_dt_str()+ " " + data.getDri_start_hm() + "-" + data.getDri_end_hm();
-        time.setText(t);
+        studentName.setText(data.getDri_coach_nm());
 
-        kemu.setText(data.getDri_sub_nm());
-
-        String state = data.getDri_state_nm();
-        status.setText(state);
+        studentTime.setText(data.getDri_dt_str());
+        studentYuyue.setText(data.getDri_start_hm() + "时 -" + data.getDri_end_hm() + "时");
+        studentKemu.setText(data.getDri_sub_nm_nm());
+        studentNeirong.setText(data.getDri_learning_content());
+//        studentChepai.setText();
 
         pingjia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +69,7 @@ public class S_TrainingEvaluateActivity extends WanActivity {
                     showToast("评价内容不能为空");
                     return;
                 }
-                NetRequest.markStudent(getContext(),data.getId()+"",mark, new NetUtils.NetUtilsHandler() {
+                NetRequest.markStudent(getContext(), data.getId() + "", mark, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("评价成功");
@@ -80,6 +88,7 @@ public class S_TrainingEvaluateActivity extends WanActivity {
             }
         });
     }
+
 
     @Override
     protected int getMainViewLayoutId() {

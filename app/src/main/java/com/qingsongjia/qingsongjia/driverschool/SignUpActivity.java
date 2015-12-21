@@ -3,6 +3,7 @@ package com.qingsongjia.qingsongjia.driverschool;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -11,6 +12,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
@@ -38,6 +41,12 @@ public class SignUpActivity extends WanActivity {
         setBackFinish();
 
         int id = getIntent().getIntExtra("id", 0);
+
+        if(TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())){
+            UIManager.startLogin(getContext());
+            finish();
+            return;
+        }
 
         signupCareTypeView.setOnClickListener(new View.OnClickListener() {
             @Override

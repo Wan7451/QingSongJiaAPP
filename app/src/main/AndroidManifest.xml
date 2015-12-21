@@ -100,7 +100,8 @@
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
@@ -161,36 +162,35 @@
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".driverschool.SchoolSearchActivity" />
+        <activity
+            android:name=".driverschool.SchoolSearchActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.RegisterActivity"
-            android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.VerifyPhoneActivity"
-            android:label="@string/title_activity_verify_phone"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SetPasswordActivity"
-            android:label="@string/title_activity_set_password"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".user.ChangeExamLibsActivity" />
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".user.ChangeExamLibsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.ExamDetailActivity"
-            android:label="@string/title_activity_exam_detail"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.AnalogyExamActivity"
-            android:label="@string/title_activity_analogy_exam"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".yuekao.InquiryExamActivity"
-            android:label="@string/title_activity_inquiry_exam"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -201,56 +201,43 @@
 
         <activity
             android:name=".driverexam.AnalogyTestActivity"
-            android:label="@string/title_activity_analogy_test"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.ExamTestActivity"
-            android:label="@string/title_activity_exam_test"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".yuexun.S_InquiryTrainingActivity"
-            android:label="@string/title_activity_inquiry_training"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.TeacherListActivity"
-            android:label="@string/title_activity_teacher_list"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.TeacherDetailActivity"
-            android:label="@string/title_activity_teacher_detail"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".user.MyTeacherActivity"
-            android:label="@string/title_activity_my_teacher"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".user.MyMessageActivity"
-            android:label="@string/title_activity_my_message"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".user.MyJiFeiActivity"
-            android:label="@string/title_activity_my_ji_fei"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".user.MyYuEActivity"
-            android:label="@string/title_activity_my_yu_e"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".user.TiXianActivity"
-            android:label="@string/title_activity_ti_xian"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".yuekao.MyExamActivity"
-            android:label="@string/title_activity_my_exam"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".plxc.S_SparringListActivity"
-            android:label="@string/title_activity_pen_lian"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".user.SettingActivity"
-            android:label="@string/title_activity_setting"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".localdata.CopyDBFileService"
@@ -258,80 +245,61 @@
 
         <activity
             android:name=".driverexam.ZhangJieLianXiActivity"
-            android:label="@string/title_activity_zhang_jie_lian_xi"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.ZhuanIXiangLianXiActivity"
-            android:label="@string/title_activity_zhuan_ixiang_lian_xi"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.WebActivity"
-            android:label="@string/title_activity_web"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.JiaoTongBiaoZhiActivity"
-            android:label="@string/title_activity_jiao_tong_biao_zhi"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.JiaoTongBiaoZhiGridActivity"
-            android:label="@string/title_activity_jiao_tong_biao_zhi_grid"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.ItemListActivity"
-            android:label="@string/title_activity_item_list"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".teacher.TeacherLoginActivity"
-            android:label="@string/title_activity_teacher_login"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".teacher.T_StudentListActivity"
-            android:label="@string/title_activity_my_student"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".teacher.T_StudentExamListActivity"
-            android:label="@string/title_activity_my_student_yk"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".yuexun.T_TrainingListActivity"
-            android:label="@string/title_activity_my_student_yx"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".yuexun.T_TrainingConfirmActivity"
-            android:label="@string/title_activity_yxconfirm"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".yuexun.T_TrainingEvaluateActivity"
-            android:label="@string/title_activity_yxevaluate"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".plxc.T_SparringListActivity"
-            android:label="@string/title_activity_pei_lian_xing_cheng"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".plxc.S_SparringInquiryActivity"
-            android:label="@string/title_activity_send_inquiry"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".plxc.T_SparringConfirmActivity"
-            android:label="@string/title_activity_inquiry_confirm"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".plxc.T_SparringComplaintActivity"
-            android:label="@string/title_activity_tou_su"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".plxc.T_PushSparringActivity"
-            android:label="@string/title_activity_push_order"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".yuexun.S_TrainingConfirmActivity"
-            android:label="@string/title_activity_yxstudent_confirm"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".user.MyYouHuiJuanActivity"
-            android:label="@string/title_activity_my_you_hui_juan"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".localdata.DownloadFileService"
@@ -339,59 +307,46 @@
 
         <activity
             android:name=".yuexun.S_TrainingDetailActivity"
-            android:label="@string/title_activity_my_test_detail"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".yuexun.S_TrainingListActivity"
-            android:label="@string/title_activity_my_test_detail"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverschool.CityListActivity"
-            android:label="@string/title_activity_city_list"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverschool.AreaListActivity"
-            android:label="@string/title_activity_area"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverschool.SchoolDetailActivity"
-            android:label="@string/title_activity_school_detail"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".plxc.AllSparringListActivity"
-            android:label="@string/title_activity_pei_lian_list"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".yuexun.S_TrainingEvaluateActivity"
-            android:label="@string/title_activity_yxevaluate"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.HtmlResActivity"
-            android:label="@string/title_activity_html_res"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.JiaoTongBiaoZhiListActivity"
-            android:label="@string/title_activity_jiao_tong_biao_zhi_list"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.WebListActivity"
-            android:label="@string/title_activity_web_list"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.XinShouShangLuActivity"
-            android:label="@string/title_activity_xin_shou_shang_lu"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverexam.XinShouShangLuListActivity"
-            android:label="@string/title_activity_xin_shou_shang_lu"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".plxc.T_SparringEvaluateActivity"
-            android:label="@string/title_activity_pei_lian_ping_jia"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SplashActivity"
-            android:theme="@style/AppTheme">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -400,37 +355,31 @@
         </activity>
         <activity
             android:name=".activity.MapActivity"
-            android:label="@string/title_activity_map"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverschool.BusRouteActivity"
-            android:label="@string/title_activity_bus_route"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverschool.SchoolImgsActivity"
-            android:label="@string/title_activity_school_imgs"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverschool.SchoolEvaluateActivity"
-            android:label="@string/title_activity_school_evaluate"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverschool.SchoolListActivity"
-            android:label="@string/title_activity_school_list"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".user.StudentMessageActivity"
-            android:label="@string/title_activity_student_message"
-            android:theme="@style/AppTheme" />
-        <activity android:name="com.wan7451.choicepicture.ChoicePicturesActivity" />
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.wan7451.choicepicture.ChoicePicturesActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".teacher.TeacherMessageActivity"
-            android:label="@string/title_activity_teacher_nessage"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".driverschool.SignUpActivity"
-            android:label="@string/title_activity_sign_up"
-            android:theme="@style/AppTheme"></activity>
+            android:screenOrientation="portrait"></activity>
 
         <service
             android:name=".others.GetImageService"

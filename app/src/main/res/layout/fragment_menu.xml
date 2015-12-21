@@ -10,11 +10,12 @@
     <LinearLayout
         android:id="@+id/userData"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#4C4662"
+        android:layout_height="80dp"
+        android:background="@drawable/icon_menu_userdata"
         android:paddingRight="@dimen/view_margin"
         android:paddingTop="@dimen/space10"
         android:paddingBottom="@dimen/space10"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <com.facebook.drawee.view.SimpleDraweeView

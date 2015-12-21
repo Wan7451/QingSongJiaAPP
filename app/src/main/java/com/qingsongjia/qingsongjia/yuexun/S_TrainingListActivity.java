@@ -36,7 +36,7 @@ public class S_TrainingListActivity extends WanListActivity {
         super.initView();
         setBackFinish();
         setContentTitle("我的练习");
-        setRightText("编辑");
+//        setRightText("编辑");
     }
 
     @Override
@@ -47,8 +47,8 @@ public class S_TrainingListActivity extends WanListActivity {
     @Override
     public WanAdapter getAdapter() {
         MyTestAdapter adapter = new MyTestAdapter(getContext(), data, R.layout.item_mytest_list);
-        View header = getLayoutInflater().inflate(R.layout.activity_my_test, null);
-        adapter.addHeaderView(header);
+//        View header = getLayoutInflater().inflate(R.layout.activity_my_test, null);
+//        adapter.addHeaderView(header);
         return adapter;
     }
 
@@ -63,12 +63,12 @@ public class S_TrainingListActivity extends WanListActivity {
                 if (!TextUtils.equals("[{}]", response.toJSONString())) {
                     data.addAll(JSONArray.parseArray(response.toJSONString(), MyYueKao.class));
                 }
-                loadFinish("");
+                loadFinish("暂时没有预约练习，赶快找教练约练吧~");
             }
 
             @Override
             public void onResponseError(String error) {
-
+                loadError();
             }
         });
 
@@ -89,15 +89,52 @@ public class S_TrainingListActivity extends WanListActivity {
         @Override
         public void convert(WanViewHolder holder, int position, MyYueKao item) {
             TextView time = holder.getView(R.id.time);
-            String t = item.getDri_dt_str()+ " " + item.getDri_start_hm() + "点 -" + item.getDri_end_hm()+"点";
+            String t = item.getDri_dt_str()+ " " + item.getDri_start_hm() + "时 -" + item.getDri_end_hm()+"时";
             time.setText(t);
 
             TextView keme = holder.getView(R.id.kemu);
-            keme.setText(item.getDri_sub_nm());
+            keme.setText(item.getDri_sub_nm_nm());
+
+            TextView zhishidian=  holder.getView(R.id.zhishidian);
+            zhishidian.setText(item.getDri_learning_content());
+
+//                    "dri_remark_state": "1",
+//                    "dri_remark_state_nm": "待评价",
+
+
+//                    "dri_state": "2",
+//                    "dri_state_nm": "已学习",
+//                    "dri_stu_remark_state": "2",
+//                    "dri_stu_remark_state_nm": "已评价",
+
 
             TextView status = holder.findViewById(R.id.status);
-            String state = item.getDri_state_nm();
-            status.setText(state);
+
+            if(TextUtils.equals(item.getDri_state(),"2")){
+                String state = item.getDri_state_nm(); //学习状态
+                status.setText(state);
+            }else {
+                status.setText("进行中");
+                status.setTextColor(getContext().getResources().getColor(R.color.title_bar_color));
+            }
+
+            if(TextUtils.equals(item.getDri_stu_remark_state(),"2")){
+                String state = item.getDri_stu_remark_state_nm(); //评价状态
+                status.setText(state);
+            }else {
+                status.setText("待评价");
+                status.setTextColor(getContext().getResources().getColor(R.color.text_import));
+            }
+
+            if(TextUtils.equals(item.getDri_state(),"2")
+                    && TextUtils.equals(item.getDri_stu_remark_state(),"2")){
+                status.setText("已完成");
+                status.setTextColor(getContext().getResources().getColor(R.color.text_default_hint));
+            }
+
+
+
+
 
         }
     }

@@ -53,11 +53,13 @@ public class T_TrainingConfirmActivity extends WanActivity {
 
         yueKao = getIntent().getParcelableExtra("data");
         id=yueKao.getId();
-        SimpleDateFormat  sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         teacherName.setText(yueKao.getDri_student_nm());
         teacherKemu.setText(yueKao.getDri_sub_nm_nm());
-        teacherTime.setText(sdformat.format(new Date(yueKao.getDri_dt().getTime())));
-        teacherYuyue.setText(yueKao.getDri_start_hm()+"-"+yueKao.getDri_end_hm());
+
+//        teacherChepai.setText(yueKao.getDri_campus_nm());
+        teacherTime.setText(yueKao.getDri_dt_str());
+
+        teacherYuyue.setText(yueKao.getDri_start_hm()+"时 -"+yueKao.getDri_end_hm()+"时");
         teacherNeirong.setText(yueKao.getDri_learning_content());
 
         //确认
