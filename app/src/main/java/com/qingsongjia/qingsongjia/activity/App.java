@@ -7,6 +7,8 @@ import com.qingsongjia.qingsongjia.localdata.CopyDBFileService;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.wan7451.base.WanApplication;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by wanggang on 15/11/14.
  */
@@ -21,6 +23,9 @@ public class App extends WanApplication {
             i.setClass(this, CopyDBFileService.class);
             startService(i);
         }
+
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
 

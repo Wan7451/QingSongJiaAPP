@@ -2,6 +2,7 @@ package com.qingsongjia.qingsongjia.utils;
 
 import android.content.Context;
 
+import com.qingsongjia.qingsongjia.activity.SplashActivity;
 import com.qingsongjia.qingsongjia.bean.User;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.wan7451.base.WanActivity;
@@ -128,6 +129,13 @@ public class NetRequest {
 
     }
 
+    public static void loadNewMyData(Context context,String tel, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_tel", tel);
+        NetUtils.baseRequest(context, "driappconsultclientWeb/loadUserByUnm", params, false, handler);
+
+    }
+
     public static void loadMyTeacher(WanActivity context, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
         params.put("id", LocalPreference.getCurrentUserData(context).getDri_coach_id() + "");
@@ -247,7 +255,7 @@ public class NetRequest {
     public static void markStudent(WanActivity context, String id, String mark, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
         params.put("id", id);
-        params.put("dri_student_remark", string2Unicode(mark));
+        params.put("dri_student_remark", UnicodeUtil.stringToUnicode(mark));
         NetUtils.baseRequest(context, "driappcorvpracticWeb/edit", params, false, handler);
     }
 
@@ -261,7 +269,7 @@ public class NetRequest {
     public static void markTeacher(WanActivity context, String id, String mark, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
         params.put("id", id);
-        params.put("dri_remark", string2Unicode(mark));
+        params.put("dri_remark", UnicodeUtil.stringToUnicode(mark));
         NetUtils.baseRequest(context, "driappcorvpracticWeb/edit", params, false, handler);
     }
 
@@ -395,7 +403,7 @@ public class NetRequest {
         params.put("user_id", LocalPreference.getCurrentUser(context).getId() + "");
         params.put("worth", charge);
         params.put("card_num", card);
-        params.put("opr", string2Unicode(name));
+        params.put("opr", UnicodeUtil.stringToUnicode(name));
 
         NetUtils.baseRequest(context, "driappmypurse/saveMoney", params, false, handler);
 
@@ -432,28 +440,10 @@ public class NetRequest {
      */
     public static void searchSchoolList(Context context, String search, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("campusName", string2Unicode(search));
+        params.put("campusName", UnicodeUtil.stringToUnicode(search));
         NetUtils.baseRequest(context, "driapppraiseweb/queryForList", params, false, handler);
     }
 
-    /**
-     * 字符串转换unicode
-     */
-    public static String string2Unicode(String string) {
-
-        StringBuffer unicode = new StringBuffer();
-
-        for (int i = 0; i < string.length(); i++) {
-
-            // 取出每一个字符
-            char c = string.charAt(i);
-
-            // 转换为unicode
-            unicode.append("\\u" + Integer.toHexString(c));
-        }
-
-        return unicode.toString();
-    }
 
     /**
      * 驾校详情
@@ -481,7 +471,7 @@ public class NetRequest {
         params.put("dri_user_id", user.getId() + "");
         params.put("dri_type", user.getDri_type());
         params.put("dri_partner_id", id + "");
-        params.put("dri_complaint_content", string2Unicode(con));
+        params.put("dri_complaint_content", UnicodeUtil.stringToUnicode(con));
         NetUtils.baseRequest(context, "driapppartnerTrain/complaint", params, false, handler);
 
 
@@ -504,7 +494,7 @@ public class NetRequest {
     public static void peijiapinglui(WanActivity context, int id, String remark, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
         params.put("id", id + "");
-        params.put("dri_remark", string2Unicode(remark));
+        params.put("dri_remark", UnicodeUtil.stringToUnicode(remark));
         NetUtils.baseRequest(context, "driapppartnerTrain/remark", params, false, handler);
     }
 
@@ -558,9 +548,80 @@ public class NetRequest {
         HashMap<String, String> params = new HashMap<>();
 //        User user = LocalPreference.getCurrentUser(context);
 //        params.put("user_id", user.getId() + "");
-//        params.put("campusId", id + "");
-        params.put("campusId", 250+"");
+        params.put("campusId", id + "");
+//        params.put("campusId", 250+"");
         NetUtils.baseRequest(context, "driappcommentweb/queryForList", params, false, handler);
 
+    }
+
+    public static void getSplashImage(Context context, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        NetUtils.baseRequest(context, "driappfirstimage/getFirstImage", params, false, handler);
+
+    }
+
+    public static void getTopPictur(Context context, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        NetUtils.baseRequest(context, "driapptoppicture/getTopPicture", params, false, handler);
+    }
+
+    /**
+     * 学员修改个人信息
+     * @param context
+     * @param dri_file_path
+     * @param id
+     * @param dri_campus_id
+     * @param dri_coach_id
+     * @param dri_coach_nm
+     * @param dri_nm
+     * @param dri_fx_campus_id
+     * @param handler
+     */
+    public static void saveStudent(Context context,
+                                   String dri_file_path,
+                                   String id,
+                                   Integer dri_campus_id,
+                                   Integer dri_coach_id,
+                                   String dri_coach_nm,
+                                   String dri_nm,
+                                   NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id",id);
+        params.put("dri_file_path",dri_file_path);
+        params.put("dri_campus_id",dri_campus_id+"");
+        params.put("dri_coach_id",dri_coach_id+"");
+        params.put("dri_coach_nm",UnicodeUtil.stringToUnicode(dri_coach_nm));
+        params.put("dri_nm",UnicodeUtil.stringToUnicode(dri_nm));
+        NetUtils.baseRequest(context, "driappconsultclientWeb/EduUpdate", params, true, handler);
+    }
+
+    /**
+     * 教练修改个人信息
+     * @param context
+     * @param dri_nm
+     * @param dri_file_path
+     * @param dri_campus_id
+     * @param id
+     * @param handler
+     */
+    public static void saveTeacher(Context context,
+                                   String dri_nm,
+                                   String dri_file_path,
+                                   int dri_campus_id,
+                                   int id, NetUtils.NetUtilsHandler handler) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_file_path",dri_file_path);
+        params.put("dri_nm",UnicodeUtil.stringToUnicode(dri_nm));
+        params.put("dri_campus_id",dri_campus_id+"");
+        params.put("id",id+"");
+        NetUtils.baseRequest(context, "driappconsultclientWeb/CoathUpdate", params, true, handler);
+
+    }
+
+    public static void getVerification(Context context, String phone, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("telNum",phone);
+        NetUtils.baseRequest(context, "driappconsultclientWeb/getNum", params, true, handler);
     }
 }

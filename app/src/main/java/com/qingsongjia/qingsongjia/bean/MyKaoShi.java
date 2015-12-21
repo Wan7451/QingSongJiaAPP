@@ -5,22 +5,71 @@ package com.qingsongjia.qingsongjia.bean;
  */
 public class MyKaoShi {
 
+    //    private Integer id;//（主键）
+//    private Integer dri_campus_id;//（驾校编码）
+//    private String dri_campus_nm;//（驾校名称）
+//    private Integer dri_fx_campus_id;//（分校编码）
+//    private String dri_fx_campus_nm;//（分校名称）
+//    private Integer dri_student_id;//（学员编码）
+//    private String dri_student_nm;//（学员名称）
+//    private String dri_sub_nm;//（科目名称）--字典项
+//    private Date dri_dt;//（约考日期）
+//    private String dri_tm;//（约考时间）
+//    private Integer dri_score;//（成绩）
+//    private String dri_result;//（结果）
+//    private Date dri_exam_dt;//（考试日期）
+//    private String dri_exam_tm;//（考试时间）--字典项
+//    private String dri_dt_str;
+//    private String dri_exam_dt_str;
+//    private Integer dri_coach_id;//约考教练id
+//    private String dri_coach_nm;//约考教练姓名
 
+    /**
+     * create_id : 0
+     * create_nm :
+     * create_tm : {"date":13,"day":0,"hours":20,"minutes":19,"month":11,"nanos":0,"seconds":33,"time":1450009173000,"timezoneOffset":-480,"year":115}
+     * create_tm_str : 2015-12-13 20:19:33
+     * did : 196
+     * dri_campus_id : 291
+     * dri_campus_nm : 英明驾校
+     * dri_coach_id : 153
+     * dri_coach_nm : 刘飞
+     * dri_comment :
+     * dri_dt : null
+     * dri_dt_str :
+     * dri_exam_dt : null
+     * dri_exam_dt_str :
+     * dri_exam_tm : 上午
+     * dri_fx_campus_id : 0
+     * dri_fx_campus_nm :
+     * dri_result : 通过
+     * dri_score : 80
+     * dri_student_id : 0
+     * dri_student_nm : 王刚
+     * dri_sub_nm : 3
+     * dri_sub_nm_nm : 科目三
+     * dri_tm : 1
+     * id : 196
+     * isdel : 0
+     * name :
+     * update_id : 0
+     * update_nm :
+     * update_tm : {"date":13,"day":0,"hours":20,"minutes":19,"month":11,"nanos":0,"seconds":33,"time":1450009173000,"timezoneOffset":-480,"year":115}
+     * update_tm_str : 2015-12-13 20:19:33
+     */
 
-    private int campusId;
-    private String campusName;
     private int create_id;
     private String create_nm;
-
-
-    private CreateTmEntity create_tm;
     private String create_tm_str;
     private int did;
     private int dri_campus_id;
     private String dri_campus_nm;
-    private Object dri_dt;
+    private int dri_coach_id;
+    private String dri_coach_nm;
+    private String dri_comment;
+    private TarenaTime dri_dt;
     private String dri_dt_str;
-    private Object dri_exam_dt;
+    private TarenaTime dri_exam_dt;
     private String dri_exam_dt_str;
     private String dri_exam_tm;
     private int dri_fx_campus_id;
@@ -37,19 +86,25 @@ public class MyKaoShi {
     private String name;
     private int update_id;
     private String update_nm;
-
-
-    private UpdateTmEntity update_tm;
     private String update_tm_str;
+    private TarenaTime create_tm;
+    private TarenaTime update_tm;
 
 
-
-    public void setCampusId(int campusId) {
-        this.campusId = campusId;
+    public TarenaTime getCreate_tm() {
+        return create_tm;
     }
 
-    public void setCampusName(String campusName) {
-        this.campusName = campusName;
+    public void setCreate_tm(TarenaTime create_tm) {
+        this.create_tm = create_tm;
+    }
+
+    public TarenaTime getUpdate_tm() {
+        return update_tm;
+    }
+
+    public void setUpdate_tm(TarenaTime update_tm) {
+        this.update_tm = update_tm;
     }
 
     public void setCreate_id(int create_id) {
@@ -58,10 +113,6 @@ public class MyKaoShi {
 
     public void setCreate_nm(String create_nm) {
         this.create_nm = create_nm;
-    }
-
-    public void setCreate_tm(CreateTmEntity create_tm) {
-        this.create_tm = create_tm;
     }
 
     public void setCreate_tm_str(String create_tm_str) {
@@ -80,7 +131,19 @@ public class MyKaoShi {
         this.dri_campus_nm = dri_campus_nm;
     }
 
-    public void setDri_dt(Object dri_dt) {
+    public void setDri_coach_id(int dri_coach_id) {
+        this.dri_coach_id = dri_coach_id;
+    }
+
+    public void setDri_coach_nm(String dri_coach_nm) {
+        this.dri_coach_nm = dri_coach_nm;
+    }
+
+    public void setDri_comment(String dri_comment) {
+        this.dri_comment = dri_comment;
+    }
+
+    public void setDri_dt(TarenaTime dri_dt) {
         this.dri_dt = dri_dt;
     }
 
@@ -88,7 +151,7 @@ public class MyKaoShi {
         this.dri_dt_str = dri_dt_str;
     }
 
-    public void setDri_exam_dt(Object dri_exam_dt) {
+    public void setDri_exam_dt(TarenaTime dri_exam_dt) {
         this.dri_exam_dt = dri_exam_dt;
     }
 
@@ -156,20 +219,8 @@ public class MyKaoShi {
         this.update_nm = update_nm;
     }
 
-    public void setUpdate_tm(UpdateTmEntity update_tm) {
-        this.update_tm = update_tm;
-    }
-
     public void setUpdate_tm_str(String update_tm_str) {
         this.update_tm_str = update_tm_str;
-    }
-
-    public int getCampusId() {
-        return campusId;
-    }
-
-    public String getCampusName() {
-        return campusName;
     }
 
     public int getCreate_id() {
@@ -178,10 +229,6 @@ public class MyKaoShi {
 
     public String getCreate_nm() {
         return create_nm;
-    }
-
-    public CreateTmEntity getCreate_tm() {
-        return create_tm;
     }
 
     public String getCreate_tm_str() {
@@ -198,6 +245,18 @@ public class MyKaoShi {
 
     public String getDri_campus_nm() {
         return dri_campus_nm;
+    }
+
+    public int getDri_coach_id() {
+        return dri_coach_id;
+    }
+
+    public String getDri_coach_nm() {
+        return dri_coach_nm;
+    }
+
+    public String getDri_comment() {
+        return dri_comment;
     }
 
     public Object getDri_dt() {
@@ -276,202 +335,8 @@ public class MyKaoShi {
         return update_nm;
     }
 
-    public UpdateTmEntity getUpdate_tm() {
-        return update_tm;
-    }
-
     public String getUpdate_tm_str() {
         return update_tm_str;
     }
 
-    public static class CreateTmEntity {
-        private int date;
-        private int day;
-        private int hours;
-        private int minutes;
-        private int month;
-        private int nanos;
-        private int seconds;
-        private long time;
-        private int timezoneOffset;
-        private int year;
-
-        @Override
-        public String toString() {
-            return month+1+"月"+day+"日";
-        }
-
-        public void setDate(int date) {
-            this.date = date;
-        }
-
-        public void setDay(int day) {
-            this.day = day;
-        }
-
-        public void setHours(int hours) {
-            this.hours = hours;
-        }
-
-        public void setMinutes(int minutes) {
-            this.minutes = minutes;
-        }
-
-        public void setMonth(int month) {
-            this.month = month;
-        }
-
-        public void setNanos(int nanos) {
-            this.nanos = nanos;
-        }
-
-        public void setSeconds(int seconds) {
-            this.seconds = seconds;
-        }
-
-        public void setTime(long time) {
-            this.time = time;
-        }
-
-        public void setTimezoneOffset(int timezoneOffset) {
-            this.timezoneOffset = timezoneOffset;
-        }
-
-        public void setYear(int year) {
-            this.year = year;
-        }
-
-        public int getDate() {
-            return date;
-        }
-
-        public int getDay() {
-            return day;
-        }
-
-        public int getHours() {
-            return hours;
-        }
-
-        public int getMinutes() {
-            return minutes;
-        }
-
-        public int getMonth() {
-            return month;
-        }
-
-        public int getNanos() {
-            return nanos;
-        }
-
-        public int getSeconds() {
-            return seconds;
-        }
-
-        public long getTime() {
-            return time;
-        }
-
-        public int getTimezoneOffset() {
-            return timezoneOffset;
-        }
-
-        public int getYear() {
-            return year;
-        }
-    }
-
-    public static class UpdateTmEntity {
-        private int date;
-        private int day;
-        private int hours;
-        private int minutes;
-        private int month;
-        private int nanos;
-        private int seconds;
-        private long time;
-        private int timezoneOffset;
-        private int year;
-
-        public void setDate(int date) {
-            this.date = date;
-        }
-
-        public void setDay(int day) {
-            this.day = day;
-        }
-
-        public void setHours(int hours) {
-            this.hours = hours;
-        }
-
-        public void setMinutes(int minutes) {
-            this.minutes = minutes;
-        }
-
-        public void setMonth(int month) {
-            this.month = month;
-        }
-
-        public void setNanos(int nanos) {
-            this.nanos = nanos;
-        }
-
-        public void setSeconds(int seconds) {
-            this.seconds = seconds;
-        }
-
-        public void setTime(long time) {
-            this.time = time;
-        }
-
-        public void setTimezoneOffset(int timezoneOffset) {
-            this.timezoneOffset = timezoneOffset;
-        }
-
-        public void setYear(int year) {
-            this.year = year;
-        }
-
-        public int getDate() {
-            return date;
-        }
-
-        public int getDay() {
-            return day;
-        }
-
-        public int getHours() {
-            return hours;
-        }
-
-        public int getMinutes() {
-            return minutes;
-        }
-
-        public int getMonth() {
-            return month;
-        }
-
-        public int getNanos() {
-            return nanos;
-        }
-
-        public int getSeconds() {
-            return seconds;
-        }
-
-        public long getTime() {
-            return time;
-        }
-
-        public int getTimezoneOffset() {
-            return timezoneOffset;
-        }
-
-        public int getYear() {
-            return year;
-        }
-    }
 }

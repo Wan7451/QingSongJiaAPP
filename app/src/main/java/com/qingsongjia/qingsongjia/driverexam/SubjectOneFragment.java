@@ -12,11 +12,15 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.ExamImageTextAdapter;
 import com.qingsongjia.qingsongjia.bean.ExamImageText;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.EventData;
+import com.qingsongjia.qingsongjia.utils.NetRequest;
+import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.adbar.ADBarView;
 import com.wan7451.base.WanActivity;
@@ -61,6 +65,7 @@ public class SubjectOneFragment extends WanFragment {
     @Override
     protected void initView(View v) {
         ButterKnife.bind(this, v);
+
 
         ArrayList<String> urls=new ArrayList<>();
         urls.add(LocalPreference.getTopImagePath(getContext()));

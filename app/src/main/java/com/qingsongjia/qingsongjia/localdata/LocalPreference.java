@@ -2,6 +2,7 @@ package com.qingsongjia.qingsongjia.localdata;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -11,6 +12,7 @@ import com.qingsongjia.qingsongjia.bean.KeMu;
 import com.qingsongjia.qingsongjia.bean.UserData;
 import com.qingsongjia.qingsongjia.bean.TiKu;
 import com.qingsongjia.qingsongjia.bean.User;
+import com.qingsongjia.qingsongjia.others.GetImageService;
 import com.wan7451.base.WanActivity;
 
 /**
@@ -139,7 +141,7 @@ public class LocalPreference {
 
     public static String getTopImagePath(Context context) {
         getPreference(context);
-        return spref.getString("imgPath", "res:// /"+ R.drawable.banner);
+        return spref.getString("imgPath", "res:// /" + R.drawable.banner);
     }
 
 
@@ -186,5 +188,15 @@ public class LocalPreference {
         getPreference(context);
         String city = spref.getString("area", "{}");
         return JSONObject.parseObject(city, CityData.class);
+    }
+
+    public static void saveSplashImag(Context context, String path) {
+        getPreference(context);
+        spref.edit().putString("splash", path).commit();
+    }
+
+    public static String getSplashImag(Context context) {
+        getPreference(context);
+        return spref.getString("splash","");
     }
 }

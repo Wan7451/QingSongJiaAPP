@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,9 +37,12 @@ import com.wan7451.wanadapter.recycle.WanItemDecoration;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 import de.greenrobot.event.EventBus;
 
 
@@ -105,7 +109,10 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
 
 
     private void loadData() {
-        NetRequest.loadMyData(getContext(), new NetUtils.NetUtilsHandler() {
+
+     User user=   LocalPreference.getCurrentUser(getContext());
+
+        NetRequest.loadNewMyData(getContext(),user.getDri_unm(), new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 String data = response.getString(0);
@@ -113,6 +120,12 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
                 LocalPreference.saveCurrentUserData(getContext(), data);
 
                 UserData loginData = JSONObject.parseObject(data, UserData.class);
+
+                JPushInterface.setAlias(getContext(), loginData.getDri_tel(), new TagAliasCallback() {
+                    @Override
+                    public void gotResult(int i, String s, Set<String> set) {
+                    }
+                });
 
                 fillData(loginData);
             }

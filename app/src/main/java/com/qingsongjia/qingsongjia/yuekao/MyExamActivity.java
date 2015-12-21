@@ -35,7 +35,6 @@ public class MyExamActivity extends WanListActivity {
         super.initView();
         setBackFinish();
         setContentTitle("我的考试");
-        setRightText("编辑");
     }
 
     @Override
@@ -46,8 +45,8 @@ public class MyExamActivity extends WanListActivity {
     @Override
     public WanAdapter getAdapter() {
         MyTestAdapter adapter = new MyTestAdapter(getContext(), data, R.layout.item_mytest_list);
-        View header = getLayoutInflater().inflate(R.layout.activity_my_test, null);
-        adapter.addHeaderView(header);
+//        View header = getLayoutInflater().inflate(R.layout.activity_my_test, null);
+//        adapter.addHeaderView(header);
         return adapter;
     }
 
@@ -62,12 +61,12 @@ public class MyExamActivity extends WanListActivity {
                             List<MyKaoShi> kaoShis = JSONArray.parseArray(response.toJSONString(), MyKaoShi.class);
                             data.addAll(kaoShis);
                         }
-                        loadFinish("");
+                        loadFinish("暂时还没有参加考试");
                     }
 
                     @Override
                     public void onResponseError(String error) {
-
+                        loadError();
                     }
                 }
         );
@@ -89,11 +88,15 @@ public class MyExamActivity extends WanListActivity {
         @Override
         public void convert(WanViewHolder holder, int position, MyKaoShi item) {
             TextView time = holder.getView(R.id.time);
+
+            item.getDri_dt();
+
+
             String t = item.getDri_tm();
             if (TextUtils.equals(t, "1")) {
-                time.setText("上午");
+                time.setText(item.getDri_dt_str()+" 上午");
             }else {
-                time.setText("下午");
+                time.setText(item.getDri_dt_str()+" 下午");
             }
 
             TextView keme = holder.getView(R.id.kemu);

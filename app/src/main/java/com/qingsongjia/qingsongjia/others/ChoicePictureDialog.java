@@ -52,14 +52,16 @@ public class ChoicePictureDialog {
     private SimpleDraweeView icon;
     private AlertDialog dialog;
 
-    public ChoicePictureDialog(final Activity context, SimpleDraweeView icon) {
+    private String upPath;
 
+    public ChoicePictureDialog(final Activity context,String upPath, SimpleDraweeView icon) {
+
+        this.upPath=upPath;
         this.context = context;
         this.icon=icon;
 
         String[] items = {"拍照", "相册"};
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("上传头像");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -73,7 +75,6 @@ public class ChoicePictureDialog {
             }
         });
         dialog = builder.show();
-        dialog.setCancelable(false);
     }
 
     /*
@@ -81,9 +82,7 @@ public class ChoicePictureDialog {
          */
     public void upload() {
         try {
-            File f = new File(FileManager.getCacheImageFile(context), PHOTO_CROP_NAME);
-
-            icon.setImageURI(Uri.fromFile(f));
+            final File f = new File(FileManager.getCacheImageFile(context), PHOTO_CROP_NAME);
 
             String _uploadToken = getUploadToken();
             UploadManager uploadManager = new UploadManager();
@@ -99,7 +98,7 @@ public class ChoicePictureDialog {
                     LocalPreference.getCurrentUser(context).getId()
                     + "icon.jpg";
 
-            Log.e("==============",key);
+
 
             //上传图片的key,文件名字
             uploadManager.put(f, key, _uploadToken,
@@ -108,9 +107,11 @@ public class ChoicePictureDialog {
                         public void complete(String key, final ResponseInfo info,
                                              org.json.JSONObject response) {
                             if (info.isOK()) {
-                                Toast.makeText(context, "上传成功", Toast.LENGTH_SHORT).show();
+                                icon.setImageURI(Uri.fromFile(f));
+                                upPath="http://7xlt5l.com1.z0.glb.clouddn.com/"+key;
+                                icon.setTag(upPath);
                             } else {
-                                Toast.makeText(context, "上传失败", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "头像上传失败，请重试", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }, options);

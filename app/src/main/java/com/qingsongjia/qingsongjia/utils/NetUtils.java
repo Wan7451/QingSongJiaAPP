@@ -28,7 +28,7 @@ import java.util.Map;
 public class NetUtils {
 
     private static final String BASE_URL = "http://360c.tarena.com.cn/";
-//    private static final String BASE_URL = "http://192.168.232.76/";
+//    private static final String BASE_URL = "http://192.168.232.12:8080/DrivingPlatform/";
 //    private static final String BASE_URL = "http://192.168.232.31:8080/DrivingPlatform/";
     private static OkHttpClient mOkHttpClient;
     private static Handler mOKHandler;

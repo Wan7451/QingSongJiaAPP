@@ -55,10 +55,6 @@ public class T_PushSparringActivity extends WanActivity {
     private String upTime;
     private String tempDate;
 
-    private int datacount;
-    private int timecount;
-
-
     private int type;//1:定点上车 2 车接车送
 
     @Override
@@ -112,23 +108,23 @@ public class T_PushSparringActivity extends WanActivity {
                     return;
                 }
 
-                NetRequest.pushOrder(getContext(), upDate,upTime,
+                NetRequest.pushOrder(getContext(), upDate, upTime,
                         price, type + "", other, new NetUtils.NetUtilsHandler() {
-                    @Override
-                    public void onResponseOK(JSONArray response, int total) {
-                        showToast("发布成功");
-                        finish();
-                    }
+                            @Override
+                            public void onResponseOK(JSONArray response, int total) {
+                                showToast("发布成功");
+                                finish();
+                            }
 
-                    @Override
-                    public void onResponseError(String error) {
-                        if (TextUtils.isEmpty(error)) {
-                            showToast("发布失败");
-                        } else {
-                            showToast(error);
-                        }
-                    }
-                });
+                            @Override
+                            public void onResponseError(String error) {
+                                if (TextUtils.isEmpty(error)) {
+                                    showToast("发布失败");
+                                } else {
+                                    showToast(error);
+                                }
+                            }
+                        });
             }
         });
     }
@@ -139,21 +135,19 @@ public class T_PushSparringActivity extends WanActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        upDate = year + "-" + (month+1) + "-" + day;
-                        tempDate = year + "年" + (month+1) + "月" + day + "日";
+                        upDate = year + "-" + (month + 1) + "-" + day;
+                        tempDate = year + "年" + (month + 1) + "月" + day + "日";
 
-                        datacount++;
+                        if (datePicker.isShown()) {
 
-                        if (datacount == 2) {
                             TimePickerDialog timeDialog = new TimePickerDialog(
                                     getContext(),
                                     new TimePickerDialog.OnTimeSetListener() {
                                         @Override
                                         public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                                            timecount++;
-                                            if (timecount == 2) {
+                                            if (timePicker.isShown()) {
                                                 tempDate += i + "时";
-                                                upTime=i+"";
+                                                upTime = i + "";
                                                 trainingTime.setText(tempDate);
                                             }
                                         }
@@ -164,8 +158,6 @@ public class T_PushSparringActivity extends WanActivity {
                             );
                             timeDialog.setTitle("选择时间");
                             timeDialog.show();
-                            datacount = 0;
-                            timecount = 0;
                         }
                     }
                 },

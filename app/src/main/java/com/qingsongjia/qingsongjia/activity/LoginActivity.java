@@ -18,8 +18,12 @@ import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
 
+import java.util.Set;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 import de.greenrobot.event.EventBus;
 
 public class LoginActivity extends WanActivity {
@@ -70,7 +74,7 @@ public class LoginActivity extends WanActivity {
             @Override
             public void onClick(View view) {
 
-                String tel = loginPhone.getText().toString();
+                final String tel = loginPhone.getText().toString();
                 String pasd = loginPasd.getText().toString();
                 if (TextUtils.isEmpty(tel)) {
                     showToast("账户不能为空！");
@@ -81,6 +85,8 @@ public class LoginActivity extends WanActivity {
                     showToast("密码不能为空！");
                     return;
                 }
+
+
 
 
                 NetRequest.loginLogin(getContext(), tel, pasd, new NetUtils.NetUtilsHandler() {

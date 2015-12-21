@@ -30,6 +30,8 @@ public class WanApplication extends MultiDexApplication {
 //        crashHandler.init(getApplicationContext());
         //所有的Activity
         allAcitivties = new ArrayList<>();
+
+
     }
 
     public ArrayList<Activity> getAllAcitivties() {

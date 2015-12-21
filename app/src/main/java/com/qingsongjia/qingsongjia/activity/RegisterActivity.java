@@ -74,6 +74,8 @@ public class RegisterActivity extends WanActivity {
                     return;
                 }
 
+
+
                 if(TextUtils.isEmpty(vpasd)){
                     showToast("验证码不能为空！");
                     return;
@@ -81,6 +83,16 @@ public class RegisterActivity extends WanActivity {
 
                 if(!TextUtils.equals(vpasd,vcode)){
                     showToast("验证码输入错误！");
+                    return;
+                }
+
+                if(pasd.length()<6){
+                    showToast("密码最短6位！");
+                    return;
+                }
+
+                if(pasd.length()>16){
+                    showToast("密码最长16位！");
                     return;
                 }
 
@@ -119,7 +131,7 @@ public class RegisterActivity extends WanActivity {
                     return;
                 }
 
-                NetRequest.getVerificationForPwd(getContext(), phone, new NetUtils.NetUtilsHandler() {
+                NetRequest.getVerification(getContext(), phone, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, final int total) {
                         showToast("验证码已发送");
@@ -155,7 +167,7 @@ public class RegisterActivity extends WanActivity {
 //                        private String dri_verification_code;//验证码
 
                         JSONObject object = response.getJSONObject(0);
-                        vcode = object.getString("dri_verification_code");
+                        vcode = object.getString("checkNum");
                     }
 
                     @Override

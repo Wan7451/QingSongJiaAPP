@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/space10"
                 android:background="@null"
+                android:inputType="phone|text"
                 android:hint="请输入手机号码"
                 android:singleLine="true" />
         </LinearLayout>

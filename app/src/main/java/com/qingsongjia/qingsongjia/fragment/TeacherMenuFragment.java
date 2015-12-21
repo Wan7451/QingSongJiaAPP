@@ -25,6 +25,7 @@ import com.qingsongjia.qingsongjia.bean.OnMenuItemClick;
 import com.qingsongjia.qingsongjia.bean.User;
 import com.qingsongjia.qingsongjia.bean.UserData;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 
 public class TeacherMenuFragment extends Fragment implements WanAdapter.OnItemClickListener {
@@ -53,7 +55,13 @@ public class TeacherMenuFragment extends Fragment implements WanAdapter.OnItemCl
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_teacher_menu, container, false);
         ButterKnife.bind(this, view);
-
+        EventBus.getDefault().register(this);
+        view.findViewById(R.id.userData).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIManager.startTeacherMessage(getContext());
+            }
+        });
 
         ArrayList<ItemClickData> datas = new ArrayList<>();
         datas.add(new ItemClickData(R.drawable.icon_menu_header, "我的学员", "", true));
@@ -76,7 +84,10 @@ public class TeacherMenuFragment extends Fragment implements WanAdapter.OnItemCl
 
 
     private void loadData() {
-        NetRequest.loadMyData(getContext(), new NetUtils.NetUtilsHandler() {
+
+        User user = LocalPreference.getCurrentUser(getContext());
+
+        NetRequest.loadNewMyData(getContext(),user.getDri_unm(), new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 String data = response.getString(0);
@@ -109,11 +120,7 @@ public class TeacherMenuFragment extends Fragment implements WanAdapter.OnItemCl
         });
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
+
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
@@ -154,4 +161,21 @@ public class TeacherMenuFragment extends Fragment implements WanAdapter.OnItemCl
         l = null;
     }
 
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * 使用onEventMainThread来接收事件，那么不论分发事件在哪个线程运行，接收事件永远在UI线程执行，
+     * 这对于android应用是非常有意义的
+     */
+    public void onEventMainThread(EventData data) {
+        if (data.getType() == EventData.TYPE_REFRESH_MENU) {
+            loadData();
+        }
+    }
 }
