@@ -34,6 +34,8 @@ public class SignUpActivity extends WanActivity {
     @Bind(R.id.signup_mark)
     EditText signupMark;
 
+
+    private int dri_goal;//学习目的 数据字典 1.咨询 2.报名
     @Override
     public void initView() {
         ButterKnife.bind(this);

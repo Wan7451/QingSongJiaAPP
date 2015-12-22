@@ -71,7 +71,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:numStars="5"
-                    android:isIndicator="true"
                     android:rating="5" />
 
                 <TextView
@@ -95,7 +94,6 @@
                     android:text="练车场地:" />
 
                 <RatingBar
-                    android:isIndicator="true"
                     android:id="@+id/schoolinfo_addr_rating"
                     style="@style/ratingBar"
                     android:layout_width="wrap_content"
@@ -125,7 +123,6 @@
                     android:text="通&#160;&#160;过&#160;&#160;率:" />
 
                 <RatingBar
-                    android:isIndicator="true"
                     android:id="@+id/schoolinfo_pass_rating"
                     style="@style/ratingBar"
                     android:layout_width="wrap_content"

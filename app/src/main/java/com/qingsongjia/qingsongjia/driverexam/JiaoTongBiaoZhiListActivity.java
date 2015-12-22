@@ -25,6 +25,10 @@ public class JiaoTongBiaoZhiListActivity extends WanListActivity {
 
     String[]  jtbzdq={"禁令标志","警告标志","指示标志","指路标志","道路施工安全标志","旅游区标志","辅助标志"};
     String[]  jtbzdqPath={"jlbz","jgbz","zsbz","zlbz","dlsgaqbz","lyqbz","fzbz"};
+    String[]  detail={"biaozhi_grid_2_jinling_sign.json",
+
+
+    "biaozhi_grid_2_fuzhu_sign.json"};
 
     @Override
     protected boolean addData() {

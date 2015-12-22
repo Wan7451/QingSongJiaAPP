@@ -1,0 +1,84 @@
+{
+  "biaozhilist": [
+    {
+      "title": "事故",
+      "imageurl": "67",
+      "desc": "事故"
+    },
+    {
+      "title": "向前200M",
+      "imageurl": "68",
+      "desc": "向前200M"
+    },
+    {
+      "title": "向右100M",
+      "imageurl": "69",
+      "desc": "向右100M"
+    },
+    {
+      "title": "向左100M",
+      "imageurl": "70",
+      "desc": "向左100M"
+    },
+    {
+      "title": "向左、向右各50M",
+      "imageurl": "71",
+      "desc": "向左、向右各50M"
+    },
+    {
+      "title": "坍方",
+      "imageurl": "72",
+      "desc": "坍方"
+    },
+    {
+      "title": "学校",
+      "imageurl": "73",
+      "desc": "学校"
+    },
+    {
+      "title": "时间范围",
+      "imageurl": "74",
+      "desc": "时间范围"
+    },
+    {
+      "title": "时间范围",
+      "imageurl": "75",
+      "desc": "时间范围"
+    },
+    {
+      "title": "机动车",
+      "imageurl": "76",
+      "desc": "机动车"
+    },
+    {
+      "title": "某区域内",
+      "imageurl": "77",
+      "desc": "某区域内"
+    },
+    {
+      "title": "海关",
+      "imageurl": "78",
+      "desc": "海关"
+    },
+    {
+      "title": "组合",
+      "imageurl": "82",
+      "desc": "组合"
+    },
+    {
+      "title": "货车",
+      "imageurl": "81",
+      "desc": "货车"
+    },
+    {
+      "title": "货车、拖拉机",
+      "imageurl": "80",
+      "desc": "货车、拖拉机"
+    },
+    {
+      "title": "除公共汽车外",
+      "imageurl": "79",
+      "desc": "除公共汽车外"
+    }
+  ]
+}

@@ -1,14 +1,17 @@
 package com.qingsongjia.qingsongjia.adapter;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.qingsongjia.qingsongjia.exchange.ExchangeFourFragment;
+import com.qingsongjia.qingsongjia.exchange.ExchangeItemFragment;
 import com.qingsongjia.qingsongjia.exchange.ExchangeOneFragment;
 import com.qingsongjia.qingsongjia.exchange.ExchangeShareFragment;
 import com.qingsongjia.qingsongjia.exchange.ExchangeThreeFragment;
 import com.qingsongjia.qingsongjia.exchange.ExchangeTwoFragment;
+import com.qingsongjia.qingsongjia.fragment.ExchangeFragment;
 
 import java.util.ArrayList;
 
@@ -19,15 +22,17 @@ import java.util.ArrayList;
 public class ExchangeFragmentAdapter extends FragmentStatePagerAdapter {
 
     ArrayList<Fragment> fragments=new ArrayList<>();
-    String[] titles={"科一","科二","科三","科四","经验分享"};
+    String[] titles={"科一","科二","科三","科四","拼车去考试","拼车去练习","拼车去旅游","经验分享","路况分享","交友娱乐"};
 
     public ExchangeFragmentAdapter(FragmentManager fm) {
         super(fm);
-        fragments.add(new ExchangeOneFragment());
-        fragments.add(new ExchangeTwoFragment());
-        fragments.add(new ExchangeThreeFragment());
-        fragments.add(new ExchangeFourFragment());
-        fragments.add(new ExchangeShareFragment());
+        for (int i = 0; i < titles.length; i++) {
+            ExchangeItemFragment fragment = new ExchangeItemFragment();
+            Bundle bundle=new Bundle();
+            bundle.putString("type",titles[i]);
+            fragment.setArguments(bundle);
+            fragments.add(fragment);
+        }
     }
 
     @Override

@@ -40,7 +40,7 @@ public class SchoolEvaluateFragment extends WanListFragment {
     @Override
     protected boolean loadData() {
 
-        NetRequest.loadAllSchoolEvaluate(getContext(), id, new NetUtils.NetUtilsHandler() {
+        NetRequest.loadCurrentSchoolEvaluate(getContext(), id, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

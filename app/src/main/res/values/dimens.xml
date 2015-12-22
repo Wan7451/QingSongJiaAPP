@@ -17,6 +17,8 @@
     <dimen name="space22">22dp</dimen>
     <dimen name="space25">25dp</dimen>
     <dimen name="space30">30dp</dimen>
+    <dimen name="space35">35dp</dimen>
+    <dimen name="space40">40dp</dimen>
     <dimen name="space50">50dp</dimen>
     <dimen name="space60">60dp</dimen>
     <dimen name="space70">70dp</dimen>

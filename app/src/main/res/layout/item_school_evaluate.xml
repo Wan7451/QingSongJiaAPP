@@ -11,8 +11,8 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/evaluate_icon"
-        android:layout_width="@dimen/space60"
-        android:layout_height="@dimen/space60"
+        android:layout_width="@dimen/space35"
+        android:layout_height="@dimen/space35"
         app:roundAsCircle="true"
         android:layout_marginRight="@dimen/space10" />
 
@@ -30,7 +30,7 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="@dimen/space60"
+                android:layout_height="@dimen/space40"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -38,13 +38,17 @@
                     android:id="@+id/evaluate_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_default"
                     android:text="name" />
 
                 <TextView
                     android:id="@+id/evaluate_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space5"
+                    android:layout_marginTop="@dimen/space3"
+                    android:layout_marginBottom="@dimen/space3"
+                    android:textSize="@dimen/textSize12"
+                    android:textColor="@color/text_default_hint"
                     android:text="time" />
             </LinearLayout>
 
@@ -58,6 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/space5"
+                android:textSize="@dimen/textSize12"
+                android:textColor="@color/text_default_hint"
                 android:text="count" />
         </LinearLayout>
 
@@ -65,8 +71,10 @@
 
         <TextView
             android:id="@+id/evaluate_text"
+            android:layout_marginTop="@dimen/space10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_default"
             android:text="text" />
     </LinearLayout>
 

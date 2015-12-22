@@ -86,6 +86,15 @@ public abstract class WanListFragment extends WanFragment implements PullToRefre
     }
 
 
+    public void refreshing(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getMainView().setRefreshing();
+            }
+        },300);
+    }
+
 
     @Override
     protected boolean isShowTitleView() {

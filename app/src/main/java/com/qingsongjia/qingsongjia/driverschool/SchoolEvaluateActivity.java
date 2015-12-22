@@ -1,9 +1,13 @@
 package com.qingsongjia.qingsongjia.driverschool;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -13,8 +17,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.SchoolDetail;
 import com.qingsongjia.qingsongjia.bean.SchoolScore;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
@@ -50,6 +56,10 @@ public class SchoolEvaluateActivity extends WanActivity {
     private int id;
     private SchoolDetail detail;
 
+    private int place, time, pass;
+    private SchoolEvaluateAdapter adapter;
+    private InputMethodManager imm;
+
     @Override
     public void initView() {
         ButterKnife.bind(this);
@@ -72,8 +82,10 @@ public class SchoolEvaluateActivity extends WanActivity {
         schoolinfoPassRating.setRating(detail.getDri_pass());
         schoolinfoPassFen.setText(detail.getDri_pass() + "分");
 
+        imm = (InputMethodManager) getSystemService(Context.
+                INPUT_METHOD_SERVICE);
 
-        SchoolEvaluateAdapter adapter = new SchoolEvaluateAdapter(getSupportFragmentManager());
+        adapter = new SchoolEvaluateAdapter(getSupportFragmentManager());
         navigationTab.setTabsFromPagerAdapter(adapter);
         navigationView.setAdapter(adapter);
         navigationTab.setTabsFromPagerAdapter(adapter);
@@ -81,10 +93,68 @@ public class SchoolEvaluateActivity extends WanActivity {
         navigationTab.setTabMode(TabLayout.MODE_FIXED);
         navigationTab.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        schoolinfoTimeRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                time= (int) (v*10/10);
+                schoolinfoTimeFen.setText(time + "分");
+            }
+        });
+
+        schoolinfoAddrRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                place=(int) (v*10/10);
+                schoolinfoAddrFen.setText(place + "分");
+            }
+        });
+
+        schoolinfoPassRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                pass=(int) (v*10/10);
+                schoolinfoPassFen.setText(pass + "分");
+            }
+        });
         schoolinfoEvalSend.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
 
+                if(TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())){
+                    UIManager.startLogin(getContext());
+                    return;
+                }
+
+                String eval = schoolinfoEval.getText().toString();
+                if (TextUtils.isEmpty(eval)) {
+                    showToast("评价内容不能为空");
+                    return;
+                }
+
+                NetRequest.evaluateSchool(getContext(), detail.getDri_campus_id(),
+                        place, time, pass, eval, new NetUtils.NetUtilsHandler() {
+                            @Override
+                            public void onResponseOK(JSONArray response, int total) {
+                                showToast("评价成功");
+                                Fragment fragment = adapter.getEvalFragment(navigationTab
+                                        .getSelectedTabPosition());
+
+                                if(fragment instanceof AllSchoolEvaluateFragment){
+                                    ((AllSchoolEvaluateFragment) fragment).refreshing();
+                                }
+
+                                if(fragment instanceof SchoolEvaluateFragment){
+                                    ((SchoolEvaluateFragment) fragment).refreshing();
+                                }
+                                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                                schoolinfoEval.setText("");
+                            }
+
+                            @Override
+                            public void onResponseError(String error) {
+
+                            }
+                        });
             }
         });
     }

@@ -574,7 +574,6 @@ public class NetRequest {
      * @param dri_coach_id
      * @param dri_coach_nm
      * @param dri_nm
-     * @param dri_fx_campus_id
      * @param handler
      */
     public static void saveStudent(Context context,
@@ -623,5 +622,37 @@ public class NetRequest {
         HashMap<String, String> params = new HashMap<>();
         params.put("telNum",phone);
         NetUtils.baseRequest(context, "driappconsultclientWeb/getNum", params, true, handler);
+    }
+
+    public static void loadCurrentSchoolEvaluate(Context context, int id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("campusId", 250+"");
+        params.put("user_campus_ids", 250+"");
+        NetUtils.baseRequest(context, "driappcommentweb/loadCampusState", params, false, handler);
+
+    }
+
+    public static void evaluateSchool(WanActivity context,
+                                      int dri_campus_id,
+                                      int place,
+                                      int time,
+                                      int pass,
+                                      String eval,
+                                      NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_remark",UnicodeUtil.stringToUnicode(eval));
+        params.put("dri_place",place+"");
+        params.put("dri_time",time+"");
+        params.put("dri_pass",pass+"");
+        params.put("campusId",dri_campus_id+"");
+        NetUtils.baseRequest(context, "driappcommentweb/save", params, true, handler);
+
+    }
+
+    public static void loadExchange(Context context, String type, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_type",UnicodeUtil.stringToUnicode(type));
+        NetUtils.baseRequest(context, "driappexchangeWeb/Ownerquery", params, false, handler);
+
     }
 }

@@ -27,6 +27,10 @@ public class SchoolEvaluateAdapter extends FragmentStatePagerAdapter {
         fragments.add(new SchoolEvaluateFragment());
     }
 
+    public Fragment getEvalFragment(int i){
+       return fragments.get(i);
+    }
+
 
     @Override
     public CharSequence getPageTitle(int position) {
