@@ -68,4 +68,5 @@
     <string name="title_activity_teacher_nessage">TeacherNessageActivity</string>
     <string name="title_activity_activity_s">ActivityS</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_exchange_detail">ExchangeDetailActivity</string>
 </resources>

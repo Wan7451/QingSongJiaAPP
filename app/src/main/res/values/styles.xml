@@ -1,10 +1,10 @@
 <resources>
 
     <style name="editText">
-       <item name="android:textSize">@dimen/textSize14</item>
-       <item name="android:paddingTop">@dimen/space8</item>
-       <item name="android:paddingBottom">@dimen/space8</item>
-       <item name="android:textColor">@color/text_default_hint</item>
+        <item name="android:textSize">@dimen/textSize14</item>
+        <item name="android:paddingTop">@dimen/space8</item>
+        <item name="android:paddingBottom">@dimen/space8</item>
+        <item name="android:textColor">@color/text_default_hint</item>
         <item name="android:paddingLeft">@dimen/space5</item>
         <item name="android:paddingRight">@dimen/space5</item>
     </style>
