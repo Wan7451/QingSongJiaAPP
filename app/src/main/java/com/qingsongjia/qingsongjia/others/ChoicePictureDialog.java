@@ -12,7 +12,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.localdata.FileManager;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qiniu.android.http.ResponseInfo;
@@ -38,7 +40,6 @@ public class ChoicePictureDialog {
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
 
-    private Bitmap bitmap;
 
     /* 头像名称 */
     private static final String PHOTO_FILE_NAME = "temp_photo.jpg";
@@ -53,6 +54,9 @@ public class ChoicePictureDialog {
     private AlertDialog dialog;
 
     private String upPath;
+
+    private File cropFile;
+    private File captureFile;
 
     public ChoicePictureDialog(final Activity context,String upPath, SimpleDraweeView icon) {
 
@@ -82,7 +86,6 @@ public class ChoicePictureDialog {
          */
     public void upload() {
         try {
-            final File f = new File(FileManager.getCacheImageFile(context), PHOTO_CROP_NAME);
 
             String _uploadToken = getUploadToken();
             UploadManager uploadManager = new UploadManager();
@@ -101,13 +104,16 @@ public class ChoicePictureDialog {
 
 
             //上传图片的key,文件名字
-            uploadManager.put(f, key, _uploadToken,
+            uploadManager.put(cropFile, key, _uploadToken,
                     new UpCompletionHandler() {
                         @Override
                         public void complete(String key, final ResponseInfo info,
                                              org.json.JSONObject response) {
                             if (info.isOK()) {
-                                icon.setImageURI(Uri.fromFile(f));
+                                Uri uri=  Uri.fromFile(cropFile);
+                                //清除缓存
+                                Fresco.getImagePipeline().evictFromMemoryCache(uri);
+                                icon.setImageURI(uri);
                                 upPath="http://7xlt5l.com1.z0.glb.clouddn.com/"+key;
                                 icon.setTag(upPath);
                             } else {
@@ -140,10 +146,14 @@ public class ChoicePictureDialog {
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         // 判断存储卡是否可以用，可用进行存储
         if (hasSdcard()) {
+            captureFile = new File(FileManager.getCacheImageFile(context),
+                    PHOTO_FILE_NAME);
+            if(captureFile.exists()){
+                captureFile.delete();
+            }
             intent.putExtra(MediaStore.EXTRA_OUTPUT,
                     Uri.fromFile(
-                            new File(FileManager.getCacheImageFile(context),
-                                    PHOTO_FILE_NAME)));
+                            captureFile));
         }
         activity.startActivityForResult(intent, PHOTO_REQUEST_CAMERA);
     }
@@ -158,9 +168,9 @@ public class ChoicePictureDialog {
 
         } else if (requestCode == PHOTO_REQUEST_CAMERA) {
             if (hasSdcard()) {
-                tempFile = new File(FileManager.getCacheImageFile(context),
-                        PHOTO_FILE_NAME);
-                crop(context, Uri.fromFile(tempFile));
+//                tempFile = new File(FileManager.getCacheImageFile(context),
+//                        PHOTO_FILE_NAME);
+                crop(context, Uri.fromFile(captureFile));
             } else {
                 Toast.makeText(context, "未找到存储卡，无法存储照片！", Toast.LENGTH_SHORT).show();
             }
@@ -189,8 +199,13 @@ public class ChoicePictureDialog {
         // 裁剪图片意图
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
+
+        cropFile = new File(FileManager.getCacheImageFile(context), PHOTO_CROP_NAME);
+        if(cropFile.exists()){
+            cropFile.delete();
+        }
         intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                Uri.fromFile(new File(FileManager.getCacheImageFile(context), PHOTO_CROP_NAME))
+                Uri.fromFile(cropFile)
         );
         intent.putExtra("crop", "true");
         // 裁剪框的比例，1：1

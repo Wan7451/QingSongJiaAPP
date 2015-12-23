@@ -22,7 +22,11 @@ public class FileManager {
 
 
     public static File getCacheImageFile(Context context) {
-        return new File(getCacheFile(context), "img");
+        File f= new File(getCacheFile(context), "img");
+        if(!f.exists()){
+            f.mkdirs();
+        }
+        return f;
     }
 
 
