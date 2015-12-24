@@ -2,6 +2,12 @@ package com.qingsongjia.qingsongjia.activity;
 
 import android.content.Intent;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.CityData;
 import com.qingsongjia.qingsongjia.localdata.CopyDBFileService;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
@@ -26,8 +32,18 @@ public class App extends WanApplication {
 
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+
+        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this));
     }
 
+
+    public DisplayImageOptions getDisplayOptions(){
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
+                .displayer(new FadeInBitmapDisplayer(300))
+                .build();
+        return options;
+    }
 
     private CityData currCity; //当前过滤的城市
     private CityData currArea; //当前过滤的地区

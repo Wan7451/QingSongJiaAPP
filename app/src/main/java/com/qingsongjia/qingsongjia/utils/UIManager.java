@@ -31,6 +31,7 @@ import com.qingsongjia.qingsongjia.driverschool.SchoolEvaluateActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolImgsActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolListActivity;
 import com.qingsongjia.qingsongjia.driverschool.SignUpActivity;
+import com.qingsongjia.qingsongjia.exchange.ExchangeDetailActivity;
 import com.qingsongjia.qingsongjia.plxc.AllSparringListActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringEvaluateActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringComplaintActivity;
@@ -567,6 +568,13 @@ public class UIManager {
     public static void startTeacherMessage(Context context) {
         Intent i=new Intent();
         i.setClass(context, TeacherMessageActivity.class);
+        context.startActivity(i);
+    }
+
+    public static void startExchangeDeatil(Context context,int id) {
+        Intent i=new Intent();
+        i.setClass(context, ExchangeDetailActivity.class);
+        i.putExtra("id",id);
         context.startActivity(i);
     }
 }

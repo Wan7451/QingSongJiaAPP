@@ -1,10 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.qingsongjia.qingsongjia.exchange.ExchangeDetailActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/space10"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingTop="@dimen/space10">
 
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/exchange_icon"
+            android:layout_width="@dimen/space60"
+            android:layout_height="@dimen/space60"
+            app:fadeDuration="300"
+            app:placeholderImage="@drawable/default_head"
+            app:roundAsCircle="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space10"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="用户123123"
+                android:id="@+id/exchange_name"
+                android:textSize="@dimen/textSize12"
+                android:textColor="@color/text_default_hint" />
+
+            <TextView
+                android:id="@+id/exch_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space5"
+                android:ellipsize="end"
+                android:lines="3"
+                android:text="驾驶证、身份证都有有效期，为啥结婚证不能有有效期?近日，某学者提出一种大胆设想：结婚证应设置7年有效期，到期自动离婚。这样能解决单身问题，还能尝试多段感情，再婚买房买车又能拉动经济增长。"
+                android:textColor="@color/text_default" />
+
+            <ImageView
+                android:id="@+id/exch_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/divider1" />
+
+    <View style="@style/divider10" />
+
+    <View style="@style/divider1" />
 </LinearLayout>

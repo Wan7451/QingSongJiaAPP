@@ -7,6 +7,7 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.ExchangeListAdapter;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanListFragment;
 import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
@@ -74,6 +75,6 @@ public class ExchangeItemFragment extends WanListFragment {
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-
+        UIManager.startExchangeDeatil(getContext(),posotion);
     }
 }
