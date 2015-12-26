@@ -38,8 +38,7 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".activity.App"
@@ -390,6 +389,10 @@
         <activity
             android:name=".exchange.ExchangeDetailActivity"
             android:label="@string/title_activity_exchange_detail"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".exchange.PushExchangeActivity"
+            android:label="@string/title_activity_push_exchange"
             android:theme="@style/AppTheme"></activity>
     </application>
 

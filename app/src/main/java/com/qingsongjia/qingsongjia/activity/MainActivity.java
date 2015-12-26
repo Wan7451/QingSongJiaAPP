@@ -1,5 +1,6 @@
 package com.qingsongjia.qingsongjia.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -22,6 +23,7 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.KeMu;
 import com.qingsongjia.qingsongjia.bean.OnMenuItemClick;
 import com.qingsongjia.qingsongjia.bean.User;
+import com.qingsongjia.qingsongjia.exchange.PushExchangeActivity;
 import com.qingsongjia.qingsongjia.fragment.ExamFragment;
 import com.qingsongjia.qingsongjia.fragment.ExchangeFragment;
 import com.qingsongjia.qingsongjia.fragment.JiaoLianToolsFragment;
@@ -174,6 +176,12 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
                 LocalPreference.setCurrentKemu(this, KeMu.KEMU3);
                 mainImgSearch.setVisibility(View.GONE);
                 mainTvRight.setText("发帖");
+                mainTvRight.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(MainActivity.this, PushExchangeActivity.class));
+                    }
+                });
                 mainTvRight.setVisibility(View.VISIBLE);
                 mainTvTitle.setText("交流");
                 break;

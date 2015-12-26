@@ -21,6 +21,16 @@ public class FileManager {
     }
 
 
+    public static void clearImageCache(Context context){
+        File f= FileManager.getCacheImageFile(context);
+        File[] files= f.listFiles();
+        if(files!=null && files.length>0){
+            for (int i = 0; i <files.length ; i++) {
+                files[i].delete();
+            }
+        }
+    }
+
     public static File getCacheImageFile(Context context) {
         File f= new File(getCacheFile(context), "img");
         if(!f.exists()){

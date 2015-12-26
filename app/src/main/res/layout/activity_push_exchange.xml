@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="#FFF"
+    tools:context="com.qingsongjia.qingsongjia.exchange.PushExchangeActivity">
+
+
+    <EditText
+        android:id="@+id/exchange_text"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="@dimen/view_margin"
+        android:background="@drawable/shape_et_bg"
+        android:gravity="left|top"
+        android:textSize="@dimen/textSize14"
+        android:hint="请输入话题内容"
+        android:padding="@dimen/space5"
+        android:textColor="@color/text_default"
+        android:textColorHint="@color/text_default_hint"
+        />
+    <View
+        style="@style/divider1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@style/padding_normal"
+        android:paddingTop="@dimen/space10"
+        android:paddingBottom="@dimen/space10">
+
+        <LinearLayout
+            android:id="@+id/exchange_camera"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="@dimen/space8"
+            android:paddingBottom="@dimen/space8"
+            android:background="@drawable/shape_btn_exchange"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_exchange_take"/>
+            <TextView
+                android:layout_marginLeft="@dimen/space5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/title_bar_color"
+                android:text="拍摄"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/space20"
+            android:layout_height="@dimen/space1"/>
+
+        <LinearLayout
+            android:id="@+id/exchange_gallery"
+            android:layout_width="0dp"
+            android:paddingTop="@dimen/space8"
+            android:paddingBottom="@dimen/space8"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+
+            android:background="@drawable/shape_btn_exchange"
+            android:orientation="horizontal">
+            <ImageView
+                android:src="@drawable/icon_exchange_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginLeft="@dimen/space5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/title_bar_color"
+                android:text="相册"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        style="@style/divider1"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/view_margin">
+    <GridView
+        android:id="@+id/exchange_imgs"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:numColumns="4"
+        android:horizontalSpacing="@dimen/space5"
+        android:verticalSpacing="@dimen/space5"
+        android:layout_centerHorizontal="true"
+        />
+
+    </RelativeLayout>
+</LinearLayout>
