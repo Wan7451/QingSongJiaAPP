@@ -52,7 +52,7 @@ public class SettingActivity extends WanActivity implements WanAdapter.OnItemCli
         });
 
         datas = new ArrayList<>();
-        datas.add(new ItemClickData(R.drawable.icon_menu_exam, "更新Top图片", "", true));
+//        datas.add(new ItemClickData(R.drawable.icon_menu_exam, "更新Top图片", "", true));
         adapter = new ItemClickDataAdapter(getContext(), datas, R.layout.item_icontext_arrows);
 
         settingMain.setAdapter(adapter);

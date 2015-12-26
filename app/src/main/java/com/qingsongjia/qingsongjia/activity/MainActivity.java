@@ -32,6 +32,7 @@ import com.qingsongjia.qingsongjia.fragment.SchoolFragment;
 import com.qingsongjia.qingsongjia.fragment.TeacherMenuFragment;
 import com.qingsongjia.qingsongjia.fragment.ToolsFragment;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
@@ -39,6 +40,7 @@ import java.io.File;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 
 public class MainActivity extends FragmentActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener, OnMenuItemClick {
@@ -98,8 +100,48 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         mainTabHost.addTab(mainTabHost.newTabSpec("2").setIndicator("B"), SchoolFragment.class, null);
         mainTabHost.addTab(mainTabHost.newTabSpec("3").setIndicator("C"), ExchangeFragment.class, null);
         mainTabHost.addTab(mainTabHost.newTabSpec("4").setIndicator("D"), JiaoLianToolsFragment.class, null);
+        refreshMain();
 
 
+        mainTabHost.setCurrentTab(0);
+        mainNavigation.setOnCheckedChangeListener(this);
+        mainImgDrawerIcon.setOnClickListener(this);
+
+        ((RadioButton) (mainNavigation.getChildAt(0))).setChecked(true);
+
+        mainImgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIManager.startSchoolSearch(MainActivity.this);
+            }
+        });
+    }
+
+
+    /**
+     * 使用onEventMainThread来接收事件，那么不论分发事件在哪个线程运行，接收事件永远在UI线程执行，
+     * 这对于android应用是非常有意义的
+     */
+    public void onEventMainThread(EventData data) {
+        if (data.getType() == EventData.TYPE_REFRESH_MENU) {
+            refreshMain();
+        }
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    private void refreshMain() {
         //dri_type 0 :学生 1 教练
         User u = LocalPreference.getCurrentUser(this);
         type = 0;
@@ -120,20 +162,6 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
             TeacherMenuFragment teacherMenu = new TeacherMenuFragment();
             ft.replace(R.id.main_menu_left, teacherMenu).commit();
         }
-
-
-        mainTabHost.setCurrentTab(0);
-        mainNavigation.setOnCheckedChangeListener(this);
-        mainImgDrawerIcon.setOnClickListener(this);
-
-        ((RadioButton) (mainNavigation.getChildAt(0))).setChecked(true);
-
-        mainImgSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UIManager.startSchoolSearch(MainActivity.this);
-            }
-        });
     }
 
     public void initSystemBar(int color) {

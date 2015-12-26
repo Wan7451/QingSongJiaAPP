@@ -21,6 +21,7 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.localdata.FileManager;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.others.QiniuUtils;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UpProgressHandler;
@@ -74,6 +75,13 @@ public class PushExchangeActivity extends WanActivity {
 
             }
         });
+
+        //判断是否登录
+        if(TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())){
+            UIManager.startLogin(getContext());
+            finish();
+            return;
+        }
 
         exchangeCamera.setOnClickListener(new View.OnClickListener() {
             @Override
