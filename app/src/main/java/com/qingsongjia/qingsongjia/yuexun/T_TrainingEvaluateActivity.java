@@ -1,9 +1,13 @@
 package com.qingsongjia.qingsongjia.yuexun;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -12,7 +16,6 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.MyYueKao;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
-import com.qingsongjia.qingsongjia.yuexun.T_TrainingConfirmActivity;
 import com.wan7451.base.WanActivity;
 
 import java.text.SimpleDateFormat;
@@ -47,6 +50,8 @@ public class T_TrainingEvaluateActivity extends WanActivity {
 
 
     int id;
+    @Bind(R.id.teacher_tel_view)
+    LinearLayout teacherTelView;
     private MyYueKao yueKao;
 
     @Override
@@ -56,15 +61,29 @@ public class T_TrainingEvaluateActivity extends WanActivity {
         ButterKnife.bind(this);
 
         yueKao = getIntent().getParcelableExtra("data");
-        id=yueKao.getId();
+        id = yueKao.getId();
 
         SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         teacherName.setText(yueKao.getDri_student_nm());
         teacherKemu.setText(yueKao.getDri_sub_nm_nm());
         teacherTime.setText(sdformat.format(new Date(yueKao.getDri_dt().getTime())));
-        teacherYuyue.setText(yueKao.getDri_start_hm()+"-"+yueKao.getDri_end_hm());
+        teacherYuyue.setText(yueKao.getDri_start_hm() + "-" + yueKao.getDri_end_hm());
         teacherNeirong.setText(yueKao.getDri_learning_content());
 
+        teacherChepai.setText(yueKao.getDri_campus_nm());
+
+        if(!TextUtils.isEmpty(yueKao.getDri_student_file())){
+            teacherIcon.setImageURI(Uri.parse(yueKao.getDri_student_file()));
+        }
+        teacherTel.setText(yueKao.getDri_student_tel());
+        teacherTelView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent("android.intent.action.CALL",
+                        Uri.parse("tel:"+yueKao.getDri_student_tel()));
+                startActivity(intent);
+            }
+        });
 
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +93,7 @@ public class T_TrainingEvaluateActivity extends WanActivity {
                     showToast("评价内容不能为空");
                     return;
                 }
-                NetRequest.markTeacher(getContext(),id+"",mark, new NetUtils.NetUtilsHandler() {
+                NetRequest.markTeacher(getContext(), id + "", mark, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("评价成功");

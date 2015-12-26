@@ -1,10 +1,13 @@
 package com.qingsongjia.qingsongjia.yuexun;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -42,6 +45,10 @@ public class S_TrainingEvaluateActivity extends WanActivity {
     TextView studentTime;
     @Bind(R.id.student_neirong)
     TextView studentNeirong;
+    @Bind(R.id.student_tel)
+    TextView studentTel;
+    @Bind(R.id.student_tel_view)
+    LinearLayout studentTelView;
     private MyYueKao data;
 
     @Override
@@ -59,7 +66,22 @@ public class S_TrainingEvaluateActivity extends WanActivity {
         studentYuyue.setText(data.getDri_start_hm() + "时 -" + data.getDri_end_hm() + "时");
         studentKemu.setText(data.getDri_sub_nm_nm());
         studentNeirong.setText(data.getDri_learning_content());
-//        studentChepai.setText();
+
+        studentChepai.setText(data.getDri_plate_num());
+
+        if (!TextUtils.isEmpty(data.getDri_coach_file())) {
+            studentIcon.setImageURI(Uri.parse(data.getDri_coach_file()));
+        }
+
+        studentTel.setText(data.getDri_coach_tel());
+        studentTelView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent("android.intent.action.CALL",
+                        Uri.parse("tel:"+data.getDri_coach_tel()));
+                startActivity(intent);
+            }
+        });
 
         pingjia.setOnClickListener(new View.OnClickListener() {
             @Override

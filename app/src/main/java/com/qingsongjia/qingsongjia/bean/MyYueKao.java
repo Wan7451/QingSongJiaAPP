@@ -113,6 +113,22 @@ public class MyYueKao implements Parcelable {
     private String dri_stu_remark_state;
     private String dri_stu_remark_state_nm;
     private String dri_student_remark;
+    /**
+     * create_tm : {"date":11,"day":5,"hours":19,"minutes":48,"month":11,"nanos":0,"seconds":47,"time":1449834527000,"timezoneOffset":-480,"year":115}
+     * dri_coach_file : http://7xlt5l.com1.z0.glb.clouddn.com/1450599610515icon.jpg
+     * dri_coach_tel : 18635019527
+     * dri_confirm_tm : {"date":12,"day":6,"hours":12,"minutes":48,"month":11,"nanos":0,"seconds":0,"time":1449895680000,"timezoneOffset":-480,"year":115}
+     * dri_plate_num :
+     * dri_student_file : http://7xlt5l.com1.z0.glb.clouddn.com/1450921463414icon.jpg
+     * dri_student_tel : 13716458664
+     * update_tm : {"date":12,"day":6,"hours":12,"minutes":48,"month":11,"nanos":0,"seconds":0,"time":1449895680000,"timezoneOffset":-480,"year":115}
+     */
+
+    private String dri_coach_file;
+    private String dri_coach_tel;
+    private String dri_plate_num;
+    private String dri_student_file;
+    private String dri_student_tel;
 
 
     public String getDri_stu_remark_state() {
@@ -431,6 +447,46 @@ public class MyYueKao implements Parcelable {
     public MyYueKao() {
     }
 
+    public void setDri_coach_file(String dri_coach_file) {
+        this.dri_coach_file = dri_coach_file;
+    }
+
+    public void setDri_coach_tel(String dri_coach_tel) {
+        this.dri_coach_tel = dri_coach_tel;
+    }
+
+    public void setDri_plate_num(String dri_plate_num) {
+        this.dri_plate_num = dri_plate_num;
+    }
+
+    public void setDri_student_file(String dri_student_file) {
+        this.dri_student_file = dri_student_file;
+    }
+
+    public void setDri_student_tel(String dri_student_tel) {
+        this.dri_student_tel = dri_student_tel;
+    }
+
+    public String getDri_coach_file() {
+        return dri_coach_file;
+    }
+
+    public String getDri_coach_tel() {
+        return dri_coach_tel;
+    }
+
+    public String getDri_plate_num() {
+        return dri_plate_num;
+    }
+
+    public String getDri_student_file() {
+        return dri_student_file;
+    }
+
+    public String getDri_student_tel() {
+        return dri_student_tel;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -477,6 +533,11 @@ public class MyYueKao implements Parcelable {
         dest.writeString(this.dri_stu_remark_state);
         dest.writeString(this.dri_stu_remark_state_nm);
         dest.writeString(this.dri_student_remark);
+        dest.writeString(this.dri_coach_file);
+        dest.writeString(this.dri_coach_tel);
+        dest.writeString(this.dri_plate_num);
+        dest.writeString(this.dri_student_file);
+        dest.writeString(this.dri_student_tel);
     }
 
     protected MyYueKao(Parcel in) {
@@ -519,6 +580,11 @@ public class MyYueKao implements Parcelable {
         this.dri_stu_remark_state = in.readString();
         this.dri_stu_remark_state_nm = in.readString();
         this.dri_student_remark = in.readString();
+        this.dri_coach_file = in.readString();
+        this.dri_coach_tel = in.readString();
+        this.dri_plate_num = in.readString();
+        this.dri_student_file = in.readString();
+        this.dri_student_tel = in.readString();
     }
 
     public static final Creator<MyYueKao> CREATOR = new Creator<MyYueKao>() {

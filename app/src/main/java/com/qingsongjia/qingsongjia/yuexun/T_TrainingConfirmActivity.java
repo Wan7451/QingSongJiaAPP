@@ -1,8 +1,11 @@
 package com.qingsongjia.qingsongjia.yuexun;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -13,9 +16,6 @@ import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -41,6 +41,10 @@ public class T_TrainingConfirmActivity extends WanActivity {
     TextView yxconfirmQuexi;
     @Bind(R.id.yxconfirm_queren)
     TextView yxconfirmQueren;
+    @Bind(R.id.teacher_tel)
+    TextView teacherTel;
+    @Bind(R.id.teacher_tel_view)
+    LinearLayout teacherTelView;
     private int id;
     private MyYueKao yueKao;
 
@@ -52,15 +56,29 @@ public class T_TrainingConfirmActivity extends WanActivity {
 
 
         yueKao = getIntent().getParcelableExtra("data");
-        id=yueKao.getId();
+        id = yueKao.getId();
         teacherName.setText(yueKao.getDri_student_nm());
         teacherKemu.setText(yueKao.getDri_sub_nm_nm());
 
-//        teacherChepai.setText(yueKao.getDri_campus_nm());
-        teacherTime.setText(yueKao.getDri_dt_str());
+        teacherChepai.setText(yueKao.getDri_campus_nm());
+        teacherTime.setText(yueKao.getDri_plate_num());
 
-        teacherYuyue.setText(yueKao.getDri_start_hm()+"时 -"+yueKao.getDri_end_hm()+"时");
+
+        teacherYuyue.setText(yueKao.getDri_start_hm() + "时 -" + yueKao.getDri_end_hm() + "时");
         teacherNeirong.setText(yueKao.getDri_learning_content());
+
+        if(!TextUtils.isEmpty(yueKao.getDri_student_file())){
+            teacherIcon.setImageURI(Uri.parse(yueKao.getDri_student_file()));
+        }
+        teacherTel.setText(yueKao.getDri_student_tel());
+        teacherTelView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent("android.intent.action.CALL",
+                        Uri.parse("tel:"+yueKao.getDri_student_tel()));
+                startActivity(intent);
+            }
+        });
 
         //确认
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {

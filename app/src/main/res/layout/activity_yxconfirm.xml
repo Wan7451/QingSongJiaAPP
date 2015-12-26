@@ -105,6 +105,7 @@
         android:layout_marginRight="@dimen/view_margin" />
 
     <LinearLayout
+        android:id="@+id/teacher_tel_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space10"
@@ -119,6 +120,7 @@
             android:src="@drawable/icon_telephone" />
 
         <TextView
+            android:id="@+id/teacher_tel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/space10"

@@ -92,6 +92,7 @@ public class S_TrainingListActivity extends WanListActivity {
             String t = item.getDri_dt_str()+ " " + item.getDri_start_hm() + "时 -" + item.getDri_end_hm()+"时";
             time.setText(t);
 
+
             TextView keme = holder.getView(R.id.kemu);
             keme.setText(item.getDri_sub_nm_nm());
 
