@@ -13,6 +13,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.activity.App;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanListActivity;
 import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
@@ -55,7 +56,7 @@ public class ExchangeDetailActivity extends WanListActivity {
         View headerView = getLayoutInflater().inflate(R.layout.activity_exchange_detail, null);
         ButterKnife.bind(this, headerView);
         adapter.addHeaderView(headerView);
-String url="http://img1.imgtn.bdimg.com/it/u=2445236384,366556919&fm=21&gp=0.jpg";
+        String url="http://img1.imgtn.bdimg.com/it/u=2445236384,366556919&fm=21&gp=0.jpg";
 
         displayOptions = ((App) getAppContext()).getDisplayOptions();
 
@@ -94,8 +95,14 @@ String url="http://img1.imgtn.bdimg.com/it/u=2445236384,366556919&fm=21&gp=0.jpg
         }
 
         @Override
-        public void convert(WanViewHolder holder, int position, String item) {
-
+        public void convert(WanViewHolder holder, final int position, String item) {
+          TextView reply=  holder.getView(R.id.exchItem_reply);
+            reply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UIManager.startReply(getContext(),position);
+                }
+            });
         }
     }
 }

@@ -70,4 +70,5 @@
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="title_activity_exchange_detail">ExchangeDetailActivity</string>
     <string name="title_activity_push_exchange">PushExchangeActivity</string>
+    <string name="title_activity_reply">ReplyActivity</string>
 </resources>

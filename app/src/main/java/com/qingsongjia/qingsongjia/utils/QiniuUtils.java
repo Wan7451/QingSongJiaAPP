@@ -1,6 +1,9 @@
-package com.qingsongjia.qingsongjia.others;
+package com.qingsongjia.qingsongjia.utils;
+
+import android.content.Context;
 
 import com.alibaba.fastjson.JSONObject;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qiniu.android.utils.UrlSafeBase64;
 
 import javax.crypto.Mac;
@@ -16,6 +19,11 @@ public class QiniuUtils {
     public static final String ak = "p8xOqvSh-zym4DysE8nJ7EmrIgzMzaaLI9X8EeaW";
 
     public static final String IMAGE_URL_HEADER="http://7xlt5l.com1.z0.glb.clouddn.com/";
+
+
+    public static String generate(Context context) {
+        return System.currentTimeMillis() + LocalPreference.getCurrentUser(context).getId() + ".jpg";
+    }
 
     public static String getUploadToken() {
         try {

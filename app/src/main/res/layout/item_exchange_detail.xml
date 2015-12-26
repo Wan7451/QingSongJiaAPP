@@ -98,6 +98,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:text="回复"
+                android:id="@+id/exchItem_reply"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/space5"
                 android:textSize="@dimen/textSize12"

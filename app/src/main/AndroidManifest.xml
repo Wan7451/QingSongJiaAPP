@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.qingsongjia.qingsongjia">
+    package="com.qingsongjia.qingsongjia" >
 
     <!-- Required -->
     <permission
@@ -46,7 +46,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
 
         <!-- Required SDK 核心功能 -->
         <!-- option since 2.0.5 可配置PushService，DaemonService,PushReceiver,AlarmReceiver的android:process参数 将JPush相关组件设置为一个独立进程 -->
@@ -54,7 +54,7 @@
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
@@ -68,7 +68,7 @@
         <service
             android:name="cn.jpush.android.service.DaemonService"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
 
@@ -79,8 +79,8 @@
         <!-- Required -->
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
-            android:enabled="true">
-            <intent-filter android:priority="1000">
+            android:enabled="true" >
+            <intent-filter android:priority="1000" >
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
 
                 <category android:name="com.qingsongjia.qingsongjia" />
@@ -102,7 +102,7 @@
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
@@ -121,7 +121,7 @@
         <!-- User defined. 用户自定义的广播接收器 -->
         <receiver
             android:name=".others.JPushReceiver"
-            android:enabled="true">
+            android:enabled="true" >
             <intent-filter>
 
                 <!-- Required 用户注册SDK的intent -->
@@ -347,7 +347,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SplashActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -393,7 +393,12 @@
         <activity
             android:name=".exchange.PushExchangeActivity"
             android:label="@string/title_activity_push_exchange"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".exchange.ReplyActivity"
+            android:label="@string/title_activity_reply"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>

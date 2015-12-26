@@ -3,33 +3,24 @@ package com.qingsongjia.qingsongjia.others;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.localdata.FileManager;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.QiniuUtils;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UpProgressHandler;
 import com.qiniu.android.storage.UploadManager;
 import com.qiniu.android.storage.UploadOptions;
-import com.qiniu.android.utils.UrlSafeBase64;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-
-import javax.crypto.Mac;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 
 /**
  * Created by wanggang on 15/12/17.

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -35,12 +36,11 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class PushExchangeActivity extends WanActivity {
+public class ReplyActivity extends WanActivity {
 
 
     private static final int PHOTO_REQUEST_CAMERA = 1;// 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
-
 
     @Bind(R.id.exchange_text)
     EditText exchangeText;
@@ -52,7 +52,7 @@ public class PushExchangeActivity extends WanActivity {
     GridView exchangeImgs;
 
     private String upText;
-    private String upImgs;
+    private String upImg;
 
     private ArrayList<File> imgs = new ArrayList<>();
     private File captureFile;
@@ -61,16 +61,6 @@ public class PushExchangeActivity extends WanActivity {
 
     @Override
     public void initView() {
-        ButterKnife.bind(this);
-        setBackFinish();
-        setContentTitle("发表话题");
-        setRightText("发送", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                push();
-
-            }
-        });
 
         //判断是否登录
         if (TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())) {
@@ -79,11 +69,24 @@ public class PushExchangeActivity extends WanActivity {
             return;
         }
 
+        ButterKnife.bind(this);
+        setBackFinish();
+        setContentTitle("回复");
+        setRightText("发送", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                push();
+            }
+        });
+
+        int posotion = getIntent().getIntExtra("posotion", 0);
+        setContentTitle("回复" + (posotion + 1) + "楼");
+
         exchangeCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (imgs.size() > 8) {
-                    showToast("最多9张图片");
+                if (imgs.size() > 0) {
+                    showToast("只能回复一张图片");
                     return;
                 }
                 camera();
@@ -93,18 +96,18 @@ public class PushExchangeActivity extends WanActivity {
         exchangeGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (imgs.size() > 8) {
-                    showToast("最多9张图片");
+                if (imgs.size() > 0) {
+                    showToast("只能回复一张图片");
                     return;
                 }
                 gallery();
-
             }
         });
 
         adapter = new ImageAdapter(getContext(), imgs, R.layout.item_exchange_imgs);
         exchangeImgs.setAdapter(adapter);
     }
+
 
     private void push() {
         upText = exchangeText.getText().toString();
@@ -113,29 +116,24 @@ public class PushExchangeActivity extends WanActivity {
             return;
         }
 
-        dialog = new ProgressDialog(getContext());
         if (imgs.size() == 0) {
-            dialog.setMessage("发布中....");
+            pushRequest("");
         } else {
-            dialog.setMessage("正在上传图片中(" + currCount + "/" + imgs.size() + ").....");
+
+            dialog = new ProgressDialog(getContext());
+            dialog.setMessage("正在上传图片中.....");
+            dialog.setCancelable(false);
+            dialog.show();
+            //上传图片
+            handleImageUp();
         }
-        dialog.setCancelable(false);
-        dialog.show();
-        //上传图片
-        handleImageUp();
     }
 
-    int currCount = 1;
-    StringBuffer uploadPicUrls = new StringBuffer();
 
     private void handleImageUp() {
 
-        if (currCount >= imgs.size()+1) {
-            pushRequest(uploadPicUrls);
-            return;
-        }
         //压缩图片
-        BitmapUtil.getCompressByteBitmap(imgs.get(currCount-1).getPath(),
+        BitmapUtil.getCompressByteBitmap(imgs.get(0).getPath(),
                 new BitmapUtil.OnCompressCompleteListener() {
                     @Override
                     public void onCompressOk(byte[] data) {
@@ -159,13 +157,8 @@ public class PushExchangeActivity extends WanActivity {
                                     public void complete(String key, final ResponseInfo info,
                                                          org.json.JSONObject response) {
                                         if (info.isOK()) {
-                                            uploadPicUrls.append(QiniuUtils.IMAGE_URL_HEADER + key);
-                                            uploadPicUrls.append(",");
-                                            currCount++;
-                                            if (currCount <= imgs.size()) {
-                                                dialog.setMessage("正在上传图片中(" + currCount + "/" + imgs.size() + ").....");
-                                            }
-                                            handleImageUp();
+                                            String upPath = QiniuUtils.IMAGE_URL_HEADER + key;
+                                            pushRequest(upPath);
                                         } else {
                                             showLongToast(info.error);
                                             dialog.dismiss();
@@ -177,13 +170,13 @@ public class PushExchangeActivity extends WanActivity {
                 });
     }
 
-    private void pushRequest(StringBuffer uploadPicUrls) {
-        if (uploadPicUrls.length() > 0) {
-            uploadPicUrls.setLength(uploadPicUrls.length() - 1);
-        }
-        dialog.dismiss();
-        Log.i("======",uploadPicUrls.toString());
+    private void pushRequest(String uploadPicUrls) {
+        if (dialog != null)
+            dialog.dismiss();
+        upText = exchangeText.getText().toString();
 
+        Log.i("=======", upText);
+        Log.i("=======", uploadPicUrls);
     }
 
     private void gallery() {
@@ -218,20 +211,13 @@ public class PushExchangeActivity extends WanActivity {
             }
 
         } else if (requestCode == PHOTO_REQUEST_CAMERA) {
+            Uri uri = Uri.fromFile(captureFile);
             if (resultCode == RESULT_OK && captureFile != null) {
-                Uri uri = Uri.fromFile(captureFile);
                 imgs.add(captureFile);
                 adapter.notifyDataSetChanged();
             }
         }
     }
-
-
-    @Override
-    protected int getMainViewLayoutId() {
-        return R.layout.activity_push_exchange;
-    }
-
 
     class ImageAdapter extends CommonAdapter<File> {
 
@@ -254,11 +240,16 @@ public class PushExchangeActivity extends WanActivity {
         }
     }
 
+
+    @Override
+    protected int getMainViewLayoutId() {
+        return R.layout.activity_reply;
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         FileManager.clearImageCache(getContext());
     }
-
 
 }
