@@ -32,13 +32,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <RadioButton
+                android:id="@+id/signup_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="报名"
+                android:checked="true"
                 android:button="@drawable/icon_radio_selector"
                 android:textColor="@color/text_default_hint"/>
 
             <RadioButton
+                android:id="@+id/signup_ask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="咨询"
@@ -138,6 +141,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             style="@style/editText"
+            android:inputType="phone"
             android:layout_marginLeft="@dimen/space10"
             />
     </LinearLayout>
@@ -178,6 +182,7 @@
         android:paddingTop="@dimen/space5"
         android:background="#FFF">
         <Button
+            android:id="@+id/signup_signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/button"

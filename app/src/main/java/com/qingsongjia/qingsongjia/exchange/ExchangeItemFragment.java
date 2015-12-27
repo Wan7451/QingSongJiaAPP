@@ -1,10 +1,13 @@
 package com.qingsongjia.qingsongjia.exchange;
 
+import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.ExchangeListAdapter;
+import com.qingsongjia.qingsongjia.bean.Exchange;
+import com.qingsongjia.qingsongjia.bean.MyYueKao;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -16,9 +19,8 @@ import java.util.ArrayList;
 
 public class ExchangeItemFragment extends WanListFragment {
 
-    private String typel;
 
-    ArrayList<String> date=new ArrayList<>();
+    ArrayList<Exchange> data=new ArrayList<>();
     private String type;
 
     public ExchangeItemFragment() {
@@ -38,6 +40,11 @@ public class ExchangeItemFragment extends WanListFragment {
         NetRequest.loadExchange(getContext(),type, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
+                data.clear();
+                if (!TextUtils.equals("[{}]", response.toJSONString())) {
+                    data.addAll(JSONArray.parseArray(response.toJSONString(), Exchange.class));
+                }
+                loadFinish("暂时内容，赶快发帖吧~");
 
             }
 
@@ -47,22 +54,13 @@ public class ExchangeItemFragment extends WanListFragment {
             }
         });
 
-        date.add("");
-        date.add("");
-        date.add("");
-        date.add("");
-        date.add("");
-        date.add("");
-
-        loadFinish("");
 
         return false;
     }
 
     @Override
     public WanAdapter getAdapter() {
-
-        return new ExchangeListAdapter(getContext(),date,R.layout.item_exchange_list);
+        return new ExchangeListAdapter(getContext(),data,R.layout.item_exchange_list);
     }
 
     @Override
@@ -75,6 +73,6 @@ public class ExchangeItemFragment extends WanListFragment {
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-        UIManager.startExchangeDeatil(getContext(),posotion);
+        UIManager.startExchangeDeatil(getContext(),data.get(posotion).getDid());
     }
 }

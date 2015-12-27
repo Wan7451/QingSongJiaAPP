@@ -91,40 +91,39 @@ public class TeacherMenuFragment extends Fragment implements WanAdapter.OnItemCl
     private void loadData() {
 
         User user = LocalPreference.getCurrentUser(getContext());
+        if (!TextUtils.isEmpty(user.getDri_type()))
+            NetRequest.loadNewMyData(getContext(), user.getDri_unm(), new NetUtils.NetUtilsHandler() {
+                @Override
+                public void onResponseOK(JSONArray response, int total) {
+                    String data = response.getString(0);
 
-        NetRequest.loadNewMyData(getContext(),user.getDri_unm(), new NetUtils.NetUtilsHandler() {
-            @Override
-            public void onResponseOK(JSONArray response, int total) {
-                String data = response.getString(0);
+                    LocalPreference.saveCurrentUserData(getContext(), data);
 
-                LocalPreference.saveCurrentUserData(getContext(), data);
+                    UserData loginData = JSONObject.parseObject(data, UserData.class);
 
-                UserData loginData = JSONObject.parseObject(data, UserData.class);
+                    if (menuUserName != null)
+                        if (!TextUtils.isEmpty(loginData.getDri_nm())) {
+                            menuUserName.setText(loginData.getDri_nm());
+                        } else {
+                            menuUserName.setText("嘟嘟驾道");
+                        }
 
-                if (menuUserName != null)
-                    if (!TextUtils.isEmpty(loginData.getDri_nm())) {
-                        menuUserName.setText(loginData.getDri_nm());
-                    } else {
-                        menuUserName.setText("嘟嘟驾道");
-                    }
-
-                if (menuUserIcon != null) {
-                    String iconPath = loginData.getDri_file_path();
-                    if (TextUtils.isEmpty(iconPath)) {
-                        menuUserIcon.setImageURI(Uri.parse("http://7xlt5l.com1.z0.glb.clouddn.com/1449734769519ohgmmj3048628"));
-                    } else {
-                        menuUserIcon.setImageURI(Uri.parse(iconPath));
+                    if (menuUserIcon != null) {
+                        String iconPath = loginData.getDri_file_path();
+                        if (TextUtils.isEmpty(iconPath)) {
+                            menuUserIcon.setImageURI(Uri.parse("http://7xlt5l.com1.z0.glb.clouddn.com/1449734769519ohgmmj3048628"));
+                        } else {
+                            menuUserIcon.setImageURI(Uri.parse(iconPath));
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onResponseError(String error) {
+                @Override
+                public void onResponseError(String error) {
 
-            }
-        });
+                }
+            });
     }
-
 
 
     @Override

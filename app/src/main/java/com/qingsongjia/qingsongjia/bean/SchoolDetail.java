@@ -47,6 +47,11 @@ public class SchoolDetail implements Parcelable {
     private String dri_way;
     private int dri_time;
     private ArrayList<StreetView> street_view;
+    /**
+     * registFees : 200
+     */
+
+    private int registFees;
 
     public SchoolDetail() {
     }
@@ -224,7 +229,7 @@ public class SchoolDetail implements Parcelable {
         in.readList(this.street_view, getClass().getClassLoader());
     }
 
-    public static final Parcelable.Creator<SchoolDetail> CREATOR = new Parcelable.Creator<SchoolDetail>() {
+    public static final Creator<SchoolDetail> CREATOR = new Creator<SchoolDetail>() {
         public SchoolDetail createFromParcel(Parcel source) {
             return new SchoolDetail(source);
         }
@@ -233,4 +238,12 @@ public class SchoolDetail implements Parcelable {
             return new SchoolDetail[size];
         }
     };
+
+    public void setRegistFees(int registFees) {
+        this.registFees = registFees;
+    }
+
+    public int getRegistFees() {
+        return registFees;
+    }
 }

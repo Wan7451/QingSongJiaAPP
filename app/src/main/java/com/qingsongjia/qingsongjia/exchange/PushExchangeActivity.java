@@ -12,10 +12,14 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
+import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.activity.App;
 import com.qingsongjia.qingsongjia.localdata.FileManager;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.NetRequest;
+import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.QiniuUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.qiniu.android.http.ResponseInfo;
@@ -58,6 +62,7 @@ public class PushExchangeActivity extends WanActivity {
     private File captureFile;
     private ImageAdapter adapter;
     private ProgressDialog dialog;
+    private String dri_type;
 
     @Override
     public void initView() {
@@ -78,6 +83,8 @@ public class PushExchangeActivity extends WanActivity {
             finish();
             return;
         }
+
+        dri_type = ((App) getAppContext()).getExchangeDri_type();
 
         exchangeCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,12 +137,12 @@ public class PushExchangeActivity extends WanActivity {
 
     private void handleImageUp() {
 
-        if (currCount >= imgs.size()+1) {
+        if (currCount >= imgs.size() + 1) {
             pushRequest(uploadPicUrls);
             return;
         }
         //压缩图片
-        BitmapUtil.getCompressByteBitmap(imgs.get(currCount-1).getPath(),
+        BitmapUtil.getCompressByteBitmap(imgs.get(currCount - 1).getPath(),
                 new BitmapUtil.OnCompressCompleteListener() {
                     @Override
                     public void onCompressOk(byte[] data) {
@@ -178,11 +185,36 @@ public class PushExchangeActivity extends WanActivity {
     }
 
     private void pushRequest(StringBuffer uploadPicUrls) {
-        if (uploadPicUrls.length() > 0) {
-            uploadPicUrls.setLength(uploadPicUrls.length() - 1);
+
+        String dri_image_url = uploadPicUrls.toString();
+
+        if (dri_image_url.endsWith(",")) {
+            dri_image_url = dri_image_url.substring(0, dri_image_url.length() - 1);
         }
         dialog.dismiss();
-        Log.i("======",uploadPicUrls.toString());
+
+        String dri_text = upText;
+        NetRequest.pushExchange(getContext(),
+                dri_type,
+                dri_text,
+                dri_image_url,
+                new NetUtils.NetUtilsHandler() {
+                    @Override
+                    public void onResponseOK(JSONArray response, int total) {
+                        showToast("发布成功");
+                        finish();
+                    }
+
+                    @Override
+                    public void onResponseError(String error) {
+                        if (TextUtils.isEmpty(error)) {
+                            showToast("发布成功");
+                        } else {
+                            showToast(error);
+                        }
+                    }
+                }
+        );
 
     }
 
@@ -209,7 +241,7 @@ public class PushExchangeActivity extends WanActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PHOTO_REQUEST_GALLERY) {
-            if (resultCode == RESULT_OK &&data != null) {
+            if (resultCode == RESULT_OK && data != null) {
                 // 得到图片的全路径
                 Uri uri = data.getData();
                 File f = new File(uri.getPath());

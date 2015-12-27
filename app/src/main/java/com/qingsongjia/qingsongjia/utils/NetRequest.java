@@ -129,7 +129,7 @@ public class NetRequest {
 
     }
 
-    public static void loadNewMyData(Context context,String tel, NetUtils.NetUtilsHandler handler) {
+    public static void loadNewMyData(Context context, String tel, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
         params.put("dri_tel", tel);
         NetUtils.baseRequest(context, "driappconsultclientWeb/loadUserByUnm", params, false, handler);
@@ -532,6 +532,7 @@ public class NetRequest {
 
     /**
      * 获得驾校评分
+     *
      * @param context
      * @param campus_id
      */
@@ -567,6 +568,7 @@ public class NetRequest {
 
     /**
      * 学员修改个人信息
+     *
      * @param context
      * @param dri_file_path
      * @param id
@@ -585,17 +587,18 @@ public class NetRequest {
                                    String dri_nm,
                                    NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("id",id);
-        params.put("dri_file_path",dri_file_path);
-        params.put("dri_campus_id",dri_campus_id+"");
-        params.put("dri_coach_id",dri_coach_id+"");
-        params.put("dri_coach_nm",UnicodeUtil.stringToUnicode(dri_coach_nm));
-        params.put("dri_nm",UnicodeUtil.stringToUnicode(dri_nm));
+        params.put("id", id);
+        params.put("dri_file_path", dri_file_path);
+        params.put("dri_campus_id", dri_campus_id + "");
+        params.put("dri_coach_id", dri_coach_id + "");
+        params.put("dri_coach_nm", UnicodeUtil.stringToUnicode(dri_coach_nm));
+        params.put("dri_nm", UnicodeUtil.stringToUnicode(dri_nm));
         NetUtils.baseRequest(context, "driappconsultclientWeb/EduUpdate", params, true, handler);
     }
 
     /**
      * 教练修改个人信息
+     *
      * @param context
      * @param dri_nm
      * @param dri_file_path
@@ -610,25 +613,25 @@ public class NetRequest {
                                    int id, NetUtils.NetUtilsHandler handler) {
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("dri_file_path",dri_file_path);
-        params.put("dri_nm",UnicodeUtil.stringToUnicode(dri_nm));
-        params.put("dri_campus_id",dri_campus_id+"");
-        params.put("id",id+"");
+        params.put("dri_file_path", dri_file_path);
+        params.put("dri_nm", UnicodeUtil.stringToUnicode(dri_nm));
+        params.put("dri_campus_id", dri_campus_id + "");
+        params.put("id", id + "");
         NetUtils.baseRequest(context, "driappconsultclientWeb/CoathUpdate", params, true, handler);
 
     }
 
     public static void getVerification(Context context, String phone, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("telNum",phone);
+        params.put("telNum", phone);
         NetUtils.baseRequest(context, "driappconsultclientWeb/getNum", params, true, handler);
     }
 
     public static void loadCurrentSchoolEvaluate(Context context, int id, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("campusId", 250+"");
-        params.put("user_campus_ids", 250+"");
-        NetUtils.baseRequest(context, "driappcommentweb/loadCampusState", params, false, handler);
+        params.put("campusId", id + "");
+        params.put("user_campus_ids", id + "");
+        NetUtils.baseRequest(context, "driappcommentweb/queryForList", params, false, handler);
 
     }
 
@@ -640,19 +643,90 @@ public class NetRequest {
                                       String eval,
                                       NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("dri_remark",UnicodeUtil.stringToUnicode(eval));
-        params.put("dri_place",place+"");
-        params.put("dri_time",time+"");
-        params.put("dri_pass",pass+"");
-        params.put("campusId",dri_campus_id+"");
+        params.put("dri_remark", UnicodeUtil.stringToUnicode(eval));
+        params.put("dri_place", place + "");
+        params.put("dri_time", time + "");
+        params.put("dri_pass", pass + "");
+        params.put("campusId", dri_campus_id + "");
+        params.put("create_id",
+                LocalPreference.getCurrentUserData(context)
+                        .getDid() + "");
         NetUtils.baseRequest(context, "driappcommentweb/save", params, true, handler);
 
     }
 
     public static void loadExchange(Context context, String type, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("dri_type",UnicodeUtil.stringToUnicode(type));
-        NetUtils.baseRequest(context, "driappexchangeWeb/Ownerquery", params, false, handler);
+        params.put("dri_type", UnicodeUtil.stringToUnicode(type));
+        params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        NetUtils.baseRequest(context, "driappexchangeWeb/queryForList", params, false, handler);
 
+    }
+
+    public static void signUp(Context context,
+                              int dri_goal,
+                              int dri_car_type,
+                              String name,
+                              String phone,
+                              String dri_remark,
+                              int dri_entry_fee,
+                              NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        params.put("dri_goal", dri_goal + "");
+        params.put("dri_car_type", dri_car_type + "");
+        params.put("dri_bm_tel", phone);
+        params.put("dri_nm", UnicodeUtil.stringToUnicode(name));
+        params.put("dri_remark", UnicodeUtil.stringToUnicode(dri_remark));
+        params.put("dri_entry_fee", dri_entry_fee + "");
+        NetUtils.baseRequest(context, "driappconsultclientWeb/enrolled", params, true, handler);
+
+    }
+
+    public static void pushExchange(WanActivity context, String dri_type, String dri_text, String dri_image_url, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("create_id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        params.put("dri_type", UnicodeUtil.stringToUnicode(dri_type));
+        params.put("dri_text", UnicodeUtil.stringToUnicode(dri_text));
+        params.put("dri_image_url", dri_image_url);
+        NetUtils.baseRequest(context, "driappexchangeWeb/save", params, true, handler);
+
+    }
+
+    public static void loadExchangeDetail(Context context, int id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", id+"");
+        NetUtils.baseRequest(context, "driappexchangeWeb/load", params, true, handler);
+
+    }
+
+    public static void loadExchangeComment(Context context, int id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_reply_id", id+"");
+        NetUtils.baseRequest(context, "driappexchangeWeb/loadReply", params, true, handler);
+
+    }
+
+    public static void zanExchange(Context context, int id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("ex_id", id+"");
+        params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        NetUtils.baseRequest(context, "driappExpraiseweb/save", params, false, handler);
+    }
+
+    public static void offZanExchange(Context context, int id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("ex_id", id+"");
+        params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        NetUtils.baseRequest(context, "driappExpraiseweb/offpraise", params, false, handler);
+    }
+
+    public static void replyExchange(Context context, String upText, int id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_text", UnicodeUtil.stringToUnicode(upText));
+        params.put("dri_reply_id", id+"");
+        params.put("dri_reply_type", "1");
+        params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        NetUtils.baseRequest(context, "driappexchangeWeb/saveReply", params, false, handler);
     }
 }

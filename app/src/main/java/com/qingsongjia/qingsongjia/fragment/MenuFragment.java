@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -110,31 +111,31 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
 
     private void loadData() {
 
-     User user=   LocalPreference.getCurrentUser(getContext());
+        User user = LocalPreference.getCurrentUser(getContext());
+        if (!TextUtils.isEmpty(user.getDri_type()))
+            NetRequest.loadNewMyData(getContext(), user.getDri_unm(), new NetUtils.NetUtilsHandler() {
+                @Override
+                public void onResponseOK(JSONArray response, int total) {
+                    String data = response.getString(0);
 
-        NetRequest.loadNewMyData(getContext(),user.getDri_unm(), new NetUtils.NetUtilsHandler() {
-            @Override
-            public void onResponseOK(JSONArray response, int total) {
-                String data = response.getString(0);
+                    LocalPreference.saveCurrentUserData(getContext(), data);
 
-                LocalPreference.saveCurrentUserData(getContext(), data);
+                    UserData loginData = JSONObject.parseObject(data, UserData.class);
 
-                UserData loginData = JSONObject.parseObject(data, UserData.class);
+                    JPushInterface.setAlias(getContext(), loginData.getDri_tel(), new TagAliasCallback() {
+                        @Override
+                        public void gotResult(int i, String s, Set<String> set) {
+                        }
+                    });
 
-                JPushInterface.setAlias(getContext(), loginData.getDri_tel(), new TagAliasCallback() {
-                    @Override
-                    public void gotResult(int i, String s, Set<String> set) {
-                    }
-                });
+                    fillData(loginData);
+                }
 
-                fillData(loginData);
-            }
+                @Override
+                public void onResponseError(String error) {
 
-            @Override
-            public void onResponseError(String error) {
-
-            }
-        });
+                }
+            });
     }
 
     @Override
@@ -195,6 +196,10 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
 
         switch (posotion) {
             case 0:
+                if(0==user.getDri_campus_id()){
+                Toast.makeText(getContext(),"暂时没有报名驾校，赶快报名吧~",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 UIManager.startSchoolDetail(getContext(), user.getDri_campus_id());
                 break;
             case 1:

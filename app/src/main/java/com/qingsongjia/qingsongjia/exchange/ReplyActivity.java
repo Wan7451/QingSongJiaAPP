@@ -13,10 +13,13 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
+import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.localdata.FileManager;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.NetRequest;
+import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.QiniuUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.qiniu.android.http.ResponseInfo;
@@ -58,6 +61,7 @@ public class ReplyActivity extends WanActivity {
     private File captureFile;
     private ImageAdapter adapter;
     private ProgressDialog dialog;
+    private int id;
 
     @Override
     public void initView() {
@@ -80,7 +84,12 @@ public class ReplyActivity extends WanActivity {
         });
 
         int posotion = getIntent().getIntExtra("posotion", 0);
-        setContentTitle("回复" + (posotion + 1) + "楼");
+        id = getIntent().getIntExtra("id", 0);
+        if (posotion == -1) {
+            setContentTitle("回复");
+        } else {
+            setContentTitle("回复" + (posotion + 1) + "楼");
+        }
 
         exchangeCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,17 +125,39 @@ public class ReplyActivity extends WanActivity {
             return;
         }
 
-        if (imgs.size() == 0) {
-            pushRequest("");
-        } else {
+//        private String dri_text;//评论内容
+//        private String dri_reply_id ;//帖子ID
+//        private Integer create_id;//（创建人ID）
 
-            dialog = new ProgressDialog(getContext());
-            dialog.setMessage("正在上传图片中.....");
-            dialog.setCancelable(false);
-            dialog.show();
-            //上传图片
-            handleImageUp();
-        }
+
+        NetRequest.replyExchange(getContext(),upText,id, new NetUtils.NetUtilsHandler() {
+            @Override
+            public void onResponseOK(JSONArray response, int total) {
+                showToast("评论成功");
+            }
+
+            @Override
+            public void onResponseError(String error) {
+                if(TextUtils.isEmpty(error)){
+                    showToast("评论失败");
+                }else {
+                    showToast(error);
+                }
+            }
+        });
+
+
+//        if (imgs.size() == 0) {
+//            pushRequest("");
+//        } else {
+//
+//            dialog = new ProgressDialog(getContext());
+//            dialog.setMessage("正在上传图片中.....");
+//            dialog.setCancelable(false);
+//            dialog.show();
+//            //上传图片
+//            handleImageUp();
+//        }
     }
 
 
@@ -177,6 +208,9 @@ public class ReplyActivity extends WanActivity {
 
         Log.i("=======", upText);
         Log.i("=======", uploadPicUrls);
+
+
+
     }
 
     private void gallery() {
@@ -202,7 +236,7 @@ public class ReplyActivity extends WanActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PHOTO_REQUEST_GALLERY) {
-            if (resultCode == RESULT_OK &&data != null) {
+            if (resultCode == RESULT_OK && data != null) {
                 // 得到图片的全路径
                 Uri uri = data.getData();
                 File f = new File(uri.getPath());

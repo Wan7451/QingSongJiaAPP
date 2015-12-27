@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.activity.App;
 import com.qingsongjia.qingsongjia.adapter.ExchangeFragmentAdapter;
 
 import butterknife.Bind;
@@ -32,13 +33,32 @@ public class ExchangeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_exchange, container, false);
         ButterKnife.bind(this, v);
 
-        ExchangeFragmentAdapter adapter=new ExchangeFragmentAdapter(getChildFragmentManager());
+        final ExchangeFragmentAdapter adapter=new ExchangeFragmentAdapter(getChildFragmentManager());
         examNavigationTab.setTabsFromPagerAdapter(adapter);
         examNavigationView.setAdapter(adapter);
         examNavigationTab.setTabsFromPagerAdapter(adapter);
         examNavigationTab.setupWithViewPager(examNavigationView);
         examNavigationTab.setTabMode(TabLayout.MODE_SCROLLABLE);
         examNavigationTab.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        ((App)getContext().getApplicationContext()).setExchangeDri_type(adapter.getPageTitle(0).toString());
+
+        examNavigationView.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                ((App)getContext().getApplicationContext()).setExchangeDri_type(adapter.getPageTitle(position).toString());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         return v;
     }
 

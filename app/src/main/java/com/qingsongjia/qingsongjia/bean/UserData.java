@@ -40,7 +40,6 @@ public class UserData {
     private String dri_type;
     private String dri_unm;
     private String dri_upwd;
-    private int id;
     /**
      * dri_car_type :
      * dri_car_type_nm :
@@ -91,9 +90,6 @@ public class UserData {
         this.dri_upwd = dri_upwd;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getDid() {
         return did;
@@ -135,9 +131,6 @@ public class UserData {
         return dri_upwd;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public void setDri_car_type(String dri_car_type) {
         this.dri_car_type = dri_car_type;

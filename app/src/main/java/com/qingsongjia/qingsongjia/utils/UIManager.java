@@ -559,10 +559,11 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startSignUp(WanActivity context, int dri_campus_id) {
+    public static void startSignUp(WanActivity context, int dri_campus_id,int entry_fee) {
         Intent i=new Intent();
         i.setClass(context, SignUpActivity.class);
         i.putExtra("id",dri_campus_id);
+        i.putExtra("entry_fee",entry_fee);
         context.startActivity(i);
     }
 
@@ -579,10 +580,11 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startReply(Context context, int posotion) {
+    public static void startReply(Context context, int posotion,int id) {
         Intent i=new Intent();
         i.setClass(context, ReplyActivity.class);
         i.putExtra("posotion",posotion);
+        i.putExtra("id",id);
         context.startActivity(i);
     }
 }

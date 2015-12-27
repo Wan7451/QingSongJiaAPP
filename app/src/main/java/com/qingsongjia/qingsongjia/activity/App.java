@@ -63,4 +63,15 @@ public class App extends WanApplication {
     public void setCurrArea(CityData currArea) {
         this.currArea = currArea;
     }
+
+
+    private String exchangeDri_type;
+
+    public String getExchangeDri_type() {
+        return exchangeDri_type;
+    }
+
+    public void setExchangeDri_type(String exchangeDri_type) {
+        this.exchangeDri_type = exchangeDri_type;
+    }
 }
