@@ -76,10 +76,12 @@ public class ExchangeDetailActivity extends WanListActivity {
         ButterKnife.bind(this, headerView);
         adapter.addHeaderView(headerView);
 
-
+        LinearLayout layout=new LinearLayout(getContext());
         Button btn = new Button(getContext());
         btn.setTextColor(Color.WHITE);
-        btn.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        btn.setTextSize(14);
+        btn.setBackgroundResource(R.drawable.shape_button_bg);
+//        btn.setBackground(getResources().getDrawable(R.drawable.shape_button_bg));
 
         LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -90,6 +92,7 @@ public class ExchangeDetailActivity extends WanListActivity {
                 DensityUtil.dip2px(getContext(),10)
         );
         btn.setLayoutParams(lp);
+        layout.addView(btn);
         btn.setText("评论");
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +100,7 @@ public class ExchangeDetailActivity extends WanListActivity {
                 UIManager.startReply(ExchangeDetailActivity.this, 1, exchDetal.getDid(), -1);
             }
         });
-        adapter.addFooterView(btn);
+        adapter.addFooterView(layout);
 
         return adapter;
     }
