@@ -34,16 +34,30 @@ public class UnicodeUtil {
 	}
 
 	/*  * 把中文字符串转换为十六进制Unicode编码字符串 */
-	public static String stringToUnicode(String s) {
-		String str = "";
-		for (int i = 0; i < s.length(); i++) {
-			int ch = (int) s.charAt(i);
-			if (ch > 255)
-				str += "\\u" + Integer.toHexString(ch);
-			else
-				str += "\\" + Integer.toHexString(ch);
-		}
-		return str;
+	public static String stringToUnicode(String str) {
+		str = (str == null ? "" : str); 
+		String tmp; 
+		StringBuffer sb = new StringBuffer(1000); 
+		char c; 
+		int i, j; 
+		sb.setLength(0); 
+		for (i = 0; i < str.length(); i++) 
+		{ 
+		c = str.charAt(i); 
+		sb.append("\\u"); 
+		j = (c >>>8); //取出高8位 
+		tmp = Integer.toHexString(j); 
+		if (tmp.length() == 1) 
+		sb.append("0"); 
+		sb.append(tmp); 
+		j = (c & 0xFF); //取出低8位 
+		tmp = Integer.toHexString(j); 
+		if (tmp.length() == 1) 
+		sb.append("0"); 
+		sb.append(tmp); 
+
+		} 
+		return (new String(sb)); 
 	}
 
 	/*  * 把十六进制Unicode编码字符串转换为中文字符串 */

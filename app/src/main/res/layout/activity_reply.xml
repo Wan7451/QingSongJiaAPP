@@ -31,6 +31,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         style="@style/padding_normal"
+        android:visibility="gone"
         android:paddingTop="@dimen/space10"
         android:paddingBottom="@dimen/space10">
 

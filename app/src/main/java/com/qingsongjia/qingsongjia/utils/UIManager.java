@@ -111,7 +111,7 @@ public class UIManager {
      * @param context
      * @param type
      */
-    public static void startExamDetail(Context context,String title, String type) {
+    public static void startExamDetail(Context context, String title, String type) {
         Intent i = new Intent();
         i.setClass(context, ExamDetailActivity.class);
         i.putExtra("type", type);
@@ -264,8 +264,8 @@ public class UIManager {
 
         Intent i = new Intent();
         i.setClass(context, JiaoTongBiaoZhiGridActivity.class);
-        i.putExtra("path",path);
-        i.putExtra("title",title);
+        i.putExtra("path", path);
+        i.putExtra("title", title);
         context.startActivity(i);
     }
 
@@ -451,25 +451,26 @@ public class UIManager {
     public static void startYueXunComnent(WanActivity context, MyYueKao data) {
         Intent i = new Intent();
         i.setClass(context, T_TrainingEvaluateActivity.class);
-        i.putExtra("data",data);
+        i.putExtra("data", data);
         context.startActivity(i);
     }
 
     /**
      * 打开投诉
+     *
      * @param context
      */
-    public static void startTouSuo(WanActivity context,int id) {
+    public static void startTouSuo(WanActivity context, int id) {
         Intent i = new Intent();
         i.setClass(context, T_SparringComplaintActivity.class);
-        i.putExtra("id",id);
+        i.putExtra("id", id);
         context.startActivity(i);
     }
 
     public static void startStudentYXEval(WanActivity context, MyYueKao data) {
         Intent i = new Intent();
         i.setClass(context, S_TrainingEvaluateActivity.class);
-        i.putExtra("data",data);
+        i.putExtra("data", data);
         context.startActivity(i);
     }
 
@@ -494,97 +495,101 @@ public class UIManager {
     public static void startXinShouShangLuList(WanActivity context, int type) {
         Intent i = new Intent();
         i.setClass(context, XinShouShangLuListActivity.class);
-        i.putExtra("type",type);
+        i.putExtra("type", type);
         context.startActivity(i);
     }
 
     /**
      * 教练  陪练 打开评论
+     *
      * @param context
      * @param data
      */
     public static void startPeiLianPingJia(WanActivity context, PeiLian data) {
-        Intent i=new Intent();
+        Intent i = new Intent();
         i.setClass(context, T_SparringEvaluateActivity.class);
-        i.putExtra("data",data);
+        i.putExtra("data", data);
         context.startActivity(i);
     }
 
     /**
      * 打开百度地图
+     *
      * @param context
      */
     public static void startMapView(WanActivity context, String title, String map_addr) {
-        Intent i=new Intent();
+        Intent i = new Intent();
         i.setClass(context, MapActivity.class);
-        i.putExtra("title",title);
-        i.putExtra("map_addr",map_addr);
+        i.putExtra("title", title);
+        i.putExtra("map_addr", map_addr);
         context.startActivity(i);
     }
 
     /**
      * 班车路线
+     *
      * @param context
      */
     public static void startBusRoute(WanActivity context, String routeLine) {
-        Intent i=new Intent();
+        Intent i = new Intent();
         i.setClass(context, BusRouteActivity.class);
-        i.putExtra("routeLine",routeLine);
+        i.putExtra("routeLine", routeLine);
         context.startActivity(i);
     }
 
     public static void startSchoolImages(WanActivity context, String[] imgs) {
-        Intent i=new Intent();
+        Intent i = new Intent();
         i.setClass(context, SchoolImgsActivity.class);
-        i.putExtra("imgs",imgs);
+        i.putExtra("imgs", imgs);
         context.startActivity(i);
     }
 
-    public static void startSchoolEvaluate(WanActivity context, SchoolDetail data ) {
-        Intent i=new Intent();
+    public static void startSchoolEvaluate(WanActivity context, SchoolDetail data) {
+        Intent i = new Intent();
         i.setClass(context, SchoolEvaluateActivity.class);
-        i.putExtra("data",data);
+        i.putExtra("data", data);
         context.startActivity(i);
     }
 
     public static void startAllSchoolList(Context context) {
-        Intent i=new Intent();
+        Intent i = new Intent();
         i.setClass(context, SchoolListActivity.class);
         context.startActivity(i);
     }
 
     public static void startStudentData(Context context) {
-        Intent i=new Intent();
+        Intent i = new Intent();
         i.setClass(context, StudentMessageActivity.class);
         context.startActivity(i);
     }
 
-    public static void startSignUp(WanActivity context, int dri_campus_id,int entry_fee) {
-        Intent i=new Intent();
+    public static void startSignUp(WanActivity context, int dri_campus_id, int entry_fee) {
+        Intent i = new Intent();
         i.setClass(context, SignUpActivity.class);
-        i.putExtra("id",dri_campus_id);
-        i.putExtra("entry_fee",entry_fee);
+        i.putExtra("id", dri_campus_id);
+        i.putExtra("entry_fee", entry_fee);
         context.startActivity(i);
     }
 
     public static void startTeacherMessage(Context context) {
-        Intent i=new Intent();
+        Intent i = new Intent();
         i.setClass(context, TeacherMessageActivity.class);
         context.startActivity(i);
     }
 
-    public static void startExchangeDeatil(Context context,int id) {
-        Intent i=new Intent();
+    public static void startExchangeDeatil(Context context, int id) {
+        Intent i = new Intent();
         i.setClass(context, ExchangeDetailActivity.class);
-        i.putExtra("id",id);
+        i.putExtra("id", id);
         context.startActivity(i);
     }
 
-    public static void startReply(Context context, int posotion,int id) {
-        Intent i=new Intent();
+    public static void startReply(WanActivity context, int type, int replyId, int posotion) {
+        Intent i = new Intent();
         i.setClass(context, ReplyActivity.class);
-        i.putExtra("posotion",posotion);
-        i.putExtra("id",id);
-        context.startActivity(i);
+        i.putExtra("posotion", posotion);
+        i.putExtra("type", type);
+        i.putExtra("replyId", replyId);
+        context.startActivityForResult(i, 1234);
     }
 }

@@ -10,23 +10,33 @@
         layout="@layout/layout_title_view" />
 
 
-    <com.wan7451.advancedview.ErrorLayoutView
-        android:id="@+id/activity_base_errorView"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/activity_main_headerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <com.wan7451.wanadapter.recycle.WanRecycleView
-        android:id="@+id/activity_mainView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+            <RelativeLayout
+                android:id="@+id/activity_main_headerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
+            <com.wan7451.wanadapter.recycle.WanRecycleView
+                android:id="@+id/activity_mainView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
+        </LinearLayout>
+
+        <com.wan7451.advancedview.ErrorLayoutView
+            android:id="@+id/activity_base_errorView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </FrameLayout>
 </LinearLayout>
 
 

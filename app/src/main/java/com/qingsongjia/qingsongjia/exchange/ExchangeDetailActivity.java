@@ -1,6 +1,8 @@
 package com.qingsongjia.qingsongjia.exchange;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,8 +10,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -19,16 +23,15 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.activity.App;
-import com.qingsongjia.qingsongjia.adapter.OnlyImageAdapter;
-import com.qingsongjia.qingsongjia.bean.Exchange;
 import com.qingsongjia.qingsongjia.bean.ExchangeDetail;
+import com.qingsongjia.qingsongjia.bean.ExchangeReply;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanListActivity;
+import com.wan7451.wanadapter.recycle.DensityUtil;
 import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
-import com.wan7451.wanadapter.recycle.WrappingLinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +48,10 @@ public class ExchangeDetailActivity extends WanListActivity {
     @Bind(R.id.exch_content)
     TextView exchContent;
     @Bind(R.id.exch_imgs)
-    RecyclerView exchImgs;
-    private ArrayList<String> data = new ArrayList<>();
+    LinearLayout exchImgs;
+    //    @Bind(R.id.exch_imgs)
+//    RecyclerView exchImgs;
+    private ArrayList<ExchangeReply> data = new ArrayList<>();
     private DisplayImageOptions displayOptions;
     private int id;
     private ExchangeDetail exchDetal;
@@ -72,12 +77,24 @@ public class ExchangeDetailActivity extends WanListActivity {
         adapter.addHeaderView(headerView);
 
 
-        Button btn= new Button(getContext());
+        Button btn = new Button(getContext());
+        btn.setTextColor(Color.WHITE);
+        btn.setBackground(getResources().getDrawable(R.drawable.button_bg));
+
+        LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(DensityUtil.dip2px(getContext(),16),
+                DensityUtil.dip2px(getContext(),10),
+                DensityUtil.dip2px(getContext(),16),
+                DensityUtil.dip2px(getContext(),10)
+        );
+        btn.setLayoutParams(lp);
         btn.setText("评论");
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UIManager.startReply(getContext(),-1,exchDetal.getDid());
+                UIManager.startReply(ExchangeDetailActivity.this, 1, exchDetal.getDid(), -1);
             }
         });
         adapter.addFooterView(btn);
@@ -112,16 +129,33 @@ public class ExchangeDetailActivity extends WanListActivity {
                         imgs.add(urls);
                     }
 
-                    OnlyImageAdapter adapter1 = new OnlyImageAdapter(getContext(), imgs, R.layout.item_exchange_nolyimg);
-                    exchImgs.setAdapter(adapter1);
-                    exchImgs.setLayoutManager(new WrappingLinearLayoutManager(getContext()));
+//                    OnlyImageAdapter adapter1 = new OnlyImageAdapter(getContext(), imgs, R.layout.item_exchange_nolyimg);
+//                    exchImgs.setAdapter(adapter1);
+//                    exchImgs.setLayoutManager(new WrappingLinearLayoutManager(getContext()));
+
+                    exchImgs.removeAllViews();
+
+                    DisplayImageOptions options = ((App) getAppContext()).getDisplayOptions();
+                    for (int i = 0; i < imgs.size(); i++) {
+                        ImageView img = new ImageView(getContext());
+                        img.setScaleType(ImageView.ScaleType.FIT_START);
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT);
+                        lp.setMargins(0, DensityUtil.dip2px(getContext(), 1), 0, 0);
+                        img.setLayoutParams(lp);
+                        exchImgs.addView(img);
+                        ImageLoader.getInstance().displayImage(imgs.get(i), img, options);
+
+                    }
+
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             getMainAdapter().notifyDataSetChanged();
                         }
-                    },300);
+                    }, 300);
                 }
             }
 
@@ -135,23 +169,22 @@ public class ExchangeDetailActivity extends WanListActivity {
         NetRequest.loadExchangeComment(getContext(), id, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
-
+                data.clear();
+                if (!TextUtils.equals("[{}]", response.toJSONString())) {
+                    data.addAll(JSONArray
+                            .parseArray(response.toJSONString(),
+                                    ExchangeReply.class));
+                }
+                loadFinish("目前没有评论,赶快评论吧~");
             }
 
             @Override
             public void onResponseError(String error) {
-
+                loadError();
             }
         });
 
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        data.add("");
-        loadFinish("");
+
     }
 
     @Override
@@ -165,23 +198,71 @@ public class ExchangeDetailActivity extends WanListActivity {
     }
 
 
-    class ExchangeAdapter extends WanAdapter<String> {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        loadData();
+    }
 
-        public ExchangeAdapter(Context context, List<String> mDatas, int itemLayoutId) {
+    class ExchangeAdapter extends WanAdapter<ExchangeReply> {
+
+        public ExchangeAdapter(Context context, List<ExchangeReply> mDatas, int itemLayoutId) {
             super(context, mDatas, itemLayoutId);
         }
 
         @Override
-        public void convert(WanViewHolder holder, final int position, String item) {
-            TextView reply = holder.getView(R.id.exchItem_reply);
-            reply.setOnClickListener(new View.OnClickListener() {
+        public void convert(WanViewHolder holder, final int position, final ExchangeReply item) {
+            SimpleDraweeView icon = holder.getView(R.id.exchItem_icon);
+            TextView name = holder.getView(R.id.exchItem_name);
+            TextView floor = holder.getView(R.id.exchItem_floor);
+            TextView replyName = holder.getView(R.id.exchItem_replyName);
+            TextView replyText = holder.getView(R.id.exchItem_replyText);
+            TextView text = holder.getView(R.id.exchItem_text);
+            TextView time = holder.getView(R.id.exchItem_time);
+            LinearLayout replyView = holder.getView(R.id.exchItem_replyView);
+
+            if (!TextUtils.isEmpty(item.getUser_file())) {
+                icon.setImageURI(Uri.parse(item.getUser_file()));
+            }
+            name.setText(item.getCreate_nm());
+            floor.setText(position + 1 + "楼");
+            time.setText(item.getCreate_tm_str());
+
+            text.setText(item.getDri_text());
+
+            switch (item.getDri_reply_type()) {
+                case "1":
+                    //对文章回复
+                    replyView.setVisibility(View.GONE);
+
+                    break;
+                case "2":
+                    //对评论回复
+                    replyView.setVisibility(View.GONE);
+                    for (ExchangeReply reply : data) {
+                        if (reply.getId() == item.getDri_reply_id()) {
+                            replyView.setVisibility(View.VISIBLE);
+                            replyText.setText(reply.getDri_text());
+                            replyName.setText(reply.getCreate_nm());
+                            break;
+                        }
+                    }
+                    break;
+                case "0":
+                    replyView.setVisibility(View.GONE);
+                    break;
+            }
+
+            holder.getConvertView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    UIManager.startReply(getContext(), position,exchDetal.getDid());
+                    UIManager.startReply(ExchangeDetailActivity.this, 2, item.getDid(), position);
                 }
             });
         }
+
     }
+
 }
 
 

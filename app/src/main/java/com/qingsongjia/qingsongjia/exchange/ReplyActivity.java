@@ -42,26 +42,27 @@ import butterknife.ButterKnife;
 public class ReplyActivity extends WanActivity {
 
 
-    private static final int PHOTO_REQUEST_CAMERA = 1;// 拍照
-    private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
+//    private static final int PHOTO_REQUEST_CAMERA = 1;// 拍照
+//    private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
 
     @Bind(R.id.exchange_text)
     EditText exchangeText;
-    @Bind(R.id.exchange_camera)
-    LinearLayout exchangeCamera;
-    @Bind(R.id.exchange_gallery)
-    LinearLayout exchangeGallery;
-    @Bind(R.id.exchange_imgs)
-    GridView exchangeImgs;
+//    @Bind(R.id.exchange_camera)
+//    LinearLayout exchangeCamera;
+//    @Bind(R.id.exchange_gallery)
+//    LinearLayout exchangeGallery;
+//    @Bind(R.id.exchange_imgs)
+//    GridView exchangeImgs;
 
     private String upText;
-    private String upImg;
+//    private String upImg;
 
-    private ArrayList<File> imgs = new ArrayList<>();
-    private File captureFile;
-    private ImageAdapter adapter;
-    private ProgressDialog dialog;
-    private int id;
+    //    private ArrayList<File> imgs = new ArrayList<>();
+//    private File captureFile;
+//    private ImageAdapter adapter;
+//    private ProgressDialog dialog;
+    private int replyId;
+    private int type;
 
     @Override
     public void initView() {
@@ -84,37 +85,38 @@ public class ReplyActivity extends WanActivity {
         });
 
         int posotion = getIntent().getIntExtra("posotion", 0);
-        id = getIntent().getIntExtra("id", 0);
+        replyId = getIntent().getIntExtra("replyId", 0);
+        type = getIntent().getIntExtra("type", 0);
         if (posotion == -1) {
-            setContentTitle("回复");
+            setContentTitle("回帖");
         } else {
             setContentTitle("回复" + (posotion + 1) + "楼");
         }
 
-        exchangeCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imgs.size() > 0) {
-                    showToast("只能回复一张图片");
-                    return;
-                }
-                camera();
-            }
-        });
-
-        exchangeGallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imgs.size() > 0) {
-                    showToast("只能回复一张图片");
-                    return;
-                }
-                gallery();
-            }
-        });
-
-        adapter = new ImageAdapter(getContext(), imgs, R.layout.item_exchange_imgs);
-        exchangeImgs.setAdapter(adapter);
+//        exchangeCamera.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (imgs.size() > 0) {
+//                    showToast("只能回复一张图片");
+//                    return;
+//                }
+//                camera();
+//            }
+//        });
+//
+//        exchangeGallery.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (imgs.size() > 0) {
+//                    showToast("只能回复一张图片");
+//                    return;
+//                }
+//                gallery();
+//            }
+//        });
+//
+//        adapter = new ImageAdapter(getContext(), imgs, R.layout.item_exchange_imgs);
+//        exchangeImgs.setAdapter(adapter);
     }
 
 
@@ -129,23 +131,46 @@ public class ReplyActivity extends WanActivity {
 //        private String dri_reply_id ;//帖子ID
 //        private Integer create_id;//（创建人ID）
 
+        if (type == 1) {
 
-        NetRequest.replyExchange(getContext(),upText,id, new NetUtils.NetUtilsHandler() {
-            @Override
-            public void onResponseOK(JSONArray response, int total) {
-                showToast("评论成功");
-            }
+            NetRequest.replyExchange(getContext(), upText, replyId, new NetUtils.NetUtilsHandler() {
+                @Override
+                public void onResponseOK(JSONArray response, int total) {
 
-            @Override
-            public void onResponseError(String error) {
-                if(TextUtils.isEmpty(error)){
-                    showToast("评论失败");
-                }else {
-                    showToast(error);
+                    showToast("评论成功");
+                    finish();
                 }
-            }
-        });
 
+                @Override
+                public void onResponseError(String error) {
+                    if (TextUtils.isEmpty(error)) {
+                        showToast("评论失败");
+                    } else {
+                        showToast(error);
+                    }
+                }
+            });
+
+        } else if (type == 2) {
+
+            NetRequest.replyExchangeReply(getContext(), upText, replyId, new NetUtils.NetUtilsHandler() {
+                @Override
+                public void onResponseOK(JSONArray response, int total) {
+
+                    showToast("评论成功");
+                    finish();
+                }
+
+                @Override
+                public void onResponseError(String error) {
+                    if (TextUtils.isEmpty(error)) {
+                        showToast("评论失败");
+                    } else {
+                        showToast(error);
+                    }
+                }
+            });
+        }
 
 //        if (imgs.size() == 0) {
 //            pushRequest("");
@@ -161,118 +186,118 @@ public class ReplyActivity extends WanActivity {
     }
 
 
-    private void handleImageUp() {
-
-        //压缩图片
-        BitmapUtil.getCompressByteBitmap(imgs.get(0).getPath(),
-                new BitmapUtil.OnCompressCompleteListener() {
-                    @Override
-                    public void onCompressOk(byte[] data) {
-
-                        String _uploadToken = QiniuUtils.getUploadToken();
-
-                        UploadManager uploadManager = new UploadManager();
-
-                        final UpProgressHandler handler = new UpProgressHandler() {
-                            @Override
-                            public void progress(String key, double percent) {
-                            }
-                        };
-                        UploadOptions options = new UploadOptions(null, null, false, handler, null);
-
-                        String key = QiniuUtils.generate(getContext());
-                        //上传图片的key,文件名字
-                        uploadManager.put(data, key, _uploadToken,
-                                new UpCompletionHandler() {
-                                    @Override
-                                    public void complete(String key, final ResponseInfo info,
-                                                         org.json.JSONObject response) {
-                                        if (info.isOK()) {
-                                            String upPath = QiniuUtils.IMAGE_URL_HEADER + key;
-                                            pushRequest(upPath);
-                                        } else {
-                                            showLongToast(info.error);
-                                            dialog.dismiss();
-                                        }
-                                    }
-                                }, options);
-
-                    }
-                });
-    }
-
-    private void pushRequest(String uploadPicUrls) {
-        if (dialog != null)
-            dialog.dismiss();
-        upText = exchangeText.getText().toString();
-
-        Log.i("=======", upText);
-        Log.i("=======", uploadPicUrls);
-
-
-
-    }
-
-    private void gallery() {
-        // 激活系统图库，选择一张图片
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
-    }
-
-
-    /*
-    * 从相机获取
-    */
-    public void camera() {
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        // 判断存储卡是否可以用，可用进行存储
-        captureFile = new File(FileManager.getCacheImageFile(getContext()),
-                System.currentTimeMillis() + ".png");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                Uri.fromFile(captureFile));
-        startActivityForResult(intent, PHOTO_REQUEST_CAMERA);
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PHOTO_REQUEST_GALLERY) {
-            if (resultCode == RESULT_OK && data != null) {
-                // 得到图片的全路径
-                Uri uri = data.getData();
-                File f = new File(uri.getPath());
-                imgs.add(f);
-                adapter.notifyDataSetChanged();
-            }
-
-        } else if (requestCode == PHOTO_REQUEST_CAMERA) {
-            Uri uri = Uri.fromFile(captureFile);
-            if (resultCode == RESULT_OK && captureFile != null) {
-                imgs.add(captureFile);
-                adapter.notifyDataSetChanged();
-            }
-        }
-    }
-
-    class ImageAdapter extends CommonAdapter<File> {
-
-
-        public ImageAdapter(Context context, List<File> mDatas, int itemLayoutId) {
-            super(context, mDatas, itemLayoutId);
-        }
-
-        @Override
-        public void convert(ViewHolder helper, final int position, File item) {
-            SimpleDraweeView icon = helper.getView(R.id.img);
-            icon.setImageURI(Uri.fromFile(item));
-            helper.getView(R.id.delete).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    imgs.remove(position);
-                    adapter.notifyDataSetChanged();
-                }
-            });
-        }
-    }
+//    private void handleImageUp() {
+//
+//        //压缩图片
+//        BitmapUtil.getCompressByteBitmap(imgs.get(0).getPath(),
+//                new BitmapUtil.OnCompressCompleteListener() {
+//                    @Override
+//                    public void onCompressOk(byte[] data) {
+//
+//                        String _uploadToken = QiniuUtils.getUploadToken();
+//
+//                        UploadManager uploadManager = new UploadManager();
+//
+//                        final UpProgressHandler handler = new UpProgressHandler() {
+//                            @Override
+//                            public void progress(String key, double percent) {
+//                            }
+//                        };
+//                        UploadOptions options = new UploadOptions(null, null, false, handler, null);
+//
+//                        String key = QiniuUtils.generate(getContext());
+//                        //上传图片的key,文件名字
+//                        uploadManager.put(data, key, _uploadToken,
+//                                new UpCompletionHandler() {
+//                                    @Override
+//                                    public void complete(String key, final ResponseInfo info,
+//                                                         org.json.JSONObject response) {
+//                                        if (info.isOK()) {
+//                                            String upPath = QiniuUtils.IMAGE_URL_HEADER + key;
+//                                            pushRequest(upPath);
+//                                        } else {
+//                                            showLongToast(info.error);
+//                                            dialog.dismiss();
+//                                        }
+//                                    }
+//                                }, options);
+//
+//                    }
+//                });
+//    }
+//
+//    private void pushRequest(String uploadPicUrls) {
+//        if (dialog != null)
+//            dialog.dismiss();
+//        upText = exchangeText.getText().toString();
+//
+//        Log.i("=======", upText);
+//        Log.i("=======", uploadPicUrls);
+//
+//
+//
+//    }
+//
+//    private void gallery() {
+//        // 激活系统图库，选择一张图片
+//        Intent intent = new Intent(Intent.ACTION_PICK);
+//        intent.setType("image/*");
+//        startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
+//    }
+//
+//
+//    /*
+//    * 从相机获取
+//    */
+//    public void camera() {
+//        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+//        // 判断存储卡是否可以用，可用进行存储
+//        captureFile = new File(FileManager.getCacheImageFile(getContext()),
+//                System.currentTimeMillis() + ".png");
+//        intent.putExtra(MediaStore.EXTRA_OUTPUT,
+//                Uri.fromFile(captureFile));
+//        startActivityForResult(intent, PHOTO_REQUEST_CAMERA);
+//    }
+//
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (requestCode == PHOTO_REQUEST_GALLERY) {
+//            if (resultCode == RESULT_OK && data != null) {
+//                // 得到图片的全路径
+//                Uri uri = data.getData();
+//                File f = new File(uri.getPath());
+//                imgs.add(f);
+//                adapter.notifyDataSetChanged();
+//            }
+//
+//        } else if (requestCode == PHOTO_REQUEST_CAMERA) {
+//            Uri uri = Uri.fromFile(captureFile);
+//            if (resultCode == RESULT_OK && captureFile != null) {
+//                imgs.add(captureFile);
+//                adapter.notifyDataSetChanged();
+//            }
+//        }
+//    }
+//
+//    class ImageAdapter extends CommonAdapter<File> {
+//
+//
+//        public ImageAdapter(Context context, List<File> mDatas, int itemLayoutId) {
+//            super(context, mDatas, itemLayoutId);
+//        }
+//
+//        @Override
+//        public void convert(ViewHolder helper, final int position, File item) {
+//            SimpleDraweeView icon = helper.getView(R.id.img);
+//            icon.setImageURI(Uri.fromFile(item));
+//            helper.getView(R.id.delete).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    imgs.remove(position);
+//                    adapter.notifyDataSetChanged();
+//                }
+//            });
+//        }
+//    }
 
 
     @Override
@@ -280,10 +305,10 @@ public class ReplyActivity extends WanActivity {
         return R.layout.activity_reply;
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        FileManager.clearImageCache(getContext());
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        FileManager.clearImageCache(getContext());
+//    }
 
 }

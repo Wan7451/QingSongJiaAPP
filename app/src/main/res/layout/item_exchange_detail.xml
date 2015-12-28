@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/exchItem_icon"
         android:layout_width="@dimen/space35"
         android:layout_height="@dimen/space35"
         app:fadeDuration="300"
@@ -25,6 +26,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/exchItem_name"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="name"
@@ -33,6 +35,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:id="@+id/exchItem_floor"
                 android:layout_width="wrap_content"
                 android:text="沙发"
                 android:textSize="@dimen/textSize12"
@@ -43,6 +46,7 @@
 
 
         <LinearLayout
+            android:id="@+id/exchItem_replyView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -50,6 +54,7 @@
             android:layout_marginBottom="@dimen/space5">
 
             <TextView
+                android:id="@+id/exchItem_replyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -58,6 +63,7 @@
                 android:textSize="@dimen/textSize12"/>
 
             <TextView
+                android:id="@+id/exchItem_replyText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="name"
@@ -69,6 +75,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/exchItem_text"
             android:layout_marginTop="@dimen/space5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,6 +93,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="name"
+                android:id="@+id/exchItem_time"
                 android:textColor="@color/text_default_hint"
                 android:layout_gravity="center_vertical"
                 android:textSize="@dimen/textSize12"
@@ -94,6 +102,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:src="@drawable/icon_exch_commented"/>
             <TextView
                 android:layout_width="wrap_content"

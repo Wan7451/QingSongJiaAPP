@@ -729,4 +729,14 @@ public class NetRequest {
         params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
         NetUtils.baseRequest(context, "driappexchangeWeb/saveReply", params, false, handler);
     }
+
+    public static void replyExchangeReply(WanActivity context, String upText, int replyId, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_text", UnicodeUtil.stringToUnicode(upText));
+        params.put("dri_reply_id", replyId+"");
+        params.put("dri_reply_type", "2");
+        params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        NetUtils.baseRequest(context, "driappexchangeWeb/saveReply", params, false, handler);
+
+    }
 }

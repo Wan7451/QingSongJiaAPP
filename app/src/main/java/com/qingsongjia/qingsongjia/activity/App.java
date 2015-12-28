@@ -41,6 +41,8 @@ public class App extends WanApplication {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
                 .displayer(new FadeInBitmapDisplayer(300))
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
                 .build();
         return options;
     }
