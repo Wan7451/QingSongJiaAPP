@@ -726,7 +726,7 @@ public class NetRequest {
         params.put("dri_text", UnicodeUtil.stringToUnicode(upText));
         params.put("dri_reply_id", id+"");
         params.put("dri_reply_type", "1");
-        params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        params.put("create_id", LocalPreference.getCurrentUserData(context).getDid() + "");
         NetUtils.baseRequest(context, "driappexchangeWeb/saveReply", params, false, handler);
     }
 
@@ -735,7 +735,7 @@ public class NetRequest {
         params.put("dri_text", UnicodeUtil.stringToUnicode(upText));
         params.put("dri_reply_id", replyId+"");
         params.put("dri_reply_type", "2");
-        params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        params.put("create_id", LocalPreference.getCurrentUserData(context).getDid() + "");
         NetUtils.baseRequest(context, "driappexchangeWeb/saveReply", params, false, handler);
 
     }

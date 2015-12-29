@@ -178,7 +178,9 @@ public class ExchangeDetailActivity extends WanListActivity {
                             .parseArray(response.toJSONString(),
                                     ExchangeReply.class));
                 }
-                loadFinish("目前没有评论,赶快评论吧~");
+                getMainView().onRefreshComplete();
+                getMainAdapter().notifyDataSetChanged();
+//                loadFinish("目前没有评论,赶快评论吧~");
             }
 
             @Override
@@ -238,6 +240,12 @@ public class ExchangeDetailActivity extends WanListActivity {
                     //对文章回复
                     replyView.setVisibility(View.GONE);
 
+                    holder.getConvertView().setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            UIManager.startReply(ExchangeDetailActivity.this, 2, item.getDid(), position);
+                        }
+                    });
                     break;
                 case "2":
                     //对评论回复
@@ -250,18 +258,15 @@ public class ExchangeDetailActivity extends WanListActivity {
                             break;
                         }
                     }
+
+                    holder.getConvertView().setOnClickListener(null);
                     break;
                 case "0":
                     replyView.setVisibility(View.GONE);
                     break;
             }
 
-            holder.getConvertView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    UIManager.startReply(ExchangeDetailActivity.this, 2, item.getDid(), position);
-                }
-            });
+
         }
 
     }
