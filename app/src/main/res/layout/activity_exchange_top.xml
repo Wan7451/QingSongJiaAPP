@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.qingsongjia.qingsongjia.exchange.ExchangeDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        android:paddingTop="@dimen/space10">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/exchange_icon"
+            android:layout_width="@dimen/space50"
+            android:layout_height="@dimen/space50"
+            app:fadeDuration="300"
+            app:placeholderImage="@drawable/default_head"
+            app:roundAsCircle="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space10"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/exchange_name"
+                android:textSize="@dimen/textSize12"
+                android:textColor="@color/text_default_hint" />
+
+            <TextView
+                android:id="@+id/exch_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space5"
+                android:ellipsize="end"
+                android:lines="3"
+                android:textColor="@color/text_default" />
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/exch_imgs"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/space10"
+        android:paddingLeft="@dimen/view_margin"
+        android:paddingRight="@dimen/view_margin"
+        />
+    <View style="@style/divider1" />
+
+    <View style="@style/divider10" />
+
+    <View style="@style/divider1" />
+</LinearLayout>

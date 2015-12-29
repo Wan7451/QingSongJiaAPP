@@ -1,16 +1,17 @@
 package com.qingsongjia.qingsongjia.driverschool;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,11 +27,11 @@ import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.wan7451.wanadapter.recycle.WanAdapter;
+import com.wan7451.wanadapter.recycle.WanItemDecoration;
 import com.wan7451.wanadapter.recycle.WanRecycleView;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
 
 import java.util.ArrayList;
-import java.util.concurrent.CopyOnWriteArraySet;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -47,9 +48,12 @@ public class SchoolSearchActivity extends Activity implements PullToRefreshBase.
     ImageView searchBack;
     @Bind(R.id.search_content)
     EditText searchContent;
+    @Bind(R.id.search_submit)
+    TextView searchSubmit;
     private String search;
     ArrayList<School> data = new ArrayList<>();
     private SchoolListAdapter adapter;
+    private InputMethodManager imm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,15 +74,16 @@ public class SchoolSearchActivity extends Activity implements PullToRefreshBase.
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
                     // 在这里编写自己想要实现的功能
-                    search = searchContent.getText().toString();
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            searchView.setRefreshing();
-                        }
-                    }, 300);
+                    search(textView);
                 }
                 return false;
+            }
+        });
+
+        searchSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                search(view);
             }
         });
 
@@ -88,7 +93,23 @@ public class SchoolSearchActivity extends Activity implements PullToRefreshBase.
         adapter = new SchoolListAdapter(this, data, R.layout.item_school_list);
         searchView.getRefreshableView().setAdapter(adapter);
         searchView.getRefreshableView().setLayoutManager(new LinearLayoutManager(this));
+        searchView.getRefreshableView().addItemDecoration(new WanItemDecoration(this,WanItemDecoration.VERTICAL_LIST));
         adapter.setOnItemClickListener(this);
+    }
+
+    private void search(View v) {
+        // 在这里编写自己想要实现的功能
+        search = searchContent.getText().toString();
+        if (imm == null)
+            imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0); //强制隐藏键盘
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                searchView.setRefreshing();
+            }
+        }, 300);
     }
 
 
@@ -146,7 +167,7 @@ public class SchoolSearchActivity extends Activity implements PullToRefreshBase.
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-        UIManager.startSchoolDetail(this, posotion);
+        UIManager.startSchoolDetail(this, data.get(posotion).getDri_campus_id());
 
     }
 }

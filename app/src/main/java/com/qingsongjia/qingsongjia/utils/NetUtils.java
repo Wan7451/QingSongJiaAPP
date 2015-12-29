@@ -3,9 +3,12 @@ package com.qingsongjia.qingsongjia.utils;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -59,11 +62,18 @@ public class NetUtils {
                                    boolean isShowLoading,
                                    final NetUtilsHandler handler) {
 
+        if(!hasInternet(context)){
+            Toast.makeText(context,"没有开启网络，请开启网络",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         //创建okHttpClient对象
         if (mOkHttpClient == null)
             mOkHttpClient = new OkHttpClient();
         if (mOKHandler == null)
             mOKHandler = new Handler();
+
+
 
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setMessage("拼命加载中.....");
@@ -220,7 +230,18 @@ public class NetUtils {
 
     }
 
+    public static boolean hasInternet(Context context) {
 
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            if (mNetworkInfo != null) {
+                return mNetworkInfo.isAvailable();
+            }
+        }
+        return false;
+    }
 
 
     public interface NetUtilsHandler {

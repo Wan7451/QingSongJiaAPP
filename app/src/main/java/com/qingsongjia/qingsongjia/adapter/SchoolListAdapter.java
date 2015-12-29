@@ -27,7 +27,7 @@ public class SchoolListAdapter extends WanAdapter<School> {
     }
 
     @Override
-    public void convert(WanViewHolder holder, int position, final School item) {
+    public void convert(final WanViewHolder holder, int position, final School item) {
         final SimpleDraweeView icon = holder.getView(R.id.schoollist_iv_logo);
         if (TextUtils.isEmpty(item.getDri_file_path())) {
             icon.setImageURI(Uri.parse("res:// /" + R.drawable.default_head));
@@ -38,6 +38,8 @@ public class SchoolListAdapter extends WanAdapter<School> {
         holder.setText(R.id.schoollist_tv_name, item.getDri_nm());
         holder.setText(R.id.schoollist_tv_price, item.getDri_money() + "元起");
         holder.setText(R.id.schoollist_tv_attent, item.getDri_care() + "人关注");
+        holder.setText(R.id.schoollist_tv_zan, item.getDri_praise() + "人赞");
+
 
         final ImageView support = holder.getView(R.id.schoollist_iv_support);
         if (item.getDri_praise() > 0) {
@@ -55,8 +57,9 @@ public class SchoolListAdapter extends WanAdapter<School> {
                     NetRequest.schoolZan(getContext(), item.getDri_campus_id(), new NetUtils.NetUtilsHandler() {
                         @Override
                         public void onResponseOK(JSONArray response, int total) {
-                            item.setDri_praise(1);
+                            item.setDri_praise(item.getDri_praise()+1);
                             support.setImageResource(R.drawable.icon_exch_zaned);
+                            notifyDataSetChanged();
                         }
 
                         @Override
@@ -69,8 +72,9 @@ public class SchoolListAdapter extends WanAdapter<School> {
                     NetRequest.schoolCancelZan(getContext(), item.getDri_campus_id(), new NetUtils.NetUtilsHandler() {
                         @Override
                         public void onResponseOK(JSONArray response, int total) {
-                            item.setDri_praise(0);
                             support.setImageResource(R.drawable.icon_exch_zan);
+                            item.setDri_praise(item.getDri_praise()-1);
+                            notifyDataSetChanged();
                         }
 
                         @Override

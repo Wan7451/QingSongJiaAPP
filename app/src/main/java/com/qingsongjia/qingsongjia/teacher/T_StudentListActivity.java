@@ -32,8 +32,8 @@ public class T_StudentListActivity extends WanListActivity {
     @Override
     public WanAdapter getAdapter() {
         MyTestAdapter adapter=new MyTestAdapter(getContext(),data,R.layout.item_myt_student);
-        View header= getLayoutInflater().inflate(R.layout.activity_my_test,null);
-        adapter.addHeaderView(header);
+//        View header= getLayoutInflater().inflate(R.layout.activity_my_test,null);
+//        adapter.addHeaderView(header);
         return adapter;
     }
 
@@ -42,7 +42,7 @@ public class T_StudentListActivity extends WanListActivity {
         super.initView();
         setBackFinish();
         setContentTitle("我的学员");
-        setRightText("编辑");
+//        setRightText("编辑");
     }
 
     @Override

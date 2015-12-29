@@ -56,7 +56,7 @@ public class ExchangeListAdapter extends WanAdapter<Exchange> {
         TextView content = holder.getView(R.id.exch_content);
         TextView name = holder.getView(R.id.exch_name);
         TextView time = holder.getView(R.id.exch_time);
-        TextView zan = holder.getView(R.id.exch_zan);
+        final TextView zan = holder.getView(R.id.exch_zan);
         TextView comment = holder.getView(R.id.exch_comment);
         final SimpleDraweeView icon = holder.getView(R.id.exch_icon);
 
@@ -85,6 +85,7 @@ public class ExchangeListAdapter extends WanAdapter<Exchange> {
                         @Override
                         public void onResponseOK(JSONArray response, int total) {
                             item.setPraise_if(1);
+                            item.setPraise(item.getPraise()+1);
                             notifyDataSetChanged();
                         }
 
@@ -113,6 +114,7 @@ public class ExchangeListAdapter extends WanAdapter<Exchange> {
                         @Override
                         public void onResponseOK(JSONArray response, int total) {
                             item.setPraise_if(0);
+                            item.setPraise(item.getPraise()-1);
                             notifyDataSetChanged();
                         }
 

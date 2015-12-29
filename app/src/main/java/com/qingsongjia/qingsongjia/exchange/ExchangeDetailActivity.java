@@ -4,10 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,15 +64,28 @@ public class ExchangeDetailActivity extends WanListActivity {
         setBackFinish();
         setContentTitle("详情");
         id = getIntent().getIntExtra("id", 0);
+
+        findViewById(R.id.exchReply).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIManager.startReply(ExchangeDetailActivity.this, 1, exchDetal.getDid(), -1);
+            }
+        });
     }
 
     @Override
     public WanAdapter getAdapter() {
         ExchangeAdapter adapter = new ExchangeAdapter(getContext(), data, R.layout.item_exchange_detail);
-        View headerView = getLayoutInflater().inflate(R.layout.activity_exchange_detail, null);
+        View headerView = getLayoutInflater().inflate(R.layout.activity_exchange_top, null);
         ButterKnife.bind(this, headerView);
         adapter.addHeaderView(headerView);
 
+//        addFooterView(adapter);
+
+        return adapter;
+    }
+
+    private void addFooterView(ExchangeAdapter adapter) {
         LinearLayout layout=new LinearLayout(getContext());
         Button btn = new Button(getContext());
         btn.setTextColor(Color.WHITE);
@@ -101,8 +111,6 @@ public class ExchangeDetailActivity extends WanListActivity {
             }
         });
         adapter.addFooterView(layout);
-
-        return adapter;
     }
 
     @Override
@@ -198,8 +206,13 @@ public class ExchangeDetailActivity extends WanListActivity {
     }
 
     @Override
+    public int getMyLayout() {
+        return R.layout.activity_exchange_detail;
+    }
+
+    @Override
     protected int getMainViewLayoutId() {
-        return 0;
+        return R.layout.activity_exchange_detail;
     }
 
 

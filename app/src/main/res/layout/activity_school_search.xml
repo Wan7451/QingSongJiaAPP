@@ -22,16 +22,30 @@
 
         <EditText
             android:id="@+id/search_content"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginLeft="@dimen/space5"
+            android:textColorHint="#FFF"
             android:background="@null"
             android:drawableLeft="@drawable/icon_search"
             android:drawablePadding="@dimen/space5"
             android:gravity="center_vertical"
             android:hint="搜索驾校"
+            android:textCursorDrawable="@null"
+            android:textColor="#FFF"
+            android:textSize="@dimen/textSize14"
             android:singleLine="true"
             android:imeOptions="actionSearch" />
+
+        <TextView
+            android:id="@+id/search_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            android:padding="@dimen/space10"
+            android:layout_marginLeft="@dimen/space5"
+            android:textColor="#FFF"
+            android:textSize="@dimen/textSize14"/>
     </LinearLayout>
 
     <com.wan7451.wanadapter.recycle.WanRecycleView

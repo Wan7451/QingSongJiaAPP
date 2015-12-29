@@ -197,6 +197,7 @@ public abstract class WanListActivity extends WanActivity implements PullToRefre
 
     public void loadError() {
         main.onRefreshComplete();
+        errorView.setVisibility(View.VISIBLE);
         errorView.setErrorMessage("加载数据失败");
     }
 
