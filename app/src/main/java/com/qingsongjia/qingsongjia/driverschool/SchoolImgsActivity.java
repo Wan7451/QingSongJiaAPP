@@ -23,20 +23,17 @@ public class SchoolImgsActivity extends WanActivity {
     ViewPager imgsView;
     @Bind(R.id.imgsCount)
     TextView imgsCount;
+    private String[] imgs;
 
-
-    String[] imgs = {"http://img1.imgtn.bdimg.com/it/u=2643220050,487988016&fm=21&gp=0.jpg",
-    "http://i3.dpfile.com/2009-03-12/1701983_b.jpg%28700x700%29/thumb.jpg",
-            "http://img0.imgtn.bdimg.com/it/u=2332649694,1718080041&fm=21&gp=0.jpg"};
 
     @Override
     public void initView() {
         ButterKnife.bind(this);
         setBackFinish();
         setContentTitle("驾校街景");
-        imgsCount.setText(1+"/"+imgs.length);
 
-      String[] imgss=  getIntent().getStringArrayExtra("imgs");
+        imgs = getIntent().getStringArrayExtra("imgs");
+        imgsCount.setText(1+"/"+imgs.length);
 
         ImageAdapter adapter=new ImageAdapter();
         imgsView.setAdapter(adapter);
@@ -48,7 +45,7 @@ public class SchoolImgsActivity extends WanActivity {
 
             @Override
             public void onPageSelected(int position) {
-                imgsCount.setText((position+1)+"/"+imgs.length);
+                imgsCount.setText((position+1)+"/"+ imgs.length);
             }
 
             @Override

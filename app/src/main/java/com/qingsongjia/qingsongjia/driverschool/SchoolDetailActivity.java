@@ -145,6 +145,7 @@ public class SchoolDetailActivity extends WanActivity {
             String path = streetViews.get(i).getDri_file_path();
             paths[i] = path;
         }
+        if(paths.length>0)
         UIManager.startSchoolImages(getContext(), paths);
     }
 
