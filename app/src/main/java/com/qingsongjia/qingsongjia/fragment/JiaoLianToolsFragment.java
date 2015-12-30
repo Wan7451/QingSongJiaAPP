@@ -82,28 +82,28 @@ public class JiaoLianToolsFragment extends WanFragment implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-//        //dri_type 0 :学生 1 教练
-//        User u = LocalPreference.getCurrentUser(getContext());
-//        int type = 0;
-//        if (!TextUtils.isEmpty(u.getDri_type()) && (
-//                !u.getDri_type().endsWith("0"))) {
-//            type = 1;
-//        }
-//        if (type == 0) {
-//            //学员
-//            switch (i) {
-//                case 0:
-//                    UIManager.startPeiLianList(getContext());
-//                    break;
-//            }
-//        } else {
-//            //教练
-//            switch (i) {
-//                case 0:
+        //dri_type 0 :学生 1 教练
+        User u = LocalPreference.getCurrentUser(getContext());
+        int type = 0;
+        if (!TextUtils.isEmpty(u.getDri_type()) && (
+                !u.getDri_type().endsWith("0"))) {
+            type = 1;
+        }
+        if (type == 0) {
+            //学员
+            switch (i) {
+                case 0:
+                    UIManager.startPeiLianList(getContext());
+                    break;
+            }
+        } else {
+            //教练
+            switch (i) {
+                case 0:
                     UIManager.startPushOrder(getContext());
-//                    break;
-//            }
-//        }
+                    break;
+            }
+        }
 
     }
 }
