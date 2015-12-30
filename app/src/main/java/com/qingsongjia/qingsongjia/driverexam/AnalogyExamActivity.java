@@ -44,6 +44,8 @@ public class AnalogyExamActivity extends WanActivity {
     Button analogyAnalogy;   //模拟考试
     @Bind(R.id.analogy_imquiryExam)
     Button analogyImquiryExam;   //预约报名
+    @Bind(R.id.analogy_divier)
+    View analogyDivier;
     private int type;
 
     @Override
@@ -87,6 +89,19 @@ public class AnalogyExamActivity extends WanActivity {
                 UIManager.startInquiryExam(getContext(), type);
             }
         });
+
+        User u = LocalPreference.getCurrentUser(getContext());
+        int type = 0;
+        if (!TextUtils.isEmpty(u.getDri_type()) && (
+                !u.getDri_type().endsWith("0"))) {
+            type = 1;
+        }
+
+        if (type == 1) {
+            //教练
+            analogyDivier.setVisibility(View.GONE);
+            analogyImquiryExam.setVisibility(View.GONE);
+        }
 
 
     }

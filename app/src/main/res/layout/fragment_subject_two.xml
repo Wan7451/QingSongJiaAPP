@@ -10,7 +10,9 @@
         android:id="@+id/sunbjectTwo_AdView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space90" />
+
     <View style="@style/divider1" />
+
     <View style="@style/divider10" />
 
     <View style="@style/divider1" />
@@ -27,27 +29,34 @@
         android:id="@+id/sunbjectTwo_views"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space170"
-        android:layout_marginTop="@dimen/view_margin"
         android:layout_marginBottom="@dimen/view_margin"
+        android:layout_marginTop="@dimen/view_margin"
         android:numColumns="4" />
 
 
     <View style="@style/divider1" />
 
-    <View style="@style/divider10" />
-    <View style="@style/divider1" />
+    <LinearLayout
+        android:id="@+id/sunbjectTwo_divier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View style="@style/divider10" />
+
+        <View style="@style/divider1" />
+    </LinearLayout>
 
     <GridView
         android:id="@+id/sunbjectTwo_others"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space85"
-        android:layout_marginTop="@dimen/view_margin"
         android:layout_marginBottom="@dimen/view_margin"
+        android:layout_marginTop="@dimen/view_margin"
         android:numColumns="2" />
 
     <View style="@style/divider1" />
 
-    <View style="@style/dividerFill"
-        />
+    <View style="@style/dividerFill" />
 
 </LinearLayout>

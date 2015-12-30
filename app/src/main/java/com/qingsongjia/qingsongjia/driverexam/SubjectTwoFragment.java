@@ -1,11 +1,15 @@
 package com.qingsongjia.qingsongjia.driverexam;
 
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.qingsongjia.qingsongjia.R;
@@ -37,6 +41,8 @@ public class SubjectTwoFragment extends WanFragment implements AdapterView.OnIte
     GridView sunbjectTwoViews;
     @Bind(R.id.sunbjectTwo_others)
     GridView sunbjectTwoOthers;
+    @Bind(R.id.sunbjectTwo_divier)
+    LinearLayout sunbjectTwoDivier;
     private ArrayList<ExamImageText> data;
 
     public SubjectTwoFragment() {
@@ -84,6 +90,7 @@ public class SubjectTwoFragment extends WanFragment implements AdapterView.OnIte
 
         if (type == 1) {
             //教练
+            sunbjectTwoDivier.setVisibility(View.GONE);
             sunbjectTwoOthers.setVisibility(View.GONE);
         }
 
@@ -147,4 +154,5 @@ public class SubjectTwoFragment extends WanFragment implements AdapterView.OnIte
         }
 
     }
+
 }

@@ -248,36 +248,54 @@ public class ExchangeDetailActivity extends WanListActivity {
 
             text.setText(item.getDri_text());
 
-            switch (item.getDri_reply_type()) {
-                case "1":
-                    //对文章回复
-                    replyView.setVisibility(View.GONE);
+            holder.getConvertView().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UIManager.startReply(ExchangeDetailActivity.this, 2, item.getDid(), position);
+                }
+            });
 
-                    holder.getConvertView().setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            UIManager.startReply(ExchangeDetailActivity.this, 2, item.getDid(), position);
-                        }
-                    });
-                    break;
-                case "2":
-                    //对评论回复
-                    replyView.setVisibility(View.GONE);
-                    for (ExchangeReply reply : data) {
-                        if (reply.getId() == item.getDri_reply_id()) {
-                            replyView.setVisibility(View.VISIBLE);
-                            replyText.setText(reply.getDri_text());
-                            replyName.setText(reply.getCreate_nm());
-                            break;
-                        }
-                    }
+            replyView.removeAllViews();
 
-                    holder.getConvertView().setOnClickListener(null);
-                    break;
-                case "0":
-                    replyView.setVisibility(View.GONE);
-                    break;
+            if(item.getList()!=null && item.getList().size()>0) {
+               List<ExchangeReply> list= item.getList();
+                for (int i = 0; i <list.size(); i++) {
+                    ExchangeReply reply=list.get(i);
+                  View view=  getLayoutInflater().inflate(R.layout.item_exchange_reply,null);
+                  TextView nameView= (TextView) view.findViewById(R.id.exchItem_replyName);
+                  TextView textView= (TextView) view.findViewById(R.id.exchItem_replyText);
+
+                    nameView.setText(reply.getCreate_nm());
+                    textView.setText(reply.getDri_text());
+                    replyView.addView(view);
+                }
             }
+
+//            switch (item.getDri_reply_type()) {
+//                case "1":
+//                    //对文章回复
+//                    replyView.setVisibility(View.GONE);
+//
+//
+//                    break;
+//                case "2":
+//                    //对评论回复
+//                    replyView.setVisibility(View.GONE);
+//                    for (ExchangeReply reply : data) {
+//                        if (reply.getId() == item.getDri_reply_id()) {
+//                            replyView.setVisibility(View.VISIBLE);
+//                            replyText.setText(reply.getDri_text());
+//                            replyName.setText(reply.getCreate_nm());
+//                            break;
+//                        }
+//                    }
+//
+//                    holder.getConvertView().setOnClickListener(null);
+//                    break;
+//                case "0":
+//                    replyView.setVisibility(View.GONE);
+//                    break;
+//            }
 
 
         }

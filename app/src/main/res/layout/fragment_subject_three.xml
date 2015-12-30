@@ -34,8 +34,16 @@
 
     <View style="@style/divider1" />
 
-    <View style="@style/divider10" />
-    <View style="@style/divider1" />
+    <LinearLayout
+        android:id="@+id/sunbjectThreee_divier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View style="@style/divider10" />
+
+        <View style="@style/divider1" />
+    </LinearLayout>
 
     <GridView
         android:id="@+id/sunbjectThreee_others"

@@ -53,25 +53,6 @@
             android:layout_marginTop="@dimen/space5"
             android:layout_marginBottom="@dimen/space5">
 
-            <TextView
-                android:id="@+id/exchItem_replyName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="name"
-                android:textColor="@color/text_import"
-                android:textSize="@dimen/textSize12"/>
-
-            <TextView
-                android:id="@+id/exchItem_replyText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="name"
-                android:padding="@dimen/space3"
-                android:background="@drawable/shape_text_bg"
-                android:textColor="#999999"
-                android:textSize="@dimen/textSize12"/>
-
         </LinearLayout>
 
         <TextView

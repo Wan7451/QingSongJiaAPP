@@ -1,5 +1,7 @@
 package com.qingsongjia.qingsongjia.bean;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2015/12/28 0028.
  */
@@ -49,6 +51,8 @@ public class ExchangeReply {
      * user_file :
      */
 
+
+
     private int campusId;
     private String campusName;
     private int comment_count;
@@ -76,6 +80,15 @@ public class ExchangeReply {
     private String update_nm;
     private String update_tm_str;
     private String user_file;
+    /**
+     * create_tm : {"date":30,"day":3,"hours":16,"minutes":47,"month":11,"nanos":0,"seconds":29,"time":1451465249000,"timezoneOffset":-480,"year":115}
+     * list : []
+     * reply_count : 0
+     * update_tm : {"date":30,"day":3,"hours":16,"minutes":47,"month":11,"nanos":0,"seconds":29,"time":1451465249000,"timezoneOffset":-480,"year":115}
+     */
+
+    private int reply_count;
+    private List<ExchangeReply> list;
 
     public void setCampusId(int campusId) {
         this.campusId = campusId;
@@ -291,5 +304,21 @@ public class ExchangeReply {
 
     public String getUser_file() {
         return user_file;
+    }
+
+    public void setReply_count(int reply_count) {
+        this.reply_count = reply_count;
+    }
+
+    public void setList(List<ExchangeReply> list) {
+        this.list = list;
+    }
+
+    public int getReply_count() {
+        return reply_count;
+    }
+
+    public List<ExchangeReply> getList() {
+        return list;
     }
 }
