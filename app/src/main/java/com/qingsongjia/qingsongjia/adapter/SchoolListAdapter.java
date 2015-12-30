@@ -10,8 +10,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.School;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
+import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
 
@@ -42,7 +44,7 @@ public class SchoolListAdapter extends WanAdapter<School> {
 
 
         final ImageView support = holder.getView(R.id.schoollist_iv_support);
-        if (item.getDri_praise() > 0) {
+        if (item.getPraise_if() > 0) {
             support.setImageResource(R.drawable.icon_exch_zaned);
         } else {
             support.setImageResource(R.drawable.icon_exch_zan);
@@ -52,13 +54,18 @@ public class SchoolListAdapter extends WanAdapter<School> {
             @Override
             public void onClick(View view) {
 
-                if (item.getDri_praise() == 0) {
+                if (item.getPraise_if() == 0) {
+                    //判断是否登录
+                    if (TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())) {
+                        UIManager.startLogin(getContext());
+                        return;
+                    }
                     //点攒
                     NetRequest.schoolZan(getContext(), item.getDri_campus_id(), new NetUtils.NetUtilsHandler() {
                         @Override
                         public void onResponseOK(JSONArray response, int total) {
                             item.setDri_praise(item.getDri_praise()+1);
-                            support.setImageResource(R.drawable.icon_exch_zaned);
+                            item.setPraise_if(1);
                             notifyDataSetChanged();
                         }
 
@@ -68,12 +75,18 @@ public class SchoolListAdapter extends WanAdapter<School> {
                         }
                     });
                 } else {
+                    //判断是否登录
+                    if (TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())) {
+                        UIManager.startLogin(getContext());
+                        return;
+                    }
+
                     //取消点赞
                     NetRequest.schoolCancelZan(getContext(), item.getDri_campus_id(), new NetUtils.NetUtilsHandler() {
                         @Override
                         public void onResponseOK(JSONArray response, int total) {
-                            support.setImageResource(R.drawable.icon_exch_zan);
                             item.setDri_praise(item.getDri_praise()-1);
+                            item.setPraise_if(0);
                             notifyDataSetChanged();
                         }
 

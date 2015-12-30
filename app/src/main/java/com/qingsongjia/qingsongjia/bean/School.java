@@ -21,6 +21,16 @@ public class School {
     private int dri_money;
     private String dri_nm;
     private int dri_praise;
+    /**
+     * care_if : 0
+     * praise_if : 0
+     * registFees : 200
+     */
+
+    private int care_if;
+    private int praise_if;
+    private int registFees;
+
 
     public void setDri_campus_id(int dri_campus_id) {
         this.dri_campus_id = dri_campus_id;
@@ -68,5 +78,29 @@ public class School {
 
     public int getDri_praise() {
         return dri_praise;
+    }
+
+    public void setCare_if(int care_if) {
+        this.care_if = care_if;
+    }
+
+    public void setPraise_if(int praise_if) {
+        this.praise_if = praise_if;
+    }
+
+    public void setRegistFees(int registFees) {
+        this.registFees = registFees;
+    }
+
+    public int getCare_if() {
+        return care_if;
+    }
+
+    public int getPraise_if() {
+        return praise_if;
+    }
+
+    public int getRegistFees() {
+        return registFees;
     }
 }

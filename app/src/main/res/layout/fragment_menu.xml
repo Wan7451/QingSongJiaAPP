@@ -49,11 +49,6 @@
                 android:text="还没有模拟考试成绩" />
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/icon_arrow_white"/>
     </LinearLayout>
 
 

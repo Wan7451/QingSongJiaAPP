@@ -217,7 +217,7 @@ public class NetRequest {
         params.put("dri_price", price);
         params.put("dri_partner_type", type);
         params.put("dri_comments", other);
-        NetUtils.baseRequest(context, "driapppartnerTrain/sav", params, false, handler);
+        NetUtils.baseRequest(context, "driapppartnerTrain/save", params, false, handler);
 
     }
 
@@ -429,6 +429,7 @@ public class NetRequest {
         params.put("dri_money", money + "");
         params.put("dri_care", care + "");
         params.put("dri_praise", praise + "");
+        params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
         NetUtils.baseRequest(context, "driapppraiseweb/queryForList", params, false, handler);
 
     }

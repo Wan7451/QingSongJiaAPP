@@ -19,7 +19,7 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file("/Users/wanggang/Documents/MyApplicationQingSongJia/dudujiadao.jks")
+            storeFile file("D:\\AndroidTools\\QingSongJiaAPP\\dudujiadao.jks")
             storePassword "dudujiadao"
             keyAlias "dudujiadao"
             keyPassword "dudujiadao"

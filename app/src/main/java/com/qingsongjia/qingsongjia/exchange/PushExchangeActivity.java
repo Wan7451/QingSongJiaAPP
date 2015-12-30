@@ -22,6 +22,7 @@ import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.QiniuUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
+import com.qingsongjia.qingsongjia.utils.UriUtils;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UpProgressHandler;
@@ -239,12 +240,13 @@ public class PushExchangeActivity extends WanActivity {
         startActivityForResult(intent, PHOTO_REQUEST_CAMERA);
     }
 
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PHOTO_REQUEST_GALLERY) {
             if (resultCode == RESULT_OK && data != null) {
                 // 得到图片的全路径
                 Uri uri = data.getData();
-                File f = new File(uri.getPath());
+                File f = new File(UriUtils.getRealFilePath(getContext(),uri));
                 imgs.add(f);
                 adapter.notifyDataSetChanged();
             }
