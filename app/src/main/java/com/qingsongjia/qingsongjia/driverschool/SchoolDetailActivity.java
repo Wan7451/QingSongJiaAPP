@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AlertDialog;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,6 +29,7 @@ import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
 import com.wan7451.base.WanActivity;
+import com.wan7451.formview.WanTextView;
 import com.wan7451.wanadapter.list.CommonAdapter;
 import com.wan7451.wanadapter.list.ViewHolder;
 
@@ -150,6 +152,10 @@ public class SchoolDetailActivity extends WanActivity {
         ButterKnife.bind(this);
         loadData();
 
+
+        WanTextView rightBtn = (WanTextView) getTitleBar().findViewById(com.wan7451.wanadapter.mylibrary.R.id.title_right);
+        TextPaint tp = rightBtn.getPaint();
+        tp.setFakeBoldText(true);
 
         care_if = getIntent().getIntExtra("care_if", 0);
         if (care_if == 0) {

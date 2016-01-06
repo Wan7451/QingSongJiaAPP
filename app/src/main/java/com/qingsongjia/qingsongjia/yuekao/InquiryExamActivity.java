@@ -1,8 +1,8 @@
 package com.qingsongjia.qingsongjia.yuekao;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -49,7 +49,7 @@ public class InquiryExamActivity extends WanActivity {
 
 
     private String upDate;
-    private String upTime="1";
+    private String upTime = "1";
     private int upKemu;
 
     @Override
@@ -59,7 +59,7 @@ public class InquiryExamActivity extends WanActivity {
         setBackFinish();
         setContentTitle("预约考试");
 
-        if(TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())){
+        if (TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())) {
             UIManager.startLogin(getContext());
             finish();
             return;
@@ -95,8 +95,8 @@ public class InquiryExamActivity extends WanActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                upDate = year + "-" + (month+1) + "-" + day;
-                                inquiryDate.setText(year + "年" + (month+1) + "月" + day + "日");
+                                upDate = year + "-" + (month + 1) + "-" + day;
+                                inquiryDate.setText(year + "年" + (month + 1) + "月" + day + "日");
                             }
                         },
                         calendar.get(Calendar.YEAR),
@@ -132,12 +132,22 @@ public class InquiryExamActivity extends WanActivity {
             @Override
             public void onClick(View view) {
 
-                if(TextUtils.isEmpty(upDate)){
+                if (TextUtils.isEmpty(upDate)) {
                     showToast("请选择约考时间");
                     return;
                 }
-                if(TextUtils.isEmpty(upTime)){
+                if (TextUtils.isEmpty(upTime)) {
                     showToast("请选择约考时间");
+                    return;
+                }
+
+                int coachId = LocalPreference.getCurrentUserData(getContext()).getDri_coach_id();
+                if (coachId == 0) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("提示");
+                    builder.setMessage("未分配教练，不能进行约考，请联系负责人员");
+                    builder.setPositiveButton("确定", null);
+                    builder.show();
                     return;
                 }
 
@@ -150,9 +160,9 @@ public class InquiryExamActivity extends WanActivity {
 
                     @Override
                     public void onResponseError(String error) {
-                        if(TextUtils.isEmpty(error)){
+                        if (TextUtils.isEmpty(error)) {
                             showToast("预约失败");
-                        }else {
+                        } else {
                             showToast(error);
                         }
                     }

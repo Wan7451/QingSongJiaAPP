@@ -2,6 +2,7 @@ package com.qingsongjia.qingsongjia.yuexun;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -56,7 +57,7 @@ public class S_InquiryTrainingActivity extends WanActivity {
         setBackFinish();
         setContentTitle("约练");
 
-        if(TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())){
+        if (TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())) {
             UIManager.startLogin(getContext());
             finish();
             return;
@@ -71,8 +72,8 @@ public class S_InquiryTrainingActivity extends WanActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                trainingTime.setText(year + "年" + (month+1) + "月" + day + "日");
-                                time=year+"-"+(month+1)+"-"+day;
+                                trainingTime.setText(year + "年" + (month + 1) + "月" + day + "日");
+                                time = year + "-" + (month + 1) + "-" + day;
                             }
                         },
                         calendar.get(Calendar.YEAR),
@@ -91,11 +92,11 @@ public class S_InquiryTrainingActivity extends WanActivity {
         trainingChoiceTeacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(TextUtils.isEmpty(time)){
+                if (TextUtils.isEmpty(time)) {
                     showToast("请首先选择时间");
                     return;
                 }
-                UIManager.startTeacherList(getContext(),time);
+                UIManager.startTeacherList(getContext(), time);
             }
         });
 
@@ -103,12 +104,22 @@ public class S_InquiryTrainingActivity extends WanActivity {
             @Override
             public void onClick(View view) {
 
-                if(teacherId==0){
+                if (teacherId == 0) {
                     showToast("请先选择时间与教练");
                     return;
                 }
 
-                NetRequest.sendInuiryTraining(getContext(),teacherId+"", new NetUtils.NetUtilsHandler() {
+                int coachId = LocalPreference.getCurrentUserData(getContext()).getDri_coach_id();
+                if (coachId == 0) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("提示");
+                    builder.setMessage("未分配教练，不能进行约考，请联系负责人员");
+                    builder.setPositiveButton("确定", null);
+                    builder.show();
+                    return;
+                }
+
+                NetRequest.sendInuiryTraining(getContext(), teacherId + "", new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("预约成功");
@@ -116,9 +127,9 @@ public class S_InquiryTrainingActivity extends WanActivity {
 
                     @Override
                     public void onResponseError(String error) {
-                        if(TextUtils.isEmpty(error)){
+                        if (TextUtils.isEmpty(error)) {
                             showToast("预约失败");
-                        }else {
+                        } else {
                             showToast(error);
                         }
                     }
@@ -130,12 +141,12 @@ public class S_InquiryTrainingActivity extends WanActivity {
 
 
     public void onEventMainThread(EventData data) {
-        if(data.getType()==EventData.TYPE_YUELIAN){
-           TeacherDetail detail= (TeacherDetail) data.getData();
+        if (data.getType() == EventData.TYPE_YUELIAN) {
+            TeacherDetail detail = (TeacherDetail) data.getData();
             trainingTeacher.setText(detail.getDri_coach_nm());
             trainingMytime.setText(time);
             trainingMyteacher.setText(detail.getDri_plate_num());
-            teacherId=detail.getId();
+            teacherId = detail.getId();
         }
     }
 
