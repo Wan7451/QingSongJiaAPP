@@ -744,16 +744,30 @@ public class NetRequest {
     /**
      *
      * @param context
-     * @param dri_care  关注驾校   >0关注  ==0取消关注
+     *   关注驾校   >0关注  ==0取消关注
      * @param campus_id
      * @param handler
      */
-    public static void attentionSchool(Context context, int dri_care, int campus_id, NetUtils.NetUtilsHandler handler) {
+    public static void attentionSchool(Context context, int campus_id, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
         params.put("campusId", campus_id + "");
-        params.put("dri_care", dri_care + "");
+        params.put("dri_care", 1+"");
         params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
         NetUtils.baseRequest(context, "driapppraiseweb/save", params, true, handler);
+
+    }
+
+    /**
+     *  取消关注
+     * @param context
+     * @param campus_id
+     * @param handler
+     */
+    public static void attentionOffSchool(Context context, int campus_id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("campusId", campus_id + "");
+        params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        NetUtils.baseRequest(context, "driapppraiseweb/offcare", params, true, handler);
 
     }
 }

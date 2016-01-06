@@ -93,7 +93,6 @@ public class SchoolDetailActivity extends WanActivity {
         @Override
         public void onClick(View v) {
             NetRequest.attentionSchool(getContext(),
-                    1,
                     detail.getDri_campus_id(),
                     new NetUtils.NetUtilsHandler() {
                         @Override
@@ -122,8 +121,7 @@ public class SchoolDetailActivity extends WanActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
-                    NetRequest.attentionSchool(getContext(),
-                            0,
+                    NetRequest.attentionOffSchool(getContext(),
                             detail.getDri_campus_id(),
                             new NetUtils.NetUtilsHandler() {
                                 @Override
