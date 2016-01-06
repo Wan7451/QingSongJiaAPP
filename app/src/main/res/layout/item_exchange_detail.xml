@@ -44,6 +44,15 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/exchItem_text"
+            android:layout_marginTop="@dimen/space5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_default"
+            android:layout_marginBottom="@dimen/space5"
+            android:text="内容"
+            />
 
         <LinearLayout
             android:id="@+id/exchItem_replyView"
@@ -54,16 +63,6 @@
             android:layout_marginBottom="@dimen/space5">
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/exchItem_text"
-            android:layout_marginTop="@dimen/space5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_default"
-            android:layout_marginBottom="@dimen/space5"
-            android:text="内容"
-            />
 
         <LinearLayout
             android:layout_width="match_parent"

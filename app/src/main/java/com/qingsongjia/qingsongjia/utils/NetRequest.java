@@ -696,28 +696,28 @@ public class NetRequest {
 
     public static void loadExchangeDetail(Context context, int id, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("id", id+"");
+        params.put("id", id + "");
         NetUtils.baseRequest(context, "driappexchangeWeb/load", params, true, handler);
 
     }
 
     public static void loadExchangeComment(Context context, int id, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("dri_reply_id", id+"");
+        params.put("dri_reply_id", id + "");
         NetUtils.baseRequest(context, "driappexchangeWeb/loadReply", params, true, handler);
 
     }
 
     public static void zanExchange(Context context, int id, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("ex_id", id+"");
+        params.put("ex_id", id + "");
         params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
         NetUtils.baseRequest(context, "driappExpraiseweb/save", params, false, handler);
     }
 
     public static void offZanExchange(Context context, int id, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("ex_id", id+"");
+        params.put("ex_id", id + "");
         params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
         NetUtils.baseRequest(context, "driappExpraiseweb/offpraise", params, false, handler);
     }
@@ -725,7 +725,7 @@ public class NetRequest {
     public static void replyExchange(Context context, String upText, int id, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
         params.put("dri_text", UnicodeUtil.stringToUnicode(upText));
-        params.put("dri_reply_id", id+"");
+        params.put("dri_reply_id", id + "");
         params.put("dri_reply_type", "1");
         params.put("create_id", LocalPreference.getCurrentUserData(context).getDid() + "");
         NetUtils.baseRequest(context, "driappexchangeWeb/saveReply", params, false, handler);
@@ -734,10 +734,26 @@ public class NetRequest {
     public static void replyExchangeReply(WanActivity context, String upText, int replyId, NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
         params.put("dri_text", UnicodeUtil.stringToUnicode(upText));
-        params.put("dri_reply_id", replyId+"");
+        params.put("dri_reply_id", replyId + "");
         params.put("dri_reply_type", "2");
         params.put("create_id", LocalPreference.getCurrentUserData(context).getDid() + "");
         NetUtils.baseRequest(context, "driappexchangeWeb/saveReply", params, false, handler);
+
+    }
+
+    /**
+     *
+     * @param context
+     * @param dri_care  关注驾校   >0关注  ==0取消关注
+     * @param campus_id
+     * @param handler
+     */
+    public static void attentionSchool(Context context, int dri_care, int campus_id, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("campusId", campus_id + "");
+        params.put("dri_care", dri_care + "");
+        params.put("user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        NetUtils.baseRequest(context, "driapppraiseweb/save", params, true, handler);
 
     }
 }

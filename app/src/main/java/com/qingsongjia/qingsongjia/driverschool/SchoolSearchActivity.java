@@ -167,7 +167,7 @@ public class SchoolSearchActivity extends Activity implements PullToRefreshBase.
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-        UIManager.startSchoolDetail(this, data.get(posotion).getDri_campus_id());
+        UIManager.startSchoolDetail(this, data.get(posotion).getDri_campus_id(),-1);
 
     }
 }

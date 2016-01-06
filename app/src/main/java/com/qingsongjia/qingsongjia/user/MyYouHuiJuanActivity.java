@@ -52,16 +52,7 @@ public class MyYouHuiJuanActivity extends WanListActivity {
                 if (!TextUtils.equals("[{}]", response.toJSONString())) {
                     data.addAll(JSONObject.parseArray(response.toJSONString(), YouHuiJuan.class));
                 }
-                if (data.size() == 0) {
-                    YouHuiJuan j = new YouHuiJuan();
-                    j.setDri_money_amount(100);
-                    TarenaTime t = new TarenaTime();
-                    t.setTime(System.currentTimeMillis());
-                    j.setDri_use_end_dt(t);
-                    j.setDri_satisfy_amount(1000);
-                    data.add(j);
-                }
-                loadFinish("");
+                loadFinish("暂时没有优惠劵");
             }
 
             @Override

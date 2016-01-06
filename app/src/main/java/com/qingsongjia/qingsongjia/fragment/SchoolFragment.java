@@ -1,5 +1,6 @@
 package com.qingsongjia.qingsongjia.fragment;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -86,9 +87,17 @@ public class SchoolFragment extends WanListFragment {
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-        UIManager.startSchoolDetail(getContext(),data.get(posotion).getDri_campus_id());
+        UIManager.startSchoolDetail(this, data.get(posotion).getDri_campus_id(), data.get(posotion).getCare_if());
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1234) {
+            refreshing();
+        }
+    }
 
     @Override
     public void onResume() {

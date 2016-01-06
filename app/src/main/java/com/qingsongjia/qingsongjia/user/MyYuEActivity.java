@@ -40,6 +40,7 @@ public class MyYuEActivity extends WanActivity {
     RecyclerView yueCheckout;
     private JiFeiAdapter adapter;
     private ArrayList<YuE> data=new ArrayList<>();
+    private int money;
 
     @Override
     public void initView() {
@@ -47,8 +48,8 @@ public class MyYuEActivity extends WanActivity {
         setContentTitle("我的余额");
         setBackFinish();
 
-       int money= getIntent().getIntExtra("money",0);
-        yueCount.setText(money+"");
+        money = getIntent().getIntExtra("money",0);
+        yueCount.setText(money +"");
 
         adapter = new JiFeiAdapter(getContext(), data, R.layout.item_jifei_checkout);
         yueCheckout.setAdapter(adapter);
@@ -61,7 +62,7 @@ public class MyYuEActivity extends WanActivity {
         yueTixian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UIManager.startTiXian(getContext());
+                UIManager.startTiXian(getContext(), money);
             }
         });
     }

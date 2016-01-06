@@ -94,7 +94,7 @@ public class SchoolListActivity extends WanListActivity {
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-        UIManager.startSchoolDetail(getContext(), data.get(posotion).getDri_campus_id());
+        UIManager.startSchoolDetail(getContext(), data.get(posotion).getDri_campus_id(),data.get(posotion).getCare_if());
     }
 
 

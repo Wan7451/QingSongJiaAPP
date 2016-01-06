@@ -200,7 +200,7 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
                 Toast.makeText(getContext(),"暂时没有报名驾校，赶快报名吧~",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                UIManager.startSchoolDetail(getContext(), user.getDri_campus_id());
+                UIManager.startSchoolDetail(getContext(), user.getDri_campus_id(),-1);
                 break;
             case 1:
                 UIManager.startChangeExamLibsForReslut(this, 1234);

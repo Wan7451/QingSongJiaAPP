@@ -104,7 +104,7 @@ public class TeacherMessageActivity extends WanActivity {
             chool.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    UIManager.startSchoolDetail(getContext(), loginData.getDri_campus_id());
+                    UIManager.startSchoolDetail(getContext(), loginData.getDri_campus_id(),-1);
                 }
             });
         }

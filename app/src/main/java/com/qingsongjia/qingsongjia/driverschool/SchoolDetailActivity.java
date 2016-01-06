@@ -1,10 +1,12 @@
 package com.qingsongjia.qingsongjia.driverschool;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -85,6 +87,62 @@ public class SchoolDetailActivity extends WanActivity {
     LinearLayout schoolinfoScore;
     private int id;
     private SchoolDetail detail;
+    private int care_if;
+
+    private View.OnClickListener attentionListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            NetRequest.attentionSchool(getContext(),
+                    1,
+                    detail.getDri_campus_id(),
+                    new NetUtils.NetUtilsHandler() {
+                        @Override
+                        public void onResponseOK(JSONArray response, int total) {
+                            care_if = 1;
+                            setRightText("取消关注", attentionOffListener);
+                        }
+
+                        @Override
+                        public void onResponseError(String error) {
+
+                        }
+                    });
+        }
+    };
+
+    private View.OnClickListener attentionOffListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+            builder.setTitle("提示");
+            builder.setMessage("您确定要取消关注么？");
+            builder.setNegativeButton("继续关注",null);
+            builder.setPositiveButton("取消关注", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    NetRequest.attentionSchool(getContext(),
+                            0,
+                            detail.getDri_campus_id(),
+                            new NetUtils.NetUtilsHandler() {
+                                @Override
+                                public void onResponseOK(JSONArray response, int total) {
+                                    care_if = 0;
+                                    setRightText("+关注", attentionListener);
+                                }
+
+                                @Override
+                                public void onResponseError(String error) {
+
+                                }
+                            });
+                }
+            });
+            builder.show();
+        }
+    };
+
 
     @Override
     public void initView() {
@@ -95,18 +153,27 @@ public class SchoolDetailActivity extends WanActivity {
         loadData();
 
 
+        care_if = getIntent().getIntExtra("care_if", 0);
+        if (care_if == 0) {
+            //未关注
+            setRightText("+关注", attentionListener);
+        } else if (care_if > 0) {
+            //已关注
+            setRightText("取消关注", attentionOffListener);
+        }
+
         schoolinfoBtnBaoming.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UIManager.startSignUp(getContext(),detail.getDri_campus_id(),detail.getRegistFees());
+                UIManager.startSignUp(getContext(), detail.getDri_campus_id(), detail.getRegistFees());
             }
         });
 
         schoolinfoTvAddr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.isEmpty(detail.getDri_address()))
-                UIManager.startMapView(getContext(), detail.getDri_nm(), detail.getDri_map_address());
+                if (!TextUtils.isEmpty(detail.getDri_address()))
+                    UIManager.startMapView(getContext(), detail.getDri_nm(), detail.getDri_map_address());
             }
         });
 
@@ -133,7 +200,7 @@ public class SchoolDetailActivity extends WanActivity {
         schoolinfoScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UIManager.startSchoolEvaluate(getContext(),detail);
+                UIManager.startSchoolEvaluate(getContext(), detail);
             }
         });
     }
@@ -145,8 +212,8 @@ public class SchoolDetailActivity extends WanActivity {
             String path = streetViews.get(i).getDri_file_path();
             paths[i] = path;
         }
-        if(paths.length>0)
-        UIManager.startSchoolImages(getContext(), paths);
+        if (paths.length > 0)
+            UIManager.startSchoolImages(getContext(), paths);
     }
 
     private void loadData() {

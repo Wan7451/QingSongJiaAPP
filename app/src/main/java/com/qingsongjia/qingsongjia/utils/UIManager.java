@@ -204,9 +204,10 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startTiXian(Context context) {
+    public static void startTiXian(Context context, int money) {
         Intent i = new Intent();
         i.setClass(context, TiXianActivity.class);
+        i.putExtra("money", money);
         context.startActivity(i);
     }
 
@@ -435,10 +436,19 @@ public class UIManager {
         context.startActivity(i);
     }
 
-    public static void startSchoolDetail(Context context, int id) {
+    public static void startSchoolDetail(Fragment context, int id, int care_if) {
+        Intent i = new Intent();
+        i.setClass(context.getContext(), SchoolDetailActivity.class);
+        i.putExtra("id", id);
+        i.putExtra("care_if", care_if);
+        context.startActivityForResult(i, 1234);
+    }
+
+    public static void startSchoolDetail(Context context, int id, int care_if) {
         Intent i = new Intent();
         i.setClass(context, SchoolDetailActivity.class);
         i.putExtra("id", id);
+        i.putExtra("care_if", care_if);
         context.startActivity(i);
     }
 

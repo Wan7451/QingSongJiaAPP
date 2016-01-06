@@ -38,6 +38,10 @@ public class TiXianActivity extends WanActivity {
         ButterKnife.bind(this);
         setContentTitle("余额提现");
 
+        final int money = getIntent().getIntExtra("money", 0);
+
+
+        tixianCharge.setHint("不能超过"+money+"元");
 
         tixianSubject.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +65,15 @@ public class TiXianActivity extends WanActivity {
                 }
 
                 int c = Integer.parseInt(charge);
+
+                if(c>money){
+                    showToast("不能超过"+money+"元");
+                    return;
+                }
+
                 c = 0 - c;
-                NetRequest.tixian(getContext(), card, name, c+"", new NetUtils.NetUtilsHandler() {
+
+                NetRequest.tixian(getContext(), card, name, c + "", new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("提现申请成功");
