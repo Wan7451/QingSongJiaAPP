@@ -87,19 +87,17 @@ public class LoginActivity extends WanActivity {
                 }
 
 
-
-
-                NetRequest.loginLogin(getContext(), tel, pasd, new NetUtils.NetUtilsHandler() {
+                NetRequest.loginLogin(getContext(),view, tel, pasd, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         String user = response.getString(0);
                         LocalPreference.saveCurrentUser(getContext(), user);
 
                         boolean isGoBack = getIntent().getBooleanExtra("isGoBack", false);
+                        EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_MENU, null));
 
                         if (isGoBack) {
                             finish();
-                            EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_MENU, null));
                         } else {
                             colseActivity(MainActivity.class);
                             startActivity(new Intent(getContext(), MainActivity.class));

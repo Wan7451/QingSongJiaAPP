@@ -91,7 +91,7 @@ public class S_TrainingEvaluateActivity extends WanActivity {
                     showToast("评价内容不能为空");
                     return;
                 }
-                NetRequest.markStudent(getContext(), data.getId() + "", mark, new NetUtils.NetUtilsHandler() {
+                NetRequest.markStudent(getContext(),view, data.getId() + "", mark, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("评价成功");

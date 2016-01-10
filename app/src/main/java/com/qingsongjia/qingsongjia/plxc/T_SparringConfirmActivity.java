@@ -83,7 +83,7 @@ public class T_SparringConfirmActivity extends WanActivity {
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NetRequest.queRenPeiLian(getContext(),peiLian.getId(), new NetUtils.NetUtilsHandler() {
+                NetRequest.queRenPeiLian(getContext(),view,peiLian.getId(), new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("确认成功");

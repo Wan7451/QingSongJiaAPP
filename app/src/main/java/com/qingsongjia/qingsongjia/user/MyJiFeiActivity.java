@@ -63,7 +63,7 @@ public class MyJiFeiActivity extends WanActivity {
 
     private void loadData() {
 
-        NetRequest.getMyJiFen(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.getMyJiFen(getContext(),null, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

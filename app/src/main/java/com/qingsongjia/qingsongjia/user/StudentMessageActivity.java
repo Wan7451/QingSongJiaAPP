@@ -78,7 +78,7 @@ public class StudentMessageActivity extends WanActivity {
                 if(!TextUtils.isEmpty(path)){
                     dri_file_path=path;
                 }
-                saveStudetnMessage();
+                saveStudetnMessage(view);
 
             }
         });
@@ -149,9 +149,10 @@ public class StudentMessageActivity extends WanActivity {
 
 
     //保存用户数据
-    private void saveStudetnMessage() {
+    private void saveStudetnMessage(View v) {
 
         NetRequest.saveStudent(getContext(),
+                v,
                 dri_file_path,
                 id,
                 dri_campus_id,

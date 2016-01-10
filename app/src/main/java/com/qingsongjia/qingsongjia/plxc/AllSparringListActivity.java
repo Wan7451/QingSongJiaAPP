@@ -52,14 +52,14 @@ public class AllSparringListActivity extends WanListActivity {
 
     @Override
     protected void loadData() {
-        NetRequest.getPeiLianList(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.getPeiLianList(getContext(),null, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();
                 if (!TextUtils.equals("[{}]", response.toJSONString())) {
                     data.addAll(JSONArray.parseArray(response.toJSONString(), PeiLian.class));
                 }
-                loadFinish("");
+                loadFinish("暂时没有陪练信息");
             }
 
             @Override

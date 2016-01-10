@@ -119,7 +119,7 @@ public class S_InquiryTrainingActivity extends WanActivity {
                     return;
                 }
 
-                NetRequest.sendInuiryTraining(getContext(), teacherId + "", new NetUtils.NetUtilsHandler() {
+                NetRequest.sendInuiryTraining(getContext(),view, teacherId + "", new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("预约成功");

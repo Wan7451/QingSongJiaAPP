@@ -85,7 +85,7 @@ public class T_SparringEvaluateActivity extends WanActivity {
                     return;
                 }
 
-                NetRequest.peijiapinglui(getContext(), peiLian.getId(), remark, new NetUtils.NetUtilsHandler() {
+                NetRequest.peijiapinglui(getContext(),view, peiLian.getId(), remark, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("评论成功");

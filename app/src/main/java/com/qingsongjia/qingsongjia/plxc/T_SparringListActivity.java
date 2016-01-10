@@ -59,7 +59,7 @@ public class T_SparringListActivity extends WanListActivity {
     @Override
     protected void loadData() {
 
-        NetRequest.loadMyPeiLian(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.loadMyPeiLian(getContext(),null, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

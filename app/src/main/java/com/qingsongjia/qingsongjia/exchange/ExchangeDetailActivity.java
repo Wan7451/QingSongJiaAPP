@@ -116,7 +116,7 @@ public class ExchangeDetailActivity extends WanListActivity {
     @Override
     protected void loadData() {
 
-        NetRequest.loadExchangeDetail(getContext(), id, new NetUtils.NetUtilsHandler() {
+        NetRequest.loadExchangeDetail(getContext(),null, id, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 if (!TextUtils.equals("[{}]", response.toJSONString())) {
@@ -177,7 +177,7 @@ public class ExchangeDetailActivity extends WanListActivity {
         });
 
 
-        NetRequest.loadExchangeComment(getContext(), id, new NetUtils.NetUtilsHandler() {
+        NetRequest.loadExchangeComment(getContext(),null, id, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

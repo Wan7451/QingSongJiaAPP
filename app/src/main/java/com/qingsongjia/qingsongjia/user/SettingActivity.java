@@ -14,6 +14,7 @@ import com.qingsongjia.qingsongjia.activity.LoginActivity;
 import com.qingsongjia.qingsongjia.adapter.ItemClickDataAdapter;
 import com.qingsongjia.qingsongjia.bean.ItemClickData;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.wan7451.base.WanActivity;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 
 public class SettingActivity extends WanActivity implements WanAdapter.OnItemClickListener {
@@ -45,6 +47,7 @@ public class SettingActivity extends WanActivity implements WanAdapter.OnItemCli
         loginOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_MENU, null));
                 LocalPreference.clearData(getContext());
                 startActivity(new Intent(getContext(), LoginActivity.class));
                 finish();
@@ -69,7 +72,7 @@ public class SettingActivity extends WanActivity implements WanAdapter.OnItemCli
     public void onItemClickListener(int posotion, WanViewHolder holder) {
         switch (posotion) {
             case 0:
-                NetRequest.downTopPicture(getContext(), new NetUtils.NetUtilsHandler() {
+                NetRequest.downTopPicture(getContext(),holder.getConvertView(), new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         JSONObject object = response.getJSONObject(0);

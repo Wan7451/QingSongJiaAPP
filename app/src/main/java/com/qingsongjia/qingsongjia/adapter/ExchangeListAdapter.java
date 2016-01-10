@@ -81,7 +81,7 @@ public class ExchangeListAdapter extends WanAdapter<Exchange> {
                     }
 
 
-                    NetRequest.zanExchange(getContext(), item.getId(), new NetUtils.NetUtilsHandler() {
+                    NetRequest.zanExchange(getContext(), view,item.getId(), new NetUtils.NetUtilsHandler() {
                         @Override
                         public void onResponseOK(JSONArray response, int total) {
                             item.setPraise_if(1);
@@ -110,7 +110,7 @@ public class ExchangeListAdapter extends WanAdapter<Exchange> {
                         return;
                     }
 
-                    NetRequest.offZanExchange(getContext(), item.getId(), new NetUtils.NetUtilsHandler() {
+                    NetRequest.offZanExchange(getContext(),view, item.getId(), new NetUtils.NetUtilsHandler() {
                         @Override
                         public void onResponseOK(JSONArray response, int total) {
                             item.setPraise_if(0);

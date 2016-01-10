@@ -73,7 +73,7 @@ public class PushExchangeActivity extends WanActivity {
         setRightText("发送", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                push();
+                push(view);
 
             }
         });
@@ -114,7 +114,7 @@ public class PushExchangeActivity extends WanActivity {
         exchangeImgs.setAdapter(adapter);
     }
 
-    private void push() {
+    private void push(View v) {
         upText = exchangeText.getText().toString();
         if (TextUtils.isEmpty(upText)) {
             showToast("内容不能为空！");
@@ -130,16 +130,16 @@ public class PushExchangeActivity extends WanActivity {
         dialog.setCancelable(false);
         dialog.show();
         //上传图片
-        handleImageUp();
+        handleImageUp(v);
     }
 
     int currCount = 1;
     StringBuffer uploadPicUrls = new StringBuffer();
 
-    private void handleImageUp() {
+    private void handleImageUp(final View v) {
 
         if (currCount >= imgs.size() + 1) {
-            pushRequest(uploadPicUrls);
+            pushRequest(uploadPicUrls,v);
             return;
         }
         //压缩图片
@@ -173,7 +173,7 @@ public class PushExchangeActivity extends WanActivity {
                                             if (currCount <= imgs.size()) {
                                                 dialog.setMessage("正在上传图片中(" + currCount + "/" + imgs.size() + ").....");
                                             }
-                                            handleImageUp();
+                                            handleImageUp(v);
                                         } else {
                                             showLongToast(info.error);
                                             dialog.dismiss();
@@ -185,7 +185,7 @@ public class PushExchangeActivity extends WanActivity {
                 });
     }
 
-    private void pushRequest(StringBuffer uploadPicUrls) {
+    private void pushRequest(StringBuffer uploadPicUrls,View view) {
 
         String dri_image_url = uploadPicUrls.toString();
 
@@ -196,6 +196,7 @@ public class PushExchangeActivity extends WanActivity {
 
         String dri_text = upText;
         NetRequest.pushExchange(getContext(),
+                view,
                 dri_type,
                 dri_text,
                 dri_image_url,

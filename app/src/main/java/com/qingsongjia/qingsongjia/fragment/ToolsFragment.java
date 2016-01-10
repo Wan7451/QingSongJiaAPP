@@ -44,7 +44,7 @@ public class ToolsFragment extends WanListFragment {
     @Override
     protected boolean loadData() {
 
-        NetRequest.getPeiLianList(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.getPeiLianList(getContext(),null, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

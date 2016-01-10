@@ -61,7 +61,7 @@ public class VerifyPhoneActivity extends WanActivity {
                     return;
                 }
 
-                NetRequest.getVerificationForPwd(getContext(), phone, new NetUtils.NetUtilsHandler() {
+                NetRequest.getVerificationForPwd(getContext(),view, phone, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, final int total) {
                         showToast("验证码已发送");

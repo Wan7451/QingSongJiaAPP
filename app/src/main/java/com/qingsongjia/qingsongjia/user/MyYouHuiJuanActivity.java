@@ -45,7 +45,7 @@ public class MyYouHuiJuanActivity extends WanListActivity {
     @Override
     protected void loadData() {
 
-        NetRequest.loadMyYouHuiJuan(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.loadMyYouHuiJuan(getContext(),null, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

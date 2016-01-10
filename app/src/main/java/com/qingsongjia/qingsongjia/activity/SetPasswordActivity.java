@@ -44,7 +44,7 @@ public class SetPasswordActivity extends WanActivity {
                     showToast("新密码不能为空");
                     return;
                 }
-                NetRequest.changePasd(getContext(), pasd, new NetUtils.NetUtilsHandler() {
+                NetRequest.changePasd(getContext(),view, pasd, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("密码修改成功，请重新登陆！");

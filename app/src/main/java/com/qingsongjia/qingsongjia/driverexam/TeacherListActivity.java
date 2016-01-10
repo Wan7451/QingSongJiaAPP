@@ -58,7 +58,7 @@ public class TeacherListActivity extends WanListActivity {
     protected void loadData() {
 
 
-        NetRequest.queryForCoursePlanList(getContext(), time, new NetUtils.NetUtilsHandler() {
+        NetRequest.queryForCoursePlanList(getContext(),null, time, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
 

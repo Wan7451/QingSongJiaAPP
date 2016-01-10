@@ -72,7 +72,7 @@ public class TeacherLoginActivity extends WanActivity {
                 }
 
 
-                NetRequest.loginLogin(getContext(), tel, pasd, new NetUtils.NetUtilsHandler() {
+                NetRequest.loginLogin(getContext(),view, tel, pasd, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         String user = response.getString(0);

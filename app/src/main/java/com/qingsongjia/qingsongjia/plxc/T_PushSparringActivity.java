@@ -108,7 +108,7 @@ public class T_PushSparringActivity extends WanActivity {
                     return;
                 }
 
-                NetRequest.pushOrder(getContext(), upDate, upTime,
+                NetRequest.pushOrder(getContext(),view, upDate, upTime,
                         price, type + "", other, new NetUtils.NetUtilsHandler() {
                             @Override
                             public void onResponseOK(JSONArray response, int total) {

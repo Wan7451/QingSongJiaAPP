@@ -52,7 +52,7 @@ public class S_TrainingConfirmActivity extends WanActivity {
             @Override
             public void onClick(View view) {
 
-                NetRequest.yxconfirm(getContext(), id + "", new NetUtils.NetUtilsHandler() {
+                NetRequest.yxconfirm(getContext(),view, id + "", new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("确认成功");

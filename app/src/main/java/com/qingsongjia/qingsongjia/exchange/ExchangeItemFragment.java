@@ -37,7 +37,7 @@ public class ExchangeItemFragment extends WanListFragment {
     @Override
     protected boolean loadData() {
 
-        NetRequest.loadExchange(getContext(),type, new NetUtils.NetUtilsHandler() {
+        NetRequest.loadExchange(getContext(),null,type, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

@@ -61,7 +61,7 @@ public class TeacherMessageActivity extends WanActivity {
                 if(!TextUtils.isEmpty(path)){
                     dri_file_path=path;
                 }
-                saveTearcherMessage();
+                saveTearcherMessage(view);
             }
         });
         setBackFinish();
@@ -116,8 +116,8 @@ public class TeacherMessageActivity extends WanActivity {
         dialog.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void saveTearcherMessage() {
-        NetRequest.saveTeacher(getContext(), dri_nm, dri_file_path, dri_campus_id, id, new NetUtils.NetUtilsHandler() {
+    private void saveTearcherMessage(View v) {
+        NetRequest.saveTeacher(getContext(), v,dri_nm, dri_file_path, dri_campus_id, id, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 showToast("保存成功");

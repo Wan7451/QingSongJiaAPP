@@ -90,7 +90,7 @@ public class MyYuEActivity extends WanActivity {
 
     private void loadData() {
 
-        NetRequest.getMyYuE(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.getMyYuE(getContext(),null, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

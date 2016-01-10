@@ -60,7 +60,7 @@ public class S_SparringListActivity extends WanListActivity {
     @Override
     protected void loadData() {
 
-        NetRequest.loadMyPenLian(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.loadMyPenLian(getContext(),null, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

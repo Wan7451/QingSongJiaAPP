@@ -52,7 +52,7 @@ public class TeacherDetailActivity extends WanActivity {
         String id = getIntent().getStringExtra("id");
         ButterKnife.bind(this);
 
-        NetRequest.loadCoursePlanByCoursePlanId(getContext(), id, new NetUtils.NetUtilsHandler() {
+        NetRequest.loadCoursePlanByCoursePlanId(getContext(),null, id, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 String detail = response.getString(0);

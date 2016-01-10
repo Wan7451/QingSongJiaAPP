@@ -84,7 +84,7 @@ public class T_TrainingConfirmActivity extends WanActivity {
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NetRequest.studentCome(getContext(), id + "", "2", new NetUtils.NetUtilsHandler() {
+                NetRequest.studentCome(getContext(),view, id + "", "2", new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("确认成功");
@@ -107,7 +107,7 @@ public class T_TrainingConfirmActivity extends WanActivity {
         yxconfirmQuexi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NetRequest.studentCome(getContext(), id + "", "1", new NetUtils.NetUtilsHandler() {
+                NetRequest.studentCome(getContext(),view, id + "", "1", new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("确认成功");

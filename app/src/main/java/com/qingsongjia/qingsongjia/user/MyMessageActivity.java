@@ -78,7 +78,7 @@ public class MyMessageActivity extends WanActivity {
     }
 
     private void loadData() {
-        NetRequest.getMyMessage(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.getMyMessage(getContext(),null, new NetUtils.NetUtilsHandler() {
 
 
 

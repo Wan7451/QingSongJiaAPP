@@ -115,6 +115,8 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
                 UIManager.startSchoolSearch(MainActivity.this);
             }
         });
+
+        EventBus.getDefault().register(this);
     }
 
 
@@ -122,26 +124,30 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
      * 使用onEventMainThread来接收事件，那么不论分发事件在哪个线程运行，接收事件永远在UI线程执行，
      * 这对于android应用是非常有意义的
      */
+    private boolean isRefreshMainView;
     public void onEventMainThread(EventData data) {
         if (data.getType() == EventData.TYPE_REFRESH_MENU) {
+            isRefreshMainView=true;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(isRefreshMainView){
             refreshMain();
         }
     }
 
-
     @Override
-    protected void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
         EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
+
 
     private void refreshMain() {
+
         //dri_type 0 :学生 1 教练
         User u = LocalPreference.getCurrentUser(this);
         type = 0;

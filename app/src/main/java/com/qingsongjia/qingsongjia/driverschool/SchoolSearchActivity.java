@@ -144,7 +144,7 @@ public class SchoolSearchActivity extends Activity implements PullToRefreshBase.
     }
 
     private void loadData() {
-        NetRequest.searchSchoolList(this, search, new NetUtils.NetUtilsHandler() {
+        NetRequest.searchSchoolList(this, null,search, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

@@ -131,7 +131,7 @@ public class SchoolEvaluateActivity extends WanActivity {
                     return;
                 }
 
-                NetRequest.evaluateSchool(getContext(), detail.getDri_campus_id(),
+                NetRequest.evaluateSchool(getContext(),view, detail.getDri_campus_id(),
                         place, time, pass, eval, new NetUtils.NetUtilsHandler() {
                             @Override
                             public void onResponseOK(JSONArray response, int total) {
@@ -165,7 +165,7 @@ public class SchoolEvaluateActivity extends WanActivity {
 
     @Deprecated
     private void loadData() {
-        NetRequest.getSchoolScores(getContext(), id, new NetUtils.NetUtilsHandler() {
+        NetRequest.getSchoolScores(getContext(), null,id, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 String data = response.getString(0);

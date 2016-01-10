@@ -92,7 +92,7 @@ public class TeacherMenuFragment extends Fragment implements WanAdapter.OnItemCl
 
         User user = LocalPreference.getCurrentUser(getContext());
         if (!TextUtils.isEmpty(user.getDri_type()))
-            NetRequest.loadNewMyData(getContext(), user.getDri_unm(), new NetUtils.NetUtilsHandler() {
+            NetRequest.loadNewMyData(getContext(),null, user.getDri_unm(), new NetUtils.NetUtilsHandler() {
                 @Override
                 public void onResponseOK(JSONArray response, int total) {
                     String data = response.getString(0);
@@ -179,7 +179,7 @@ public class TeacherMenuFragment extends Fragment implements WanAdapter.OnItemCl
      */
     public void onEventMainThread(EventData data) {
         if (data.getType() == EventData.TYPE_REFRESH_MENU) {
-            loadData();
+//            loadData();
         }
     }
 }

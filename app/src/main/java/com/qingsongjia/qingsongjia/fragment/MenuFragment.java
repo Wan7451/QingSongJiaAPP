@@ -113,7 +113,7 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
 
         User user = LocalPreference.getCurrentUser(getContext());
         if (!TextUtils.isEmpty(user.getDri_type()))
-            NetRequest.loadNewMyData(getContext(), user.getDri_unm(), new NetUtils.NetUtilsHandler() {
+            NetRequest.loadNewMyData(getContext(),null, user.getDri_unm(), new NetUtils.NetUtilsHandler() {
                 @Override
                 public void onResponseOK(JSONArray response, int total) {
                     String data = response.getString(0);
@@ -122,7 +122,7 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
 
                     UserData loginData = JSONObject.parseObject(data, UserData.class);
 
-                    JPushInterface.setAlias(getContext(), loginData.getDri_tel(), new TagAliasCallback() {
+                    JPushInterface.setAlias(getActivity(), loginData.getDri_tel(), new TagAliasCallback() {
                         @Override
                         public void gotResult(int i, String s, Set<String> set) {
                         }
@@ -151,7 +151,7 @@ public class MenuFragment extends Fragment implements WanAdapter.OnItemClickList
      */
     public void onEventMainThread(EventData data) {
         if (data.getType() == EventData.TYPE_REFRESH_MENU) {
-            loadData();
+//            loadData();
         }
     }
 

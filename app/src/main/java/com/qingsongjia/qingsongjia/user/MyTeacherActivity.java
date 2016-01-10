@@ -50,7 +50,7 @@ public class MyTeacherActivity extends WanActivity {
     }
 
     private void loadData() {
-        NetRequest.loadMyTeacher(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.loadMyTeacher(getContext(), null,new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 String data = response.getString(0);

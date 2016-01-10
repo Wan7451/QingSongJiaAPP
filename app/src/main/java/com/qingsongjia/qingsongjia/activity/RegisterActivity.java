@@ -96,7 +96,7 @@ public class RegisterActivity extends WanActivity {
                     return;
                 }
 
-                NetRequest.register(getContext(), tel, pasd, code, new NetUtils.NetUtilsHandler() {
+                NetRequest.register(getContext(),view, tel, pasd, code, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("注册成功，请登陆");
@@ -131,7 +131,7 @@ public class RegisterActivity extends WanActivity {
                     return;
                 }
 
-                NetRequest.getVerification(getContext(), phone, new NetUtils.NetUtilsHandler() {
+                NetRequest.getVerification(getContext(),view, phone, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, final int total) {
                         showToast("验证码已发送");

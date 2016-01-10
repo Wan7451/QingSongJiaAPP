@@ -57,7 +57,7 @@ public class GetImageService extends Service {
 
 
     private void handleSplashImg() {
-        NetRequest.getSplashImage(GetImageService.this, new NetUtils.NetUtilsHandler() {
+        NetRequest.getSplashImage(GetImageService.this,null, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 String data = response.getString(0);
@@ -80,7 +80,7 @@ public class GetImageService extends Service {
 
     private void handleTopImg() {
 
-        NetRequest.getTopPictur(GetImageService.this, new NetUtils.NetUtilsHandler() {
+        NetRequest.getTopPictur(GetImageService.this,null, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 String data = response.getString(0);

@@ -56,7 +56,7 @@ public class S_TrainingListActivity extends WanListActivity {
     protected void loadData() {
 
         //我的约练
-        NetRequest.getMyYueLian(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.getMyYueLian(getContext(),null, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

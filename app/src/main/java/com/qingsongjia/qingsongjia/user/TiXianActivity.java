@@ -73,7 +73,7 @@ public class TiXianActivity extends WanActivity {
 
                 c = 0 - c;
 
-                NetRequest.tixian(getContext(), card, name, c + "", new NetUtils.NetUtilsHandler() {
+                NetRequest.tixian(getContext(),view, card, name, c + "", new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("提现申请成功");

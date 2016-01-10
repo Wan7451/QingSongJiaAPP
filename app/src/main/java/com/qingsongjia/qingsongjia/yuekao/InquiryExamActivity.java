@@ -151,7 +151,7 @@ public class InquiryExamActivity extends WanActivity {
                     return;
                 }
 
-                NetRequest.yuekao(getContext(), upDate, upTime, upKemu + "", new NetUtils.NetUtilsHandler() {
+                NetRequest.yuekao(getContext(),view, upDate, upTime, upKemu + "", new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("预约成功");

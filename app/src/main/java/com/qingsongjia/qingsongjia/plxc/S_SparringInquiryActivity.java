@@ -2,6 +2,7 @@ package com.qingsongjia.qingsongjia.plxc;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.PeiLian;
+import com.qingsongjia.qingsongjia.bean.User;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -40,7 +43,7 @@ public class S_SparringInquiryActivity extends WanActivity {
     Button yxconfirmQueren;
 
 
-   private PeiLian peiLian;//陪练数据
+    private PeiLian peiLian;//陪练数据
 
     @Override
     public void initView() {
@@ -57,30 +60,48 @@ public class S_SparringInquiryActivity extends WanActivity {
 
         peiLian = getIntent().getParcelableExtra("peilian");
         teacherName.setText(peiLian.getContactName());
-        teacherTime.setText(peiLian.getMeetingDate_str()+" "+peiLian.getMeetingTime()+"时");
+        teacherTime.setText(peiLian.getMeetingDate_str() + " " + peiLian.getMeetingTime() + "时");
 
-        if(!TextUtils.isEmpty(peiLian.getDri_file_path())){
+        if (!TextUtils.isEmpty(peiLian.getDri_file_path())) {
             teacherIcon.setImageURI(Uri.parse(peiLian.getDri_file_path()));
         }
 
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                User user = LocalPreference.getCurrentUser(getContext());
+                if (TextUtils.isEmpty(user.getDri_type())) {
+                    UIManager.startLogin(getContext());
+                    return;
+                }
+
+                int coachId = LocalPreference.getCurrentUserData(getContext()).getDri_coach_id();
+                if (coachId == 0) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("提示");
+                    builder.setMessage("未分配教练，不能进行陪练，请联系负责人员");
+                    builder.setPositiveButton("确定", null);
+                    builder.show();
+                    return;
+                }
+
                 //预约陪练
-                NetRequest.inquiryPeiLian(getContext(),peiLian.getId(), new NetUtils.NetUtilsHandler() {
+                NetRequest.inquiryPeiLian(getContext(), null, peiLian.getId(), new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("预约成功");
                         finish();
-                        UIManager.startPeiLianPingJia(getContext(),peiLian);
+                        UIManager.startPeiLianPingJia(getContext(), peiLian);
 
                     }
 
                     @Override
                     public void onResponseError(String error) {
-                        if(TextUtils.isEmpty(error)){
+                        if (TextUtils.isEmpty(error)) {
                             showToast("预约失败");
-                        }else {
+                        } else {
                             showToast(error);
                         }
                     }

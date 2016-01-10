@@ -86,10 +86,10 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/icon_school_addr"
                     android:drawablePadding="@dimen/space10"
+                    android:drawableRight="@drawable/icon_school_more"
                     android:gravity="center_vertical"
                     android:paddingBottom="@dimen/space10"
                     android:paddingTop="@dimen/space10"
-                    android:drawableRight="@drawable/icon_school_more"
                     android:text="海淀区苏家坨北安河河滩69号"
                     android:textColor="@color/text_default" />
 
@@ -174,9 +174,9 @@
 
             <LinearLayout
                 android:id="@+id/schoolinfo_score"
-                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/space10"
                 android:paddingLeft="@dimen/view_margin"
@@ -237,8 +237,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:numStars="5"
                             android:isIndicator="true"
+                            android:numStars="5"
                             android:rating="5" />
 
                         <TextView
@@ -262,12 +262,12 @@
                             android:text="练车场地:" />
 
                         <RatingBar
-                            android:isIndicator="true"
                             android:id="@+id/schoolinfo_addr_rating"
                             style="@style/ratingBar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
+                            android:isIndicator="true"
                             android:numStars="5"
                             android:rating="4.5" />
 
@@ -292,12 +292,12 @@
                             android:text="通&#160;&#160;过&#160;&#160;率:" />
 
                         <RatingBar
-                            android:isIndicator="true"
                             android:id="@+id/schoolinfo_pass_rating"
                             style="@style/ratingBar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
+                            android:isIndicator="true"
                             android:numStars="5"
                             android:rating="4.5" />
 
@@ -345,30 +345,32 @@
                 android:textColor="@color/text_default"
                 android:textSize="@dimen/space14" />
 
-            <View style="@style/divider1" />
 
-            <View style="@style/divider10" />
-
-            <View style="@style/divider1" />
-
-
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/schoolinfo_view_baoming"
+                android:orientation="vertical"
+                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:paddingBottom="@dimen/space5"
-                android:paddingTop="@dimen/space5">
+                android:layout_height="wrap_content">
+
+                <View style="@style/divider1" />
+
+                <View style="@style/divider10" />
+
+                <View style="@style/divider1" />
 
                 <Button
+                    android:layout_marginTop="@dimen/space5"
+                    android:layout_marginBottom="@dimen/space5"
                     android:id="@+id/schoolinfo_btn_baoming"
                     style="@style/button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
+                    android:gravity="center"
                     android:paddingLeft="@dimen/space60"
                     android:paddingRight="@dimen/space60"
                     android:text="在线报名" />
-            </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

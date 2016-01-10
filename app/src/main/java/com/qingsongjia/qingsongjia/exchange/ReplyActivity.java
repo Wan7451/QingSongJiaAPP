@@ -80,7 +80,7 @@ public class ReplyActivity extends WanActivity {
         setRightText("发送", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                push();
+                push(view);
             }
         });
 
@@ -120,7 +120,7 @@ public class ReplyActivity extends WanActivity {
     }
 
 
-    private void push() {
+    private void push(View v) {
         upText = exchangeText.getText().toString();
         if (TextUtils.isEmpty(upText)) {
             showToast("内容不能为空！");
@@ -133,7 +133,7 @@ public class ReplyActivity extends WanActivity {
 
         if (type == 1) {
 
-            NetRequest.replyExchange(getContext(), upText, replyId, new NetUtils.NetUtilsHandler() {
+            NetRequest.replyExchange(getContext(),v, upText, replyId, new NetUtils.NetUtilsHandler() {
                 @Override
                 public void onResponseOK(JSONArray response, int total) {
 
@@ -153,7 +153,7 @@ public class ReplyActivity extends WanActivity {
 
         } else if (type == 2) {
 
-            NetRequest.replyExchangeReply(getContext(), upText, replyId, new NetUtils.NetUtilsHandler() {
+            NetRequest.replyExchangeReply(getContext(),v, upText, replyId, new NetUtils.NetUtilsHandler() {
                 @Override
                 public void onResponseOK(JSONArray response, int total) {
 

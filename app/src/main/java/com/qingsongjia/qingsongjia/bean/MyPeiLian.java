@@ -67,6 +67,8 @@ public class MyPeiLian implements Parcelable {
     private int update_id;
     private String validateCode;
     private TarenaTime meetingDate;
+
+
     /**
      * create_tm : {"date":10,"day":4,"hours":1,"minutes":33,"month":11,"nanos":0,"seconds":38,"time":1449682418000,"timezoneOffset":-480,"year":115}
      * dri_file_path : http://7xlt5l.com1.z0.glb.clouddn.com/1449569620506bktgst2225720
@@ -74,6 +76,15 @@ public class MyPeiLian implements Parcelable {
      */
 
     private String dri_file_path;
+    /**
+     * create_tm : {"date":30,"day":3,"hours":15,"minutes":27,"month":11,"nanos":0,"seconds":49,"time":1451460469000,"timezoneOffset":-480,"year":115}
+     * dri_remark_state_two : 1
+     * dri_remark_two :
+     * update_tm : {"date":30,"day":3,"hours":15,"minutes":27,"month":11,"nanos":0,"seconds":49,"time":1451460469000,"timezoneOffset":-480,"year":115}
+     */
+
+    private String dri_remark_state_two;
+    private String dri_remark_two;
 
     public TarenaTime getMeetingDate() {
         return meetingDate;
@@ -283,6 +294,33 @@ public class MyPeiLian implements Parcelable {
         return validateCode;
     }
 
+    public MyPeiLian() {
+    }
+
+    public void setDri_file_path(String dri_file_path) {
+        this.dri_file_path = dri_file_path;
+    }
+
+    public String getDri_file_path() {
+        return dri_file_path;
+    }
+
+    public void setDri_remark_state_two(String dri_remark_state_two) {
+        this.dri_remark_state_two = dri_remark_state_two;
+    }
+
+    public void setDri_remark_two(String dri_remark_two) {
+        this.dri_remark_two = dri_remark_two;
+    }
+
+    public String getDri_remark_state_two() {
+        return dri_remark_state_two;
+    }
+
+    public String getDri_remark_two() {
+        return dri_remark_two;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -297,7 +335,7 @@ public class MyPeiLian implements Parcelable {
         dest.writeInt(this.dri_coach_id);
         dest.writeString(this.dri_coach_nm);
         dest.writeString(this.dri_comments);
-        dest.writeParcelable(this.dri_grab_date, flags);
+        dest.writeParcelable(this.dri_grab_date, 0);
         dest.writeString(this.dri_grab_date_str);
         dest.writeString(this.dri_partner_type);
         dest.writeString(this.dri_partner_type_nm);
@@ -316,9 +354,9 @@ public class MyPeiLian implements Parcelable {
         dest.writeInt(this.update_id);
         dest.writeString(this.validateCode);
         dest.writeParcelable(this.meetingDate, 0);
-    }
-
-    public MyPeiLian() {
+        dest.writeString(this.dri_file_path);
+        dest.writeString(this.dri_remark_state_two);
+        dest.writeString(this.dri_remark_two);
     }
 
     protected MyPeiLian(Parcel in) {
@@ -348,6 +386,9 @@ public class MyPeiLian implements Parcelable {
         this.update_id = in.readInt();
         this.validateCode = in.readString();
         this.meetingDate = in.readParcelable(TarenaTime.class.getClassLoader());
+        this.dri_file_path = in.readString();
+        this.dri_remark_state_two = in.readString();
+        this.dri_remark_two = in.readString();
     }
 
     public static final Creator<MyPeiLian> CREATOR = new Creator<MyPeiLian>() {
@@ -359,12 +400,4 @@ public class MyPeiLian implements Parcelable {
             return new MyPeiLian[size];
         }
     };
-
-    public void setDri_file_path(String dri_file_path) {
-        this.dri_file_path = dri_file_path;
-    }
-
-    public String getDri_file_path() {
-        return dri_file_path;
-    }
 }

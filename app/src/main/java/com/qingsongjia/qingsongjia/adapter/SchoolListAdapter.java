@@ -61,7 +61,7 @@ public class SchoolListAdapter extends WanAdapter<School> {
                         return;
                     }
                     //点攒
-                    NetRequest.schoolZan(getContext(), item.getDri_campus_id(), new NetUtils.NetUtilsHandler() {
+                    NetRequest.schoolZan(getContext(),view, item.getDri_campus_id(), new NetUtils.NetUtilsHandler() {
                         @Override
                         public void onResponseOK(JSONArray response, int total) {
                             item.setDri_praise(item.getDri_praise()+1);
@@ -82,7 +82,7 @@ public class SchoolListAdapter extends WanAdapter<School> {
                     }
 
                     //取消点赞
-                    NetRequest.schoolCancelZan(getContext(), item.getDri_campus_id(), new NetUtils.NetUtilsHandler() {
+                    NetRequest.schoolCancelZan(getContext(),view, item.getDri_campus_id(), new NetUtils.NetUtilsHandler() {
                         @Override
                         public void onResponseOK(JSONArray response, int total) {
                             item.setDri_praise(item.getDri_praise()-1);

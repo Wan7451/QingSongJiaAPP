@@ -25,6 +25,8 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.activity.MapActivity;
 import com.qingsongjia.qingsongjia.bean.SchoolDetail;
 import com.qingsongjia.qingsongjia.bean.StreetView;
+import com.qingsongjia.qingsongjia.bean.User;
+import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -84,6 +86,8 @@ public class SchoolDetailActivity extends WanActivity {
     TextView schoolinfoTvInfo;
     @Bind(R.id.schoolinfo_btn_baoming)
     Button schoolinfoBtnBaoming;
+    @Bind(R.id.schoolinfo_view_baoming)
+    LinearLayout schoolinfoViewBaoming;
 
     @Bind(R.id.schoolinfo_score)
     LinearLayout schoolinfoScore;
@@ -95,6 +99,7 @@ public class SchoolDetailActivity extends WanActivity {
         @Override
         public void onClick(View v) {
             NetRequest.attentionSchool(getContext(),
+                    v,
                     detail.getDri_campus_id(),
                     new NetUtils.NetUtilsHandler() {
                         @Override
@@ -113,17 +118,18 @@ public class SchoolDetailActivity extends WanActivity {
 
     private View.OnClickListener attentionOffListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
 
-            AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle("提示");
             builder.setMessage("您确定要取消关注么？");
-            builder.setNegativeButton("继续关注",null);
+            builder.setNegativeButton("继续关注", null);
             builder.setPositiveButton("取消关注", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
                     NetRequest.attentionOffSchool(getContext(),
+                            v,
                             detail.getDri_campus_id(),
                             new NetUtils.NetUtilsHandler() {
                                 @Override
@@ -207,6 +213,20 @@ public class SchoolDetailActivity extends WanActivity {
                 UIManager.startSchoolEvaluate(getContext(), detail);
             }
         });
+
+
+        //dri_type 0 :学生 1 教练
+        User u = LocalPreference.getCurrentUser(this);
+        int type = 0;
+        if (!TextUtils.isEmpty(u.getDri_type()) && (
+                !u.getDri_type().endsWith("0"))) {
+            type = 1;
+        }
+
+        if (type == 1) {
+            //教练
+            schoolinfoViewBaoming.setVisibility(View.GONE);
+        }
     }
 
     private void showSchoolImgs() {
@@ -221,7 +241,7 @@ public class SchoolDetailActivity extends WanActivity {
     }
 
     private void loadData() {
-        NetRequest.loadSchoolDeatail(getContext(), id, new NetUtils.NetUtilsHandler() {
+        NetRequest.loadSchoolDeatail(getContext(), null, id, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 if (!TextUtils.equals(response.toJSONString(), "[{}]")) {

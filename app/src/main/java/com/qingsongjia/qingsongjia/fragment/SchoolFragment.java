@@ -57,7 +57,7 @@ public class SchoolFragment extends WanListFragment {
     @Override
     protected boolean loadData() {
 
-        NetRequest.getSchoolList(getContext(), cityCode, money, care, praise, new NetUtils.NetUtilsHandler() {
+        NetRequest.getSchoolList(getContext(),null, cityCode, money, care, praise, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();

@@ -42,7 +42,7 @@ public class T_SparringComplaintActivity extends WanActivity {
                     showToast("投诉内容不能为空");
                     return;
                 }
-                NetRequest.peilianTouSu(getContext(), id, con, new NetUtils.NetUtilsHandler() {
+                NetRequest.peilianTouSu(getContext(),view, id, con, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("投诉成功");

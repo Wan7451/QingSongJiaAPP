@@ -116,6 +116,7 @@ public class SignUpActivity extends WanActivity {
                     return;
                 }
              NetRequest.signUp(getContext(),
+                     view,
                      dri_goal,
                      dri_car_type,
                      name,

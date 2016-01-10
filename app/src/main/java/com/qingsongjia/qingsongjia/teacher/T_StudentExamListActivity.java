@@ -58,7 +58,7 @@ public class T_StudentExamListActivity extends WanListActivity {
     @Override
     protected void loadData() {
 
-        NetRequest.getTeacherYueKao(getContext(), new NetUtils.NetUtilsHandler() {
+        NetRequest.getTeacherYueKao(getContext(), null,new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         data.clear();
