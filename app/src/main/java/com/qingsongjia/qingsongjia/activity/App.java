@@ -11,6 +11,7 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.CityData;
 import com.qingsongjia.qingsongjia.localdata.CopyDBFileService;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.umeng.analytics.MobclickAgent;
 import com.wan7451.base.WanApplication;
 
 import cn.jpush.android.api.JPushInterface;
@@ -29,6 +30,9 @@ public class App extends WanApplication {
             i.setClass(this, CopyDBFileService.class);
             startService(i);
         }
+
+
+        MobclickAgent.setDebugMode( true );
 
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);

@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import com.umeng.analytics.MobclickAgent;
 import com.wan7451.advancedview.ErrorLayoutView;
 import com.wan7451.formview.WanTextView;
 import com.wan7451.wanadapter.mylibrary.R;
@@ -348,6 +349,18 @@ public abstract class WanActivity extends AppCompatActivity implements INetLoadA
 
     public void sendBrocadcast(Intent intent) {
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
 }
