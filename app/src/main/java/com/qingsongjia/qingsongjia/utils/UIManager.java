@@ -2,6 +2,7 @@ package com.qingsongjia.qingsongjia.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 
 import com.qingsongjia.qingsongjia.activity.LoginActivity;
@@ -32,6 +33,7 @@ import com.qingsongjia.qingsongjia.driverschool.SchoolImgsActivity;
 import com.qingsongjia.qingsongjia.driverschool.SchoolListActivity;
 import com.qingsongjia.qingsongjia.driverschool.SignUpActivity;
 import com.qingsongjia.qingsongjia.exchange.ExchangeDetailActivity;
+import com.qingsongjia.qingsongjia.exchange.ImageActivity;
 import com.qingsongjia.qingsongjia.exchange.ReplyActivity;
 import com.qingsongjia.qingsongjia.plxc.AllSparringListActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringEvaluateActivity;
@@ -601,5 +603,12 @@ public class UIManager {
         i.putExtra("type", type);
         i.putExtra("replyId", replyId);
         context.startActivityForResult(i, 1234);
+    }
+
+    public static void startBigImage(Context context, Uri uri) {
+        Intent i = new Intent();
+        i.setClass(context, ImageActivity.class);
+        i.putExtra("imgUri", uri);
+        context.startActivity(i);
     }
 }

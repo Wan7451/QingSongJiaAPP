@@ -81,11 +81,11 @@ public class ExchangeListAdapter extends WanAdapter<Exchange> {
                     }
 
 
-                    NetRequest.zanExchange(getContext(), view,item.getId(), new NetUtils.NetUtilsHandler() {
+                    NetRequest.zanExchange(getContext(), view, item.getId(), new NetUtils.NetUtilsHandler() {
                         @Override
                         public void onResponseOK(JSONArray response, int total) {
                             item.setPraise_if(1);
-                            item.setPraise(item.getPraise()+1);
+                            item.setPraise(item.getPraise() + 1);
                             notifyDataSetChanged();
                         }
 
@@ -96,7 +96,7 @@ public class ExchangeListAdapter extends WanAdapter<Exchange> {
                     });
                 }
             });
-        }else {
+        } else {
             Drawable zed = getContext().getResources().getDrawable(R.drawable.icon_exch_zaned);
             zed.setBounds(0, 0, zed.getMinimumWidth(),
                     zed.getMinimumHeight());
@@ -110,11 +110,11 @@ public class ExchangeListAdapter extends WanAdapter<Exchange> {
                         return;
                     }
 
-                    NetRequest.offZanExchange(getContext(),view, item.getId(), new NetUtils.NetUtilsHandler() {
+                    NetRequest.offZanExchange(getContext(), view, item.getId(), new NetUtils.NetUtilsHandler() {
                         @Override
                         public void onResponseOK(JSONArray response, int total) {
                             item.setPraise_if(0);
-                            item.setPraise(item.getPraise()-1);
+                            item.setPraise(item.getPraise() - 1);
                             notifyDataSetChanged();
                         }
 
@@ -126,7 +126,6 @@ public class ExchangeListAdapter extends WanAdapter<Exchange> {
                 }
             });
         }
-
 
 
         if (!TextUtils.isEmpty(item.getUser_file())) {
@@ -161,9 +160,15 @@ public class ExchangeListAdapter extends WanAdapter<Exchange> {
         }
 
         @Override
-        public void convert(ViewHolder helper, int position, String item) {
+        public void convert(ViewHolder helper, int position, final String item) {
             SimpleDraweeView icon = (SimpleDraweeView) helper.getConvertView();
             icon.setImageURI(Uri.parse(item));
+            icon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UIManager.startBigImage(v.getContext(), Uri.parse(item));
+                }
+            });
         }
     }
 }

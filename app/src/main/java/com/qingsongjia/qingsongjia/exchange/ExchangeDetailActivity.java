@@ -86,20 +86,20 @@ public class ExchangeDetailActivity extends WanListActivity {
     }
 
     private void addFooterView(ExchangeAdapter adapter) {
-        LinearLayout layout=new LinearLayout(getContext());
+        LinearLayout layout = new LinearLayout(getContext());
         Button btn = new Button(getContext());
         btn.setTextColor(Color.WHITE);
         btn.setTextSize(14);
         btn.setBackgroundResource(R.drawable.shape_button_bg);
 //        btn.setBackground(getResources().getDrawable(R.drawable.shape_button_bg));
 
-        LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(DensityUtil.dip2px(getContext(),16),
-                DensityUtil.dip2px(getContext(),10),
-                DensityUtil.dip2px(getContext(),16),
-                DensityUtil.dip2px(getContext(),10)
+        lp.setMargins(DensityUtil.dip2px(getContext(), 16),
+                DensityUtil.dip2px(getContext(), 10),
+                DensityUtil.dip2px(getContext(), 16),
+                DensityUtil.dip2px(getContext(), 10)
         );
         btn.setLayoutParams(lp);
         layout.addView(btn);
@@ -116,7 +116,7 @@ public class ExchangeDetailActivity extends WanListActivity {
     @Override
     protected void loadData() {
 
-        NetRequest.loadExchangeDetail(getContext(),null, id, new NetUtils.NetUtilsHandler() {
+        NetRequest.loadExchangeDetail(getContext(), null, id, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 if (!TextUtils.equals("[{}]", response.toJSONString())) {
@@ -130,7 +130,7 @@ public class ExchangeDetailActivity extends WanListActivity {
 
                     String urls = exchDetal.getDri_image_url();
 
-                    ArrayList<String> imgs = new ArrayList<>();
+                    final ArrayList<String> imgs = new ArrayList<>();
                     if (urls.contains(",")) {
                         String[] allImgs = urls.split(",");
                         for (int i = 0; i < allImgs.length; i++) {
@@ -153,10 +153,19 @@ public class ExchangeDetailActivity extends WanListActivity {
                         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                                 ViewGroup.LayoutParams.MATCH_PARENT,
                                 ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                        final String path = imgs.get(i);
+                        img.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                UIManager.startBigImage(getContext(), Uri.parse(path));
+                            }
+                        });
+
                         lp.setMargins(0, DensityUtil.dip2px(getContext(), 1), 0, 0);
                         img.setLayoutParams(lp);
                         exchImgs.addView(img);
-                        ImageLoader.getInstance().displayImage(imgs.get(i), img, options);
+                        ImageLoader.getInstance().displayImage(path, img, options);
 
                     }
 
@@ -177,7 +186,7 @@ public class ExchangeDetailActivity extends WanListActivity {
         });
 
 
-        NetRequest.loadExchangeComment(getContext(),null, id, new NetUtils.NetUtilsHandler() {
+        NetRequest.loadExchangeComment(getContext(), null, id, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();
@@ -257,13 +266,13 @@ public class ExchangeDetailActivity extends WanListActivity {
 
             replyView.removeAllViews();
 
-            if(item.getList()!=null && item.getList().size()>0) {
-               List<ExchangeReply> list= item.getList();
-                for (int i = 0; i <list.size(); i++) {
-                    ExchangeReply reply=list.get(i);
-                  View view=  getLayoutInflater().inflate(R.layout.item_exchange_reply,null);
-                  TextView nameView= (TextView) view.findViewById(R.id.exchItem_replyName);
-                  TextView textView= (TextView) view.findViewById(R.id.exchItem_replyText);
+            if (item.getList() != null && item.getList().size() > 0) {
+                List<ExchangeReply> list = item.getList();
+                for (int i = 0; i < list.size(); i++) {
+                    ExchangeReply reply = list.get(i);
+                    View view = getLayoutInflater().inflate(R.layout.item_exchange_reply, null);
+                    TextView nameView = (TextView) view.findViewById(R.id.exchItem_replyName);
+                    TextView textView = (TextView) view.findViewById(R.id.exchItem_replyText);
 
                     nameView.setText(reply.getCreate_nm());
                     textView.setText(reply.getDri_text());

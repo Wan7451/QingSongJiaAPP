@@ -50,7 +50,7 @@ public class ExchangeItemFragment extends WanListFragment {
 
             @Override
             public void onResponseError(String error) {
-
+                loadError();
             }
         });
 

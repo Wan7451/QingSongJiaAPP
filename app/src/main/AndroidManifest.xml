@@ -392,17 +392,18 @@
             android:exported="false" />
 
         <activity
+            android:name=".exchange.ImageActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".exchange.ExchangeDetailActivity"
-            android:label="@string/title_activity_exchange_detail"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".exchange.PushExchangeActivity"
-            android:label="@string/title_activity_push_exchange"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".exchange.ReplyActivity"
-            android:label="@string/title_activity_reply"
-            android:theme="@style/AppTheme"></activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
