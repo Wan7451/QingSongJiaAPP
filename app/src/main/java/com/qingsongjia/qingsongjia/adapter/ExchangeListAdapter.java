@@ -7,12 +7,14 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.nostra13.universalimageloader.utils.L;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.Exchange;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
@@ -130,8 +132,13 @@ public class ExchangeListAdapter extends WanAdapter<Exchange> {
 
         if (!TextUtils.isEmpty(item.getUser_file())) {
             icon.setImageURI(Uri.parse(item.getUser_file()));
+        } else {
+            icon.setImageURI(Uri.parse("res:// /" + R.drawable.default_head));
         }
 
+
+        GridView imgs = holder.getView(R.id.exch_imgs);
+        imgs.setVisibility(View.VISIBLE);
         if (!TextUtils.isEmpty(item.getDri_image_url())) {
             String urls = item.getDri_image_url();
             ArrayList<String> drawablws = new ArrayList<>();
@@ -144,12 +151,11 @@ public class ExchangeListAdapter extends WanAdapter<Exchange> {
             } else {
                 drawablws.add(urls);
             }
-            GridView imgs = holder.getView(R.id.exch_imgs);
             ImgAdapter adapter = new ImgAdapter(getContext(), drawablws, R.layout.item_exch_icon);
             imgs.setAdapter(adapter);
+        } else {
+            imgs.setVisibility(View.GONE);
         }
-
-
     }
 
 

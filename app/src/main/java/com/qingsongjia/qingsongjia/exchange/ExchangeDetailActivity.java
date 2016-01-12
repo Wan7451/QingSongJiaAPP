@@ -22,6 +22,7 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.activity.App;
 import com.qingsongjia.qingsongjia.bean.ExchangeDetail;
 import com.qingsongjia.qingsongjia.bean.ExchangeReply;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -35,6 +36,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 public class ExchangeDetailActivity extends WanListActivity {
 
@@ -311,6 +313,12 @@ public class ExchangeDetailActivity extends WanListActivity {
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+        EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_EXCHANGE, null));
+        super.onBackPressed();
+    }
 }
 
 

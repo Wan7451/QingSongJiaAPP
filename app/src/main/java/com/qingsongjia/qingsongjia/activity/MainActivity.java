@@ -125,16 +125,17 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
      * 这对于android应用是非常有意义的
      */
     private boolean isRefreshMainView;
+
     public void onEventMainThread(EventData data) {
         if (data.getType() == EventData.TYPE_REFRESH_MENU) {
-            isRefreshMainView=true;
+            isRefreshMainView = true;
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(isRefreshMainView){
+        if (isRefreshMainView) {
             refreshMain();
         }
     }
@@ -210,12 +211,6 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
                 LocalPreference.setCurrentKemu(this, KeMu.KEMU3);
                 mainImgSearch.setVisibility(View.GONE);
                 mainTvRight.setText("发帖");
-                mainTvRight.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(MainActivity.this, PushExchangeActivity.class));
-                    }
-                });
                 mainTvRight.setVisibility(View.VISIBLE);
                 mainTvTitle.setText("交流");
                 break;
@@ -241,5 +236,9 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     @Override
     public void onItemClick(int position) {
         mainDrawerLayout.closeDrawer(Gravity.LEFT);
+    }
+
+    public void setRightClickListener(View.OnClickListener l) {
+        mainTvRight.setOnClickListener(l);
     }
 }

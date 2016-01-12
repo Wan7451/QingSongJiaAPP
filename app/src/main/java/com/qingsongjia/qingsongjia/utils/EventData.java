@@ -22,6 +22,11 @@ public class EventData {
      */
     public static final int TYPE_REFRESH_MENU = 2;
 
+    /**
+     * 刷新交流数据
+     */
+    public static final int TYPE_REFRESH_EXCHANGE = 3;
+
     private int type;
     private Object data;
 

@@ -18,6 +18,7 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.activity.App;
 import com.qingsongjia.qingsongjia.localdata.FileManager;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.QiniuUtils;
@@ -39,6 +40,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 public class PushExchangeActivity extends WanActivity {
 
@@ -139,7 +141,7 @@ public class PushExchangeActivity extends WanActivity {
     private void handleImageUp(final View v) {
 
         if (currCount >= imgs.size() + 1) {
-            pushRequest(uploadPicUrls,v);
+            pushRequest(uploadPicUrls, v);
             return;
         }
         //压缩图片
@@ -185,7 +187,7 @@ public class PushExchangeActivity extends WanActivity {
                 });
     }
 
-    private void pushRequest(StringBuffer uploadPicUrls,View view) {
+    private void pushRequest(StringBuffer uploadPicUrls, View view) {
 
         String dri_image_url = uploadPicUrls.toString();
 
@@ -204,6 +206,7 @@ public class PushExchangeActivity extends WanActivity {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("发布成功");
+                        EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_EXCHANGE, null));
                         finish();
                     }
 
@@ -247,7 +250,7 @@ public class PushExchangeActivity extends WanActivity {
             if (resultCode == RESULT_OK && data != null) {
                 // 得到图片的全路径
                 Uri uri = data.getData();
-                File f = new File(UriUtils.getRealFilePath(getContext(),uri));
+                File f = new File(UriUtils.getRealFilePath(getContext(), uri));
                 imgs.add(f);
                 adapter.notifyDataSetChanged();
             }
