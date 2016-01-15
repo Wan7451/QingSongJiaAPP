@@ -111,7 +111,7 @@ public class TeacherMenuFragment extends Fragment implements WanAdapter.OnItemCl
                     if (menuUserIcon != null) {
                         String iconPath = loginData.getDri_file_path();
                         if (TextUtils.isEmpty(iconPath)) {
-                            menuUserIcon.setImageURI(Uri.parse("http://7xlt5l.com1.z0.glb.clouddn.com/1449734769519ohgmmj3048628"));
+                            menuUserIcon.setImageURI(Uri.parse("res:// /"+R.drawable.default_head));
                         } else {
                             menuUserIcon.setImageURI(Uri.parse(iconPath));
                         }

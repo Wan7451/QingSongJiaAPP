@@ -27,6 +27,22 @@ public class EventData {
      */
     public static final int TYPE_REFRESH_EXCHANGE = 3;
 
+    /**
+     * 刷新驾校数据
+     */
+    public static final int TYPE_REFRESH_SCHOOL = 4;
+
+
+    /**
+     * 刷新练习列表状态
+     */
+    public static final int TYPE_REFRESH_LIANXI = 5;
+
+    /**
+     * 刷新陪驾列表状态
+     */
+    public static final int TYPE_REFRESH_PEIJIA = 6;
+
     private int type;
     private Object data;
 

@@ -18,6 +18,7 @@ import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.SchoolDetail;
 import com.qingsongjia.qingsongjia.bean.SchoolScore;
 import com.qingsongjia.qingsongjia.localdata.LocalPreference;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -25,6 +26,7 @@ import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 public class SchoolEvaluateActivity extends WanActivity {
 
@@ -96,7 +98,7 @@ public class SchoolEvaluateActivity extends WanActivity {
         schoolinfoTimeRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                time= (int) (v*10/10);
+                time = (int) (v * 10 / 10);
                 schoolinfoTimeFen.setText(time + "分");
             }
         });
@@ -104,7 +106,7 @@ public class SchoolEvaluateActivity extends WanActivity {
         schoolinfoAddrRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                place=(int) (v*10/10);
+                place = (int) (v * 10 / 10);
                 schoolinfoAddrFen.setText(place + "分");
             }
         });
@@ -112,7 +114,7 @@ public class SchoolEvaluateActivity extends WanActivity {
         schoolinfoPassRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                pass=(int) (v*10/10);
+                pass = (int) (v * 10 / 10);
                 schoolinfoPassFen.setText(pass + "分");
             }
         });
@@ -120,7 +122,7 @@ public class SchoolEvaluateActivity extends WanActivity {
             @Override
             public void onClick(final View view) {
 
-                if(TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())){
+                if (TextUtils.isEmpty(LocalPreference.getCurrentUser(getContext()).getDri_type())) {
                     UIManager.startLogin(getContext());
                     return;
                 }
@@ -131,7 +133,7 @@ public class SchoolEvaluateActivity extends WanActivity {
                     return;
                 }
 
-                NetRequest.evaluateSchool(getContext(),view, detail.getDri_campus_id(),
+                NetRequest.evaluateSchool(getContext(), view, detail.getDri_campus_id(),
                         place, time, pass, eval, new NetUtils.NetUtilsHandler() {
                             @Override
                             public void onResponseOK(JSONArray response, int total) {
@@ -139,15 +141,19 @@ public class SchoolEvaluateActivity extends WanActivity {
                                 Fragment fragment = adapter.getEvalFragment(navigationTab
                                         .getSelectedTabPosition());
 
-                                if(fragment instanceof AllSchoolEvaluateFragment){
+                                if (fragment instanceof AllSchoolEvaluateFragment) {
                                     ((AllSchoolEvaluateFragment) fragment).refreshing();
                                 }
 
-                                if(fragment instanceof SchoolEvaluateFragment){
+                                if (fragment instanceof SchoolEvaluateFragment) {
                                     ((SchoolEvaluateFragment) fragment).refreshing();
                                 }
                                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                                 schoolinfoEval.setText("");
+
+                                loadData();
+
+                                EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_SCHOOL, null));
                             }
 
                             @Override
@@ -163,32 +169,36 @@ public class SchoolEvaluateActivity extends WanActivity {
         return detail;
     }
 
-    @Deprecated
     private void loadData() {
-        NetRequest.getSchoolScores(getContext(), null,id, new NetUtils.NetUtilsHandler() {
+        NetRequest.loadSchoolDeatail(getContext(), null, detail.getDri_campus_id(), new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
-                String data = response.getString(0);
-                SchoolScore score = JSONObject.parseObject(data, SchoolScore.class);
+                if (!TextUtils.equals(response.toJSONString(), "[{}]")) {
+                    String data = response.getString(0);
+                    SchoolDetail score = JSONObject.parseObject(data, SchoolDetail.class);
 
-//                schoolinfoTvFen.setText(score.getDri_sum() + "分");
-//                schoolinfoTvRen.setText(score.getCountpepole() + "人评分");
 
-                schoolinfoTimeRating.setRating(score.getDri_time());
-                schoolinfoTimeFen.setText(score.getDri_time() + "分");
+                    schoolinfoTvFen.setText(score.getDri_sum() + "分");
+                    schoolinfoTvRen.setText(score.getCountpepole() + "人评分");
 
-                schoolinfoAddrRating.setRating(score.getDri_place());
-                schoolinfoAddrFen.setText(score.getDri_place() + "分");
+                    schoolinfoTimeRating.setRating(score.getDri_time());
+                    schoolinfoTimeFen.setText(score.getDri_time() + "分");
 
-                schoolinfoPassRating.setRating(score.getDri_pass());
-                schoolinfoPassFen.setText(score.getDri_pass() + "分");
+                    schoolinfoAddrRating.setRating(score.getDri_place());
+                    schoolinfoAddrFen.setText(score.getDri_place() + "分");
+
+                    schoolinfoPassRating.setRating(score.getDri_pass());
+                    schoolinfoPassFen.setText(score.getDri_pass() + "分");
+                }
             }
+
 
             @Override
             public void onResponseError(String error) {
-
+                showToast("加载数据失败");
             }
         });
+
     }
 
     @Override

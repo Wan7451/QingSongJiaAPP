@@ -38,7 +38,7 @@ public class T_TrainingListActivity extends WanListActivity {
     public void initView() {
         super.initView();
         setBackFinish();
-        setContentTitle("学员约训");
+        setContentTitle("学员约练");
 //        setRightText("编辑");
     }
 

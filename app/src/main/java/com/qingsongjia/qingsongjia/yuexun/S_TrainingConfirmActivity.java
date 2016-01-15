@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -14,6 +15,7 @@ import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 public class S_TrainingConfirmActivity extends WanActivity {
 
@@ -56,6 +58,7 @@ public class S_TrainingConfirmActivity extends WanActivity {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("确认成功");
+                        EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_LIANXI,null));
 //                        UIManager.startYXEvaluate(getContext(), id);
                     }
 

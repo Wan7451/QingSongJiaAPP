@@ -37,21 +37,24 @@ public class SchoolDetail implements Parcelable {
     private String dri_map_address;
     private int dri_money;
     private String dri_nm;
-    private int dri_pass;
-    private int dri_place;
-    private int dri_sum;
+
     private String dri_report;
 
     private String dri_tel1;
     private String dri_tel2;
     private String dri_way;
-    private int dri_time;
+
     private ArrayList<StreetView> street_view;
     /**
      * registFees : 200
      */
 
+
     private int registFees;
+    private float dri_time;
+    private float dri_pass;
+    private float dri_place;
+    private float dri_sum;
 
     public SchoolDetail() {
     }
@@ -112,29 +115,7 @@ public class SchoolDetail implements Parcelable {
         this.dri_nm = dri_nm;
     }
 
-    public int getDri_pass() {
-        return dri_pass;
-    }
 
-    public void setDri_pass(int dri_pass) {
-        this.dri_pass = dri_pass;
-    }
-
-    public int getDri_place() {
-        return dri_place;
-    }
-
-    public void setDri_place(int dri_place) {
-        this.dri_place = dri_place;
-    }
-
-    public int getDri_sum() {
-        return dri_sum;
-    }
-
-    public void setDri_sum(int dri_sum) {
-        this.dri_sum = dri_sum;
-    }
 
     public String getDri_report() {
         return dri_report;
@@ -168,11 +149,11 @@ public class SchoolDetail implements Parcelable {
         this.dri_way = dri_way;
     }
 
-    public int getDri_time() {
+    public float getDri_time() {
         return dri_time;
     }
 
-    public void setDri_time(int dri_time) {
+    public void setDri_time(float dri_time) {
         this.dri_time = dri_time;
     }
 
@@ -182,6 +163,38 @@ public class SchoolDetail implements Parcelable {
 
     public void setStreet_view(ArrayList<StreetView> street_view) {
         this.street_view = street_view;
+    }
+
+    public void setRegistFees(int registFees) {
+        this.registFees = registFees;
+    }
+
+    public int getRegistFees() {
+        return registFees;
+    }
+
+    public void setDri_pass(float dri_pass) {
+        this.dri_pass = dri_pass;
+    }
+
+    public void setDri_place(float dri_place) {
+        this.dri_place = dri_place;
+    }
+
+    public void setDri_sum(float dri_sum) {
+        this.dri_sum = dri_sum;
+    }
+
+    public float getDri_pass() {
+        return dri_pass;
+    }
+
+    public float getDri_place() {
+        return dri_place;
+    }
+
+    public float getDri_sum() {
+        return dri_sum;
     }
 
     @Override
@@ -198,15 +211,16 @@ public class SchoolDetail implements Parcelable {
         dest.writeString(this.dri_map_address);
         dest.writeInt(this.dri_money);
         dest.writeString(this.dri_nm);
-        dest.writeInt(this.dri_pass);
-        dest.writeInt(this.dri_place);
-        dest.writeInt(this.dri_sum);
         dest.writeString(this.dri_report);
         dest.writeString(this.dri_tel1);
         dest.writeString(this.dri_tel2);
         dest.writeString(this.dri_way);
-        dest.writeInt(this.dri_time);
-        dest.writeList(this.street_view);
+        dest.writeFloat(this.dri_time);
+        dest.writeTypedList(street_view);
+        dest.writeInt(this.registFees);
+        dest.writeFloat(this.dri_pass);
+        dest.writeFloat(this.dri_place);
+        dest.writeFloat(this.dri_sum);
     }
 
     protected SchoolDetail(Parcel in) {
@@ -217,16 +231,16 @@ public class SchoolDetail implements Parcelable {
         this.dri_map_address = in.readString();
         this.dri_money = in.readInt();
         this.dri_nm = in.readString();
-        this.dri_pass = in.readInt();
-        this.dri_place = in.readInt();
-        this.dri_sum = in.readInt();
         this.dri_report = in.readString();
         this.dri_tel1 = in.readString();
         this.dri_tel2 = in.readString();
         this.dri_way = in.readString();
-        this.dri_time = in.readInt();
-        this.street_view = new ArrayList<>();
-        in.readList(this.street_view, getClass().getClassLoader());
+        this.dri_time = in.readFloat();
+        this.street_view = in.createTypedArrayList(StreetView.CREATOR);
+        this.registFees = in.readInt();
+        this.dri_pass = in.readFloat();
+        this.dri_place = in.readFloat();
+        this.dri_sum = in.readFloat();
     }
 
     public static final Creator<SchoolDetail> CREATOR = new Creator<SchoolDetail>() {
@@ -238,12 +252,4 @@ public class SchoolDetail implements Parcelable {
             return new SchoolDetail[size];
         }
     };
-
-    public void setRegistFees(int registFees) {
-        this.registFees = registFees;
-    }
-
-    public int getRegistFees() {
-        return registFees;
-    }
 }

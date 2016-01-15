@@ -62,6 +62,10 @@ public class MyYuEActivity extends WanActivity {
         yueTixian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(money==0){
+                    showToast("余额为0,不能提现");
+                    return;
+                }
                 UIManager.startTiXian(getContext(), money);
             }
         });

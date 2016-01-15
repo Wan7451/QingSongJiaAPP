@@ -541,7 +541,7 @@ public class NetRequest {
                                          NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
         params.put("campusId", id + "");
-        NetUtils.baseRequest(context,v, "driappcommentweb/loadCampusState", params, false, handler);
+        NetUtils.baseRequest(context,v, "driappcommentweb/loadCampusState", params, true, handler);
 
     }
 

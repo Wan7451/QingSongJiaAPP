@@ -41,7 +41,7 @@ public class S_SparringListActivity extends WanListActivity {
         super.initView();
         setBackFinish();
         setContentTitle("陪练行程");
-        setRightText("编辑");
+//        setRightText("编辑");
     }
 
     @Override
@@ -52,8 +52,8 @@ public class S_SparringListActivity extends WanListActivity {
     @Override
     public WanAdapter getAdapter() {
         PenLianAdapter adapter = new PenLianAdapter(getContext(), data, R.layout.item_order_list);
-        View header = getLayoutInflater().inflate(R.layout.activity_my_test, null);
-        adapter.addHeaderView(header);
+//        View header = getLayoutInflater().inflate(R.layout.activity_my_test, null);
+//        adapter.addHeaderView(header);
         return adapter;
     }
 

@@ -56,7 +56,7 @@ public class T_TrainingEvaluateActivity extends WanActivity {
 
     @Override
     public void initView() {
-        setContentTitle("训练评论");
+        setContentTitle("约练评论");
         setBackFinish();
         ButterKnife.bind(this);
 

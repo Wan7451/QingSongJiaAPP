@@ -51,7 +51,7 @@ public class T_TrainingConfirmActivity extends WanActivity {
     @Override
     public void initView() {
         setBackFinish();
-        setContentTitle("训练确认");
+        setContentTitle("约练练确认");
         ButterKnife.bind(this);
 
 
