@@ -34,6 +34,7 @@ import com.qingsongjia.qingsongjia.exchange.ExchangeDetailActivity;
 import com.qingsongjia.qingsongjia.exchange.ImageActivity;
 import com.qingsongjia.qingsongjia.exchange.ReplyActivity;
 import com.qingsongjia.qingsongjia.plxc.AllSparringListActivity;
+import com.qingsongjia.qingsongjia.plxc.S_SparringEvaluateActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringEvaluateActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringComplaintActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringNormalActivity;
@@ -349,8 +350,8 @@ public class UIManager {
      */
     public static void startPenLianDetail(Context context, PeiLian item) {
         Intent i = new Intent();
-        i.setClass(context, S_SparringInquiryActivity.class);
-        i.putExtra("peilian", item);
+        i.setClass(context, S_SparringEvaluateActivity.class);
+        i.putExtra("data", item);
         context.startActivity(i);
     }
 

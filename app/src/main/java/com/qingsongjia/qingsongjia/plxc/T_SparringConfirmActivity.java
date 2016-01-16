@@ -70,7 +70,7 @@ public class T_SparringConfirmActivity extends WanActivity {
         teacherTime.setText(peiLian.getMeetingDate_str()
                 +" "+peiLian.getMeetingTime()+"点");
 
-
+        teacherTypeText.setText(peiLian.getDri_comments());
         teacherNeirong.setText("");
         teacherTele.setText(peiLian.getTelephoneNumber());
 

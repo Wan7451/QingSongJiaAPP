@@ -73,4 +73,5 @@
     <string name="title_activity_reply">ReplyActivity</string>
     <string name="title_activity_t__sparring_normal">T_SparringNormalActivity</string>
     <string name="title_activity_t__sparring_show_eval">T_SparringShowEvalActivity</string>
+    <string name="title_activity_s__sparring_evaluate">S_SparringEvaluateActivity</string>
 </resources>

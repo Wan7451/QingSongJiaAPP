@@ -31,10 +31,10 @@ public class PenLianAdapter extends WanAdapter<PeiLian> {
 
         holder.getView(R.id.pl_kemu).setVisibility(View.GONE);
 
-        TextView zhishidian=  holder.getView(R.id.pl_zhishidian);
+        TextView zhishidian = holder.getView(R.id.pl_zhishidian);
         zhishidian.setText(item.getDri_comments());
 
-        String state="";
+        String state = "";
         switch (item.getStatus()) {
             case 1:
                 state = "未抢单";
@@ -43,13 +43,16 @@ public class PenLianAdapter extends WanAdapter<PeiLian> {
                 state = "已抢单";
                 break;
             case 3:
-                state = "已确认";
+                if (item.getDri_remark_state_two()==2) {
+                    state = "已评价";
+                } else {
+                    state = "已确认";
+                }
                 break;
             case 4:
                 state = "已取消";
                 break;
         }
-
         status.setText(state);
     }
 }

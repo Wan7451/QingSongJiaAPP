@@ -56,7 +56,7 @@ public class PeiLian implements Parcelable {
     private String dri_partner_type_nm;
     private int dri_price;
     private String dri_remark;
-    private String dri_remark_state;
+    private int dri_remark_state;
     private String dri_remark_state_nm;
     private int dri_remark_state_two;
     private String dri_remark_two;
@@ -127,7 +127,7 @@ public class PeiLian implements Parcelable {
         this.dri_remark = dri_remark;
     }
 
-    public void setDri_remark_state(String dri_remark_state) {
+    public void setDri_remark_state(int dri_remark_state) {
         this.dri_remark_state = dri_remark_state;
     }
 
@@ -239,7 +239,7 @@ public class PeiLian implements Parcelable {
         return dri_remark;
     }
 
-    public String getDri_remark_state() {
+    public int getDri_remark_state() {
         return dri_remark_state;
     }
 
@@ -316,7 +316,7 @@ public class PeiLian implements Parcelable {
         dest.writeString(this.dri_partner_type_nm);
         dest.writeInt(this.dri_price);
         dest.writeString(this.dri_remark);
-        dest.writeString(this.dri_remark_state);
+        dest.writeInt(this.dri_remark_state);
         dest.writeString(this.dri_remark_state_nm);
         dest.writeInt(this.dri_remark_state_two);
         dest.writeString(this.dri_remark_two);
@@ -350,7 +350,7 @@ public class PeiLian implements Parcelable {
         this.dri_partner_type_nm = in.readString();
         this.dri_price = in.readInt();
         this.dri_remark = in.readString();
-        this.dri_remark_state = in.readString();
+        this.dri_remark_state = in.readInt();
         this.dri_remark_state_nm = in.readString();
         this.dri_remark_state_two = in.readInt();
         this.dri_remark_two = in.readString();

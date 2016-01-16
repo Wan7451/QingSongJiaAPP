@@ -408,6 +408,10 @@
         <activity
             android:name=".plxc.T_SparringShowEvalActivity"
             android:label="@string/title_activity_t__sparring_show_eval"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".plxc.S_SparringEvaluateActivity"
+            android:label="@string/title_activity_s__sparring_evaluate"
             android:theme="@style/AppTheme"></activity>
     </application>
 

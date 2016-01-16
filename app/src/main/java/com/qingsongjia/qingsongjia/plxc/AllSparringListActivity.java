@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.PenLianAdapter;
 import com.qingsongjia.qingsongjia.bean.PeiLian;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -21,6 +22,8 @@ import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
 
 import java.util.ArrayList;
+
+import de.greenrobot.event.EventBus;
 
 public class AllSparringListActivity extends WanListActivity {
 
@@ -96,4 +99,25 @@ public class AllSparringListActivity extends WanListActivity {
     protected int getMainViewLayoutId() {
         return 0;
     }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+
+    public void onEventMainThread(EventData data) {
+        if (data.getType() == EventData.TYPE_REFRESH_PEIJIA) {
+            refreshing();
+        }
+    }
+
 }

@@ -2,18 +2,17 @@ package com.qingsongjia.qingsongjia.plxc;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.PeiLian;
-import com.qingsongjia.qingsongjia.bean.User;
-import com.qingsongjia.qingsongjia.localdata.LocalPreference;
 import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
@@ -24,8 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
-public class S_SparringInquiryActivity extends WanActivity {
-
+public class S_SparringEvaluateActivity extends WanActivity {
 
     @Bind(R.id.teacher_icon)
     SimpleDraweeView teacherIcon;
@@ -41,67 +39,79 @@ public class S_SparringInquiryActivity extends WanActivity {
     TextView teacherTime;
     @Bind(R.id.teacher_neirong)
     TextView teacherNeirong;
-    @Bind(R.id.yxconfirm_queren)
-    Button yxconfirmQueren;
+    @Bind(R.id.teacher_tele)
+    TextView teacherTele;
     @Bind(R.id.teacher_type)
     TextView teacherType;
     @Bind(R.id.teacher_price)
     TextView teacherPrice;
-    @Bind(R.id.teacher_typeText)
-    TextView teacherTypeText;
-    @Bind(R.id.teacher_tele)
-    TextView teacherTele;
+    @Bind(R.id.content)
+    EditText content;
+    @Bind(R.id.yxconfirm_queren)
+    Button yxconfirmQueren;
+    @Bind(R.id.contentView)
+    LinearLayout contentView;
 
+    private PeiLian peiLian;
 
-    private PeiLian peiLian;//陪练数据
 
     @Override
     public void initView() {
         ButterKnife.bind(this);
+        setContentTitle("评价");
         setBackFinish();
-        setContentTitle("预约");
+        peiLian = getIntent().getParcelableExtra("data");
 
-
-        peiLian = getIntent().getParcelableExtra("peilian");
-        teacherName.setText(peiLian.getDri_user_nm());
-        teacherKemu.setText("预约时间");
-        teacherTime.setText(peiLian.getMeetingDate_str() + " " + peiLian.getMeetingTime() + "时");
-        teacherYuyue.setText("");
-
-        teacherType.setText(peiLian.getDri_partner_type_nm());
-        teacherPrice.setText(peiLian.getDri_price() + "元");
-        teacherTypeText.setText(peiLian.getDri_comments());
+        setRightText("投诉", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIManager.startTouSuo(getContext(), peiLian.getId());
+            }
+        });
 
         if (!TextUtils.isEmpty(peiLian.getDri_file_path())) {
             teacherIcon.setImageURI(Uri.parse(peiLian.getDri_file_path()));
         }
+        teacherName.setText(peiLian.getDri_user_nm());
+        teacherYuyue.setText("");
+        teacherKemu.setText("预约时间");
+        teacherTime.setText(peiLian.getMeetingDate_str()
+                + " " + peiLian.getMeetingTime() + "点");
 
+
+        teacherNeirong.setText("");
+        teacherTele.setText(peiLian.getTelephoneNumber());
+
+        teacherType.setText(peiLian.getDri_partner_type_nm());
+        teacherPrice.setText(peiLian.getDri_price() + "元");
+
+        switch (peiLian.getStatus()) {
+            case 2:
+                yxconfirmQueren.setVisibility(View.GONE);
+                content.setText(peiLian.getDri_comments());
+                content.setFocusable(false);
+                break;
+            case 3:
+                if (peiLian.getDri_remark_state_two()==2) {
+                    yxconfirmQueren.setVisibility(View.GONE);
+                    content.setText("教练评价:\n" +peiLian.getDri_remark_two());
+                    content.setFocusable(false);
+                }
+                break;
+        }
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                User user = LocalPreference.getCurrentUser(getContext());
-                if (TextUtils.isEmpty(user.getDri_type())) {
-                    UIManager.startLogin(getContext());
+                final String remark = content.getText().toString();
+                if (TextUtils.isEmpty(remark)) {
+                    showToast("评论不能为空");
                     return;
                 }
 
-                int coachId = LocalPreference.getCurrentUserData(getContext()).getDri_coach_id();
-                if (coachId == 0) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setTitle("提示");
-                    builder.setMessage("未分配教练，不能进行陪练，请联系负责人员");
-                    builder.setPositiveButton("确定", null);
-                    builder.show();
-                    return;
-                }
-
-                //预约陪练
-                NetRequest.inquiryPeiLian(getContext(), null, peiLian.getId(), new NetUtils.NetUtilsHandler() {
+                NetRequest.peijiapinglui2JiaoLian(getContext(), view, peiLian.getId(), remark, new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
-                        showToast("预约成功,请到 我的陪练行程查看详情");
+                        showToast("评论成功");
                         EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_PEIJIA, null));
                         finish();
                     }
@@ -109,10 +119,11 @@ public class S_SparringInquiryActivity extends WanActivity {
                     @Override
                     public void onResponseError(String error) {
                         if (TextUtils.isEmpty(error)) {
-                            showToast("预约失败");
+                            showToast("评论失败");
                         } else {
                             showToast(error);
                         }
+
                     }
                 });
             }
@@ -121,7 +132,8 @@ public class S_SparringInquiryActivity extends WanActivity {
 
     @Override
     protected int getMainViewLayoutId() {
-        return R.layout.activity_send_inquiry;
+        return
+                R.layout.activity_s_sparring_evaluate;
     }
 
 }

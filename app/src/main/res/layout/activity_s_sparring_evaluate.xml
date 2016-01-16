@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".yuexun.T_TrainingConfirmActivity">
 
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -159,18 +160,22 @@
 
     <View style="@style/divider1" />
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="120dp"
+        android:background="#FFF"
+        android:id="@+id/contentView"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_margin">
 
-        <TextView
-            android:id="@+id/teacher_typeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="定点上车" />
+        <EditText
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_et_bg"
+            android:gravity="left|top"
+            android:textSize="@dimen/textSize14"
+            android:padding="@dimen/space5" />
     </LinearLayout>
 
     <View style="@style/divider1" />
@@ -190,7 +195,7 @@
             android:layout_marginLeft="@dimen/view_margin"
             android:layout_marginRight="@dimen/view_margin"
             android:layout_marginTop="@dimen/space30"
-            android:text="预约" />
+            android:text="评论" />
 
     </LinearLayout>
 

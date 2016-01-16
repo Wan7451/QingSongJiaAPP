@@ -586,6 +586,18 @@ public class NetRequest {
 
     }
 
+    public static void peijiapinglui2JiaoLian(WanActivity context,
+                                     View v,
+                                     int id,
+                                     String remark,
+                                     NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", id + "");
+        params.put("dri_remark", UnicodeUtil.stringToUnicode(remark));
+        NetUtils.baseRequest(context,v,
+                "driapppartnerTrain/remarkEduToCoach", params, true, handler);
+    }
+
     public static void peijiapinglui(WanActivity context,
                                      View v,
                                      int id,

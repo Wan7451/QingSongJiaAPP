@@ -79,7 +79,31 @@ public class S_SparringListActivity extends WanListActivity {
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-        UIManager.startPenLianDetail(getContext(),data.get(posotion));
+        PeiLian item=data.get(posotion);
+
+        switch (item.getStatus()) {
+            case 1:
+                //未抢单
+                break;
+            case 2:
+                //已抢单
+                UIManager.startPenLianDetail(getContext(),data.get(posotion));
+                break;
+            case 3:
+                if (item.getDri_remark_state_two()==2) {
+                    //已评价
+                    UIManager.startPenLianDetail(getContext(),data.get(posotion));
+                } else {
+                    //已确认
+                    UIManager.startPenLianDetail(getContext(),data.get(posotion));
+                }
+                break;
+            case 4:
+                //已取消
+                showToast("已经取消抢单");
+                break;
+        }
+
     }
 
 }
