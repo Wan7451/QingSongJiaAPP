@@ -138,6 +138,7 @@
             android:gravity="left|top"
             android:layout_width="match_parent"
             android:layout_height="90dp"
+            android:textSize="@dimen/textSize14"
             android:background="@drawable/shape_et_bg" />
     </LinearLayout>
 

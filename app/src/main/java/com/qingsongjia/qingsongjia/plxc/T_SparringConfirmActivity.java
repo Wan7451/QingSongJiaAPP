@@ -1,7 +1,6 @@
 package com.qingsongjia.qingsongjia.plxc;
 
 import android.net.Uri;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +9,8 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qingsongjia.qingsongjia.R;
-import com.qingsongjia.qingsongjia.bean.MyPeiLian;
+import com.qingsongjia.qingsongjia.bean.PeiLian;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -18,6 +18,7 @@ import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 /**
  * 陪练确认接口
@@ -50,30 +51,27 @@ public class T_SparringConfirmActivity extends WanActivity {
     @Bind(R.id.teacher_typeText)
     TextView teacherTypeText;
 
-    private MyPeiLian peiLian;
+    private PeiLian peiLian;
 
     @Override
     public void initView() {
         setContentTitle("确认");
         setBackFinish();
         ButterKnife.bind(this);
-        setRightText("投诉", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UIManager.startTouSuo(getContext(), peiLian.getId());
-            }
-        });
 
         peiLian = getIntent().getParcelableExtra("data");
-
-
 
         if (!TextUtils.isEmpty(peiLian.getDri_file_path())) {
             teacherIcon.setImageURI(Uri.parse(peiLian.getDri_file_path()));
         }
-        teacherName.setText(peiLian.getDri_user_nm());
-        teacherTime.setText(peiLian.getMeetingDate_str());
-        teacherNeirong.setText(peiLian.getDri_partner_type_nm());
+        teacherName.setText(peiLian.getDri_coach_nm());
+        teacherYuyue.setText("");
+        teacherKemu.setText("预约时间");
+        teacherTime.setText(peiLian.getMeetingDate_str()
+                +" "+peiLian.getMeetingTime()+"点");
+
+
+        teacherNeirong.setText("");
         teacherTele.setText(peiLian.getTelephoneNumber());
 
         teacherType.setText(peiLian.getDri_partner_type_nm());
@@ -87,7 +85,7 @@ public class T_SparringConfirmActivity extends WanActivity {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("确认成功");
-                       // UIManager.startPeiLianPingJia(getContext(),peiLian);
+                        EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_PEIJIA,null));
                         finish();
                     }
 

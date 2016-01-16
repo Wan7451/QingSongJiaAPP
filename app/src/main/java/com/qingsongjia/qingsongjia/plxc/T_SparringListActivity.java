@@ -2,16 +2,14 @@ package com.qingsongjia.qingsongjia.plxc;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
-import com.qingsongjia.qingsongjia.bean.MyPeiLian;
+import com.qingsongjia.qingsongjia.bean.PeiLian;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -22,13 +20,15 @@ import com.wan7451.wanadapter.recycle.WanViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * 陪练列表
  */
 public class T_SparringListActivity extends WanListActivity {
 
 
-    private ArrayList<MyPeiLian> data=new ArrayList<>();
+    private ArrayList<PeiLian> data=new ArrayList<>();
 
     @Override
     protected int getMainViewLayoutId() {
@@ -64,7 +64,7 @@ public class T_SparringListActivity extends WanListActivity {
             public void onResponseOK(JSONArray response, int total) {
                 data.clear();
                 if (!TextUtils.equals("[{}]", response.toJSONString())) {
-                    data.addAll(JSONArray.parseArray(response.toJSONString(),MyPeiLian.class));
+                    data.addAll(JSONArray.parseArray(response.toJSONString(),PeiLian.class));
                 }
 
                 loadFinish("暂时没有学员陪练");
@@ -82,22 +82,99 @@ public class T_SparringListActivity extends WanListActivity {
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
-        UIManager.startInquiryConfirm(getContext(),data.get(posotion));
+        PeiLian item=data.get(posotion);
+
+//        if(item.getStatus()==3 &&
+//                ){
+
+//        }
+
+        switch (item.getStatus()){
+            case 1:
+                //未抢单
+                UIManager.startPeiLianNormal(getContext(),data.get(posotion));
+                break;
+            case 2:
+                //已抢单,确认
+                UIManager.startInquiryConfirm(getContext(),data.get(posotion));
+                break;
+            case 3:
+                if(item.getDri_remark_state_two()==2){
+                    //已评价
+                    UIManager.startPeiLianEvaluate(getContext(),data.get(posotion));
+                }else {
+                    //已确认，评价
+                    UIManager.startPeiLianPingJia(getContext(), data.get(posotion));
+                }
+                break;
+            case 4:
+                //已取消，
+                showToast("已经取消抢单");
+                break;
+        }
+
     }
 
-    static class MyTestAdapter extends WanAdapter<MyPeiLian>{
+    static class MyTestAdapter extends WanAdapter<PeiLian>{
 
-        public MyTestAdapter(Context context, List<MyPeiLian> mDatas, int itemLayoutId) {
+        public MyTestAdapter(Context context, List<PeiLian> mDatas, int itemLayoutId) {
             super(context, mDatas, itemLayoutId);
         }
 
         @Override
-        public void convert(WanViewHolder holder, int position, MyPeiLian item) {
+        public void convert(WanViewHolder holder, int position, PeiLian item) {
             holder.setText(R.id.time,item.getMeetingDate_str()+" "+item.getMeetingTime()+"时");
 //            holder.setText(R.id.kemu,"");
 //            holder.setText(R.id.zhishidian,"");
             holder.setText(R.id.status,item.getDri_remark_state_nm());
 
+            holder.getView(R.id.kemu).setVisibility(View.GONE);
+
+            TextView zhishidian=  holder.getView(R.id.zhishidian);
+            TextView status=  holder.getView(R.id.status);
+            zhishidian.setText(item.getDri_comments());
+
+            //1 未抢单 2已抢单 3已确认 4已取消
+            switch (item.getStatus()){
+                case 1:
+                    status.setText("未抢单");
+                    break;
+                case 2:
+                    status.setText("已抢单");
+                    break;
+                case 3:
+                    if(item.getDri_remark_state_two()==2){
+                        //已评价
+                        status.setText("已评价");
+                    }else {
+                        //已确认，评价
+                        status.setText("已确认");
+                    }
+                    break;
+                case 4:
+                    status.setText("已取消");
+                    break;
+            }
+        }
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+
+    public void onEventMainThread(EventData data) {
+        if (data.getType() == EventData.TYPE_REFRESH_PEIJIA) {
+            refreshing();
         }
     }
 }

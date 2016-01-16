@@ -44,8 +44,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="569315ef67e58e9c14000913" />
@@ -394,7 +392,6 @@
         <activity
             android:name=".exchange.ImageActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".exchange.ExchangeDetailActivity"
             android:screenOrientation="portrait" />
@@ -404,6 +401,14 @@
         <activity
             android:name=".exchange.ReplyActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".plxc.T_SparringNormalActivity"
+            android:label="@string/title_activity_t__sparring_normal"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".plxc.T_SparringShowEvalActivity"
+            android:label="@string/title_activity_t__sparring_show_eval"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

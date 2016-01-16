@@ -57,7 +57,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space5"
-                android:text="科目"
                 android:textColor="@color/default_btn_normal"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
@@ -100,6 +99,7 @@
         </android.support.v7.widget.GridLayout>
 
     </LinearLayout>
+
     <View
         style="@style/divider1"
         android:layout_marginLeft="@dimen/view_margin"
@@ -126,6 +126,7 @@
             android:layout_marginLeft="@dimen/space10"
             android:text="电话" />
     </LinearLayout>
+
     <View style="@style/divider1" />
 
     <View style="@style/divider10" />
@@ -160,21 +161,18 @@
 
     <View style="@style/divider1" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="#FFF"
-        android:orientation="horizontal"
-        android:padding="@dimen/view_margin">
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/shape_et_bg"
-            android:gravity="left|top"
-            android:textSize="@dimen/textSize14"
-            android:padding="@dimen/space5" />
+        <TextView
+            android:id="@+id/teacher_typeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="定点上车" />
     </LinearLayout>
 
     <View style="@style/divider1" />
@@ -194,7 +192,7 @@
             android:layout_marginLeft="@dimen/view_margin"
             android:layout_marginRight="@dimen/view_margin"
             android:layout_marginTop="@dimen/space30"
-            android:text="评论" />
+            android:text="取消订单" />
 
     </LinearLayout>
 

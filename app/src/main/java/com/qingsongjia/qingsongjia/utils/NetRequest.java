@@ -253,7 +253,7 @@ public class NetRequest {
         params.put("meetingTime", time);
         params.put("dri_price", price);
         params.put("dri_partner_type", type);
-        params.put("dri_comments", other);
+        params.put("dri_comments", UnicodeUtil.stringToUnicode(other));
         NetUtils.baseRequest(context,v,
                 "driapppartnerTrain/save", params, false, handler);
 
@@ -594,7 +594,8 @@ public class NetRequest {
         HashMap<String, String> params = new HashMap<>();
         params.put("id", id + "");
         params.put("dri_remark", UnicodeUtil.stringToUnicode(remark));
-        NetUtils.baseRequest(context,v, "driapppartnerTrain/remark", params, false, handler);
+        NetUtils.baseRequest(context,v,
+                "driapppartnerTrain/remarkCoachToEdu", params, true, handler);
     }
 
     /**

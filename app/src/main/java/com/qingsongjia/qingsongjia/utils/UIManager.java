@@ -6,13 +6,11 @@ import android.net.Uri;
 import android.support.v4.app.Fragment;
 
 import com.qingsongjia.qingsongjia.activity.LoginActivity;
-import com.qingsongjia.qingsongjia.activity.MainActivity;
 import com.qingsongjia.qingsongjia.activity.MapActivity;
 import com.qingsongjia.qingsongjia.activity.RegisterActivity;
 import com.qingsongjia.qingsongjia.activity.SetPasswordActivity;
 import com.qingsongjia.qingsongjia.activity.VerifyPhoneActivity;
 import com.qingsongjia.qingsongjia.bean.CityData;
-import com.qingsongjia.qingsongjia.bean.MyPeiLian;
 import com.qingsongjia.qingsongjia.bean.MyYueKao;
 import com.qingsongjia.qingsongjia.bean.PeiLian;
 import com.qingsongjia.qingsongjia.bean.SchoolDetail;
@@ -38,6 +36,8 @@ import com.qingsongjia.qingsongjia.exchange.ReplyActivity;
 import com.qingsongjia.qingsongjia.plxc.AllSparringListActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringEvaluateActivity;
 import com.qingsongjia.qingsongjia.plxc.T_SparringComplaintActivity;
+import com.qingsongjia.qingsongjia.plxc.T_SparringNormalActivity;
+import com.qingsongjia.qingsongjia.plxc.T_SparringShowEvalActivity;
 import com.qingsongjia.qingsongjia.teacher.TeacherMessageActivity;
 import com.qingsongjia.qingsongjia.user.StudentMessageActivity;
 import com.qingsongjia.qingsongjia.yuekao.InquiryExamActivity;
@@ -391,7 +391,7 @@ public class UIManager {
      * @param context
      * @param data
      */
-    public static void startInquiryConfirm(WanActivity context, MyPeiLian data) {
+    public static void startInquiryConfirm(WanActivity context, PeiLian data) {
         Intent i = new Intent();
         i.setClass(context.getContext(), T_SparringConfirmActivity.class);
         i.putExtra("data", data);
@@ -609,6 +609,20 @@ public class UIManager {
         Intent i = new Intent();
         i.setClass(context, ImageActivity.class);
         i.putExtra("imgUri", uri);
+        context.startActivity(i);
+    }
+
+    public static void startPeiLianNormal(Context context, PeiLian data) {
+        Intent i = new Intent();
+        i.setClass(context, T_SparringNormalActivity.class);
+        i.putExtra("data", data);
+        context.startActivity(i);
+    }
+
+    public static void startPeiLianEvaluate(Context context, PeiLian data) {
+        Intent i = new Intent();
+        i.setClass(context, T_SparringShowEvalActivity.class);
+        i.putExtra("data", data);
         context.startActivity(i);
     }
 }

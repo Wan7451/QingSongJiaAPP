@@ -83,18 +83,18 @@ public class ToolsFragment extends WanListFragment {
         PeiLian item = data.get(posotion);
 
         switch (item.getStatus()) {
-            case "1":
+            case 1:
                 //   state= "未抢单";
                 UIManager.startPenLianDetail(getContext(),item);
 
                 break;
-            case "2":
+            case 2:
                 //   state= "已抢单";
                 break;
-            case "3":
+            case 3:
                 //   state="已确认";
                 break;
-            case "4":
+            case 4:
                 //   state="已取消";
                 break;
         }

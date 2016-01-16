@@ -1,10 +1,14 @@
 package com.qingsongjia.qingsongjia.plxc;
 
 import android.net.Uri;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -22,10 +26,10 @@ import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
 /**
- * 陪练评价
+ * 陪练未抢单
  */
+public class T_SparringNormalActivity extends WanActivity {
 
-public class T_SparringEvaluateActivity extends WanActivity {
 
     @Bind(R.id.teacher_icon)
     SimpleDraweeView teacherIcon;
@@ -41,85 +45,54 @@ public class T_SparringEvaluateActivity extends WanActivity {
     TextView teacherTime;
     @Bind(R.id.teacher_neirong)
     TextView teacherNeirong;
+    @Bind(R.id.yxconfirm_queren)
+    Button yxconfirmQueren;
     @Bind(R.id.teacher_tele)
     TextView teacherTele;
     @Bind(R.id.teacher_type)
     TextView teacherType;
     @Bind(R.id.teacher_price)
     TextView teacherPrice;
-    @Bind(R.id.content)
-    EditText content;
-    @Bind(R.id.yxconfirm_queren)
-    Button yxconfirmQueren;
+    @Bind(R.id.teacher_typeText)
+    TextView teacherTypeText;
 
     private PeiLian peiLian;
 
-
     @Override
     public void initView() {
-        ButterKnife.bind(this);
-        setContentTitle("评价");
+        setContentTitle("未抢单");
         setBackFinish();
-        peiLian = getIntent().getParcelableExtra("data");
+        ButterKnife.bind(this);
 
-        setRightText("投诉", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UIManager.startTouSuo(getContext(), peiLian.getId());
-            }
-        });
+        peiLian = getIntent().getParcelableExtra("data");
 
         if (!TextUtils.isEmpty(peiLian.getDri_file_path())) {
             teacherIcon.setImageURI(Uri.parse(peiLian.getDri_file_path()));
         }
-        teacherName.setText(peiLian.getDri_coach_nm());
+        teacherName.setText(peiLian.getDri_user_nm());
         teacherYuyue.setText("");
         teacherKemu.setText("预约时间");
-        teacherTime.setText(peiLian.getMeetingDate_str()
-                +" "+peiLian.getMeetingTime()+"点");
+        teacherTime.setText(peiLian.getMeetingDate_str()+" "+peiLian.getMeetingTime()+"点");
 
-
-        teacherNeirong.setText("");
+        teacherNeirong.setText(peiLian.getDri_partner_type_nm());
         teacherTele.setText(peiLian.getTelephoneNumber());
 
         teacherType.setText(peiLian.getDri_partner_type_nm());
-        teacherPrice.setText(peiLian.getDri_price() + "元");
-
+        teacherPrice.setText(peiLian.getDri_price()+"元");
+        teacherTypeText.setText(peiLian.getDri_comments());
 
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String remark = content.getText().toString();
-                if (TextUtils.isEmpty(remark)) {
-                    showToast("评论不能为空");
-                    return;
-                }
-
-                NetRequest.peijiapinglui(getContext(),view, peiLian.getId(), remark, new NetUtils.NetUtilsHandler() {
-                    @Override
-                    public void onResponseOK(JSONArray response, int total) {
-                        showToast("评论成功");
-                        EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_PEIJIA,null));
-                        finish();
-                    }
-
-                    @Override
-                    public void onResponseError(String error) {
-                        if(TextUtils.isEmpty(error)){
-                            showToast("评论失败");
-                        }else {
-                            showToast(error);
-                        }
-
-                    }
-                });
+                //取消陪练
+                EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_PEIJIA,null));
             }
         });
     }
 
     @Override
     protected int getMainViewLayoutId() {
-        return R.layout.activity_pei_lian_ping_jia;
+        return R.layout.activity_t__sparring_normal;
     }
 
 }
