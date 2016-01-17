@@ -74,6 +74,7 @@ public class S_InquiryTrainingActivity extends WanActivity {
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                                 trainingTime.setText(year + "年" + (month + 1) + "月" + day + "日");
                                 time = year + "-" + (month + 1) + "-" + day;
+                                trainingMytime.setText(year + "年" + (month + 1) + "月" + day + "日");
                             }
                         },
                         calendar.get(Calendar.YEAR),
@@ -144,7 +145,7 @@ public class S_InquiryTrainingActivity extends WanActivity {
         if (data.getType() == EventData.TYPE_YUELIAN) {
             TeacherDetail detail = (TeacherDetail) data.getData();
             trainingTeacher.setText(detail.getDri_coach_nm());
-            trainingMytime.setText(time);
+//            trainingMytime.setText(time);
             trainingMyteacher.setText(detail.getDri_plate_num());
             teacherId = detail.getId();
         }

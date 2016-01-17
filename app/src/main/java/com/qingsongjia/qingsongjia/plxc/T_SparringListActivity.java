@@ -99,7 +99,7 @@ public class T_SparringListActivity extends WanListActivity {
                 UIManager.startInquiryConfirm(getContext(),data.get(posotion));
                 break;
             case 3:
-                if(item.getDri_remark_state()==2){
+                if(item.getDri_remark_state_two()==2){
                     //已评价
                     UIManager.startPeiLianEvaluate(getContext(),data.get(posotion));
                 }else {

@@ -59,7 +59,7 @@ public class S_SparringInquiryActivity extends WanActivity {
     public void initView() {
         ButterKnife.bind(this);
         setBackFinish();
-        setContentTitle("预约");
+        setContentTitle("抢单");
 
 
         peiLian = getIntent().getParcelableExtra("peilian");

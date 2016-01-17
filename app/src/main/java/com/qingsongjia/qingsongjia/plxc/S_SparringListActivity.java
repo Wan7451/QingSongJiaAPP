@@ -90,7 +90,7 @@ public class S_SparringListActivity extends WanListActivity {
                 UIManager.startPenLianDetail(getContext(),data.get(posotion));
                 break;
             case 3:
-                if (item.getDri_remark_state_two()==2) {
+                if (item.getDri_remark_state()==2) {
                     //已评价
                     UIManager.startPenLianDetail(getContext(),data.get(posotion));
                 } else {
