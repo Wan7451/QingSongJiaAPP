@@ -67,6 +67,7 @@ public class T_SparringListActivity extends WanListActivity {
                     data.addAll(JSONArray.parseArray(response.toJSONString(),PeiLian.class));
                 }
 
+
                 loadFinish("暂时没有学员陪练");
 
             }
