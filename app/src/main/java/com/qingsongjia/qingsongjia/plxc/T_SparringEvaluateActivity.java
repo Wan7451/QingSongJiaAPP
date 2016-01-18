@@ -1,6 +1,9 @@
 package com.qingsongjia.qingsongjia.plxc;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -69,8 +72,8 @@ public class T_SparringEvaluateActivity extends WanActivity {
             }
         });
 
-        if (!TextUtils.isEmpty(peiLian.getDri_file_path())) {
-            teacherIcon.setImageURI(Uri.parse(peiLian.getDri_file_path()));
+        if (!TextUtils.isEmpty(peiLian.getDri_consult_file_path())) {
+            teacherIcon.setImageURI(Uri.parse(peiLian.getDri_consult_file_path()));
         }
         teacherName.setText(peiLian.getDri_coach_nm());
         teacherYuyue.setText("");
@@ -80,7 +83,29 @@ public class T_SparringEvaluateActivity extends WanActivity {
 
 
         teacherNeirong.setText("");
-        teacherTele.setText(peiLian.getTelephoneNumber());
+
+        teacherTele.setText(peiLian.getDri_coach_tel());
+        teacherTele.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!TextUtils.isEmpty(peiLian.getDri_user_tel())){
+                    AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+                    builder.setTitle("提示");
+                    builder.setMessage("是否要拨打教练的电话");
+                    builder.setPositiveButton("拨打", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent phoneIntent = new Intent("android.intent.action.CALL",
+                                    Uri.parse("tel:" + peiLian.getDri_coach_tel()));
+                            //启动
+                            startActivity(phoneIntent);
+                        }
+                    });
+                    builder.setNegativeButton("不了",null);
+                    builder.show();
+                }
+            }
+        });
 
         teacherType.setText(peiLian.getDri_partner_type_nm());
         teacherPrice.setText(peiLian.getDri_price() + "元");

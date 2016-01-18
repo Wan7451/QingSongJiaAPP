@@ -356,6 +356,19 @@ public class UIManager {
     }
 
     /**
+     * 打开培训详情
+     *
+     * @param context
+     * @param item
+     */
+    public static void startPenLianInquiry(Context context, PeiLian item) {
+        Intent i = new Intent();
+        i.setClass(context, S_SparringInquiryActivity.class);
+        i.putExtra("peilian", item);
+        context.startActivity(i);
+    }
+
+    /**
      * 修改题库
      *
      * @param context

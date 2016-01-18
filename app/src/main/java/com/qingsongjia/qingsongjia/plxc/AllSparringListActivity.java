@@ -79,7 +79,7 @@ public class AllSparringListActivity extends WanListActivity {
         switch (item.getStatus()) {
             case 1:
                 //   state= "未抢单";
-                UIManager.startPenLianDetail(getContext(), item);
+                UIManager.startPenLianInquiry(getContext(), item);
 
                 break;
             case 2:

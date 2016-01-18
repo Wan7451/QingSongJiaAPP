@@ -1,7 +1,10 @@
 package com.qingsongjia.qingsongjia.plxc;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -80,19 +83,42 @@ public class S_SparringEvaluateActivity extends WanActivity {
 
 
         teacherNeirong.setText("");
-        teacherTele.setText(peiLian.getTelephoneNumber());
+        teacherTele.setText(peiLian.getDri_user_tel());
+        teacherTele.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!TextUtils.isEmpty(peiLian.getDri_user_tel())){
+                    AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+                    builder.setTitle("提示");
+                    builder.setMessage("是否要拨打教练的电话");
+                    builder.setPositiveButton("拨打", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent phoneIntent = new Intent("android.intent.action.CALL",
+                                    Uri.parse("tel:" + peiLian.getDri_user_tel()));
+                            //启动
+                            startActivity(phoneIntent);
+                        }
+                    });
+                    builder.setNegativeButton("不了",null);
+                    builder.show();
+                }
+            }
+        });
 
         teacherType.setText(peiLian.getDri_partner_type_nm());
         teacherPrice.setText(peiLian.getDri_price() + "元");
 
         switch (peiLian.getStatus()) {
             case 2:
+                setContentTitle("等待教练确认");
                 yxconfirmQueren.setVisibility(View.GONE);
                 content.setText(peiLian.getDri_comments());
                 content.setFocusable(false);
                 break;
             case 3:
-                if (peiLian.getDri_remark_state_two()==2) {
+                if (peiLian.getDri_remark_state()==2) {
+                    setContentTitle("教练评价");
                     yxconfirmQueren.setVisibility(View.GONE);
                     content.setText("教练评价:\n" +peiLian.getDri_remark_two());
                     content.setFocusable(false);

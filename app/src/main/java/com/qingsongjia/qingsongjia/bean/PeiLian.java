@@ -47,9 +47,9 @@ public class PeiLian implements Parcelable {
     private int create_id;
     private int did;
     private int dri_coach_id;
-    private String dri_coach_nm;
+
     private String dri_comments;
-    private String dri_file_path;
+
     private TarenaTime dri_grab_date;
     private String dri_grab_date_str;
     private String dri_partner_type;
@@ -61,7 +61,7 @@ public class PeiLian implements Parcelable {
     private int dri_remark_state_two;
     private String dri_remark_two;
     private int dri_user_id;
-    private String dri_user_nm;
+
     private int id;
     private String isdel;
     private String meetingDate_str;
@@ -70,6 +70,38 @@ public class PeiLian implements Parcelable {
     private String telephoneNumber;
     private int update_id;
     private String validateCode;
+
+    private String dri_consult_file_path;//学员头像
+    private String dri_coach_tel;//学员电话
+    private String dri_coach_nm; //学员名字
+
+    private String dri_user_tel;//教练电话
+    private String dri_user_nm; //教练名字
+    private String dri_file_path;//教练头像
+
+    public String getDri_consult_file_path() {
+        return dri_consult_file_path;
+    }
+
+    public void setDri_consult_file_path(String dri_consult_file_path) {
+        this.dri_consult_file_path = dri_consult_file_path;
+    }
+
+    public String getDri_user_tel() {
+        return dri_user_tel;
+    }
+
+    public void setDri_user_tel(String dri_user_tel) {
+        this.dri_user_tel = dri_user_tel;
+    }
+
+    public String getDri_coach_tel() {
+        return dri_coach_tel;
+    }
+
+    public void setDri_coach_tel(String dri_coach_tel) {
+        this.dri_coach_tel = dri_coach_tel;
+    }
 
     public void setCarType(String carType) {
         this.carType = carType;
@@ -295,6 +327,9 @@ public class PeiLian implements Parcelable {
         return validateCode;
     }
 
+    public PeiLian() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -310,7 +345,7 @@ public class PeiLian implements Parcelable {
         dest.writeString(this.dri_coach_nm);
         dest.writeString(this.dri_comments);
         dest.writeString(this.dri_file_path);
-        dest.writeParcelable(this.dri_grab_date, flags);
+        dest.writeParcelable(this.dri_grab_date, 0);
         dest.writeString(this.dri_grab_date_str);
         dest.writeString(this.dri_partner_type);
         dest.writeString(this.dri_partner_type_nm);
@@ -321,7 +356,6 @@ public class PeiLian implements Parcelable {
         dest.writeInt(this.dri_remark_state_two);
         dest.writeString(this.dri_remark_two);
         dest.writeInt(this.dri_user_id);
-        dest.writeString(this.dri_user_nm);
         dest.writeInt(this.id);
         dest.writeString(this.isdel);
         dest.writeString(this.meetingDate_str);
@@ -330,9 +364,10 @@ public class PeiLian implements Parcelable {
         dest.writeString(this.telephoneNumber);
         dest.writeInt(this.update_id);
         dest.writeString(this.validateCode);
-    }
-
-    public PeiLian() {
+        dest.writeString(this.dri_consult_file_path);
+        dest.writeString(this.dri_user_tel);
+        dest.writeString(this.dri_coach_tel);
+        dest.writeString(this.dri_user_nm);
     }
 
     protected PeiLian(Parcel in) {
@@ -355,7 +390,6 @@ public class PeiLian implements Parcelable {
         this.dri_remark_state_two = in.readInt();
         this.dri_remark_two = in.readString();
         this.dri_user_id = in.readInt();
-        this.dri_user_nm = in.readString();
         this.id = in.readInt();
         this.isdel = in.readString();
         this.meetingDate_str = in.readString();
@@ -364,9 +398,13 @@ public class PeiLian implements Parcelable {
         this.telephoneNumber = in.readString();
         this.update_id = in.readInt();
         this.validateCode = in.readString();
+        this.dri_consult_file_path = in.readString();
+        this.dri_user_tel = in.readString();
+        this.dri_coach_tel = in.readString();
+        this.dri_user_nm = in.readString();
     }
 
-    public static final Parcelable.Creator<PeiLian> CREATOR = new Parcelable.Creator<PeiLian>() {
+    public static final Creator<PeiLian> CREATOR = new Creator<PeiLian>() {
         public PeiLian createFromParcel(Parcel source) {
             return new PeiLian(source);
         }

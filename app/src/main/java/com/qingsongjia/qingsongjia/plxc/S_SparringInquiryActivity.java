@@ -1,5 +1,7 @@
 package com.qingsongjia.qingsongjia.plxc;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -75,6 +77,29 @@ public class S_SparringInquiryActivity extends WanActivity {
         if (!TextUtils.isEmpty(peiLian.getDri_file_path())) {
             teacherIcon.setImageURI(Uri.parse(peiLian.getDri_file_path()));
         }
+
+        teacherTele.setText(peiLian.getDri_user_tel());
+        teacherTele.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!TextUtils.isEmpty(peiLian.getDri_user_tel())){
+                    AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+                    builder.setTitle("提示");
+                    builder.setMessage("是否要拨打教练的电话");
+                    builder.setPositiveButton("拨打", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent phoneIntent = new Intent("android.intent.action.CALL",
+                                    Uri.parse("tel:" + peiLian.getDri_user_tel()));
+                            //启动
+                            startActivity(phoneIntent);
+                        }
+                    });
+                    builder.setNegativeButton("不了",null);
+                    builder.show();
+                }
+            }
+        });
 
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
