@@ -57,7 +57,7 @@ public class S_TrainingEvaluateActivity extends WanActivity {
     public void initView() {
         ButterKnife.bind(this);
         setBackFinish();
-        setContentTitle("练习评论");
+        setContentTitle("约训评论");
 
         data = getIntent().getParcelableExtra("data");
 
