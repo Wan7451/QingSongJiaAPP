@@ -38,19 +38,24 @@ public class PenLianAdapter extends WanAdapter<PeiLian> {
         switch (item.getStatus()) {
             case 1:
                 state = "未抢单";
+                status.setTextColor(getContext().getResources().getColor(R.color.title_bar_color));
                 break;
             case 2:
                 state = "已抢单";
+                status.setTextColor(getContext().getResources().getColor(R.color.title_bar_color));
                 break;
             case 3:
                 if (item.getDri_remark_state()==2) {
                     state = "已评价";
+                    status.setTextColor(getContext().getResources().getColor(R.color.text_default_hint));
                 } else {
                     state = "已确认";
+                    status.setTextColor(getContext().getResources().getColor(R.color.text_import));
                 }
                 break;
             case 4:
                 state = "已取消";
+                status.setTextColor(getContext().getResources().getColor(R.color.text_default_hint));
                 break;
         }
         status.setText(state);

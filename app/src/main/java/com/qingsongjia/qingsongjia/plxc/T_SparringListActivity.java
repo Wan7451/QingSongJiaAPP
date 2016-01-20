@@ -127,21 +127,26 @@ public class T_SparringListActivity extends WanListActivity {
             switch (item.getStatus()){
                 case 1:
                     status.setText("未抢单");
+                    status.setTextColor(getContext().getResources().getColor(R.color.title_bar_color));
                     break;
                 case 2:
                     status.setText("已抢单");
+                    status.setTextColor(getContext().getResources().getColor(R.color.title_bar_color));
                     break;
                 case 3:
                     if(item.getDri_remark_state_two()==2){
                         //已评价
                         status.setText("已评价");
+                        status.setTextColor(getContext().getResources().getColor(R.color.text_default_hint));
                     }else {
                         //已确认，评价
                         status.setText("已确认");
+                        status.setTextColor(getContext().getResources().getColor(R.color.text_import));
                     }
                     break;
                 case 4:
                     status.setText("已取消");
+                    status.setTextColor(getContext().getResources().getColor(R.color.text_default_hint));
                     break;
             }
         }
