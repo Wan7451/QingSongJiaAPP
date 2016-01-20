@@ -152,7 +152,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/view_margin"
         android:layout_marginRight="@dimen/view_margin"
-        android:text="预约" />
+        android:text="发布" />
 
 
 </LinearLayout>

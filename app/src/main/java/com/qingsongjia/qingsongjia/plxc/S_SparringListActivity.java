@@ -1,18 +1,13 @@
 package com.qingsongjia.qingsongjia.plxc;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.View;
 
 import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.adapter.PenLianAdapter;
 import com.qingsongjia.qingsongjia.bean.PeiLian;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -21,7 +16,8 @@ import com.wan7451.wanadapter.recycle.WanAdapter;
 import com.wan7451.wanadapter.recycle.WanViewHolder;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * 学员    陪练列表
@@ -106,4 +102,22 @@ public class S_SparringListActivity extends WanListActivity {
 
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+
+    public void onEventMainThread(EventData data) {
+        if (data.getType() == EventData.TYPE_REFRESH_PEIJIA) {
+            refreshing();
+        }
+    }
 }
