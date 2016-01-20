@@ -36,8 +36,6 @@ public class S_SparringEvaluateActivity extends WanActivity {
     TextView teacherYuyue;
     @Bind(R.id.teacher_kemu)
     TextView teacherKemu;
-    @Bind(R.id.teacher_chepai)
-    TextView teacherChepai;
     @Bind(R.id.teacher_time)
     TextView teacherTime;
     @Bind(R.id.teacher_neirong)
@@ -48,12 +46,18 @@ public class S_SparringEvaluateActivity extends WanActivity {
     TextView teacherType;
     @Bind(R.id.teacher_price)
     TextView teacherPrice;
-    @Bind(R.id.content)
-    EditText content;
+
     @Bind(R.id.yxconfirm_queren)
     Button yxconfirmQueren;
-    @Bind(R.id.contentView)
-    LinearLayout contentView;
+
+    @Bind(R.id.teacher_typeText)
+    TextView teacherTypeText;
+    @Bind(R.id.evaluate_content)
+    EditText evaluateContent;
+    @Bind(R.id.evaluate_view)
+    LinearLayout evaluateView;
+    @Bind(R.id.evaluate_t_view)
+    LinearLayout evaluateTView;
 
     private PeiLian peiLian;
 
@@ -87,8 +91,8 @@ public class S_SparringEvaluateActivity extends WanActivity {
         teacherTele.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.isEmpty(peiLian.getDri_user_tel())){
-                    AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+                if (!TextUtils.isEmpty(peiLian.getDri_user_tel())) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setTitle("提示");
                     builder.setMessage("是否要拨打教练的电话");
                     builder.setPositiveButton("拨打", new DialogInterface.OnClickListener() {
@@ -100,7 +104,7 @@ public class S_SparringEvaluateActivity extends WanActivity {
                             startActivity(phoneIntent);
                         }
                     });
-                    builder.setNegativeButton("不了",null);
+                    builder.setNegativeButton("不了", null);
                     builder.show();
                 }
             }
@@ -109,26 +113,37 @@ public class S_SparringEvaluateActivity extends WanActivity {
         teacherType.setText(peiLian.getDri_partner_type_nm());
         teacherPrice.setText(peiLian.getDri_price() + "元");
 
+        teacherTypeText.setText(peiLian.getDri_comments());
+
         switch (peiLian.getStatus()) {
             case 2:
                 setContentTitle("等待教练确认");
                 yxconfirmQueren.setVisibility(View.GONE);
-                content.setText(peiLian.getDri_comments());
-                content.setFocusable(false);
+                evaluateView.setVisibility(View.GONE);
                 break;
             case 3:
-                if (peiLian.getDri_remark_state()==2) {
+                if (peiLian.getDri_remark_state() == 2) {
                     setContentTitle("教练评价");
                     yxconfirmQueren.setVisibility(View.GONE);
-                    content.setText("教练评价:\n" +peiLian.getDri_remark_two());
-                    content.setFocusable(false);
+
+                    if (TextUtils.isEmpty(peiLian.getDri_remark_two())) {
+                        evaluateContent.setText("教练暂时没有评论");
+                    } else {
+                        evaluateContent.setText(peiLian.getDri_remark_two());
+                    }
+                    evaluateContent.setFocusable(false);
+                } else {
+                    //隐藏教练评论
+                    evaluateTView.setVisibility(View.GONE);
                 }
                 break;
         }
+
+
         yxconfirmQueren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String remark = content.getText().toString();
+                final String remark = evaluateContent.getText().toString();
                 if (TextUtils.isEmpty(remark)) {
                     showToast("评论不能为空");
                     return;

@@ -59,27 +59,6 @@ public class ImagePagerAdapter extends RecyclingPagerAdapter {
             holder = new ViewHolder();
             view = holder.imageView = (SimpleDraweeView)
                     layoutInflater.inflate(R.layout.view_adbar_image, null);
-
-//                    new SimpleDraweeView(context);
-
-//            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//
-//            holder.imageView.setLayoutParams(lp);
-//
-//            GenericDraweeHierarchyBuilder builder =
-//                    new GenericDraweeHierarchyBuilder(context.getResources());
-//            GenericDraweeHierarchy hierarchy = builder
-//                    .setFadeDuration(300)
-//                    .setPlaceholderImage(context.getResources().getDrawable(R.drawable.default_adview_image))
-//                    .setFailureImage(context.getResources().getDrawable(R.drawable.fail_adview_image))
-//                    .setActualImageScaleType(ScalingUtils.ScaleType.CENTER_CROP)
-//                    .build();
-//
-//            RoundingParams roundingParams = new RoundingParams();
-//            roundingParams.setCornersRadius(10);
-//            hierarchy.setRoundingParams(roundingParams);
-//            holder.imageView.setHierarchy(hierarchy);
-
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
@@ -91,7 +70,6 @@ public class ImagePagerAdapter extends RecyclingPagerAdapter {
     }
 
     private static class ViewHolder {
-
         SimpleDraweeView imageView;
     }
 

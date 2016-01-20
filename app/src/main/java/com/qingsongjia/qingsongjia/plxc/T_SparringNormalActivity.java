@@ -69,17 +69,17 @@ public class T_SparringNormalActivity extends WanActivity {
 
         peiLian = getIntent().getParcelableExtra("data");
 
-        if (!TextUtils.isEmpty(peiLian.getDri_consult_file_path())) {
-            teacherIcon.setImageURI(Uri.parse(peiLian.getDri_consult_file_path()));
+        if (!TextUtils.isEmpty(peiLian.getDri_file_path())) {
+            teacherIcon.setImageURI(Uri.parse(peiLian.getDri_file_path()));
         }
-        teacherName.setText(peiLian.getDri_coach_nm());
+        teacherName.setText(peiLian.getDri_user_nm());
         teacherYuyue.setText("");
         teacherKemu.setText("预约时间");
         teacherTime.setText(peiLian.getMeetingDate_str()+" "+peiLian.getMeetingTime()+"点");
 
         teacherNeirong.setText(peiLian.getDri_partner_type_nm());
 
-        teacherTele.setText(peiLian.getDri_coach_tel());
+        teacherTele.setText(peiLian.getDri_user_tel());
         teacherTele.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

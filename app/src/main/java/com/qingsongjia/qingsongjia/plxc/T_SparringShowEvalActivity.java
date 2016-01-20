@@ -103,7 +103,7 @@ public class T_SparringShowEvalActivity extends WanActivity {
         teacherType.setText(peiLian.getDri_partner_type_nm());
         teacherPrice.setText(peiLian.getDri_price() + "元");
         teacherTypeText.setText(peiLian.getDri_comments());
-        content.setText("学员评价:\n"+peiLian.getDri_remark());
+        content.setText(peiLian.getDri_remark());
 
     }
 
