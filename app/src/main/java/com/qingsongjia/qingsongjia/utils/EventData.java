@@ -43,6 +43,11 @@ public class EventData {
      */
     public static final int TYPE_REFRESH_PEIJIA = 6;
 
+    /**
+     * 刷新我的余额
+     */
+    public static final int TYPE_REFRESH_YUE = 7;
+
     private int type;
     private Object data;
 

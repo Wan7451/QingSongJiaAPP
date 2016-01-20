@@ -61,6 +61,12 @@ public class SchoolListActivity extends WanListActivity {
         super.initView();
         setBackFinish();
         setContentTitle("找驾校");
+        setRightIcon(R.drawable.icon_search, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIManager.startSchoolSearch(getContext());
+            }
+        });
     }
 
     @Override

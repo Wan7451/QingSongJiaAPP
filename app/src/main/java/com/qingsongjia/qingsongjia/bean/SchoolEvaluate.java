@@ -31,6 +31,8 @@ public class SchoolEvaluate {
      * update_tm_str : 2015-12-03 17:07:36
      */
 
+
+
     private int campusId;
     private String campusName;
     private int create_id;
@@ -51,6 +53,16 @@ public class SchoolEvaluate {
     private String update_tm_str;
     private TarenaTime update_tm;
     private TarenaTime create_tm;
+
+    /**
+     * dri_is_like : 0
+     * dri_like_count : 0
+     * registFees : 0
+     */
+
+    private int dri_is_like;
+    private int dri_like_count;
+    private int registFees;
 
 
     public TarenaTime getUpdate_tm() {
@@ -211,5 +223,29 @@ public class SchoolEvaluate {
 
     public String getUpdate_tm_str() {
         return update_tm_str;
+    }
+
+    public void setDri_is_like(int dri_is_like) {
+        this.dri_is_like = dri_is_like;
+    }
+
+    public void setDri_like_count(int dri_like_count) {
+        this.dri_like_count = dri_like_count;
+    }
+
+    public void setRegistFees(int registFees) {
+        this.registFees = registFees;
+    }
+
+    public int getDri_is_like() {
+        return dri_is_like;
+    }
+
+    public int getDri_like_count() {
+        return dri_like_count;
+    }
+
+    public int getRegistFees() {
+        return registFees;
     }
 }

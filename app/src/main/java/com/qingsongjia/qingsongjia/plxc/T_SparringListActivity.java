@@ -58,7 +58,6 @@ public class T_SparringListActivity extends WanListActivity {
 
     @Override
     protected void loadData() {
-
         NetRequest.loadMyPeiLian(getContext(),null, new NetUtils.NetUtilsHandler() {
             @Override
             public void onResponseOK(JSONArray response, int total) {
@@ -66,10 +65,7 @@ public class T_SparringListActivity extends WanListActivity {
                 if (!TextUtils.equals("[{}]", response.toJSONString())) {
                     data.addAll(JSONArray.parseArray(response.toJSONString(),PeiLian.class));
                 }
-
-
                 loadFinish("暂时没有学员陪练");
-
             }
 
             @Override
@@ -77,18 +73,11 @@ public class T_SparringListActivity extends WanListActivity {
                 loadError();
             }
         });
-
-
     }
 
     @Override
     public void onItemClickListener(int posotion, WanViewHolder holder) {
         PeiLian item=data.get(posotion);
-
-//        if(item.getStatus()==3 &&
-//                ){
-
-//        }
 
         switch (item.getStatus()){
             case 1:
@@ -125,8 +114,7 @@ public class T_SparringListActivity extends WanListActivity {
         @Override
         public void convert(WanViewHolder holder, int position, PeiLian item) {
             holder.setText(R.id.time,item.getMeetingDate_str()+" "+item.getMeetingTime()+"时");
-//            holder.setText(R.id.kemu,"");
-//            holder.setText(R.id.zhishidian,"");
+
             holder.setText(R.id.status,item.getDri_remark_state_nm());
 
             holder.getView(R.id.kemu).setVisibility(View.GONE);

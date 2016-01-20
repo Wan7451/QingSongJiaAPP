@@ -57,4 +57,16 @@
         android:textSize="@dimen/titleTextSize"
         android:visibility="gone" />
 
+
+    <ImageView
+        android:id="@+id/icon_right"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerInside"
+        android:layout_marginRight="@dimen/space2"
+        android:background="@drawable/titlebar_view_bg"
+        android:paddingLeft="@dimen/space10"
+        android:paddingRight="@dimen/space10"
+        android:visibility="gone" />
 </RelativeLayout>

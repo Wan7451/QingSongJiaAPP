@@ -9,12 +9,14 @@ import android.widget.EditText;
 
 import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 /**
  * 余额提现
@@ -41,7 +43,7 @@ public class TiXianActivity extends WanActivity {
         final int money = getIntent().getIntExtra("money", 0);
 
 
-        tixianCharge.setHint("不能超过"+money+"元");
+        tixianCharge.setHint("不能超过" + money + "元");
 
         tixianSubject.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,17 +68,18 @@ public class TiXianActivity extends WanActivity {
 
                 int c = Integer.parseInt(charge);
 
-                if(c>money){
-                    showToast("不能超过"+money+"元");
+                if (c > money) {
+                    showToast("不能超过" + money + "元");
                     return;
                 }
 
                 c = 0 - c;
 
-                NetRequest.tixian(getContext(),view, card, name, c + "", new NetUtils.NetUtilsHandler() {
+                NetRequest.tixian(getContext(), view, card, name, c + "", new NetUtils.NetUtilsHandler() {
                     @Override
                     public void onResponseOK(JSONArray response, int total) {
                         showToast("提现申请成功");
+                        EventBus.getDefault().post(new EventData(EventData.TYPE_REFRESH_YUE, null));
                         finish();
                     }
 

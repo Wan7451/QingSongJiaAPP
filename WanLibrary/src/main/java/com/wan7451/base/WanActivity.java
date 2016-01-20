@@ -65,8 +65,6 @@ public abstract class WanActivity extends AppCompatActivity implements INetLoadA
     }
 
 
-
-
     /**
      * 初始化UI组件
      */
@@ -208,6 +206,15 @@ public abstract class WanActivity extends AppCompatActivity implements INetLoadA
         rightBtn.setText(text);
         if (listener != null)
             rightBtn.setOnClickListener(listener);
+    }
+
+
+    public void setRightIcon(int resDrawable, View.OnClickListener listener) {
+        ImageView rightImg = (ImageView) getTitleBar().findViewById(R.id.icon_right);
+        rightImg.setVisibility(View.VISIBLE);
+        rightImg.setImageResource(resDrawable);
+        if (listener != null)
+            rightImg.setOnClickListener(listener);
     }
 
 

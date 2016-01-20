@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.qingsongjia.qingsongjia.R;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -16,6 +17,7 @@ import com.wan7451.base.WanActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 public class MyMessageActivity extends WanActivity {
 
@@ -111,4 +113,23 @@ public class MyMessageActivity extends WanActivity {
         return R.layout.activity_my_message;
     }
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+
+    public void onEventMainThread(EventData data) {
+        if (data.getType() == EventData.TYPE_REFRESH_YUE) {
+            loadData();
+        }
+    }
 }

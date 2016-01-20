@@ -13,6 +13,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.JiFei;
 import com.qingsongjia.qingsongjia.bean.YuE;
+import com.qingsongjia.qingsongjia.utils.EventData;
 import com.qingsongjia.qingsongjia.utils.NetRequest;
 import com.qingsongjia.qingsongjia.utils.NetUtils;
 import com.qingsongjia.qingsongjia.utils.UIManager;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 /**
  * 我的余额
@@ -109,7 +111,26 @@ public class MyYuEActivity extends WanActivity {
 
             }
         });
+    }
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+
+    public void onEventMainThread(EventData data) {
+        if (data.getType() == EventData.TYPE_REFRESH_YUE) {
+            loadData();
+        }
     }
 
 }

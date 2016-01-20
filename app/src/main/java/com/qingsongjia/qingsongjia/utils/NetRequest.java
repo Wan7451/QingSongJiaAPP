@@ -365,7 +365,7 @@ public class NetRequest {
                                 NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
         params.put("user_id", LocalPreference.getCurrentUser(context).getId() + "");
-        NetUtils.baseRequest(context, v,"driappmypurse/queryMoneyForList", params, false, handler);
+        NetUtils.baseRequest(context, v,"driappmypurse/queryMoneyForList", params, true, handler);
 
     }
 
@@ -671,8 +671,8 @@ public class NetRequest {
                                              int id,
                                              NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
-//        User user = LocalPreference.getCurrentUser(context);
-//        params.put("user_id", user.getId() + "");
+        User user = LocalPreference.getCurrentUser(context);
+        params.put("create_id", user.getId() + "");
         params.put("campusId", id + "");
 //        params.put("campusId", 250+"");
         NetUtils.baseRequest(context,v, "driappcommentweb/queryForList", params, false, handler);
@@ -765,6 +765,8 @@ public class NetRequest {
                                                  int id,
                                                  NetUtils.NetUtilsHandler handler) {
         HashMap<String, String> params = new HashMap<>();
+        User user = LocalPreference.getCurrentUser(context);
+        params.put("create_id", user.getId() + "");
         params.put("campusId", id + "");
         params.put("user_campus_ids", id + "");
         NetUtils.baseRequest(context,v, "driappcommentweb/queryForList", params, false, handler);
