@@ -82,8 +82,6 @@ public class MyMessageActivity extends WanActivity {
     private void loadData() {
         NetRequest.getMyMessage(getContext(),null, new NetUtils.NetUtilsHandler() {
 
-
-
             @Override
             public void onResponseOK(JSONArray response, int total) {
                 String data = response.getString(0);

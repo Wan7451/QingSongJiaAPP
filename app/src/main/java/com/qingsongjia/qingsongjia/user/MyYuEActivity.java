@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.qingsongjia.qingsongjia.R;
 import com.qingsongjia.qingsongjia.bean.JiFei;
 import com.qingsongjia.qingsongjia.bean.YuE;
@@ -95,6 +96,23 @@ public class MyYuEActivity extends WanActivity {
 
 
     private void loadData() {
+
+        NetRequest.getMyMessage(getContext(),null, new NetUtils.NetUtilsHandler() {
+
+            @Override
+            public void onResponseOK(JSONArray response, int total) {
+                String data = response.getString(0);
+                JSONObject object = JSONObject.parseObject(data);
+                String code = object.getString("dri_invitation_code");
+                money = object.getInteger("money");
+                yueCount.setText(money +"");
+            }
+
+            @Override
+            public void onResponseError(String error) {
+
+            }
+        });
 
         NetRequest.getMyYuE(getContext(),null, new NetUtils.NetUtilsHandler() {
             @Override

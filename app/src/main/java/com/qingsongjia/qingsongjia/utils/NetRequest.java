@@ -943,4 +943,31 @@ public class NetRequest {
         NetUtils.baseRequest(context,v, "driapppraiseweb/offcare", params, true, handler);
 
     }
+
+    /**
+     * 驾校评论点赞
+     * @param context
+     * @param did
+     * @param handler
+     */
+    public static void likeComment(Context context,View v, int did, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_comment_id", did+"");
+        params.put("dri_user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        NetUtils.baseRequest(context,v, "driappcommentweb/likeComment", params, true, handler);
+
+    }
+    /**
+     * 驾校评论取消点赞
+     * @param context
+     * @param did
+     * @param handler
+     */
+    public static void cancelLikeComment(Context context, View v, int did, NetUtils.NetUtilsHandler handler) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dri_comment_id", did+"");
+        params.put("dri_user_id", LocalPreference.getCurrentUserData(context).getDid() + "");
+        NetUtils.baseRequest(context,v, "driappcommentweb/cancelLikeComment", params, true, handler);
+
+    }
 }
